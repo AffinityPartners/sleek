@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-rgb: 255, 255, 255;
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-shadow: rgba(0, 0, 0, 0.05);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+    @apply text-gray-900 leading-relaxed;
+  }
+
+  /* Modern focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-teal-500/60 ring-offset-2 ring-offset-white;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight text-gray-900 leading-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply mb-4;
+  }
+}
+
+@layer components {
+  /* Card styles */
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-glass border border-white/10 overflow-hidden transition-all duration-300 hover:shadow-glass-hover;
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-md rounded-3xl shadow-glass border border-white/20 overflow-hidden transition-all duration-300;
+  }
+  
+  .glass-card-dark {
+    @apply bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-md rounded-3xl shadow-glass border border-white/10 overflow-hidden transition-all duration-300;
+  }
+
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-sm border border-gray-200 focus:ring-2 focus:ring-teal-500/60 focus:border-transparent outline-none transition-all duration-200 shadow-inset-bottom;
+  }
+  
+  /* Modern button */
+  .btn-modern {
+    @apply relative px-6 py-3 rounded-xl overflow-hidden shadow-glass transition-all duration-300 flex items-center justify-center gap-x-2;
+  }
+  
+  .btn-modern::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-1000;
+  }
+  
+  .btn-modern:hover::before {
+    @apply opacity-100;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  /* Gradient borders */
+  .gradient-border {
+    position: relative;
+    border-radius: inherit;
+  }
+  
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(to right, #1ab9a3, #4dba9a, #1ab9a3);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  .glassmorphism {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+  
+  .glassmorphism-dark {
+    @apply bg-sleek-dark-blue/70 backdrop-blur-md border border-white/10;
+  }
+  
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* Hero section placeholder background while image loads */
+.hero-background-placeholder {
+  background: linear-gradient(125deg, #1b2223, #070708);
+}
+
+/* Blurred gradient shapes */
+.blur-gradient-shape {
+  filter: blur(40px);
+  opacity: 0.5;
+  background: linear-gradient(to right, #1ab9a3, #4dba9a);
+  border-radius: 100px;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease-out forwards;
+} 

@@ -1,0 +1,18 @@
+# Ignore artifacts:
+.next/
+node_modules/
+
+# Ignore lockfiles:
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore build output:
+build/
+dist/
+public/sitemap.xml
+public/robots.txt
+
+# Ignore specific files if necessary:
+# .env
+# .env.local 

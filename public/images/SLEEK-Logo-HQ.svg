@@ -1,0 +1,14 @@
+<svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .sleek-logo-text {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 48px;
+    }
+    .arrow {
+      fill: #07675e;
+    }
+  </style>
+  <text x="10" y="60" class="sleek-logo-text" fill="#000000">SLEEK</text>
+  <path class="arrow" d="M280 50 L240 20 L240 40 L200 40 L200 60 L240 60 L240 80 Z" />
+</svg> 
