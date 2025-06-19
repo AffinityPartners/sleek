@@ -4,7 +4,24 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Check, Sparkles, Shield, Info, X } from 'lucide-react';
+import { 
+  Check, 
+  Sparkles, 
+  Shield, 
+  Info, 
+  X, 
+  Star, 
+  Clock, 
+  Calendar, 
+  Award,
+  CreditCard,
+  Gift,
+  Users,
+  Smile,
+  Stethoscope,
+  Lightbulb,
+  Zap
+} from 'lucide-react';
 
 // --- Framer Motion Variants ---
 const viewport = { once: true, margin: '-100px' };
@@ -139,21 +156,22 @@ const cardVariants = {
     }
   },
   hover: { 
-    y: -8,
-    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+    y: -12,
+    boxShadow: "0 22px 40px rgba(0,0,0,0.15)",
     transition: { 
       type: "spring", 
       stiffness: 300,
-      damping: 20
+      damping: 15
     }
   },
   proHover: {
-    y: -8,
-    boxShadow: "0 20px 40px rgba(92, 187, 255, 0.3)",
+    y: -15,
+    scale: 1.02,
+    boxShadow: "0 25px 50px rgba(92, 187, 255, 0.35)",
     transition: { 
       type: "spring", 
       stiffness: 300,
-      damping: 20
+      damping: 15
     }
   }
 };
@@ -376,7 +394,7 @@ export default function PricingTable() {
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-b from-[#00e0cb]/5 to-transparent rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-[#5cbbff]/5 to-transparent rounded-full blur-3xl"></div>
         {/* Add a subtle glow behind the PRO card */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/2 bg-[#5cbbff]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-[#5cbbff]/10 rounded-full blur-3xl"></div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -422,6 +440,10 @@ export default function PricingTable() {
         
         {/* Plan cards */}
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 relative">
+          {/* Visual separator lines between plans */}
+          <div className="absolute top-1/4 bottom-1/4 left-1/3 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden md:block"></div>
+          <div className="absolute top-1/4 bottom-1/4 left-2/3 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden md:block"></div>
+          
           {plans.map((plan, index) => (
             <motion.div 
               key={plan.id}
@@ -432,23 +454,36 @@ export default function PricingTable() {
                 rounded-2xl overflow-hidden bg-white border transition-all duration-300 flex flex-col
                 ${selectedPlan === plan.id ? 'block' : 'hidden md:block'}
                 ${plan.isHighlighted 
-                  ? `border-transparent shadow-xl relative z-10 scale-110 md:my-6` 
+                  ? `border-transparent shadow-xl relative z-10 md:scale-110 md:-my-6` 
                   : `border-gray-200 shadow-sm hover:shadow-xl`
                 }
               `}
               style={{
                 height: plan.isHighlighted ? 'auto' : '100%',
                 ...(plan.isHighlighted ? { 
-                  boxShadow: `0 15px 40px rgba(92, 187, 255, 0.3), 0 0 0 2px ${plan.color}60`,
+                  boxShadow: `0 20px 45px rgba(92, 187, 255, 0.35), 0 0 0 2px ${plan.color}60`,
+                  background: 'linear-gradient(180deg, white 0%, #f0f7ff 100%)'
                 } : {})
               }}
             >
               {/* Recommended badge */}
               {plan.isHighlighted && (
                 <div className="absolute top-0 left-0 right-0 text-center">
-                  <div className="inline-block bg-gradient-to-r from-[#00e0cb] to-[#5cbbff] text-white text-sm font-semibold py-1.5 px-6 rounded-b-lg shadow-md">
-                    Most Popular
-                  </div>
+                  <motion.div 
+                    className="inline-block bg-gradient-to-r from-[#00e0cb] to-[#5cbbff] text-white text-sm font-semibold py-1.5 px-6 rounded-b-lg shadow-md"
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: "0 5px 15px rgba(0,0,0,0.2)"
+                    }}
+                  >
+                    <div className="flex items-center justify-center">
+                      <Award size={14} className="mr-1" />
+                      <span>Most Popular</span>
+                    </div>
+                  </motion.div>
                 </div>
               )}
               
@@ -478,32 +513,50 @@ export default function PricingTable() {
               </div>
               
               <div className="pt-10 pb-6 px-6 text-center flex-1">
-                <div 
-                  className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center`}
+                <motion.div 
+                  className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:rotate-3`}
                   style={{ backgroundColor: `${plan.secondaryColor}` }}
+                  whileHover={{ scale: 1.1, rotate: 3 }}
+                  {...(plan.isHighlighted && {
+                    animate: {
+                      boxShadow: [
+                        `0 0 0 0px ${plan.color}30`,
+                        `0 0 0 8px ${plan.color}00`
+                      ],
+                      scale: [1, 1.05, 1]
+                    },
+                    transition: {
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    }
+                  })}
                 >
                   <Sparkles 
                     size={30} 
                     className="transform transition-transform duration-700 hover:scale-110 hover:rotate-12"
                     style={{ color: plan.color }}
                   />
-                </div>
+                </motion.div>
                 
                 <h3 className="text-2xl font-bold mb-1">{plan.name}</h3>
                 <p className="text-gray-500 text-sm mb-5">{plan.subtitle}</p>
                 
+                {/* Pricing */}
                 <div className="mb-6">
                   <div className="flex items-center justify-center">
-                    <span className="text-4xl font-bold">${plan.price}</span>
-                    <span className="text-xl font-bold">{plan.priceSuffix}</span>
-                    <span className="text-gray-500 ml-1">/{plan.priceNote}</span>
+                    <span className="text-5xl font-bold" style={{ color: plan.isHighlighted ? plan.color : 'inherit' }}>${plan.price}</span>
+                    <div className="flex flex-col items-start ml-1">
+                      <span className="text-xl font-bold">{plan.priceSuffix}</span>
+                      <span className="text-gray-500 text-xs">/{plan.priceNote}</span>
+                    </div>
                   </div>
                   <p className="text-gray-500 text-xs mt-1">{plan.enrollmentFee}</p>
                 </div>
                 
                 {/* Main benefit pill */}
                 <div 
-                  className={`inline-block rounded-full px-4 py-1.5 mb-4 text-sm font-medium`}
+                  className={`inline-block rounded-full px-4 py-1.5 mb-4 text-sm font-medium transform transition-all duration-300 hover:scale-105`}
                   style={{ backgroundColor: `${plan.secondaryColor}`, color: plan.color }}
                 >
                   {plan.mainBenefit}
@@ -540,26 +593,51 @@ export default function PricingTable() {
                 </div>
               </div>
               
+              {/* Features list with horizontal separator */}
+              <div className="relative">
+                <div className="h-px w-4/5 mx-auto bg-gray-100"></div>
+              </div>
+              
               {/* Features list */}
               <div className="px-6 pb-6">
-                <div className="space-y-3.5">
-                  {plan.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <div className="mt-0.5 mr-3 flex-shrink-0">
-                        <motion.div
-                          initial="hidden"
-                          whileInView="visible"
-                          viewport={{ once: true }}
-                          variants={checkVariants}
-                          className="h-5 w-5 rounded-full flex items-center justify-center"
-                          style={{ backgroundColor: `${plan.color}20` }}
-                        >
-                          <Check size={12} style={{ color: plan.color }} />
-                        </motion.div>
+                <div className="space-y-3.5 mt-6">
+                  {plan.features.map((feature, idx) => {
+                    // Use different icons based on the feature type
+                    const getIcon = () => {
+                      const iconProps = { size: 14, style: { color: plan.color } };
+                      
+                      if (feature.label.includes('Toothbrush')) return <Sparkles {...iconProps} />;
+                      if (feature.label.includes('Refills')) return <Gift {...iconProps} />;
+                      if (feature.label.includes('Teledentistry')) return <Stethoscope {...iconProps} />;
+                      if (feature.label.includes('Discount')) return <CreditCard {...iconProps} />;
+                      if (feature.label.includes('Association')) return <Users {...iconProps} />;
+                      if (feature.label.includes('Byte')) return <Smile {...iconProps} />;
+                      if (feature.label.includes('Network')) return <Star {...iconProps} />;
+                      
+                      // Default icon
+                      return <Check {...iconProps} />;
+                    };
+                    
+                    return (
+                      <div key={idx} className="flex items-start group">
+                        <div className="mt-0.5 mr-3 flex-shrink-0">
+                          <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={checkVariants}
+                            className="h-5 w-5 rounded-full flex items-center justify-center transform transition-all duration-300 group-hover:scale-110"
+                            style={{ backgroundColor: `${plan.color}20` }}
+                          >
+                            {getIcon()}
+                          </motion.div>
+                        </div>
+                        <span className={`text-gray-700 text-sm group-hover:text-gray-900 transition-colors duration-200 ${plan.isHighlighted ? 'font-medium' : ''}`}>
+                          {feature.label}
+                        </span>
                       </div>
-                      <span className="text-gray-700 text-sm">{feature.label}</span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 
                 {/* CTA button */}
@@ -568,7 +646,7 @@ export default function PricingTable() {
                     href="#signup"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`block w-full py-3.5 px-6 rounded-xl text-center text-white font-medium transition-all duration-300 bg-gradient-to-r shadow-lg hover:shadow-xl`}
+                    className={`block w-full py-3.5 px-6 rounded-xl text-center text-white font-medium transition-all duration-300 bg-gradient-to-r shadow-lg hover:shadow-xl transform`}
                     style={{ 
                       backgroundImage: plan.isHighlighted 
                         ? `linear-gradient(to right, #00e0cb, #5cbbff)` 

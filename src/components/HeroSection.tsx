@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import { ArrowRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
 
-export default function HeroSection() {
-  console.log('HeroSection component rendering');
+export default function OldHeroSection() {
+  console.log('OldHeroSection component rendering - DEBUGGING CONNECTION ISSUE');
 
   return (
     <section className="relative overflow-hidden min-h-[90vh] flex items-center">

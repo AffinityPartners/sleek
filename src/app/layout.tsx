@@ -25,12 +25,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   // By default, it loads variable weights if available from the font.
 })
 
-// Add Lato font for new typography system
+// Add Lato font for new typography system with preload
 const lato = Lato({
   subsets: ['latin'],
   weight: ['300', '400', '700', '900'],
   variable: '--font-lato',
   display: 'swap',
+  preload: true,
 })
 
 export const viewport: Viewport = {
@@ -104,6 +105,12 @@ export default function RootLayout({
     <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} ${lato.variable}`}>
       <head>
         {/* Removed direct Google Font links, next/font handles optimization */}
+        <link
+          rel="preload"
+          href="/images/SleekKit.jpg"
+          as="image"
+          type="image/jpeg"
+        />
       </head>
       <body className="min-h-screen bg-white font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
         <div className="relative overflow-hidden">

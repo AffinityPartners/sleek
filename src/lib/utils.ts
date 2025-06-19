@@ -33,4 +33,14 @@ export function debounce<T extends (...args: any[]) => any>(
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
   };
+}
+
+// Media query that detects if the user prefers reduced motion
+export const prefersReducedMotionQuery = typeof window !== 'undefined'
+  ? window.matchMedia('(prefers-reduced-motion: reduce)')
+  : { matches: false } as MediaQueryList;
+
+// Hook to check if the user prefers reduced motion
+export function getReducedMotionPreference(): boolean {
+  return prefersReducedMotionQuery.matches;
 } 
