@@ -4,44 +4,43 @@ import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useTransform, useScroll, AnimatePresence } from 'framer-motion';
-import { Disclosure, Transition } from '@headlessui/react';
+import { motion, useTransform, useScroll, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { Disclosure } from '@headlessui/react';
 
+/**
+ * StickyNav component provides a fixed navigation header with scroll-based
+ * visual effects and active section tracking. The navigation becomes more
+ * prominent on scroll with enhanced glassmorphism effects.
+ */
 export default function StickyNav() {
+  const prefersReducedMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const headerRef = useRef(null);
   const { scrollY } = useScroll();
   
+  // Navigation items configuration
   const navItems = [
     { id: 'plans', label: 'PLANS' },
     { id: 'technology', label: 'TECHNOLOGY' },
     { id: 'benefits', label: 'BENEFITS' },
     { id: 'faq', label: 'FAQ' },
     { id: 'blog', label: 'BLOG' },
-    { id: 'contact', label: 'CONTACT' }
   ];
 
-  // Enhanced logo scale animation based on scroll
-  const logoScale = useTransform(scrollY, [0, 100], [1, 0.85]);
+  // Logo scale animation based on scroll
+  const logoScale = useTransform(scrollY, [0, 100], [1, 0.9]);
   
-  // Background opacity transition based on scroll
-  const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.95]);
-  
-  // Blur effect transition based on scroll
-  const blurStrength = useTransform(scrollY, [0, 80], [0, 12]);
-  
-  // Shadow opacity transition based on scroll
-  const shadowOpacity = useTransform(scrollY, [0, 80], [0, 0.15]);
+  // Background effects based on scroll
+  const bgOpacity = useTransform(scrollY, [0, 80], [0.6, 0.98]);
+  const blurStrength = useTransform(scrollY, [0, 80], [8, 16]);
+  const shadowOpacity = useTransform(scrollY, [0, 80], [0, 0.1]);
+  const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.1]);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Change background when scrolled down (threshold lowered for faster transition)
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      // Update scrolled state for styling changes
+      setScrolled(window.scrollY > 20);
       
       // Find the current active section based on scroll position
       const sections = navItems.map(item => ({
@@ -50,13 +49,13 @@ export default function StickyNav() {
       })).filter(section => section.element);
       
       if (sections.length > 0) {
-        // Get the section that is currently visible
+        // Determine which section is currently most visible
         const currentSection = sections.reduce((closest, section) => {
           const rect = section.element?.getBoundingClientRect();
           if (!rect) return closest;
           
-          // Check if the section is visible in the viewport
-          const isInView = rect.top <= 150 && rect.bottom >= 150;
+          // Section is considered in view if its top is within 200px of viewport top
+          const isInView = rect.top <= 200 && rect.bottom >= 200;
           
           if (isInView && (!closest.element || rect.top > closest.element.getBoundingClientRect().top)) {
             return section;
@@ -70,12 +69,10 @@ export default function StickyNav() {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [navItems]);
   
   return (
@@ -84,51 +81,56 @@ export default function StickyNav() {
       style={{
         backgroundColor: `rgba(255, 255, 255, ${bgOpacity.get()})`,
         backdropFilter: `blur(${blurStrength.get()}px)`,
-        boxShadow: `0 4px 20px rgba(0, 0, 0, ${shadowOpacity.get()})`,
+        boxShadow: `0 4px 30px rgba(0, 0, 0, ${shadowOpacity.get()})`,
+        borderBottom: `1px solid rgba(0, 0, 0, ${borderOpacity.get()})`,
       }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b border-transparent"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container-standard py-4">
         <div className="flex items-center justify-between">
-          {/* Logo with enhanced scaling animation */}
+          {/* Logo with scale animation */}
           <Link href="/" className="flex items-center relative z-10">
             <motion.div 
-              style={{ scale: logoScale }}
-              transition={{ type: "spring", stiffness: 200, damping: 30 }}
+              style={{ scale: prefersReducedMotion ? 1 : logoScale }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <Image 
                 src="/images/blog/logo/sleek-black.svg" 
                 alt="SLEEK" 
-                width={130}
-                height={36}
-                className="h-9 w-auto"
+                width={120}
+                height={32}
+                className="h-8 w-auto"
                 priority
               />
             </motion.div>
           </Link>
           
           {/* Desktop navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map(item => (
               <motion.a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                className={`relative px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-300 rounded-lg ${
                   activeSection === item.id
-                    ? 'text-teal-600'
-                    : scrolled ? 'text-gray-900 hover:text-teal-600' : 'text-gray-800 hover:text-teal-600'
+                    ? 'text-teal-700'
+                    : 'text-gray-700 hover:text-teal-600'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 {item.label}
+                {/* Active indicator with animated underline */}
                 {activeSection === item.id && (
                   <motion.div 
-                    className="h-0.5 bg-teal-600 mt-1 rounded-full"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full"
                     layoutId="activeNavIndicator"
+                    style={{
+                      background: 'linear-gradient(90deg, #14b8a6 0%, #0f766e 100%)'
+                    }}
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -140,12 +142,25 @@ export default function StickyNav() {
           <div className="hidden lg:flex items-center">
             <motion.a
               href="#plans"
-              className="btn-primary text-sm font-medium px-6 py-2.5 rounded-full"
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 25px -5px rgba(20, 184, 166, 0.3)' }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="relative overflow-hidden text-sm font-semibold px-6 py-2.5 rounded-full text-white"
+              style={{
+                background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+              }}
+              whileHover={prefersReducedMotion ? {} : { 
+                scale: 1.03,
+                boxShadow: '0 8px 25px rgba(15, 118, 110, 0.35)' 
+              }}
+              whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
-              GET STARTED
+              {/* Shimmer effect on hover */}
+              <span 
+                className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)'
+                }}
+              />
+              <span className="relative">GET STARTED</span>
             </motion.a>
           </div>
           
@@ -153,13 +168,18 @@ export default function StickyNav() {
           <Disclosure as="div" className="lg:hidden">
             {({ open }) => (
               <>
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-teal-600 focus:outline-none transition-colors duration-300">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-xl text-gray-700 hover:text-teal-600 hover:bg-gray-100/50 focus:outline-none transition-all duration-300">
                   <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <X className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Menu className="block h-6 w-6" aria-hidden="true" />
-                  )}
+                  <motion.div
+                    animate={{ rotate: open ? 90 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {open ? (
+                      <X className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <Menu className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </motion.div>
                 </Disclosure.Button>
                 
                 <AnimatePresence>
@@ -170,31 +190,34 @@ export default function StickyNav() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl shadow-xl border-t border-gray-100"
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-2xl shadow-elevation-3 border-t border-gray-100"
                     >
-                      <div className="px-2 pt-2 pb-3 space-y-1">
-                        {navItems.map((item) => (
+                      <div className="container-standard py-4 space-y-1">
+                        {navItems.map((item, index) => (
                           <Disclosure.Button
                             key={item.id}
                             as={motion.a}
                             href={`#${item.id}`}
-                            className={`block px-4 py-3 rounded-lg text-base font-medium ${
+                            className={`block px-4 py-3 rounded-xl text-base font-medium ${
                               activeSection === item.id
-                                ? 'text-teal-600 bg-teal-50'
-                                : 'text-gray-900 hover:text-teal-600 hover:bg-gray-50'
+                                ? 'text-teal-700 bg-teal-50'
+                                : 'text-gray-800 hover:text-teal-600 hover:bg-gray-50'
                             }`}
-                            whileHover={{ x: 5 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.05 }}
                           >
                             {item.label}
                           </Disclosure.Button>
                         ))}
-                        <div className="mt-4 mb-2 px-2">
+                        <div className="pt-4 pb-2 px-2">
                           <motion.a
                             href="#plans"
-                            className="btn-primary block w-full text-center py-3 rounded-lg shadow-sm"
-                            whileHover={{ scale: 1.02 }}
+                            className="block w-full text-center py-3.5 rounded-xl text-white font-semibold"
+                            style={{
+                              background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+                            }}
                             whileTap={{ scale: 0.98 }}
                           >
                             GET STARTED
@@ -211,4 +234,4 @@ export default function StickyNav() {
       </div>
     </motion.header>
   );
-} 
+}

@@ -247,7 +247,7 @@ export default function ToothbrushPromo() {
             {/* CTA button */}
             <motion.div variants={itemVariants}>
               <motion.a
-                href="#join"
+                href="https://enrollment.sleekdentalclub.com/onboarding"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#00e0cb] to-[#5cbbff] text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"

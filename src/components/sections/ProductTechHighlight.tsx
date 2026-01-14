@@ -30,7 +30,11 @@ interface TechFeature {
   benefits: string[];
 }
 
-// Define our feature data
+/**
+ * Feature data for the product technology showcase carousel.
+ * Each feature has a unique image to better showcase different aspects of the product.
+ * Images are high-quality renderings from the marketing assets folder.
+ */
 const features: TechFeature[] = [
   {
     id: 'pressure-sensor',
@@ -38,7 +42,8 @@ const features: TechFeature[] = [
     description: 'Intelligent pressure detection protects your gums and ensures optimal cleaning without damage to enamel.',
     icon: <Activity className="w-6 h-6" />,
     accentColor: '#1ab9a3',
-    image: '/images/SLEEK-ToothBrush.jpg',
+    // Front view with visible mode labels shows the control interface
+    image: '/images/products/sleek-brush-front-modes.png',
     benefits: [
       'Prevents gum recession and enamel wear',
       'Visual feedback when you press too hard',
@@ -51,7 +56,8 @@ const features: TechFeature[] = [
     description: 'Built-in UV light technology kills 99.9% of bacteria between brushings for maximum hygiene.',
     icon: <Sparkles className="w-6 h-6" />,
     accentColor: '#7c3aed',
-    image: '/images/SLEEK-ToothBrush.jpg',
+    // Side view shows the stand/dock where UV sanitizing happens
+    image: '/images/products/sleek-brush-side.png',
     benefits: [
       'Destroys harmful microorganisms',
       'Maintains brush cleanliness between uses',
@@ -64,7 +70,8 @@ const features: TechFeature[] = [
     description: 'Fast-charging wireless dock provides up to 30 days of power on a single charge.',
     icon: <Battery className="w-6 h-6" />,
     accentColor: '#2563eb',
-    image: '/images/SLEEK-ToothBrush.jpg',
+    // Full kit image shows the complete charging setup
+    image: '/images/SleekKit.jpg',
     benefits: [
       'Sleek minimalist charging dock',
       'LED charging indicator',
@@ -77,7 +84,8 @@ const features: TechFeature[] = [
     description: 'Fully waterproof design ensures durability and easy cleaning under any water conditions.',
     icon: <Droplets className="w-6 h-6" />,
     accentColor: '#0891b2',
-    image: '/images/SLEEK-ToothBrush.jpg',
+    // Angled view highlights the sleek waterproof design
+    image: '/images/products/sleek-brush-angle.png',
     benefits: [
       'Safe for shower use',
       'Submersible up to 1 meter for 30 minutes',
@@ -90,6 +98,7 @@ const features: TechFeature[] = [
     description: 'Bluetooth connectivity pairs with our app to track brushing habits and provide personalized coaching.',
     icon: <Bluetooth className="w-6 h-6" />,
     accentColor: '#4f46e5',
+    // Product with box shows the premium smart product branding
     image: '/images/SLEEK-ToothBrush.jpg',
     benefits: [
       'Real-time brushing feedback',
@@ -103,7 +112,8 @@ const features: TechFeature[] = [
     description: '5 intelligent brushing modes designed for different oral care needs from sensitive to whitening.',
     icon: <RotateCcw className="w-6 h-6" />,
     accentColor: '#ef4444',
-    image: '/images/SLEEK-ToothBrush.jpg',
+    // Front symmetric view clearly shows the 5 mode labels on the brush
+    image: '/images/products/sleek-brush-front.png',
     benefits: [
       'Clean mode for daily brushing',
       'Sensitive mode for gentle care',
@@ -240,8 +250,8 @@ const ProductTechHighlight = () => {
   };
 
   return (
-    <section id="technology" className="py-20 md:py-28 bg-gradient-to-b from-white to-[#f4f9f8]" ref={ref}>
-      <div className="container px-4 mx-auto max-w-7xl">
+    <section id="technology" className="section-padding bg-section-premium" ref={ref}>
+      <div className="container-standard">
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -249,24 +259,24 @@ const ProductTechHighlight = () => {
           className="space-y-16"
         >
           {/* Section Header */}
-          <div className="text-center">
+          <div className="section-header">
             <motion.span
               variants={itemVariants}
-              className="px-4 py-1 rounded-full bg-[#1ab9a3]/10 text-[#1ab9a3] text-sm font-semibold mb-4 inline-block"
+              className="section-badge"
             >
               ADVANCED TECHNOLOGY
             </motion.span>
             
             <motion.h2 
               variants={itemVariants}
-              className="text-3xl md:text-4xl font-bold mb-4 text-[#070708] tracking-tight"
+              className="section-title"
             >
               Cutting-Edge Toothbrush Features
             </motion.h2>
             
             <motion.p 
               variants={itemVariants}
-              className="text-lg text-gray-600 max-w-2xl mx-auto"
+              className="section-subtitle"
             >
               Experience next-generation oral care with features designed for superior cleaning results.
             </motion.p>
@@ -494,19 +504,19 @@ const ProductTechHighlight = () => {
           >
             {[
               { 
-                title: "40,000", 
-                subtitle: "Sonic vibrations per minute",
+                title: "5 Modes", 
+                subtitle: "Intelligent cleaning modes",
+                icon: <RotateCcw className="w-6 h-6 text-[#1ab9a3]" />
+              },
+              { 
+                title: "2-Minute", 
+                subtitle: "Smart timer with quad-pacer",
                 icon: <Activity className="w-6 h-6 text-[#1ab9a3]" />
               },
               { 
-                title: "30+ Days", 
-                subtitle: "Battery life on a single charge",
+                title: "USB-C", 
+                subtitle: "Built-in rechargeable charger",
                 icon: <Battery className="w-6 h-6 text-[#1ab9a3]" />
-              },
-              { 
-                title: "Real-time", 
-                subtitle: "Brushing feedback and coaching",
-                icon: <Smartphone className="w-6 h-6 text-[#1ab9a3]" />
               }
             ].map((item, idx) => (
               <motion.div

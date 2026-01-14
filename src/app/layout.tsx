@@ -1,36 +1,30 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Grotesk, Plus_Jakarta_Sans, Lato } from 'next/font/google'
+import { Outfit, DM_Sans } from 'next/font/google'
 import './globals.css'
 
-// Load Inter font with variable weights for body text
-const inter = Inter({
+/**
+ * Outfit font for display/headings.
+ * Modern, geometric typeface with distinctive character that sets SLEEK apart
+ * from generic corporate sites. Excellent for headlines and brand moments.
+ */
+const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700', '800'],
+  preload: true,
 })
 
-// Add Space Grotesk for headings and accents
-const spaceGrotesk = Space_Grotesk({
+/**
+ * DM Sans for body text.
+ * Clean, professional sans-serif with excellent readability at all sizes.
+ * Pairs beautifully with Outfit for a premium, cohesive typographic system.
+ */
+const dmSans = DM_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-space-grotesk',
-})
-
-// Add Plus Jakarta Sans for body text
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-plus-jakarta-sans',
-  // Adjust weights if specific ones are needed, e.g., weight: ['400', '700']
-  // By default, it loads variable weights if available from the font.
-})
-
-// Add Lato font for new typography system with preload
-const lato = Lato({
-  subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
-  variable: '--font-lato',
-  display: 'swap',
+  variable: '--font-dm-sans',
+  weight: ['400', '500', '600', '700'],
   preload: true,
 })
 
@@ -102,9 +96,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} ${lato.variable}`}>
+    <html lang="en" className={`scroll-smooth ${outfit.variable} ${dmSans.variable}`}>
       <head>
-        {/* Removed direct Google Font links, next/font handles optimization */}
+        {/* Preload critical hero image for faster LCP */}
         <link
           rel="preload"
           href="/images/SleekKit.jpg"
@@ -112,13 +106,16 @@ export default function RootLayout({
           type="image/jpeg"
         />
       </head>
-      <body className="min-h-screen bg-white font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
+      <body className="min-h-screen bg-white font-body antialiased selection:bg-teal-200 selection:text-teal-900">
+        {/* Global grain texture overlay for premium feel */}
+        <div className="grain-overlay" aria-hidden="true" />
+        
         <div className="relative overflow-hidden">
-          {/* Ambient background gradient shapes - visible on light backgrounds */}
+          {/* Enhanced ambient background gradient shapes */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-            <div className="absolute -top-[30%] -left-[10%] w-[50%] h-[60%] rounded-full bg-teal-50/30 blur-3xl" />
-            <div className="absolute top-[20%] -right-[20%] w-[70%] h-[40%] rounded-full bg-teal-100/20 blur-3xl" />
-            <div className="absolute -bottom-[10%] left-[20%] w-[60%] h-[40%] rounded-full bg-teal-50/30 blur-3xl" />
+            <div className="absolute -top-[30%] -left-[10%] w-[50%] h-[60%] rounded-full bg-gradient-to-br from-teal-100/40 to-teal-50/20 blur-3xl animate-pulse-slow" />
+            <div className="absolute top-[20%] -right-[20%] w-[70%] h-[40%] rounded-full bg-gradient-to-bl from-amber-50/30 to-teal-50/20 blur-3xl" />
+            <div className="absolute -bottom-[10%] left-[20%] w-[60%] h-[40%] rounded-full bg-gradient-to-tr from-teal-100/30 to-transparent blur-3xl" />
           </div>
           {children}
         </div>

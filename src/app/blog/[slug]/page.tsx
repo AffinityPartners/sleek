@@ -1,28 +1,87 @@
-type BlogPostPageProps = {
-  params: {
-    slug: string;
-  };
-};
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import BlogPostClient from './BlogPostClient';
+import { getPostBySlug, getAllSlugs, BlogPost } from '@/lib/blog';
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-4">Blog Post: {params.slug}</h1>
-      <p className="text-lg mb-8">Content for this blog post is coming soon!</p>
-      {/* Placeholder for blog post content */}
-      <article>
-        <p>This is where the amazing content for the blog post titled "{params.slug}" will appear.</p>
-      </article>
-    </div>
-  );
+/**
+ * Props for the BlogPostPage component.
+ */
+interface BlogPostPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-// Optional: Add generateStaticParams if you know your slugs at build time
-// export async function generateStaticParams() {
-//   // Fetch or define your slugs
-//   // const posts = await fetch('...').then((res) => res.json())
-//   // return posts.map((post) => ({
-//   //   slug: post.slug,
-//   // }))
-//   return [{ slug: 'example-post' }];
-// } 
+/**
+ * Generates static params for all blog post slugs at build time.
+ * This enables static generation of all blog post pages.
+ */
+export async function generateStaticParams() {
+  const slugs = getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+/**
+ * Generates dynamic metadata for SEO optimization.
+ * Includes title, description, Open Graph, and Twitter cards.
+ */
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  
+  if (!post) {
+    return {
+      title: 'Post Not Found | SLEEK Dental Blog',
+    };
+  }
+
+  const ogImage = `https://sleekdentalclub.com${post.image}`;
+  const url = `https://sleekdentalclub.com/blog/${post.slug}`;
+
+  return {
+    title: `${post.title} | SLEEK Dental Blog`,
+    description: post.excerpt,
+    authors: [{ name: post.author }],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+      url,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.imageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: url,
+    },
+  };
+}
+
+/**
+ * BlogPostPage is the main page component for individual blog posts.
+ * This server component handles data fetching and passes to the client component.
+ */
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  // If post not found, show 404
+  if (!post) {
+    notFound();
+  }
+
+  return <BlogPostClient post={post} />;
+}

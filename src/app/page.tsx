@@ -10,11 +10,17 @@ import Hero from '@/components/ui/Hero';
 import ProductTechHighlight from '@/components/sections/ProductTechHighlight';
 import MembershipBenefitsGrid, { BenefitItem } from '@/components/MembershipBenefitsGrid';
 import AdditionalValueBenefits from '@/components/sections/AdditionalValueBenefits';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import PBABenefitsSection from '@/components/PBABenefitsSection';
 import { ShieldCheck, Clock, Sparkles, Truck, CreditCard, Gift } from 'lucide-react';
 
+/**
+ * Home page component for SLEEK Dental.
+ * Renders the main landing page with all sections in order:
+ * Hero, Pricing, Video, Technology, Benefits, Value Benefits, FAQ, Blog, Footer.
+ * Each section has consistent spacing and background treatments from the design system.
+ */
 export default function Home() {
-  console.log('Home page component rendering');
-  
   // Benefits data for the membership benefits grid
   const membershipBenefits: BenefitItem[] = [
     {
@@ -50,31 +56,23 @@ export default function Home() {
   ];
   
   return (
-    <main className="relative overflow-hidden">
-      {/* Consistent background system */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50/30 via-white to-blue-50/20"></div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.015]"></div>
-        <div className="absolute top-[10%] left-[15%] w-[40%] h-[30%] rounded-full bg-teal-500/5 blur-[120px]" />
-        <div className="absolute bottom-[20%] right-[5%] w-[35%] h-[50%] rounded-full bg-blue-500/5 blur-[120px]" />
-      </div>
-      
-      {/* Sticky navigation */}
+    <main className="relative">
+      {/* Sticky navigation - fixed at top */}
       <StickyNav />
       
-      {/* Main content with consistent spacing */}
-      <div className="relative z-10">
-        {/* Hero section */}
-        <section id="hero" className="pt-16">
+      {/* Main content */}
+      <div className="relative">
+        {/* Hero section - with extra top padding for nav */}
+        <section id="hero" className="pt-20">
           <Hero 
             headline="A Dental Experience Worth Smiling About" 
             subheadline="Experience the perfect blend of cutting-edge technology and comprehensive dental care with our premium electric toothbrush subscription service."
             ctaText="Find My Perfect Plan"
             mediaType="image"
-            mediaSrc="/images/SleekKit.jpg"
-            mediaAlt="SLEEK Electric Toothbrush Kit"
+            mediaSrc="/images/sleek-hero-box.jpg"
+            mediaAlt="SLEEK Electric Toothbrush Premium Packaging"
             onCtaClick={() => {
-              document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth' });
+              window.location.href = 'https://enrollment.sleekdentalclub.com/onboarding';
             }}
             variant="light"
           />
@@ -86,19 +84,18 @@ export default function Home() {
         </section>
         
         {/* Featured Video Showcase */}
-        <section id="video" className="bg-white">
+        <section id="video">
           <VideoShowcase />
         </section>
         
         {/* Product Technology Highlight section */}
-        <section id="technology" className="bg-section-teal">
-          <ProductTechHighlight />
-        </section>
+        <ProductTechHighlight />
         
         {/* Membership Benefits section */}
-        <section id="benefits" className="bg-white">
+        <section id="benefits">
           <MembershipBenefitsGrid
             title="Why Choose SLEEK Dental"
+            subtitle="Everything you need for exceptional oral care, delivered to your door"
             benefits={membershipBenefits}
           />
         </section>
@@ -108,8 +105,18 @@ export default function Home() {
           <AdditionalValueBenefits />
         </section>
         
+        {/* PBA Benefits section - PRO & MAX exclusive */}
+        <section id="pba-benefits">
+          <PBABenefitsSection />
+        </section>
+        
+        {/* Customer Testimonials section */}
+        <section id="testimonials" className="bg-section-light">
+          <TestimonialsSection />
+        </section>
+        
         {/* FAQ Section */}
-        <section id="faq" className="bg-white">
+        <section id="faq" className="bg-section-light">
           <FaqAccordion />
         </section>
         

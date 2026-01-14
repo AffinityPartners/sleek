@@ -38,7 +38,7 @@ export default function OldHeroSection() {
             
             <div className="flex flex-wrap gap-4 mb-12">
               <a
-                href="#plans"
+                href="https://enrollment.sleekdentalclub.com/onboarding"
                 className="px-8 py-4 rounded-full bg-gradient-to-r from-[#00e0cb] to-[#5cbbff] text-sleek-dark-blue font-medium flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Find My Perfect Plan <ArrowRight className="w-4 h-4 ml-1" />

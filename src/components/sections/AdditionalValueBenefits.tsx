@@ -17,78 +17,78 @@ interface ValueBenefit {
   accent?: string;
 }
 
-// Array of value-added benefits with their details
+/**
+ * Value-added benefits aligned with official SLEEK marketing materials.
+ * Features Teledentistry, Byte aligner discount, and Discount Rx benefits.
+ */
 const valueBenefits: ValueBenefit[] = [
   {
     id: 'teledentistry',
-    title: 'Virtual Dental Consultations',
+    title: 'Teledentistry Consultations',
     description: [
-      'Connect with licensed dentists via secure video call at no extra cost',
+      'Connect with licensed dentists via secure video call',
       'Get professional advice on oral health concerns without leaving home',
-      'Unlimited consultations included with premium subscription plans'
+      'Included with OCP, PRO, and MAX membership levels'
     ],
     imageSrc: '/images/Teledentistry.jpg',
-    ctaText: 'Schedule a free consult',
-    ctaLink: '/consultations',
+    ctaText: 'Learn about teledentistry',
+    ctaLink: '/teledentistry',
     accent: '#4fa8df'
   },
   {
-    id: 'whitening-kit',
-    title: 'Complimentary Whitening Kit',
+    id: 'byte-discount',
+    title: 'Byte Aligner Discount',
     description: [
-      'Professional-grade teeth whitening system delivered to your door',
-      'Custom-fit trays designed for comfort and effectiveness',
-      'Clinically proven to whiten teeth up to 5 shades in just one week'
+      'Exclusive discount on Byte clear aligner impression kits',
+      'Straighten your teeth from the comfort of home',
+      'Save on professional-grade invisible aligners as a SLEEK member'
     ],
     imageSrc: '/images/SLEEK-Dental-Club-Kit-Graphic.jpg',
-    ctaText: 'Learn more about whitening',
-    ctaLink: '/whitening',
+    ctaText: 'Explore Byte aligners',
+    ctaLink: '/byte-discount',
     accent: '#1ab9a3'
   },
   {
-    id: 'family-plan',
-    title: 'Family Plan Savings',
+    id: 'discount-rx',
+    title: 'Discount Rx Benefits',
     description: [
-      'Save up to 30% when you add family members to your subscription',
-      'Each family member receives their own personalized brush and replacement heads',
-      'Centralized account management for easy tracking of everyone\'s oral care'
+      'Save on prescription medications at participating pharmacies',
+      'No limits on usage with your SLEEK membership',
+      'Access discounts on thousands of brand and generic drugs'
     ],
     imageSrc: '/images/SLEEK-Dental-Club-Complete-Kit-Graphic.jpg',
-    ctaText: 'Add family members',
-    ctaLink: '/family-plan',
+    ctaText: 'View Rx savings',
+    ctaLink: '/rx-benefits',
     accent: '#8757e6'
   }
 ];
 
 const AdditionalValueBenefits = () => {
   return (
-    <section className="py-20 md:py-28 relative bg-white overflow-hidden">
-      {/* Top fade in */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
-      
-      <div className="container mx-auto px-4 max-w-7xl">
+    <section className="section-padding relative overflow-hidden">
+      <div className="container-standard">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="section-header"
         >
           <motion.span 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="px-4 py-1 rounded-full bg-[#1ab9a3]/10 text-[#1ab9a3] text-sm font-semibold mb-4 inline-block"
+            className="section-badge"
           >
             VALUE-ADDED BENEFITS
           </motion.span>
           
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#070708] tracking-tight">
+          <h2 className="section-title">
             Premium Benefits for Members
           </h2>
           
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="section-subtitle">
             Enjoy these exclusive perks with our premium subscription plans.
           </p>
         </motion.div>
@@ -243,9 +243,6 @@ const AdditionalValueBenefits = () => {
           );
         })}
       </div>
-      
-      {/* Bottom fade out */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     </section>
   );
 };

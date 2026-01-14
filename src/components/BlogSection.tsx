@@ -2,13 +2,36 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Calendar, Tag, Clock } from 'lucide-react';
+import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import React from 'react';
 
+/**
+ * Blog post data type definition.
+ * Contains all metadata needed for blog card display.
+ */
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  category: string;
+  imageUrl: string;
+  alt: string;
+  author: string;
+  date: string;
+  readTime: string;
+}
+
+/**
+ * BlogSection displays featured blog posts in a responsive grid.
+ * Features animated cards with hover effects and lazy-loaded images.
+ */
 export default function BlogSection() {
-  const blogPosts = [
+  const prefersReducedMotion = useReducedMotion();
+  
+  // Blog posts data - would typically come from a CMS or API
+  const blogPosts: BlogPost[] = [
     {
       id: 1,
       title: 'How to Handle Dental Emergencies in Children: A Parent\'s Guide',
@@ -44,7 +67,7 @@ export default function BlogSection() {
     }
   ];
 
-  // Track which card is being hovered
+  // Track which card is being hovered for arrow animation
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   // Animation variants
@@ -53,37 +76,44 @@ export default function BlogSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: prefersReducedMotion ? 0.05 : 0.1,
+        delayChildren: prefersReducedMotion ? 0 : 0.2,
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 15 : 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1]
+        duration: prefersReducedMotion ? 0.3 : 0.5,
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
 
-  // Log blog posts for debugging
-  React.useEffect(() => {
-    console.log("Blog posts:", blogPosts);
-  }, []);
-
   return (
-    <section id="blog" className="py-20 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding relative overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] rounded-full blur-3xl opacity-20"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(20, 184, 166, 0.15) 0%, transparent 70%)'
+          }}
+        />
+      </div>
+
+      <div className="container-standard relative z-10">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16"
         >
           <div>
             <motion.span 
@@ -91,108 +121,131 @@ export default function BlogSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="px-4 py-1 rounded-full bg-[#1ab9a3]/10 text-[#1ab9a3] text-sm font-semibold mb-4 inline-block"
+              className="section-badge"
             >
               BLOG
             </motion.span>
             
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-2">Tips and Insights</h2>
-            <p className="text-gray-600 max-w-lg">Expert advice and the latest research on oral care and dental health</p>
+            <h2 className="section-title text-left mb-4">
+              Tips and Insights
+            </h2>
+            <p className="text-gray-600 max-w-lg text-lg">
+              Expert advice and the latest research on oral care and dental health
+            </p>
           </div>
           
-          <Link href="/blog" className="mt-6 md:mt-0">
+          <Link href="/blog" className="mt-6 md:mt-0 flex-shrink-0">
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white"
+              style={{
+                background: 'linear-gradient(135deg, #111827 0%, #1f2937 100%)',
+              }}
+              whileHover={prefersReducedMotion ? {} : { 
+                scale: 1.03,
+                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
+              }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center px-6 py-3 bg-[#070708] text-white font-medium rounded-lg transition-all duration-300"
             >
               View All Articles
-              <ArrowRight className="ml-2 h-4 w-4 opacity-70" />
+              <ArrowRight className="w-4 h-4" />
             </motion.div>
           </Link>
         </motion.div>
         
+        {/* Blog cards grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-6 lg:gap-8"
         >
           {blogPosts.map((post) => (
-            <motion.div 
+            <motion.article 
               key={post.id} 
               variants={cardVariants}
-              className="bg-white rounded-xl overflow-hidden flex flex-col h-full shadow-lg border border-gray-100 transition-all duration-300 ease-in-out hover:shadow-xl hover:border-[#1ab9a3]/20"
+              className="group"
               onMouseEnter={() => setHoveredCard(post.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="relative aspect-video w-full overflow-hidden border border-gray-200 rounded-t-xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent z-10"></div>
-                <Image 
-                  src={post.imageUrl}
-                  alt={post.alt}
-                  width={600}
-                  height={400}
-                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                  onLoad={() => console.log("Image loaded:", post.imageUrl)}
-                  onError={(e) => console.error("Error loading image:", post.imageUrl, e)}
-                />
-                
-                {/* Category badge */}
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#1ab9a3] text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">
-                  {post.category}
-                </div>
-              </div>
-              
-              <div className="p-6 md:p-8 flex-grow flex flex-col">
-                <div className="flex items-center text-sm text-gray-500 space-x-4 mb-4">
-                  <div className="flex items-center">
-                    <Calendar className="h-3.5 w-3.5 text-[#1ab9a3] mr-1.5" />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-3.5 w-3.5 text-[#1ab9a3] mr-1.5" />
-                    <span>{post.readTime}</span>
-                  </div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight tracking-tight line-clamp-2">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-600 mb-6 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                
-                <div className="mt-auto">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">
-                      {post.author}
-                    </span>
+              <Link href={`/blog/${post.id}`} className="block h-full">
+                <div className="h-full bg-white rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300 hover:border-teal-200/50 hover:shadow-card-hover">
+                  {/* Image container */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10" />
                     
-                    <Link 
-                      href={`/blog/${post.id}`}
-                      className="text-[#1ab9a3] hover:text-[#15a592] font-medium inline-flex items-center group"
-                    >
-                      <span>Read Article</span>
-                      <motion.div
-                        animate={{ 
-                          x: hoveredCard === post.id ? 5 : 0,
-                          opacity: hoveredCard === post.id ? 1 : 0.7
+                    <Image 
+                      src={post.imageUrl}
+                      alt={post.alt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    
+                    {/* Category badge */}
+                    <div className="absolute top-4 left-4 z-20">
+                      <span 
+                        className="px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.9)',
+                          color: '#0f766e'
                         }}
-                        transition={{ duration: 0.3 }}
                       >
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </motion.div>
-                    </Link>
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="p-6 md:p-8">
+                    {/* Meta info */}
+                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4 text-teal-600" />
+                        <span>{post.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4 text-teal-600" />
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 leading-snug line-clamp-2 group-hover:text-teal-700 transition-colors duration-300">
+                      {post.title}
+                    </h3>
+                    
+                    {/* Excerpt */}
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-6">
+                      {post.excerpt}
+                    </p>
+                    
+                    {/* Footer */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <span className="text-sm font-medium text-gray-700">
+                        {post.author}
+                      </span>
+                      
+                      <span className="inline-flex items-center gap-2 text-teal-600 font-medium text-sm">
+                        Read Article
+                        <motion.span
+                          animate={{ 
+                            x: hoveredCard === post.id ? 4 : 0,
+                          }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </motion.span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </Link>
+            </motion.article>
           ))}
         </motion.div>
       </div>
     </section>
   );
-} 
+}

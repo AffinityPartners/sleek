@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Link 
-                  href="/#plans"
+                  href="https://enrollment.sleekdentalclub.com/onboarding"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-[#1ab9a3] text-white font-medium shadow-lg hover:shadow-xl hover:bg-[#15a592] transition-all duration-300"
                 >
                   Join Now
