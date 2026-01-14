@@ -1,30 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Outfit, DM_Sans } from 'next/font/google'
+import { Lato } from 'next/font/google'
 import './globals.css'
 
 /**
- * Outfit font for display/headings.
- * Modern, geometric typeface with distinctive character that sets SLEEK apart
- * from generic corporate sites. Excellent for headlines and brand moments.
+ * Lato font for all typography (headings and body).
+ * A clean, professional humanist sans-serif with excellent readability.
+ * Works well at all sizes from body text to large display headlines.
+ * Weight 300 for light/subtle text, 400 for body, 700 for emphasis/headings, 900 for display.
  */
-const outfit = Outfit({
+const lato = Lato({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-outfit',
-  weight: ['400', '500', '600', '700', '800'],
-  preload: true,
-})
-
-/**
- * DM Sans for body text.
- * Clean, professional sans-serif with excellent readability at all sizes.
- * Pairs beautifully with Outfit for a premium, cohesive typographic system.
- */
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-dm-sans',
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-lato',
+  weight: ['300', '400', '700', '900'],
   preload: true,
 })
 
@@ -101,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${outfit.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`scroll-smooth ${lato.variable}`}>
       <head>
         {/* Preload critical hero image for faster LCP */}
         <link

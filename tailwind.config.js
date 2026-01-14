@@ -10,12 +10,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // DM Sans for body text - clean, professional, excellent readability
-        body: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif', ...fontFamily.sans],
-        // Outfit for headings - modern, geometric, distinctive character
-        heading: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        // Lato for all typography - clean, humanist sans-serif with excellent readability
+        body: ['var(--font-lato)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-lato)', 'system-ui', 'sans-serif', ...fontFamily.sans],
+        // Lato for headings - works beautifully at larger sizes with heavier weights
+        heading: ['var(--font-lato)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-lato)', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Enhanced teal color palette - deeper, more saturated for premium feel
@@ -322,7 +322,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            fontFamily: 'var(--font-dm-sans)',
+            fontFamily: 'var(--font-lato)',
             lineHeight: '1.6',
             color: theme('colors.gray.700'),
             maxWidth: '65ch',
@@ -341,27 +341,27 @@ module.exports = {
             },
             h1: {
               color: theme('colors.gray.900'),
-              fontFamily: 'var(--font-outfit)',
+              fontFamily: 'var(--font-lato)',
               lineHeight: '1.1',
               fontWeight: '700',
               letterSpacing: '-0.02em',
             },
             h2: {
               color: theme('colors.gray.900'),
-              fontFamily: 'var(--font-outfit)',
+              fontFamily: 'var(--font-lato)',
               lineHeight: '1.2',
               fontWeight: '700',
               letterSpacing: '-0.01em',
             },
             h3: {
               color: theme('colors.gray.900'),
-              fontFamily: 'var(--font-outfit)',
+              fontFamily: 'var(--font-lato)',
               lineHeight: '1.3',
               fontWeight: '600',
             },
             h4: {
               color: theme('colors.gray.900'),
-              fontFamily: 'var(--font-outfit)',
+              fontFamily: 'var(--font-lato)',
               lineHeight: '1.4',
               fontWeight: '600',
             },
