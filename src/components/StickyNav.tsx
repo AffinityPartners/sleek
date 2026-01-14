@@ -108,13 +108,13 @@ export default function StickyNav() {
             </motion.div>
           </Link>
           
-          {/* Desktop navigation */}
+          {/* Desktop navigation with 44px minimum touch targets */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map(item => (
               <motion.a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`relative px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-300 rounded-lg ${
+                className={`relative px-4 py-3 min-h-[44px] flex items-center text-sm font-medium tracking-wide transition-colors duration-300 rounded-lg ${
                   activeSection === item.id
                     ? 'text-teal-700'
                     : 'text-gray-700 hover:text-teal-600'
@@ -126,7 +126,7 @@ export default function StickyNav() {
                 {/* Active indicator with animated underline */}
                 {activeSection === item.id && (
                   <motion.div 
-                    className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full"
+                    className="absolute bottom-1 left-2 right-2 h-0.5 rounded-full"
                     layoutId="activeNavIndicator"
                     style={{
                       background: 'linear-gradient(90deg, #14b8a6 0%, #0f766e 100%)'
@@ -138,11 +138,11 @@ export default function StickyNav() {
             ))}
           </nav>
           
-          {/* CTA Button */}
+          {/* CTA Button with proper touch target */}
           <div className="hidden lg:flex items-center">
             <motion.a
               href="#plans"
-              className="relative overflow-hidden text-sm font-semibold px-6 py-2.5 rounded-full text-white"
+              className="relative overflow-hidden text-sm font-semibold px-6 py-3 min-h-[44px] flex items-center rounded-full text-white"
               style={{
                 background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
               }}
@@ -164,71 +164,99 @@ export default function StickyNav() {
             </motion.a>
           </div>
           
-          {/* Mobile menu */}
+          {/* Mobile menu with backdrop overlay and improved animations */}
           <Disclosure as="div" className="lg:hidden">
-            {({ open }) => (
-              <>
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-xl text-gray-700 hover:text-teal-600 hover:bg-gray-100/50 focus:outline-none transition-all duration-300">
-                  <span className="sr-only">Open main menu</span>
-                  <motion.div
-                    animate={{ rotate: open ? 90 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {open ? (
-                      <X className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Menu className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </motion.div>
-                </Disclosure.Button>
-                
-                <AnimatePresence>
-                  {open && (
-                    <Disclosure.Panel
-                      static
-                      as={motion.div}
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-2xl shadow-elevation-3 border-t border-gray-100"
+            {({ open }) => {
+              // Body scroll lock effect when menu is open
+              useEffect(() => {
+                if (open) {
+                  document.body.style.overflow = 'hidden';
+                } else {
+                  document.body.style.overflow = '';
+                }
+                return () => {
+                  document.body.style.overflow = '';
+                };
+              }, [open]);
+
+              return (
+                <>
+                  <Disclosure.Button className="inline-flex items-center justify-center p-3 min-h-[44px] min-w-[44px] rounded-xl text-gray-700 hover:text-teal-600 hover:bg-gray-100/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 transition-all duration-300 relative z-50">
+                    <span className="sr-only">Open main menu</span>
+                    <motion.div
+                      animate={{ rotate: open ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <div className="container-standard py-4 space-y-1">
-                        {navItems.map((item, index) => (
-                          <Disclosure.Button
-                            key={item.id}
-                            as={motion.a}
-                            href={`#${item.id}`}
-                            className={`block px-4 py-3 rounded-xl text-base font-medium ${
-                              activeSection === item.id
-                                ? 'text-teal-700 bg-teal-50'
-                                : 'text-gray-800 hover:text-teal-600 hover:bg-gray-50'
-                            }`}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.05 }}
-                          >
-                            {item.label}
-                          </Disclosure.Button>
-                        ))}
-                        <div className="pt-4 pb-2 px-2">
-                          <motion.a
-                            href="#plans"
-                            className="block w-full text-center py-3.5 rounded-xl text-white font-semibold"
-                            style={{
-                              background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-                            }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            GET STARTED
-                          </motion.a>
-                        </div>
-                      </div>
-                    </Disclosure.Panel>
-                  )}
-                </AnimatePresence>
-              </>
-            )}
+                      {open ? (
+                        <X className="block h-6 w-6" aria-hidden="true" />
+                      ) : (
+                        <Menu className="block h-6 w-6" aria-hidden="true" />
+                      )}
+                    </motion.div>
+                  </Disclosure.Button>
+                  
+                  <AnimatePresence>
+                    {open && (
+                      <>
+                        {/* Backdrop overlay for visual focus */}
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+                          aria-hidden="true"
+                        />
+                        
+                        {/* Menu panel */}
+                        <Disclosure.Panel
+                          static
+                          as={motion.div}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-2xl shadow-elevation-3 border-t border-gray-100 z-50"
+                        >
+                          <div className="container-standard py-4 space-y-1">
+                            {navItems.map((item, index) => (
+                              <Disclosure.Button
+                                key={item.id}
+                                as={motion.a}
+                                href={`#${item.id}`}
+                                className={`block px-4 py-3 min-h-[44px] rounded-xl text-base font-medium ${
+                                  activeSection === item.id
+                                    ? 'text-teal-700 bg-teal-50'
+                                    : 'text-gray-800 hover:text-teal-600 hover:bg-gray-50'
+                                }`}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.05 }}
+                              >
+                                {item.label}
+                              </Disclosure.Button>
+                            ))}
+                            <div className="pt-4 pb-2 px-2">
+                              <Disclosure.Button
+                                as={motion.a}
+                                href="#plans"
+                                className="block w-full text-center py-3.5 min-h-[48px] rounded-xl text-white font-semibold"
+                                style={{
+                                  background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+                                }}
+                                whileTap={{ scale: 0.98 }}
+                              >
+                                GET STARTED
+                              </Disclosure.Button>
+                            </div>
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </>
+              );
+            }}
           </Disclosure>
         </div>
       </div>

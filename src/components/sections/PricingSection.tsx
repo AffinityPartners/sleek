@@ -219,9 +219,9 @@ const PricingSection: React.FC = () => {
                 }}
                 className={cn(
                   "relative flex flex-col h-full",
-                  plan.isPopular && "md:scale-[1.05] z-10"
+                  /* Popular card uses z-10 for layering glow effects, no scale transform for consistent mobile layout */
+                  plan.isPopular && "z-10"
                 )}
-                style={{ transformOrigin: 'center' }}
               >
                 {/* Popular plan glow border effect */}
                 {plan.isPopular && (

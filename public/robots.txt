@@ -1,9 +1,12 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /test/
+Disallow: /api/
+Disallow: /marketing/example
 
 # Host
-Host: https://yourdomain.com
+Host: https://sleekdentalclub.com
 
 # Sitemaps
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://sleekdentalclub.com/sitemap.xml

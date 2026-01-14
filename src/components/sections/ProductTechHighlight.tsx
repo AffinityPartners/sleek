@@ -7,11 +7,9 @@ import {
   Battery, 
   Droplets, 
   Sparkles, 
-  Bluetooth, 
   RotateCcw,
   ChevronLeft,
   ChevronRight,
-  Smartphone,
   ArrowRight,
   CheckCircle
 } from 'lucide-react';
@@ -34,92 +32,97 @@ interface TechFeature {
  * Feature data for the product technology showcase carousel.
  * Each feature has a unique image to better showcase different aspects of the product.
  * Images are high-quality renderings from the marketing assets folder.
+ * 
+ * Note: Features are based on actual SLEEK Dental Club product specifications.
+ * The toothbrush is a sonic electric toothbrush with 5 cleaning modes, USB charging,
+ * 2-minute timer, and water-resistant design.
  */
 const features: TechFeature[] = [
   {
-    id: 'pressure-sensor',
-    name: 'Smart Pressure Sensor',
-    description: 'Intelligent pressure detection protects your gums and ensures optimal cleaning without damage to enamel.',
-    icon: <Activity className="w-6 h-6" />,
+    id: 'cleaning-modes',
+    name: '5 Professional Cleaning Modes',
+    description: 'Choose from five specialized brushing modes designed for different oral care needs, from gentle cleaning to deep whitening.',
+    icon: <RotateCcw className="w-6 h-6" />,
     accentColor: '#1ab9a3',
     // Front view with visible mode labels shows the control interface
     image: '/images/products/sleek-brush-front-modes.png',
     benefits: [
-      'Prevents gum recession and enamel wear',
-      'Visual feedback when you press too hard',
-      'Automatically reduces intensity when needed'
+      'Clean mode for thorough daily brushing',
+      'Sensitive mode for gentle care',
+      'Whitening mode for stain removal',
+      'Gum care mode for improved circulation',
+      'Deep clean mode for intensive cleaning'
     ]
   },
   {
-    id: 'uv-sanitizer',
-    name: 'UV-C Sanitizing',
-    description: 'Built-in UV light technology kills 99.9% of bacteria between brushings for maximum hygiene.',
-    icon: <Sparkles className="w-6 h-6" />,
+    id: 'sonic-technology',
+    name: 'Sonic Cleaning Technology',
+    description: 'High-frequency sonic vibrations deliver powerful yet gentle cleaning action to remove plaque and debris effectively.',
+    icon: <Activity className="w-6 h-6" />,
     accentColor: '#7c3aed',
-    // Side view shows the stand/dock where UV sanitizing happens
+    // Side view shows the sleek brush design
     image: '/images/products/sleek-brush-side.png',
     benefits: [
-      'Destroys harmful microorganisms',
-      'Maintains brush cleanliness between uses',
-      'Automatic sanitizing cycle after each use'
+      'Reaches between teeth and along the gumline',
+      'Gentle on enamel while removing plaque',
+      'Creates dynamic fluid action for deeper clean'
     ]
   },
   {
-    id: 'wireless-charging',
-    name: 'Wireless Charging',
-    description: 'Fast-charging wireless dock provides up to 30 days of power on a single charge.',
+    id: 'usb-charging',
+    name: 'USB Rechargeable',
+    description: 'Convenient built-in USB charging keeps your brush powered and ready. Charge anywhere with any USB port.',
     icon: <Battery className="w-6 h-6" />,
     accentColor: '#2563eb',
     // Full kit image shows the complete charging setup
     image: '/images/SleekKit.jpg',
     benefits: [
-      'Sleek minimalist charging dock',
-      'LED charging indicator',
-      'Travel-friendly with 30-day battery life'
+      'Charge with any USB port or adapter',
+      'Up to 3 weeks of use per charge',
+      'LED indicator shows charging status'
     ]
   },
   {
     id: 'water-resistant',
-    name: 'IPX7 Water Resistant',
-    description: 'Fully waterproof design ensures durability and easy cleaning under any water conditions.',
+    name: 'Water-Resistant Design',
+    description: 'Durable water-resistant construction allows safe use in the shower and easy rinsing after each brush.',
     icon: <Droplets className="w-6 h-6" />,
     accentColor: '#0891b2',
     // Angled view highlights the sleek waterproof design
     image: '/images/products/sleek-brush-angle.png',
     benefits: [
-      'Safe for shower use',
-      'Submersible up to 1 meter for 30 minutes',
-      'Easy to rinse clean under running water'
+      'Safe for use in the shower',
+      'Easy to rinse clean under running water',
+      'Durable matte black finish'
     ]
   },
   {
-    id: 'smart-connect',
-    name: 'Smart Connect',
-    description: 'Bluetooth connectivity pairs with our app to track brushing habits and provide personalized coaching.',
-    icon: <Bluetooth className="w-6 h-6" />,
+    id: 'smart-timer',
+    name: '2-Minute Smart Timer',
+    description: 'Built-in timer ensures you brush for the dentist-recommended two minutes with interval alerts for each quadrant.',
+    icon: <Activity className="w-6 h-6" />,
     accentColor: '#4f46e5',
     // Product with box shows the premium smart product branding
     image: '/images/SLEEK-ToothBrush.jpg',
     benefits: [
-      'Real-time brushing feedback',
-      'Personalized brushing routines',
-      'Tracks progress and suggests improvements'
+      '30-second quadrant pacer alerts',
+      'Auto-shutoff after 2 minutes',
+      'Helps build consistent brushing habits'
     ]
   },
   {
-    id: 'cleaning-modes',
-    name: 'Multiple Cleaning Modes',
-    description: '5 intelligent brushing modes designed for different oral care needs from sensitive to whitening.',
-    icon: <RotateCcw className="w-6 h-6" />,
+    id: 'complete-kit',
+    name: 'Complete Starter Kit',
+    description: 'Everything you need to start your oral care journey: brush, charger, holder, travel case, and floss picks.',
+    icon: <Sparkles className="w-6 h-6" />,
     accentColor: '#ef4444',
-    // Front symmetric view clearly shows the 5 mode labels on the brush
+    // Front symmetric view clearly shows the complete kit
     image: '/images/products/sleek-brush-front.png',
     benefits: [
-      'Clean mode for daily brushing',
-      'Sensitive mode for gentle care',
-      'Whitening mode for stain removal',
-      'Gum care mode for improved circulation',
-      'Deep clean mode for intensive cleaning'
+      'Premium matte black electric toothbrush',
+      'Brush head, USB charger, and holder included',
+      'Compact travel case for on-the-go',
+      'Floss picks to start your routine'
     ]
   }
 ];
@@ -250,33 +253,53 @@ const ProductTechHighlight = () => {
   };
 
   return (
-    <section id="technology" className="section-padding bg-section-premium" ref={ref}>
-      <div className="container-standard">
+    <section id="technology" className="section-padding scroll-mt-20 relative overflow-hidden" ref={ref}>
+      {/* Dark Premium Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0C1015] via-[#141B1D] to-[#1B2223]" />
+      
+      {/* Ambient Glow Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Top-left teal glow */}
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-teal-500/10 blur-[120px]" />
+        {/* Bottom-right accent glow */}
+        <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-teal-600/8 blur-[150px]" />
+        {/* Center subtle glow that follows active feature color */}
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[200px] opacity-20 transition-colors duration-700"
+          style={{ backgroundColor: currentFeature.accentColor }}
+        />
+      </div>
+      
+      {/* Subtle noise texture overlay */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none bg-[url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20400%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22noiseFilter%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.9%22%20numOctaves%3D%224%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23noiseFilter)%22%2F%3E%3C%2Fsvg%3E')]" />
+
+      <div className="container-standard relative z-10">
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
           className="space-y-16"
         >
-          {/* Section Header */}
+          {/* Section Header - Dark Theme */}
           <div className="section-header">
             <motion.span
               variants={itemVariants}
-              className="section-badge"
+              className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase bg-teal-500/10 text-teal-400 border border-teal-500/20 backdrop-blur-sm"
             >
               ADVANCED TECHNOLOGY
             </motion.span>
             
             <motion.h2 
               variants={itemVariants}
-              className="section-title"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-heading tracking-tight"
+              style={{ lineHeight: 1.1 }}
             >
               Cutting-Edge Toothbrush Features
             </motion.h2>
             
             <motion.p 
               variants={itemVariants}
-              className="section-subtitle"
+              className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
             >
               Experience next-generation oral care with features designed for superior cleaning results.
             </motion.p>
@@ -285,22 +308,27 @@ const ProductTechHighlight = () => {
           {/* Main Content - Feature Showcase */}
           <motion.div variants={itemVariants} className="relative">
             <div className="flex flex-col lg:flex-row gap-8 md:gap-12 items-start justify-between">
-              {/* Feature Visualization - Left Column */}
-              <div className="w-full lg:w-3/5 relative bg-white rounded-2xl shadow-xl overflow-hidden">
-                {/* Background Gradient Element */}
-                <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                  <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 opacity-20" 
-                       style={{ backgroundColor: currentFeature.accentColor }}></div>
-                  <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 opacity-10"
-                       style={{ backgroundColor: currentFeature.accentColor }}></div>
-                </div>
+              {/* Feature Visualization - Left Column - Dark Glassmorphism */}
+              <div className="w-full lg:w-3/5 relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
+                {/* Inner glow effect */}
+                <div 
+                  className="absolute inset-0 opacity-30 transition-opacity duration-700"
+                  style={{ 
+                    background: `radial-gradient(ellipse at 30% 20%, ${currentFeature.accentColor}15 0%, transparent 50%)`
+                  }}
+                />
+                
+                {/* Subtle top edge highlight */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
                 {/* Feature Content Carousel */}
                 <div className="relative p-6 md:p-10 h-full flex flex-col z-10">
-                  {/* Feature header */}
+                  {/* Feature header - Dark Theme */}
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4"
-                         style={{ backgroundColor: `${currentFeature.accentColor}15` }}>
+                    <div 
+                      className="w-12 h-12 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm border border-white/10"
+                      style={{ backgroundColor: `${currentFeature.accentColor}20` }}
+                    >
                       <div style={{ color: currentFeature.accentColor }}>
                         {currentFeature.icon}
                       </div>
@@ -310,7 +338,8 @@ const ProductTechHighlight = () => {
                     </h3>
                   </div>
                   
-                  <div className="flex flex-col md:flex-row gap-8 min-h-[400px]">
+                  {/* Responsive min-height: smaller on mobile, larger on desktop */}
+                  <div className="flex flex-col md:flex-row gap-8 min-h-[320px] md:min-h-[400px]">
                     {/* Feature Image Section */}
                     <div className="md:w-1/2">
                       <AnimatePresence custom={slideDirection} mode="wait">
@@ -332,9 +361,9 @@ const ProductTechHighlight = () => {
                           }}
                           className="relative h-[300px] md:h-[350px] w-full"
                         >
-                          {/* Feature Image with lazy loading */}
+                          {/* Feature Image with subtle glow behind it */}
                           <motion.div 
-                            className="h-full w-full rounded-xl overflow-hidden"
+                            className="h-full w-full rounded-xl overflow-hidden relative"
                             animate={prefersReducedMotion ? {} : { 
                               y: [0, -8, 0],
                             }}
@@ -344,23 +373,25 @@ const ProductTechHighlight = () => {
                               ease: "easeInOut"
                             }}
                           >
+                            {/* Ambient glow behind product */}
+                            <div 
+                              className="absolute inset-0 blur-2xl opacity-40 scale-75"
+                              style={{ backgroundColor: currentFeature.accentColor }}
+                            />
                             <Image
                               src={currentFeature.image}
                               alt={currentFeature.name}
                               fill
-                              className="object-contain scale-90"
+                              className="object-contain scale-90 relative z-10 drop-shadow-2xl"
                               priority={activeFeature === 0}
                               sizes="(max-width: 768px) 100vw, 50vw"
                             />
-                            
-                            {/* Reflection effect */}
-                            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/20 to-transparent rounded-b-xl mix-blend-overlay pointer-events-none" />
                           </motion.div>
                         </motion.div>
                       </AnimatePresence>
                     </div>
                     
-                    {/* Feature Description and Benefits */}
+                    {/* Feature Description and Benefits - Dark Theme Text */}
                     <div className="md:w-1/2">
                       <AnimatePresence custom={slideDirection} mode="wait">
                         <motion.div
@@ -381,10 +412,10 @@ const ProductTechHighlight = () => {
                           }}
                           className="flex flex-col"
                         >
-                          <p className="text-gray-600 mb-6 leading-relaxed">{currentFeature.description}</p>
+                          <p className="text-gray-400 mb-6 leading-relaxed">{currentFeature.description}</p>
                           
-                          {/* Feature Benefits */}
-                          <h4 className="text-lg font-semibold mb-4 text-gray-800">Key Benefits:</h4>
+                          {/* Feature Benefits - Dark Theme */}
+                          <h4 className="text-lg font-semibold mb-4 text-white/90">Key Benefits:</h4>
                           <ul className="space-y-3">
                             {currentFeature.benefits.map((benefit, idx) => (
                               <motion.li 
@@ -395,16 +426,16 @@ const ProductTechHighlight = () => {
                                 animate="visible"
                                 className="flex items-start"
                               >
-                                <CheckCircle className="h-5 w-5 text-[#1ab9a3] mr-3 flex-shrink-0 mt-0.5" />
-                                <span className="text-gray-700">{benefit}</span>
+                                <CheckCircle className="h-5 w-5 text-teal-400 mr-3 flex-shrink-0 mt-0.5" />
+                                <span className="text-gray-300">{benefit}</span>
                               </motion.li>
                             ))}
                           </ul>
                           
-                          {/* View more link */}
+                          {/* View more link - Brighter for dark theme */}
                           <motion.a 
                             href="#"
-                            className="mt-auto pt-6 text-[#1ab9a3] font-medium inline-flex items-center group"
+                            className="mt-auto pt-6 text-teal-400 font-medium inline-flex items-center group hover:text-teal-300 transition-colors"
                             whileHover={{ x: 5 }}
                           >
                             Learn more
@@ -415,27 +446,27 @@ const ProductTechHighlight = () => {
                     </div>
                   </div>
                   
-                  {/* Carousel Navigation Buttons */}
-                  <div className="absolute flex justify-between w-full left-0 top-1/2 -translate-y-1/2 px-4 z-20 pointer-events-none">
+                  {/* Carousel Navigation Buttons - Dark Theme Glass */}
+                  <div className="absolute flex justify-between w-full left-0 top-1/2 -translate-y-1/2 px-2 sm:px-4 z-20 pointer-events-none">
                     <button 
                       onClick={handlePrevious}
-                      className="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors pointer-events-auto"
+                      className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 backdrop-blur-md border border-white/10 shadow-lg flex items-center justify-center hover:bg-white/20 hover:border-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 transition-all duration-300 pointer-events-auto"
                       aria-label="Previous feature"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronLeft className="w-5 h-5 text-white/80" />
                     </button>
                     <button 
                       onClick={handleNext}
-                      className="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors pointer-events-auto"
+                      className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 backdrop-blur-md border border-white/10 shadow-lg flex items-center justify-center hover:bg-white/20 hover:border-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 transition-all duration-300 pointer-events-auto"
                       aria-label="Next feature"
                     >
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronRight className="w-5 h-5 text-white/80" />
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Feature Tabs - Right Column */}
+              {/* Feature Tabs - Right Column - Dark Glass Cards */}
               <div className="w-full lg:w-2/5">
                 <div className="space-y-3 md:space-y-4">
                   {features.map((feature, index) => (
@@ -443,27 +474,28 @@ const ProductTechHighlight = () => {
                       key={feature.id}
                       onClick={() => handleTabChange(index)}
                       className={cn(
-                        "w-full border-2 p-4 md:p-5 rounded-xl flex items-start text-left gap-4 transition-all duration-300",
+                        "w-full p-4 md:p-5 rounded-xl flex items-start text-left gap-4 transition-all duration-300 backdrop-blur-md border",
                         index === activeFeature 
-                          ? "bg-white shadow-lg translate-x-0" 
-                          : "bg-white/50 border-transparent hover:bg-white/80 hover:-translate-x-2"
+                          ? "bg-white/[0.08] border-white/20 shadow-lg" 
+                          : "bg-white/[0.03] border-white/[0.05] hover:bg-white/[0.06] hover:border-white/10"
                       )}
                       style={{
-                        borderColor: index === activeFeature ? feature.accentColor : 'transparent',
-                        boxShadow: index === activeFeature ? `0 8px 20px -6px ${feature.accentColor}30` : 'none'
+                        boxShadow: index === activeFeature 
+                          ? `0 0 30px -5px ${feature.accentColor}40, inset 0 1px 1px rgba(255,255,255,0.05)` 
+                          : 'none'
                       }}
                       whileHover={prefersReducedMotion ? {} : { 
                         scale: 1.02,
-                        x: -8,
                         transition: { duration: 0.2 }
                       }}
                     >
                       <div 
-                        className="p-2.5 rounded-full flex-shrink-0"
+                        className="p-2.5 rounded-full flex-shrink-0 border border-white/10 backdrop-blur-sm transition-all duration-300"
                         style={{ 
                           backgroundColor: index === activeFeature 
-                            ? `${feature.accentColor}20` 
-                            : '#f4f9f8' 
+                            ? `${feature.accentColor}30` 
+                            : 'rgba(255,255,255,0.05)',
+                          boxShadow: index === activeFeature ? `0 0 20px ${feature.accentColor}30` : 'none'
                         }}
                       >
                         <div style={{ color: feature.accentColor }}>
@@ -471,8 +503,13 @@ const ProductTechHighlight = () => {
                         </div>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-1">{feature.name}</h3>
-                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{feature.description}</p>
+                        <h3 className={cn(
+                          "font-semibold text-lg mb-1 transition-colors duration-300",
+                          index === activeFeature ? "text-white" : "text-gray-200"
+                        )}>
+                          {feature.name}
+                        </h3>
+                        <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">{feature.description}</p>
                       </div>
                     </motion.button>
                   ))}
@@ -480,24 +517,33 @@ const ProductTechHighlight = () => {
               </div>
             </div>
 
-            {/* Feature Navigation Dots */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {features.map((_, index) => (
+            {/* Feature Navigation Dots - Dark Theme with 44px touch targets */}
+            <div className="flex justify-center mt-8 -space-x-1">
+              {features.map((feature, index) => (
                 <button
                   key={index}
                   onClick={() => handleTabChange(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === activeFeature 
-                      ? 'bg-[#1ab9a3] scale-125' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
+                  className="p-3 min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-lg group"
                   aria-label={`Go to feature ${index + 1}`}
-                />
+                >
+                  <span 
+                    className={cn(
+                      "block w-3 h-3 rounded-full transition-all duration-300",
+                      index === activeFeature 
+                        ? "scale-125" 
+                        : "bg-white/20 group-hover:bg-white/40"
+                    )}
+                    style={{
+                      backgroundColor: index === activeFeature ? feature.accentColor : undefined,
+                      boxShadow: index === activeFeature ? `0 0 10px ${feature.accentColor}60` : 'none'
+                    }}
+                  />
+                </button>
               ))}
             </div>
           </motion.div>
 
-          {/* Additional Tech Specs Section */}
+          {/* Additional Tech Specs Section - Floating Glass Cards */}
           <motion.div
             variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6"
@@ -505,31 +551,56 @@ const ProductTechHighlight = () => {
             {[
               { 
                 title: "5 Modes", 
-                subtitle: "Intelligent cleaning modes",
-                icon: <RotateCcw className="w-6 h-6 text-[#1ab9a3]" />
+                subtitle: "Professional cleaning modes",
+                icon: <RotateCcw className="w-6 h-6" />,
+                color: "#14B8A6"
               },
               { 
                 title: "2-Minute", 
                 subtitle: "Smart timer with quad-pacer",
-                icon: <Activity className="w-6 h-6 text-[#1ab9a3]" />
+                icon: <Activity className="w-6 h-6" />,
+                color: "#14B8A6"
               },
               { 
-                title: "USB-C", 
+                title: "USB", 
                 subtitle: "Built-in rechargeable charger",
-                icon: <Battery className="w-6 h-6 text-[#1ab9a3]" />
+                icon: <Battery className="w-6 h-6" />,
+                color: "#14B8A6"
               }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white rounded-xl p-6 shadow-md flex items-center gap-5 hover:shadow-xl transition-shadow duration-300"
-                whileHover={prefersReducedMotion ? {} : { y: -5, transition: { duration: 0.2 } }}
+                className="group relative rounded-xl p-6 flex items-center gap-5 backdrop-blur-md bg-white/[0.03] border border-white/[0.08] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/15"
+                whileHover={prefersReducedMotion ? {} : { 
+                  y: -5, 
+                  transition: { duration: 0.2 } 
+                }}
+                style={{
+                  boxShadow: '0 4px 30px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0 8px 40px rgba(20, 184, 166, 0.15), 0 0 30px ${item.color}20`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 30px rgba(0,0,0,0.1)';
+                }}
               >
-                <div className="bg-[#1ab9a3]/10 p-3.5 rounded-full">
-                  {item.icon}
+                {/* Top edge highlight */}
+                <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div 
+                  className="p-3.5 rounded-full border border-white/10 transition-all duration-300 group-hover:scale-110"
+                  style={{ 
+                    backgroundColor: `${item.color}15`,
+                  }}
+                >
+                  <div style={{ color: item.color }}>
+                    {item.icon}
+                  </div>
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold text-gray-900 mb-1">{item.title}</h4>
-                  <p className="text-gray-600">{item.subtitle}</p>
+                  <h4 className="text-2xl font-bold text-white mb-1">{item.title}</h4>
+                  <p className="text-gray-400">{item.subtitle}</p>
                 </div>
               </motion.div>
             ))}

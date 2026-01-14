@@ -28,11 +28,16 @@ const dmSans = DM_Sans({
   preload: true,
 })
 
+/**
+ * Viewport configuration for mobile devices.
+ * maximumScale: 5 allows users to zoom for accessibility (WCAG compliance).
+ * The previous value of 1 prevented zooming which is an accessibility issue.
+ */
 export const viewport: Viewport = {
   themeColor: '#07675e',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
 }
 
 export const metadata: Metadata = {

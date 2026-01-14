@@ -199,8 +199,9 @@ export default function BenefitsSection() {
                     key={index}
                     variants={fadeIn()}
                     className={`benefit-card relative rounded-xl overflow-hidden transition-all duration-300 ease-out ${
+                      /* Expanded card spans full width on mobile/tablet, 2 cols on desktop 4-col grid */
                       activeBenefit === index
-                        ? 'col-span-1 lg:col-span-2 row-span-1'
+                        ? 'sm:col-span-2 lg:col-span-2'
                         : ''
                     }`}
                   >

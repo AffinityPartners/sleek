@@ -149,8 +149,8 @@ export default function TestimonialsSection() {
                   ))}
                 </div>
 
-                {/* Quote text */}
-                <blockquote className="text-gray-700 leading-relaxed mb-6">
+                {/* Quote text - truncated on mobile for consistent card heights */}
+                <blockquote className="text-gray-700 leading-relaxed mb-6 line-clamp-4 sm:line-clamp-5 md:line-clamp-none">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 

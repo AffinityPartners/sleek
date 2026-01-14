@@ -41,11 +41,14 @@ const imageVariants = {
   }
 };
 
-// Feature badges with their positions
+/**
+ * Feature badges displayed around the product image.
+ * Highlights key product features based on actual SLEEK toothbrush specifications.
+ */
 const featureBadges = [
   { 
     icon: <Zap size={18} />, 
-    label: "40,000 Vibrations/Min",
+    label: "Sonic Cleaning Power",
     position: "top-1/3 right-[5%] md:right-[8%] lg:right-[15%]"
   },
   { 
@@ -55,7 +58,7 @@ const featureBadges = [
   },
   { 
     icon: <Battery size={18} />, 
-    label: "3-Week Battery Life",
+    label: "Up to 3 Weeks Per Charge",
     position: "top-1/3 left-[5%] md:left-[8%] lg:left-[15%]"
   },
   { 
@@ -217,6 +220,7 @@ export default function ToothbrushPromo() {
             variants={containerVariants}
           >
             {/* Kit contents */}
+            {/* Kit contents list based on actual SLEEK product specifications */}
             <motion.div
               variants={itemVariants}
               className="mb-10"
@@ -224,10 +228,10 @@ export default function ToothbrushPromo() {
               <h4 className="text-lg font-semibold mb-4">Every SLEEK Dental Kit Includes:</h4>
               <div className="space-y-3">
                 {[
-                  "Electric Toothbrush with 5 Cleaning Modes",
-                  "Oscillating Brush Head with 2-Minute Timer",
+                  "Sonic Electric Toothbrush with 5 Cleaning Modes",
+                  "Brush Head with 2-Minute Smart Timer",
                   "Built-In Rechargeable USB Charger",
-                  "Toothbrush Holder & Traveling Case",
+                  "Toothbrush Holder & Travel Case",
                   "Quarterly Replacement Heads & Floss Picks"
                 ].map((item, idx) => (
                   <motion.div

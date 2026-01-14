@@ -146,26 +146,30 @@ export default function Hero({
   // Split headline by words for better animation
   const headlineWords = headline.split(' ');
   
-  // Feature badges configuration with icons
+  /**
+   * Feature badges configuration with icons.
+   * Hidden on mobile (< md) to prevent overflow and ensure clean mobile layout.
+   * Positioned safely inside container bounds on all screen sizes.
+   */
   const featureBadges = [
     { 
       icon: Zap, 
       text: "Smart Timer", 
-      position: "top-[15%] right-0 md:right-[-5%]",
+      position: "hidden md:flex top-[15%] right-2 lg:right-0",
       color: "teal",
       delay: 0.9 
     },
     { 
       icon: Sparkles, 
       text: "Premium Quality", 
-      position: "bottom-[30%] left-0 md:left-[-5%]",
+      position: "hidden md:flex bottom-[30%] left-2 lg:left-0",
       color: "amber",
       delay: 1.1 
     },
     { 
       icon: Battery, 
-      text: "30-Day Battery", 
-      position: "bottom-[5%] left-1/2 -translate-x-1/2",
+      text: "Up to 3 Weeks Per Charge", 
+      position: "hidden md:flex bottom-[5%] left-1/2 -translate-x-1/2",
       color: "gray",
       delay: 1.3 
     },
@@ -432,6 +436,7 @@ export default function Hero({
                         y: -5,
                       }}
                     >
+                      {/* Badge content with proper alignment */}
                       <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/95 backdrop-blur-xl shadow-elevation-2 border border-gray-100/80">
                         <span className={`w-2.5 h-2.5 ${dotColor} rounded-full animate-pulse`} />
                         <span className="font-semibold text-gray-800 text-sm">

@@ -13,6 +13,7 @@ import React from 'react';
  */
 interface BlogPost {
   id: number;
+  slug: string;
   title: string;
   excerpt: string;
   category: string;
@@ -31,39 +32,43 @@ export default function BlogSection() {
   const prefersReducedMotion = useReducedMotion();
   
   // Blog posts data - would typically come from a CMS or API
+  // Using slugs that match the actual blog pages in lib/blog.ts
   const blogPosts: BlogPost[] = [
     {
       id: 1,
+      slug: 'dental-emergencies-children',
       title: 'How to Handle Dental Emergencies in Children: A Parent\'s Guide',
       excerpt: 'Learn essential tips for managing common dental emergencies that can occur in children, from knocked-out teeth to severe toothaches.',
       category: 'Oral Health',
       imageUrl: '/images/blog/Dental-Emergencies-in-Children-Blog-2025.jpg',
       alt: 'Child with dental emergency',
-      author: 'Dr. Smith',
-      date: 'May 15, 2023',
+      author: 'SLEEK Dental Team',
+      date: 'March 26, 2025',
       readTime: '5 min read'
     },
     {
       id: 2,
+      slug: 'charcoal-toothpaste-whitening',
       title: 'Does Charcoal Toothpaste Really Whiten Teeth? The Truth Behind the Trend',
       excerpt: 'We examine the scientific evidence behind charcoal toothpaste and whether its whitening claims stand up to scrutiny.',
       category: 'Oral Health',
       imageUrl: '/images/blog/Charcoal-Toothpaste-Blog-2025.jpg',
       alt: 'Charcoal toothpaste',
-      author: 'Dr. Johnson',
-      date: 'Apr 22, 2023',
+      author: 'SLEEK Dental Team',
+      date: 'March 14, 2025',
       readTime: '4 min read'
     },
     {
       id: 3,
+      slug: 'understanding-oral-cancer',
       title: 'Understanding Oral Cancer: Early Signs, Symptoms and Prevention',
       excerpt: 'Recognize the warning signs of oral cancer and learn about preventative measures you can take to protect your oral health.',
       category: 'Oral Health',
       imageUrl: '/images/blog/Oral-Cancer-Blog-2025.jpg',
       alt: 'Oral cancer awareness',
-      author: 'Dr. Williams',
-      date: 'Mar 10, 2023',
-      readTime: '6 min read'
+      author: 'SLEEK Dental Team',
+      date: 'March 7, 2025',
+      readTime: '5 min read'
     }
   ];
 
@@ -168,7 +173,7 @@ export default function BlogSection() {
               onMouseEnter={() => setHoveredCard(post.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <Link href={`/blog/${post.id}`} className="block h-full">
+              <Link href={`/blog/${post.slug}`} className="block h-full">
                 <div className="h-full bg-white rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300 hover:border-teal-200/50 hover:shadow-card-hover">
                   {/* Image container */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden">

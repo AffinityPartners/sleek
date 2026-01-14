@@ -78,13 +78,13 @@ export default function Home() {
           />
         </section>
         
-        {/* Plans and pricing section */}
-        <section id="plans" className="bg-section-light">
+        {/* Plans and pricing section - scroll-mt accounts for sticky header */}
+        <section id="plans" className="bg-section-light scroll-mt-20">
           <PricingSection />
         </section>
         
         {/* Featured Video Showcase */}
-        <section id="video">
+        <section id="video" className="scroll-mt-20">
           <VideoShowcase />
         </section>
         
@@ -92,7 +92,7 @@ export default function Home() {
         <ProductTechHighlight />
         
         {/* Membership Benefits section */}
-        <section id="benefits">
+        <section id="benefits" className="scroll-mt-20">
           <MembershipBenefitsGrid
             title="Why Choose SLEEK Dental"
             subtitle="Everything you need for exceptional oral care, delivered to your door"
@@ -106,22 +106,22 @@ export default function Home() {
         </section>
         
         {/* PBA Benefits section - PRO & MAX exclusive */}
-        <section id="pba-benefits">
+        <section id="pba-benefits" className="scroll-mt-20">
           <PBABenefitsSection />
         </section>
         
         {/* Customer Testimonials section */}
-        <section id="testimonials" className="bg-section-light">
+        <section id="testimonials" className="bg-section-light scroll-mt-20">
           <TestimonialsSection />
         </section>
         
         {/* FAQ Section */}
-        <section id="faq" className="bg-section-light">
+        <section id="faq" className="bg-section-light scroll-mt-20">
           <FaqAccordion />
         </section>
         
         {/* Blog Section */}
-        <section id="blog" className="bg-section-light">
+        <section id="blog" className="bg-section-light scroll-mt-20">
           <BlogSection />
         </section>
         

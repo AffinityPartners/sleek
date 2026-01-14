@@ -164,7 +164,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Learn essential tips for managing common dental emergencies that can occur in children, from knocked-out teeth to severe toothaches.',
     category: 'oral-health',
     tags: ['children', 'treatment'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2025-03-26',
     dateFormatted: 'March 26, 2025',
     image: '/blog/Dental-Emergencies-in-Children-Blog-2025.jpg',
@@ -252,7 +252,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'We examine the scientific evidence behind charcoal toothpaste and whether its whitening claims stand up to scrutiny.',
     category: 'oral-health',
     tags: ['products', 'tips'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2025-03-14',
     dateFormatted: 'March 14, 2025',
     image: '/blog/Charcoal-Toothpaste-Blog-2025.jpg',
@@ -315,7 +315,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Recognize the warning signs of oral cancer and learn about preventative measures you can take to protect your oral health.',
     category: 'oral-health',
     tags: ['prevention', 'symptoms'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2025-03-07',
     dateFormatted: 'March 7, 2025',
     image: '/blog/Oral-Cancer-Blog-2025.jpg',
@@ -378,7 +378,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Learn about the foods and drinks that can help maintain healthy teeth and gums, and how nutrition affects your oral health.',
     category: 'oral-health',
     tags: ['nutrition', 'prevention', 'tips'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2025-02-24',
     dateFormatted: 'February 24, 2025',
     image: '/blog/Tooth-Decay-SLEEK-Blog-2025.png',
@@ -432,7 +432,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Discover how the foods you eat impact your dental health and learn which nutrients are essential for strong teeth and gums.',
     category: 'oral-health',
     tags: ['nutrition', 'prevention', 'tips'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2024-09-13',
     dateFormatted: 'September 13, 2024',
     image: '/blog/Nutrition-Oral-Health-2024.jpg',
@@ -486,7 +486,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Understand why your gums might be bleeding and learn about effective treatments and prevention strategies.',
     category: 'health',
     tags: ['prevention', 'treatment', 'symptoms'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2024-04-22',
     dateFormatted: 'April 22, 2024',
     image: '/blog/Bleeding-Gums-Blog.jpg',
@@ -535,7 +535,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Discover all the amazing benefits included with your SLEEK Dental PRO membership, from dental insurance to quarterly oral care refills.',
     category: 'sleek-membership',
     tags: ['membership', 'insurance'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2024-02-02',
     dateFormatted: 'February 2, 2024',
     image: '/blog/Sleek-Dental-Pro-Blog-2024.jpg',
@@ -572,10 +572,10 @@ export const BLOG_POSTS: BlogPost[] = [
       <h2>6. SLEEK Electronic Toothbrush Kit</h2>
       <p>To promote excellent oral health, qualifying SLEEK Dental PRO members receive a SLEEK electronic toothbrush welcome kit. Each kit contains:</p>
       <ul>
-        <li>Electric Toothbrush with 5 Cleaning Modes</li>
-        <li>Oscillating Brush Head with 2-Minute Timer</li>
+        <li>Sonic Electric Toothbrush with 5 Cleaning Modes</li>
+        <li>Brush Head with 2-Minute Smart Timer</li>
         <li>Built-in rechargeable USB Charger</li>
-        <li>Toothbrush Holder & Traveling Case</li>
+        <li>Toothbrush Holder & Travel Case</li>
       </ul>
 
       <h2>7. Quarterly Oral Care Refills</h2>
@@ -609,7 +609,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Learn what cavities are, how they develop, and what they look like at different stages, plus prevention tips.',
     category: 'health',
     tags: ['prevention', 'treatment', 'symptoms'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2024-01-05',
     dateFormatted: 'January 5, 2024',
     image: '/blog/Cavity-Blog.jpg',
@@ -669,7 +669,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Learn about gingivitis, its causes, symptoms, and how to prevent and treat this common gum condition.',
     category: 'health',
     tags: ['prevention', 'treatment', 'symptoms'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2023-10-09',
     dateFormatted: 'October 9, 2023',
     image: '/blog/Understanding-Gingivitis.jpg',
@@ -730,7 +730,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Discover the benefits of SLEEK OCP membership, including dental savings, teledentistry, and prescription discounts.',
     category: 'sleek-membership',
     tags: ['membership'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2023-10-09',
     dateFormatted: 'October 9, 2023',
     image: '/blog/Techniques-for-a-Brighter-Smile.jpg',
@@ -774,7 +774,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Welcome to SLEEK Dental Club! Learn about our three membership levels and all the perks that come with being a member.',
     category: 'sleek-membership',
     tags: ['membership', 'products'],
-    author: 'Daphyne Lovejoy',
+    author: 'SLEEK Dental Team',
     date: '2023-09-20',
     dateFormatted: 'September 20, 2023',
     image: '/blog/Introducing-SLEEK-Dental-Club-Blog.jpg',

@@ -25,7 +25,7 @@ const faqItems: FaqItem[] = [
   },
   {
     question: 'What is included in my welcome kit?',
-    answer: 'Your welcome kit contains: an Electric Toothbrush with 5 Cleaning Modes, an Oscillating Brush Head with 2-Minute Timer, a Built-In Rechargeable USB Charger, a Toothbrush Holder, and a Traveling Case. Everything you need to start your improved oral care routine.'
+    answer: 'Your welcome kit contains: a Sonic Electric Toothbrush with 5 Cleaning Modes, a Brush Head with 2-Minute Smart Timer, a Built-In Rechargeable USB Charger, a Toothbrush Holder, and a Travel Case. Everything you need to start your improved oral care routine.'
   },
   {
     question: 'When will my quarterly refills ship?',

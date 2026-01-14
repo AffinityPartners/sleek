@@ -510,6 +510,50 @@ a {
   .bg-section-premium {
     background: linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(240, 253, 250, 0.5) 50%, rgba(255, 255, 255, 1) 100%);
   }
+
+  /* ==========================================================================
+     DARK PREMIUM SECTION BACKGROUNDS
+     For immersive dark-themed sections like product showcases
+     ========================================================================== */
+
+  .bg-section-dark {
+    background: linear-gradient(135deg, #0C1015 0%, #141B1D 50%, #1B2223 100%);
+  }
+
+  .bg-section-dark-premium {
+    background: linear-gradient(160deg, #0C1015 0%, #0F1518 30%, #141B1D 60%, #1B2223 100%);
+  }
+
+  /* ==========================================================================
+     DARK GLASS CARD SYSTEM
+     Glassmorphic cards for dark backgrounds
+     ========================================================================== */
+
+  .glass-card-dark {
+    @apply backdrop-blur-xl rounded-2xl overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .glass-card-dark:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-card-dark-elevated {
+    @apply backdrop-blur-xl rounded-2xl overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  
+  .glass-card-dark-elevated:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3), 0 0 30px rgba(20, 184, 166, 0.1);
+  }
 }
 
 /* ==========================================================================
@@ -541,6 +585,18 @@ a {
     background: linear-gradient(135deg, rgba(12, 16, 21, 0.9) 0%, rgba(12, 16, 21, 0.7) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Subtle glass effect for dark backgrounds */
+  .glass-subtle-dark {
+    @apply backdrop-blur-md;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .glass-subtle-dark:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
   }
   
   /* ==========================================================================
@@ -635,6 +691,32 @@ a {
   .text-gradient-accent {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
+  }
+
+  /* ==========================================================================
+     TOUCH TARGET UTILITIES
+     Ensures minimum 44x44px touch targets for mobile accessibility
+     ========================================================================== */
+  
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .touch-target-sm {
+    @apply min-h-[36px] min-w-[36px];
+  }
+  
+  .touch-target-lg {
+    @apply min-h-[48px] min-w-[48px];
+  }
+
+  /* ==========================================================================
+     SCROLL MARGIN FOR ANCHOR LINKS
+     Accounts for sticky header when navigating to sections
+     ========================================================================== */
+  
+  .scroll-mt-header {
+    scroll-margin-top: 5rem;
   }
 }
 

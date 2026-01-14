@@ -95,13 +95,13 @@ export default function ValueSection() {
               <p className="font-semibold text-gray-900 mb-6 text-lg">Every SLEEK Membership kit contains:</p>
               <ul className="space-y-3">
                 {[
-                  "Sonic Toothbrush with 40,000 vibrations per minute",
+                  "Sonic Electric Toothbrush with powerful cleaning action",
                   "5 Cleaning Modes: Clean, White, Polish, Gum Care, Sensitive",
-                  "Smart Timer with 30-second quadrant reminders",
-                  "Pressure sensor to prevent gum damage",
-                  "3-week battery life with USB-C charging",
-                  "Antimicrobial brush head replacement quarterly",
-                  "Premium travel case with ventilation"
+                  "2-Minute Smart Timer with 30-second quadrant reminders",
+                  "Water-resistant design for shower use",
+                  "Up to 3 weeks battery life with USB charging",
+                  "Quarterly brush head and floss pick refills",
+                  "Premium travel case and toothbrush holder"
                 ].map((item, index) => (
                   <motion.li 
                     key={index} 
@@ -213,8 +213,8 @@ export default function ValueSection() {
           >
             {[
               {
-                title: "40,000 Vibrations/Min",
-                description: "Creates micro-bubbles that disrupt plaque biofilm even in hard-to-reach areas between teeth.",
+                title: "Sonic Cleaning Power",
+                description: "High-frequency vibrations create dynamic fluid action that reaches between teeth and along the gumline.",
                 icon: "M13 10V3L4 14h7v7l9-11h-7z" // Lightning Bolt
               },
               {
@@ -223,9 +223,9 @@ export default function ValueSection() {
                 icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" // Clock
               },
               {
-                title: "Pressure Sensor",
-                description: "Protects your gums by alerting you when you're brushing too hard, preventing enamel wear and gum recession.",
-                icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" // Shield Check
+                title: "Water-Resistant",
+                description: "Durable water-resistant design is safe for shower use and easy to rinse clean after each brush.",
+                icon: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" // Droplet/Moon
               }
             ].map((item, index) => (
               <motion.div
