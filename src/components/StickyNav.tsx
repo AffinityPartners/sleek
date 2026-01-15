@@ -127,33 +127,36 @@ function MobileMenuContent({
     <>
       {/* Hamburger/Close button with morphing animation */}
       <Disclosure.Button 
-        className={`relative inline-flex flex-col items-center justify-center gap-1.5 p-3 min-h-[44px] min-w-[44px] rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 focus-visible:ring-offset-2 transition-colors duration-300 z-[60] ${
+        className={`relative flex flex-col items-center justify-center w-11 h-11 rounded-xl cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 focus-visible:ring-offset-2 transition-colors duration-300 ${
           useScrolledStyling 
             ? 'text-gray-700 hover:text-teal-600 hover:bg-gray-100/50' 
             : 'text-white hover:text-teal-300 hover:bg-white/10'
         }`}
         aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-expanded={open}
       >
         <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
         {/* Animated hamburger lines that morph into an X */}
-        <span 
-          className={`block h-0.5 w-6 rounded-full bg-current transform transition-all duration-300 ease-out ${
-            open ? 'rotate-45 translate-y-2' : ''
-          }`}
-          aria-hidden="true"
-        />
-        <span 
-          className={`block h-0.5 w-6 rounded-full bg-current transition-all duration-200 ease-out ${
-            open ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
-          }`}
-          aria-hidden="true"
-        />
-        <span 
-          className={`block h-0.5 w-6 rounded-full bg-current transform transition-all duration-300 ease-out ${
-            open ? '-rotate-45 -translate-y-2' : ''
-          }`}
-          aria-hidden="true"
-        />
+        <span className="flex flex-col items-center justify-center gap-1.5 pointer-events-none">
+          <span 
+            className={`block h-0.5 w-6 rounded-full bg-current transform transition-all duration-300 ease-out ${
+              open ? 'rotate-45 translate-y-2' : ''
+            }`}
+            aria-hidden="true"
+          />
+          <span 
+            className={`block h-0.5 w-6 rounded-full bg-current transition-all duration-200 ease-out ${
+              open ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
+            }`}
+            aria-hidden="true"
+          />
+          <span 
+            className={`block h-0.5 w-6 rounded-full bg-current transform transition-all duration-300 ease-out ${
+              open ? '-rotate-45 -translate-y-2' : ''
+            }`}
+            aria-hidden="true"
+          />
+        </span>
       </Disclosure.Button>
       
       <AnimatePresence mode="wait">
