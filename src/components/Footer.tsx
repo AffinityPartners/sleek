@@ -46,7 +46,6 @@ const footerNavigation = {
     { name: 'For Agents', href: '/market-programs/agents' },
   ],
   support: [
-    { name: 'Shipping Information', href: '/shipping' },
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' },
   ],
