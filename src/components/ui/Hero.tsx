@@ -552,18 +552,30 @@ export default function Hero({
           </motion.div>
           
           {/* ===== SECTION 2: PRODUCT SHOWCASE ===== */}
-          {/* Mobile: order-2 (middle), Desktop: right column */}
+          {/* Mobile: order-2 (middle), Desktop: right column.
+              Using direct initial/animate instead of variants for more reliable animation triggering. */}
           <motion.div
             className="relative order-2"
-            variants={imageVariants}
-            initial="hidden"
-            animate={controls}
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
           >
             <div className="relative h-[280px] sm:h-[350px] md:h-[550px] lg:h-[600px] w-full">
-              {/* Pulsing ambient glow behind product - disabled on mobile */}
+              {/* MOBILE-ONLY: Simple static image without animation wrappers for reliable rendering.
+                  Positioned absolutely with high z-index to ensure visibility. */}
+              <div className="md:hidden absolute inset-0 z-10 flex items-center justify-center">
+                <div className="relative w-[280px] h-[260px] sm:w-[340px] sm:h-[330px] -rotate-[8deg]">
+                  <img
+                    src={mediaSrc}
+                    alt={mediaAlt}
+                    className="w-full h-full object-contain drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
+                  />
+                </div>
+              </div>
+              
+              {/* DESKTOP-ONLY: Pulsing ambient glow behind product */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={(prefersReducedMotion || isMobile) ? {} : {
+                className="hidden md:flex absolute inset-0 items-center justify-center"
+                animate={prefersReducedMotion ? {} : {
                   scale: [1, 1.05, 1],
                   opacity: [0.4, 0.6, 0.4],
                 }}
@@ -581,14 +593,11 @@ export default function Hero({
                 />
               </motion.div>
               
-              {/* Product image with floating animation - OVERSIZED and ROTATED for dramatic effect
-                  Animation disabled on mobile for performance. Uses initial prop for rotation to avoid
-                  conflict between inline style and framer-motion on mobile where animate is empty.
-                  z-10 ensures image stays above background glow but below feature tags (z-20). */}
+              {/* DESKTOP-ONLY: Product image with floating animation */}
               <motion.div
-                className="relative z-10 h-full w-full flex items-center justify-center"
+                className="hidden md:flex relative z-10 h-full w-full items-center justify-center"
                 initial={{ rotate: -8 }}
-                animate={(prefersReducedMotion || isMobile) ? { rotate: -8 } : {
+                animate={prefersReducedMotion ? { rotate: -8 } : {
                   y: [0, -20, 0],
                   rotate: [-8, -6, -8],
                 }}
@@ -598,16 +607,14 @@ export default function Hero({
                   ease: "easeInOut",
                 }}
               >
-                {/* Oversized container - adjusted mobile heights to fit within parent container
-                    while maintaining visual impact. Uses max-w on mobile to prevent overflow on 375px screens */}
-                <div className="relative w-full max-w-[280px] h-[260px] sm:max-w-[340px] sm:h-[330px] md:w-[550px] md:max-w-none md:h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
+                <div className="relative w-[550px] h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
                   <Image
                     src={mediaSrc}
                     alt={mediaAlt}
                     fill
                     priority
                     className="object-contain drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
-                    sizes="(max-width: 640px) 280px, (max-width: 768px) 340px, (max-width: 1024px) 550px, (max-width: 1280px) 650px, 750px"
+                    sizes="(max-width: 1024px) 550px, (max-width: 1280px) 650px, 750px"
                   />
                 </div>
               </motion.div>
