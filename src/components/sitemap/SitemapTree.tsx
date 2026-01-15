@@ -9,7 +9,6 @@ import {
   FileText,
   BookOpen,
   Scale,
-  HelpCircle,
   Folder,
   FolderOpen,
   ExternalLink,
@@ -267,19 +266,6 @@ const defaultTreeData: TreeNode[] = [
     ],
   },
   {
-    id: 'resources',
-    label: 'Resources',
-    type: 'folder',
-    icon: <HelpCircle className="w-4 h-4 text-gray-500" />,
-    children: [
-      { id: 'about', label: 'About Us', href: '/about', type: 'page', description: 'Our mission and team' },
-      { id: 'contact', label: 'Contact Us', href: '/contact', type: 'page', description: 'Get in touch' },
-      { id: 'help', label: 'Help Center', href: '/help', type: 'page', description: 'Support resources' },
-      { id: 'shipping', label: 'Shipping Information', href: '/shipping', type: 'page', description: 'Delivery details' },
-      { id: 'returns', label: 'Returns Policy', href: '/returns', type: 'page', description: 'Return process' },
-    ],
-  },
-  {
     id: 'legal',
     label: 'Legal',
     type: 'folder',
@@ -287,7 +273,6 @@ const defaultTreeData: TreeNode[] = [
     children: [
       { id: 'privacy', label: 'Privacy Policy', href: '/privacy', type: 'page', description: 'Data handling practices' },
       { id: 'terms', label: 'Terms of Service', href: '/terms', type: 'page', description: 'Usage terms and conditions' },
-      { id: 'accessibility', label: 'Accessibility', href: '/accessibility', type: 'page', description: 'Accessibility statement' },
     ],
   },
 ];

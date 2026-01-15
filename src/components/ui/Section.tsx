@@ -64,13 +64,13 @@ export default function Section({
   );
 
   const containerAnimation = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.1,
+        duration: 0.15,
+        staggerChildren: 0.02,
       }
     }
   };

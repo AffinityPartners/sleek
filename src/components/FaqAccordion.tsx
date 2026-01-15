@@ -179,15 +179,15 @@ export default function FaqAccordion() {
   const [activeItem, setActiveItem] = useState("item-0");
   const prefersReducedMotion = useReducedMotion();
 
-  // Animation variants for staggered reveal
+  // Animation variants with near-instant timing for better UX
   const itemVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 10 : 20 },
-    visible: (custom: number) => ({
+    hidden: { opacity: 0, y: 10 },
+    visible: () => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.3 : 0.5,
-        delay: prefersReducedMotion ? 0 : custom * 0.1,
+        duration: 0.15,
+        delay: 0,
         ease: [0.22, 1, 0.36, 1]
       }
     })
@@ -221,14 +221,12 @@ export default function FaqAccordion() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           variants={itemVariants}
-          custom={0}
           className="section-header"
         >
           <motion.span 
             variants={itemVariants}
-            custom={0.5}
             className="section-badge"
           >
             FREQUENTLY ASKED QUESTIONS
@@ -236,7 +234,6 @@ export default function FaqAccordion() {
           
           <motion.h2 
             variants={itemVariants}
-            custom={1}
             className="section-title"
           >
             Common Questions
@@ -244,7 +241,6 @@ export default function FaqAccordion() {
           
           <motion.p 
             variants={itemVariants}
-            custom={1.5}
             className="section-subtitle"
           >
             Everything you need to know about your SLEEK subscription
@@ -255,7 +251,7 @@ export default function FaqAccordion() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true }}
         >
           <Accordion.Root
             type="single"

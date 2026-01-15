@@ -314,6 +314,11 @@ export default function Footer() {
                   {' '}and enter promo code 725336. The discount health benefits have been provided at no cost to you and will remain active until you cancel.
                 </p>
                 
+                {/* Product Imagery Disclosure */}
+                <p>
+                  <strong className="text-gray-400">Product Imagery:</strong> Product images and illustrations shown on this website are for representational purposes only and may vary from actual products received. Differences may occur due to photography, display settings, packaging updates, and ongoing product enhancements.
+                </p>
+                
                 {/* Affinity Partners Copyright */}
                 <p className="pt-2">
                   © Copyright 2025 Affinity Partners | Content, Pricing and Availability Subject to Change.
@@ -381,6 +386,11 @@ export default function Footer() {
                           <a href="tel:18662151376" className="text-teal-500 hover:text-teal-400 transition-colors">1-866-215-1376</a>. To view a listing of participating providers visit{' '}
                           <a href="https://www.findbestbenefits.com" target="_blank" rel="noopener noreferrer" className="text-teal-500 hover:text-teal-400 transition-colors">www.findbestbenefits.com</a>
                           {' '}and enter promo code 725336. The discount health benefits have been provided at no cost to you and will remain active until you cancel.
+                        </p>
+                        
+                        {/* Product Imagery Disclosure */}
+                        <p>
+                          <strong className="text-gray-400">Product Imagery:</strong> Product images and illustrations shown on this website are for representational purposes only and may vary from actual products received. Differences may occur due to photography, display settings, packaging updates, and ongoing product enhancements.
                         </p>
                         
                         {/* Affinity Partners Copyright */}

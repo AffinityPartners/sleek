@@ -62,17 +62,17 @@ const AdditionalValueBenefits = () => {
     <section className="section-padding relative overflow-hidden">
       <div className="container-standard">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.15 }}
           className="section-header"
         >
           <motion.span 
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -5 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5 }}
+            transition={{ duration: 0.15 }}
             className="section-badge"
           >
             VALUE-ADDED BENEFITS
@@ -92,7 +92,6 @@ const AdditionalValueBenefits = () => {
           const [ref, inView] = useInView({
             triggerOnce: true,
             threshold: 0.1,
-            rootMargin: "-100px 0px"
           });
           
           return (
@@ -110,16 +109,15 @@ const AdditionalValueBenefits = () => {
                   className="w-full lg:w-1/2"
                   initial={{ 
                     opacity: 0, 
-                    x: isEven ? -50 : 50 
+                    x: isEven ? -20 : 20 
                   }}
                   animate={inView ? { 
                     opacity: 1, 
                     x: 0 
                   } : {}}
                   transition={{ 
-                    duration: 0.8, 
-                    type: "spring", 
-                    bounce: 0.2
+                    duration: 0.15, 
+                    ease: [0.22, 1, 0.36, 1]
                   }}
                 >
                   <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl group">
@@ -160,24 +158,22 @@ const AdditionalValueBenefits = () => {
                   className="w-full lg:w-1/2 p-0 md:p-6"
                   initial={{ 
                     opacity: 0, 
-                    x: isEven ? 50 : -50
+                    x: isEven ? 20 : -20
                   }}
                   animate={inView ? { 
                     opacity: 1, 
                     x: 0 
                   } : {}}
                   transition={{ 
-                    duration: 0.8, 
-                    type: "spring", 
-                    bounce: 0.2,
-                    delay: 0.1
+                    duration: 0.15, 
+                    ease: [0.22, 1, 0.36, 1]
                   }}
                 >
                   <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100">
                     <motion.h3 
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 5 }}
                       animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.3 }}
+                      transition={{ duration: 0.15 }}
                       className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 tracking-tight"
                       style={{ color: benefit.accent }}
                     >
@@ -188,15 +184,15 @@ const AdditionalValueBenefits = () => {
                       className="space-y-4 mb-8"
                       initial={{ opacity: 0 }}
                       animate={inView ? { opacity: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 0.4 }}
+                      transition={{ duration: 0.15 }}
                     >
                       {benefit.description.map((item, idx) => (
                         <motion.li 
                           key={idx} 
                           className="flex items-start"
-                          initial={{ opacity: 0, x: -10 }}
+                          initial={{ opacity: 0, x: -5 }}
                           animate={inView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ duration: 0.3, delay: 0.5 + (idx * 0.1) }}
+                          transition={{ duration: 0.1 }}
                         >
                           <div 
                             className="mr-3 mt-1 p-0.5 rounded-full"
@@ -217,9 +213,9 @@ const AdditionalValueBenefits = () => {
                           backgroundColor: `${benefit.accent}10`,
                           color: benefit.accent
                         }}
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 5 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.7 }}
+                        transition={{ duration: 0.15 }}
                         whileHover={{ 
                           backgroundColor: benefit.accent,
                           color: 'white',

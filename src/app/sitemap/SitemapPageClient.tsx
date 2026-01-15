@@ -6,7 +6,6 @@ import {
   Home,
   CreditCard,
   BookOpen,
-  HeadphonesIcon,
   Scale,
   ExternalLink,
   Mail,
@@ -14,12 +13,6 @@ import {
   MapPin,
   Shield,
   FileText,
-  Users,
-  HelpCircle,
-  Truck,
-  RotateCcw,
-  Briefcase,
-  ArrowRight,
 } from 'lucide-react';
 import {
   SitemapHero,
@@ -27,7 +20,7 @@ import {
   SitemapBlogGrid,
   SitemapCategoryCard,
 } from '@/components/sitemap';
-import Header from '@/components/Header';
+import StickyNav from '@/components/StickyNav';
 import Footer from '@/components/Footer';
 import { getAllPosts, CATEGORIES } from '@/lib/blog';
 
@@ -77,18 +70,10 @@ export default function SitemapPageClient() {
       accentColor: 'teal' as const,
     },
     {
-      icon: HeadphonesIcon,
-      title: 'Resources',
-      description: 'Help center, shipping info, and contact options',
-      count: 5,
-      anchorId: 'resources-section',
-      accentColor: 'gray' as const,
-    },
-    {
       icon: Scale,
       title: 'Legal',
-      description: 'Privacy policy, terms of service, and accessibility',
-      count: 3,
+      description: 'Privacy policy and terms of service',
+      count: 2,
       anchorId: 'legal-section',
       accentColor: 'gray' as const,
     },
@@ -106,26 +91,14 @@ export default function SitemapPageClient() {
     },
   };
 
-  /**
-   * Resource links configuration for the resources section grid.
-   */
-  const resourceLinks = [
-    { title: 'About Us', href: '/about', description: 'Learn about our mission and team', icon: Users },
-    { title: 'Contact Us', href: '/contact', description: 'Get in touch with our support team', icon: Mail },
-    { title: 'Help Center', href: '/help', description: 'Find answers to common questions', icon: HelpCircle },
-    { title: 'Shipping Info', href: '/shipping', description: 'Delivery times and policies', icon: Truck },
-    { title: 'Returns Policy', href: '/returns', description: 'Return process and guidelines', icon: RotateCcw },
-    { title: 'Careers', href: '/careers', description: 'Join the SLEEK team', icon: Briefcase },
-  ];
-
   return (
     <>
       {/* Site Header */}
-      <Header />
+      <StickyNav />
       
       <main className="min-h-screen bg-white">
         {/* Hero Section with Search */}
-        <SitemapHero totalPages={15} />
+        <SitemapHero totalPages={4 + allPosts.length} />
 
         {/* Quick Navigation Cards */}
         <section className="relative -mt-8 z-10">
@@ -212,9 +185,9 @@ export default function SitemapPageClient() {
           </div>
         </motion.section>
 
-        {/* Resources Section - Redesigned */}
+        {/* Contact Section */}
         <motion.section
-          id="resources-section"
+          id="contact-section"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -243,45 +216,14 @@ export default function SitemapPageClient() {
             {/* Section header */}
             <div className="text-center mb-16">
               <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase bg-white/10 text-teal-400 border border-white/10">
-                Support
+                Contact
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4">
-                Resources & Help
+                Get In Touch
               </h2>
               <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                Get the support you need with our comprehensive help resources.
+                Have questions? Our team is here to help.
               </p>
-            </div>
-
-            {/* Resources grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-16">
-              {resourceLinks.map((resource, index) => (
-                <motion.div
-                  key={resource.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                >
-                  <Link
-                    href={resource.href}
-                    className="group flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-                  >
-                    <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-teal-500/20 flex items-center justify-center group-hover:bg-teal-500 transition-colors duration-300">
-                      <resource.icon className="w-5 h-5 text-teal-400 group-hover:text-white transition-colors" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-white mb-1 group-hover:text-teal-300 transition-colors">
-                        {resource.title}
-                      </h3>
-                      <p className="text-sm text-gray-400 line-clamp-2">
-                        {resource.description}
-                      </p>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-teal-400 group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" />
-                  </Link>
-                </motion.div>
-              ))}
             </div>
 
             {/* Contact info cards */}

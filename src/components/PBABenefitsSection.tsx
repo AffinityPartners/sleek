@@ -158,25 +158,25 @@ export default function PBABenefitsSection() {
   // State for controlling the "About PBA" modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Animation variants
+  // Animation variants with near-instant timing for better UX
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: prefersReducedMotion ? 0.1 : 0.15,
-        delayChildren: prefersReducedMotion ? 0.1 : 0.2,
+        staggerChildren: 0.02,
+        delayChildren: 0,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: prefersReducedMotion ? 15 : 30, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: { 
-        duration: prefersReducedMotion ? 0.4 : 0.6,
+        duration: 0.15,
         ease: [0.22, 1, 0.36, 1],
       },
     },
@@ -204,7 +204,7 @@ export default function PBABenefitsSection() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           variants={containerVariants}
           className="space-y-12"
         >

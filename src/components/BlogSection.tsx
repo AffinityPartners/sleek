@@ -75,25 +75,25 @@ export default function BlogSection() {
   // Track which card is being hovered for arrow animation
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  // Animation variants
+  // Animation variants with near-instant timing for better UX
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: prefersReducedMotion ? 0.05 : 0.1,
-        delayChildren: prefersReducedMotion ? 0 : 0.2,
+        staggerChildren: 0.02,
+        delayChildren: 0,
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 15 : 30 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.3 : 0.5,
+        duration: 0.15,
         ease: [0.22, 1, 0.36, 1]
       }
     }
@@ -114,18 +114,18 @@ export default function BlogSection() {
       <div className="container-standard relative z-10">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.15 }}
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16"
         >
           <div>
             <motion.span 
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -5 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.5 }}
+              transition={{ duration: 0.15 }}
               className="section-badge"
             >
               BLOG

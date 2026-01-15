@@ -58,7 +58,7 @@ const pricingPlans: Plan[] = [
       { text: 'Cancel Anytime', icon: <Check className="h-4 w-4" />, included: true },
     ],
     ctaText: 'Join Club',
-    ctaLink: 'https://enrollment.sleekdentalclub.com/onboarding',
+    ctaLink: 'https://enrollment.sleekdentalclub.com/product-details',
   },
   {
     id: 'ocp',
@@ -997,36 +997,36 @@ const PricingSection: React.FC = () => {
     }
   }, [controls, inView]);
 
-  // Animation variants with premium easing
+  // Animation variants with near-instant timing for better UX
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: prefersReducedMotion ? 0.1 : 0.15,
-        delayChildren: prefersReducedMotion ? 0.1 : 0.2,
+        staggerChildren: 0.02,
+        delayChildren: 0,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: prefersReducedMotion ? 15 : 40, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: { 
-        duration: prefersReducedMotion ? 0.4 : 0.6,
+        duration: 0.15,
         ease: [0.22, 1, 0.36, 1],
       },
     },
   };
 
   const featureVariants = {
-    hidden: { opacity: 0, x: -8 },
+    hidden: { opacity: 0, x: -4 },
     visible: { 
       opacity: 1, 
       x: 0,
-      transition: { duration: 0.3, ease: "easeOut" },
+      transition: { duration: 0.1, ease: "easeOut" },
     },
   };
 
@@ -1279,7 +1279,7 @@ const PricingSection: React.FC = () => {
           {/* Trust indicators */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
+            className="flex flex-row items-center justify-center gap-4 sm:gap-6 pt-8"
           >
             <div className="flex items-center gap-2 text-xs text-gray-600">
               <div className="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center">

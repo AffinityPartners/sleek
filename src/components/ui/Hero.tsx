@@ -427,14 +427,16 @@ export default function Hero({
       {/* ===== MAIN CONTENT ===== */}
       {/* Mobile uses pt-24 for nav clearance, pb-16 for content breathing room */}
       <div className="container-standard relative z-10 pt-24 pb-16 md:py-0">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 items-center min-h-[calc(100vh-10rem)]">
+        {/* Mobile: flex-col with ordering, Desktop: grid-cols-2 */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-[calc(100vh-10rem)]">
           
-          {/* ===== LEFT COLUMN: TEXT CONTENT ===== */}
+          {/* ===== SECTION 1: TEXT HEADER (Badge + Headline + Subheadline) ===== */}
+          {/* Mobile: order-1 (top), Desktop: part of left column */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={controls}
-            className="relative z-10 text-center lg:text-left order-2 lg:order-1"
+            className="relative z-10 text-center lg:text-left order-1 lg:row-span-1"
           >
             {/* Premium badge */}
             <motion.div
@@ -486,13 +488,13 @@ export default function Hero({
             {/* Subheadline */}
             <motion.p 
               variants={textVariants}
-              className="text-lg md:text-xl text-gray-400 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl mx-auto lg:mx-0 lg:mb-10"
             >
               {subheadline}
             </motion.p>
             
-            {/* CTA Buttons */}
-            <motion.div variants={ctaVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+            {/* Desktop-only CTA Buttons - shown inline with text on desktop */}
+            <motion.div variants={ctaVariants} className="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
               {/* Primary CTA with glow effect */}
               <motion.button
                 onClick={onCtaClick}
@@ -529,10 +531,10 @@ export default function Hero({
               </motion.button>
             </motion.div>
 
-            {/* Trust indicators */}
+            {/* Desktop-only Trust indicators */}
             <motion.div 
               variants={textVariants}
-              className="flex items-center gap-6 text-sm text-gray-500 justify-center lg:justify-start"
+              className="hidden lg:flex items-center gap-6 text-sm text-gray-500 justify-center lg:justify-start"
             >
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
@@ -549,14 +551,15 @@ export default function Hero({
             </motion.div>
           </motion.div>
           
-          {/* ===== RIGHT COLUMN: PRODUCT SHOWCASE ===== */}
+          {/* ===== SECTION 2: PRODUCT SHOWCASE ===== */}
+          {/* Mobile: order-2 (middle), Desktop: right column */}
           <motion.div
-            className="relative order-1 lg:order-2"
+            className="relative order-2 lg:row-span-2"
             variants={imageVariants}
             initial="hidden"
             animate={controls}
           >
-            <div className="relative h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] w-full">
+            <div className="relative h-[280px] sm:h-[350px] md:h-[550px] lg:h-[600px] w-full">
               {/* Pulsing ambient glow behind product - disabled on mobile */}
               <motion.div
                 className="absolute inset-0 flex items-center justify-center"
@@ -596,21 +599,20 @@ export default function Hero({
                 }}
               >
                 {/* Oversized container - uses max-w on mobile to prevent overflow on 375px screens */}
-                <div className="relative w-full max-w-[340px] h-[450px] sm:w-[450px] sm:max-w-none sm:h-[600px] md:w-[550px] md:h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
+                <div className="relative w-full max-w-[280px] h-[350px] sm:max-w-[340px] sm:h-[450px] md:w-[550px] md:max-w-none md:h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
                   <Image
                     src={mediaSrc}
                     alt={mediaAlt}
                     fill
                     priority
                     className="object-contain drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
-                    sizes="(max-width: 640px) 380px, (max-width: 768px) 450px, (max-width: 1024px) 550px, (max-width: 1280px) 650px, 750px"
+                    sizes="(max-width: 640px) 280px, (max-width: 768px) 340px, (max-width: 1024px) 550px, (max-width: 1280px) 650px, 750px"
                   />
                 </div>
               </motion.div>
               
-              {/* ===== FEATURE CARDS ===== */}
+              {/* ===== DESKTOP FEATURE CARDS - Floating around product ===== */}
               <div className="absolute inset-0 pointer-events-none">
-                {/* Card positions for desktop - hidden on mobile, shown below product */}
                 <div className="hidden lg:block">
                   {/* Top right card */}
                   <div className="absolute top-[10%] right-0 xl:right-[-5%] pointer-events-auto">
@@ -643,27 +645,125 @@ export default function Hero({
                   </div>
                 </div>
               </div>
+              
+              {/* ===== MOBILE FEATURE TAGS - Small tags surrounding product ===== */}
+              <div className="lg:hidden absolute inset-0 pointer-events-none">
+                {/* Top left tag */}
+                <motion.div 
+                  className="absolute top-[5%] left-[2%] pointer-events-auto"
+                  variants={textVariants}
+                  initial="hidden"
+                  animate={controls}
+                >
+                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+                    <Zap className="w-3 h-3 text-teal-400" />
+                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">31,000 Vibrations/min</span>
+                  </div>
+                </motion.div>
+                
+                {/* Top right tag */}
+                <motion.div 
+                  className="absolute top-[15%] right-[2%] pointer-events-auto"
+                  variants={textVariants}
+                  initial="hidden"
+                  animate={controls}
+                >
+                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+                    <ShieldCheck className="w-3 h-3 text-teal-400" />
+                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Dental Insurance Included</span>
+                  </div>
+                </motion.div>
+                
+                {/* Bottom center tag */}
+                <motion.div 
+                  className="absolute bottom-[5%] left-1/2 -translate-x-1/2 pointer-events-auto"
+                  variants={textVariants}
+                  initial="hidden"
+                  animate={controls}
+                >
+                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+                    <Sparkles className="w-3 h-3 text-white/70" />
+                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Quarterly Refills Included</span>
+                  </div>
+                </motion.div>
+              </div>
             </div>
-            
-            {/* Mobile feature cards - stacked below product */}
-            <div className="lg:hidden mt-8 space-y-3 px-4">
-              {featureCards.map((card, index) => (
-                <FeatureCardComponent 
-                  key={index}
-                  card={card} 
-                  index={index} 
-                  inView={inView}
-                  prefersReducedMotion={prefersReducedMotion}
+          </motion.div>
+          
+          {/* ===== SECTION 3: MOBILE CTAs AND TRUST INDICATORS ===== */}
+          {/* Mobile: order-3 (bottom), Hidden on desktop (shown inline above) */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={controls}
+            className="lg:hidden order-3 text-center w-full"
+          >
+            {/* Mobile CTA Buttons */}
+            <motion.div variants={ctaVariants} className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+              {/* Primary CTA with glow effect */}
+              <motion.button
+                onClick={onCtaClick}
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white text-base overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+                  boxShadow: '0 0 30px rgba(20, 184, 166, 0.3)',
+                }}
+                whileHover={prefersReducedMotion ? {} : { 
+                  scale: 1.03,
+                  boxShadow: '0 0 50px rgba(20, 184, 166, 0.5)',
+                }}
+                whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+              >
+                {/* Shimmer effect */}
+                <span 
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)'
+                  }}
                 />
-              ))}
-            </div>
+                <span className="relative z-10">{ctaText}</span>
+                <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </motion.button>
+
+              {/* Secondary CTA - ghost style for dark background */}
+              <motion.button
+                onClick={onSecondaryCtaClick}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-white/90 border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+                whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+              >
+                <span>{secondaryCtaText}</span>
+              </motion.button>
+            </motion.div>
+
+            {/* Mobile Trust indicators */}
+            <motion.div 
+              variants={textVariants}
+              className="flex items-center gap-4 text-sm text-gray-500 justify-center"
+            >
+              <div className="flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-gray-400 text-xs">Free Shipping</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-gray-400 text-xs">30-Day Guarantee</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* ===== SCROLL INDICATOR ===== */}
+      {/* ===== SCROLL INDICATOR =====
+          Uses left-0 right-0 + justify-center instead of translate-x-1/2 because
+          framer-motion overwrites the transform property with its animations.
+          Hidden on mobile (md:flex) for cleaner mobile experience. */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/50 text-sm gap-2 z-20"
+        className="absolute bottom-8 left-0 right-0 hidden md:flex flex-col items-center justify-center text-white/50 text-sm gap-2 z-20"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.5 }}

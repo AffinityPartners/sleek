@@ -16,7 +16,6 @@ export default function VideoShowcase() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '200px 0px',
   });
 
   useEffect(() => {
@@ -46,10 +45,10 @@ export default function VideoShowcase() {
         {/* Section header */}
         <motion.div 
           className="section-header"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.15 }}
         >
           <span className="section-badge">
             FEATURED VIDEO
@@ -68,10 +67,10 @@ export default function VideoShowcase() {
         <motion.div 
           ref={ref}
           className="relative"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.15 }}
         >
           {/* Decorative gradient border */}
           <div 
@@ -135,7 +134,7 @@ export default function VideoShowcase() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.15 }}
         >
           Experience the future of dental care with SLEEK
         </motion.p>

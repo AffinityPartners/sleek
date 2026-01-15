@@ -1,4 +1,4 @@
-export { default as Header } from './Header';
+export { default as StickyNav } from './StickyNav';
 export { default as Footer } from './Footer';
 export { default as PartnerBenefits } from './PartnerBenefits';
 export { default as BenefitsSection } from './BenefitsSection';

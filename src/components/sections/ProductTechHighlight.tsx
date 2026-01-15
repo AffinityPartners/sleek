@@ -345,6 +345,9 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
  * Central showcase image with 3D perspective transforms.
  * Responds to feature selection with smooth perspective shifts and image changes.
  * Each feature displays a unique showcase image that highlights that specific feature.
+ * 
+ * Mobile optimization: Uses smaller image (220x320px) to fit more content on screen.
+ * Desktop: Full 3D transforms and larger images (420x680px / 520x780px).
  */
 interface ProductHero3DProps {
   perspective: { rotateY: number; rotateX: number; scale: number };
@@ -352,6 +355,8 @@ interface ProductHero3DProps {
   prefersReducedMotion: boolean | null;
   showcaseImage: string;
   featureName: string;
+  isMobile?: boolean;
+  specs?: { label: string; value: string }[];
 }
 
 const ProductHero3D: React.FC<ProductHero3DProps> = ({ 
@@ -359,25 +364,32 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
   accentColor,
   prefersReducedMotion,
   showcaseImage,
-  featureName
+  featureName,
+  isMobile = false,
+  specs = []
 }) => {
   return (
-    <div className="relative" style={{ perspective: '1200px' }}>
-      {/* Ambient glow behind product */}
+    <div className="relative" style={{ perspective: isMobile ? 'none' : '1200px' }}>
+      {/* Ambient glow behind product - smaller on mobile */}
       <motion.div
-        className="absolute inset-0 rounded-full blur-[100px] pointer-events-none"
+        className={cn(
+          "absolute rounded-full pointer-events-none",
+          isMobile 
+            ? "inset-0 blur-[60px]" 
+            : "inset-0 blur-[100px]"
+        )}
         animate={{
           backgroundColor: accentColor,
-          opacity: 0.25,
-          scale: 1.2,
+          opacity: isMobile ? 0.2 : 0.25,
+          scale: isMobile ? 1 : 1.2,
         }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       />
 
-      {/* 3D Transform container */}
+      {/* 3D Transform container - disabled on mobile for performance */}
       <motion.div
         className="relative"
-        animate={{
+        animate={isMobile ? {} : {
           rotateY: perspective.rotateY,
           rotateX: perspective.rotateX,
           scale: perspective.scale,
@@ -386,7 +398,7 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
           duration: 0.6,
           ease: [0.22, 1, 0.36, 1],
         }}
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
       >
         {/* Product container with AnimatePresence for smooth image transitions */}
         <AnimatePresence mode="wait">
@@ -396,18 +408,48 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
+            className="relative"
           >
-            {/* Showcase image - increased size for better visibility */}
-            <div className="relative w-[340px] h-[560px] md:w-[420px] md:h-[680px] lg:w-[520px] lg:h-[780px]">
+            {/* Showcase image - compact on mobile (220x320px), larger on desktop */}
+            <div className={cn(
+              "relative mx-auto",
+              isMobile 
+                ? "w-[200px] h-[300px]" 
+                : "w-[340px] h-[560px] md:w-[420px] md:h-[680px] lg:w-[520px] lg:h-[780px]"
+            )}>
               <Image
                 src={showcaseImage}
                 alt={`SLEEK Toothbrush - ${featureName}`}
                 fill
                 className="object-contain drop-shadow-2xl"
                 priority
-                sizes="(max-width: 768px) 340px, (max-width: 1024px) 420px, 520px"
+                sizes={isMobile ? "200px" : "(max-width: 768px) 340px, (max-width: 1024px) 420px, 520px"}
               />
             </div>
+            
+            {/* Mobile-only: Floating spec badges overlay on the image */}
+            {isMobile && specs.length > 0 && (
+              <div className="absolute -bottom-2 left-0 right-0 flex justify-center gap-2 z-20">
+                {specs.slice(0, 2).map((spec, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                    className="px-3 py-1.5 bg-black/80 backdrop-blur-sm rounded-full text-xs font-medium flex items-center gap-1.5"
+                    style={{
+                      border: `1px solid ${accentColor}40`,
+                      boxShadow: `0 0 10px ${accentColor}20`,
+                    }}
+                  >
+                    <span style={{ color: accentColor }} className="font-bold">
+                      {spec.value}
+                    </span>
+                    <span className="text-gray-300">{spec.label}</span>
+                  </motion.span>
+                ))}
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       </motion.div>
@@ -431,41 +473,41 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
   position,
   prefersReducedMotion 
 }) => {
-  // Animation variants for panel entrance
+  // Animation variants for panel entrance - near-instant for better UX
   const panelVariants = {
     hidden: {
       opacity: 0,
-      x: position === 'left' ? -60 : 60,
-      scale: 0.95,
+      x: position === 'left' ? -20 : 20,
+      scale: 0.98,
     },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.2 : 0.5,
+        duration: 0.15,
         ease: [0.22, 1, 0.36, 1],
-        staggerChildren: prefersReducedMotion ? 0.02 : 0.08,
-        delayChildren: prefersReducedMotion ? 0 : 0.1,
+        staggerChildren: 0.02,
+        delayChildren: 0,
       }
     },
     exit: {
       opacity: 0,
-      x: position === 'left' ? -40 : 40,
-      scale: 0.98,
+      x: position === 'left' ? -10 : 10,
+      scale: 0.99,
       transition: {
-        duration: 0.25,
+        duration: 0.1,
         ease: "easeIn",
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
+    hidden: { opacity: 0, y: 5 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.3, ease: "easeOut" }
+      transition: { duration: 0.1, ease: "easeOut" }
     }
   };
 
@@ -806,10 +848,247 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
 };
 
 /**
+ * MobileFeatureNav Component
+ * Horizontal scrollable pill navigation optimized for mobile devices.
+ * Features:
+ * - Horizontal scroll with snap points for easy swiping
+ * - Fade edges to indicate scrollable content
+ * - Auto-scrolls active pill into view
+ * - Touch-friendly 48px minimum tap targets
+ */
+interface MobileFeatureNavProps {
+  features: TechFeature[];
+  activeIndex: number;
+  onSelect: (index: number) => void;
+}
+
+const MobileFeatureNav: React.FC<MobileFeatureNavProps> = ({
+  features,
+  activeIndex,
+  onSelect,
+}) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const activeButtonRef = useRef<HTMLButtonElement>(null);
+
+  /**
+   * Auto-scroll to keep the active pill visible when selection changes.
+   * Uses smooth scrolling for a polished feel.
+   */
+  useEffect(() => {
+    if (activeButtonRef.current && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const button = activeButtonRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const buttonRect = button.getBoundingClientRect();
+      
+      // Calculate scroll position to center the active button
+      const scrollLeft = button.offsetLeft - (containerRect.width / 2) + (buttonRect.width / 2);
+      
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, [activeIndex]);
+
+  return (
+    <div className="relative md:hidden">
+      {/* Left fade edge - indicates more content on the left */}
+      <div 
+        className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0a0d10] to-transparent z-10 pointer-events-none" 
+        aria-hidden="true"
+      />
+      
+      {/* Scrollable container with horizontal scroll and snap behavior */}
+      <div 
+        ref={scrollContainerRef}
+        className="flex gap-2 overflow-x-auto scrollbar-hide px-6 py-2 snap-x snap-mandatory"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {features.map((feature, index) => {
+          const isActive = index === activeIndex;
+          
+          return (
+            <button
+              key={feature.id}
+              ref={isActive ? activeButtonRef : null}
+              onClick={() => onSelect(index)}
+              className={cn(
+                "snap-center shrink-0 flex items-center gap-2 px-4 py-3 rounded-full",
+                "text-sm font-medium transition-all duration-200",
+                "backdrop-blur-md border min-h-[48px] min-w-[90px]",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+                isActive 
+                  ? "bg-white/[0.12] border-white/25 text-white" 
+                  : "bg-white/[0.04] border-white/[0.08] text-gray-400"
+              )}
+              style={{
+                boxShadow: isActive 
+                  ? `0 0 20px -5px ${feature.accentColor}50` 
+                  : undefined,
+                borderColor: isActive ? `${feature.accentColor}50` : undefined,
+              }}
+            >
+              <span style={{ color: isActive ? feature.accentColor : undefined }}>
+                {feature.icon}
+              </span>
+              <span>{feature.shortName}</span>
+            </button>
+          );
+        })}
+      </div>
+      
+      {/* Right fade edge - indicates more content on the right */}
+      <div 
+        className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0a0d10] to-transparent z-10 pointer-events-none" 
+        aria-hidden="true"
+      />
+    </div>
+  );
+};
+
+/**
+ * MobileFeatureCard Component
+ * Compact, swipeable info card optimized for mobile displays.
+ * Features:
+ * - Glassmorphic design with accent color accents
+ * - Inline specs displayed as compact chips
+ * - Truncated description (2 lines) to keep content density high
+ * - Supports swipe gestures for feature navigation
+ */
+interface MobileFeatureCardProps {
+  feature: TechFeature;
+  onSwipeLeft?: () => void;
+  onSwipeRight?: () => void;
+}
+
+const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
+  feature,
+  onSwipeLeft,
+  onSwipeRight,
+}) => {
+  /**
+   * Handle drag end to detect swipe direction.
+   * Threshold of 50px prevents accidental swipes.
+   */
+  const handleDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: { offset: { x: number } }
+  ) => {
+    const threshold = 50;
+    if (info.offset.x < -threshold && onSwipeLeft) {
+      onSwipeLeft();
+    } else if (info.offset.x > threshold && onSwipeRight) {
+      onSwipeRight();
+    }
+  };
+
+  return (
+    <motion.div
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.2}
+      onDragEnd={handleDragEnd}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="relative backdrop-blur-xl rounded-xl overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y"
+      style={{
+        background: `linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)`,
+        border: `1px solid ${feature.accentColor}30`,
+        boxShadow: `0 0 30px -10px ${feature.accentColor}40`,
+      }}
+    >
+      {/* Top accent line */}
+      <div 
+        className="absolute top-0 left-4 right-4 h-[1px]"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${feature.accentColor}60, transparent)`,
+        }}
+      />
+
+      <div className="relative p-4">
+        {/* Header: Icon + Title + Tagline */}
+        <div className="flex items-center gap-3 mb-3">
+          <div 
+            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+            style={{ 
+              backgroundColor: `${feature.accentColor}20`,
+              boxShadow: `0 0 15px ${feature.accentColor}30`,
+            }}
+          >
+            <span style={{ color: feature.accentColor }}>
+              {feature.icon}
+            </span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p 
+              className="text-[10px] font-semibold uppercase tracking-wider"
+              style={{ color: feature.accentColor }}
+            >
+              {feature.tagline}
+            </p>
+            <h3 className="text-base font-bold text-white truncate">
+              {feature.name}
+            </h3>
+          </div>
+        </div>
+
+        {/* Inline specs as compact chips */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {feature.specs.map((spec, idx) => (
+            <span
+              key={idx}
+              className="px-2.5 py-1 rounded-md text-xs font-medium"
+              style={{
+                backgroundColor: `${feature.accentColor}15`,
+                border: `1px solid ${feature.accentColor}25`,
+              }}
+            >
+              <span style={{ color: feature.accentColor }} className="font-bold">
+                {spec.value}
+              </span>
+              <span className="text-gray-400 ml-1">{spec.label}</span>
+            </span>
+          ))}
+        </div>
+
+        {/* Truncated description */}
+        <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-3">
+          {feature.description}
+        </p>
+
+        {/* Top 2 benefits with checkmarks */}
+        <div className="space-y-1.5">
+          {feature.benefits.slice(0, 2).map((benefit, idx) => (
+            <div key={idx} className="flex items-start gap-2">
+              <CheckCircle 
+                className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" 
+                style={{ color: feature.accentColor }}
+              />
+              <span className="text-xs text-gray-300 line-clamp-1">{benefit}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Swipe indicator */}
+        <div className="flex justify-center mt-3 gap-1">
+          <span className="w-1 h-1 rounded-full bg-white/20" />
+          <span className="w-6 h-1 rounded-full" style={{ backgroundColor: `${feature.accentColor}60` }} />
+          <span className="w-1 h-1 rounded-full bg-white/20" />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+/**
  * FeatureNavigation Component
  * Enhanced holographic-style pill navigation with glow effects,
  * coordinated transitions, and feature-specific micro-animations.
  * Each button has unique hover/click quirks that match its feature theme.
+ * This is the desktop version - hidden on mobile in favor of MobileFeatureNav.
  */
 interface FeatureNavigationProps {
   features: TechFeature[];
@@ -825,7 +1104,7 @@ const FeatureNavigation: React.FC<FeatureNavigationProps> = ({
   prefersReducedMotion
 }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+    <div className="hidden md:flex flex-wrap justify-center gap-2 md:gap-3">
       {features.map((feature, index) => {
         const isActive = index === activeIndex;
         const iconAnimation = getIconAnimation(feature.id, isActive, prefersReducedMotion);
@@ -2012,34 +2291,55 @@ const ProductTechHighlight: React.FC = () => {
     setActiveFeature(index);
   };
 
-  // Animation variants for staggered reveal
+  // Animation variants with near-instant timing for better UX
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: prefersReducedMotion ? 0.05 : 0.15,
-        delayChildren: 0.1,
+        staggerChildren: 0.02,
+        delayChildren: 0,
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 10 : 30 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { 
-        duration: prefersReducedMotion ? 0.3 : 0.6, 
+        duration: 0.15, 
         ease: [0.22, 1, 0.36, 1] 
       }
     }
   };
 
+  /**
+   * Handler for swiping to next feature on mobile.
+   * Wraps around to first feature when at the end.
+   */
+  const handleSwipeLeft = useCallback(() => {
+    setActiveFeature((prev) => (prev + 1) % features.length);
+  }, []);
+
+  /**
+   * Handler for swiping to previous feature on mobile.
+   * Wraps around to last feature when at the beginning.
+   */
+  const handleSwipeRight = useCallback(() => {
+    setActiveFeature((prev) => (prev - 1 + features.length) % features.length);
+  }, []);
+
   return (
     <section 
       id="technology" 
-      className="relative min-h-screen overflow-hidden py-20 md:py-28 lg:py-32" 
+      className={cn(
+        "relative overflow-hidden",
+        // Mobile: Compact padding, no min-height. Desktop: Full immersive experience
+        "py-10 md:py-20 lg:py-28",
+        "md:min-h-screen"
+      )}
       ref={setRefs}
     >
       {/* Multi-layer background system - optimized for mobile */}
@@ -2056,13 +2356,20 @@ const ProductTechHighlight: React.FC = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="space-y-12"
+          className={cn(
+            // Tighter spacing on mobile, normal on desktop
+            isMobile ? "space-y-5" : "space-y-12"
+          )}
         >
-          {/* Section Header */}
+          {/* Section Header - more compact on mobile */}
           <div className="text-center">
             <motion.span
               variants={itemVariants}
-              className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-6"
+              className={cn(
+                "inline-flex items-center rounded-full font-semibold tracking-wide uppercase",
+                // Smaller badge on mobile
+                isMobile ? "px-3 py-1 text-xs mb-3" : "px-4 py-1.5 text-sm mb-6"
+              )}
               style={{
                 backgroundColor: `${currentFeature.accentColor}15`,
                 color: currentFeature.accentColor,
@@ -2084,8 +2391,12 @@ const ProductTechHighlight: React.FC = () => {
             
             <motion.h2 
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-heading tracking-tight"
-              style={{ lineHeight: 1.05 }}
+              className={cn(
+                "font-bold text-white font-heading tracking-tight",
+                // Smaller heading on mobile
+                isMobile ? "text-2xl mb-2" : "text-4xl md:text-5xl lg:text-6xl mb-6"
+              )}
+              style={{ lineHeight: 1.1 }}
             >
               Cutting-Edge Toothbrush
               <br />
@@ -2099,16 +2410,27 @@ const ProductTechHighlight: React.FC = () => {
               </span>
             </motion.h2>
             
-            <motion.p 
-              variants={itemVariants}
-              className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
-            >
-              Experience next-generation oral care with features designed for superior cleaning results.
-            </motion.p>
+            {/* Hide subtitle on mobile to save space */}
+            {!isMobile && (
+              <motion.p 
+                variants={itemVariants}
+                className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+              >
+                Experience next-generation oral care with features designed for superior cleaning results.
+              </motion.p>
+            )}
           </div>
 
-          {/* Enhanced Pill Navigation */}
+          {/* Feature Navigation - different components for mobile vs desktop */}
           <motion.div variants={itemVariants}>
+            {/* Mobile: Horizontal scrollable pills */}
+            <MobileFeatureNav
+              features={features}
+              activeIndex={activeFeature}
+              onSelect={handleFeatureSelect}
+            />
+            
+            {/* Desktop: Wrapped pill navigation with animations */}
             <FeatureNavigation
               features={features}
               activeIndex={activeFeature}
@@ -2122,101 +2444,121 @@ const ProductTechHighlight: React.FC = () => {
             variants={itemVariants}
             className="relative"
           >
-            {/* Three-column layout: Panel - Product - Panel */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-4 items-center min-h-[600px] lg:min-h-[700px]">
-              
-              {/* Left Info Panel (desktop) / Top Panel (mobile) */}
-              <div className="relative hidden lg:block">
-                <AnimatePresence mode="wait">
-                  <HolographicPanel
-                    key={`left-${currentFeature.id}`}
-                    feature={currentFeature}
-                    position="left"
+            {/* Mobile Layout: Compact vertical stack */}
+            {isMobile ? (
+              <div className="space-y-4">
+                {/* Product Image with overlay badges */}
+                <div className="relative flex items-center justify-center py-2">
+                  <ProductHero3D
+                    perspective={currentFeature.perspective}
+                    accentColor={currentFeature.accentColor}
                     prefersReducedMotion={prefersReducedMotion}
+                    showcaseImage={currentFeature.showcaseImage}
+                    featureName={currentFeature.name}
+                    isMobile={true}
+                    specs={currentFeature.specs}
                   />
-                </AnimatePresence>
+                </div>
                 
-                {/* Connection line to product */}
-                <ConnectionLine
-                  accentColor={currentFeature.accentColor}
-                  position="left"
-                  prefersReducedMotion={prefersReducedMotion}
-                />
-              </div>
-
-              {/* Central Product Hero with 3D transforms */}
-              <div className="relative flex items-center justify-center py-8 lg:py-0">
-                {/* 3D Product Hero with feature-specific showcase image */}
-                <ProductHero3D
-                  perspective={currentFeature.perspective}
-                  accentColor={currentFeature.accentColor}
-                  prefersReducedMotion={prefersReducedMotion}
-                  showcaseImage={currentFeature.showcaseImage}
-                  featureName={currentFeature.name}
-                />
-                
-                {/* Feature-specific accent effects - rendered on top of product image */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`effect-${currentFeature.id}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 z-10"
-                  >
-                    <FeatureAccentEffect
-                      featureId={currentFeature.id}
-                      accentColor={currentFeature.accentColor}
-                      prefersReducedMotion={prefersReducedMotion}
-                      isMobile={isMobile}
+                {/* Mobile Feature Card - swipeable */}
+                <div className="px-2">
+                  <AnimatePresence mode="wait">
+                    <MobileFeatureCard
+                      key={`mobile-card-${currentFeature.id}`}
+                      feature={currentFeature}
+                      onSwipeLeft={handleSwipeLeft}
+                      onSwipeRight={handleSwipeRight}
                     />
-                  </motion.div>
-                </AnimatePresence>
+                  </AnimatePresence>
+                </div>
               </div>
-
-              {/* Right placeholder for grid balance (desktop) */}
-              <div className="hidden lg:block" />
-
-              {/* Mobile Info Panel */}
-              <div className="lg:hidden">
-                <AnimatePresence mode="wait">
-                  <HolographicPanel
-                    key={`mobile-${currentFeature.id}`}
-                    feature={currentFeature}
+            ) : (
+              /* Desktop Layout: Three-column with holographic panels */
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-4 items-center min-h-[600px] lg:min-h-[700px]">
+                
+                {/* Left Info Panel (desktop only) */}
+                <div className="relative hidden lg:block">
+                  <AnimatePresence mode="wait">
+                    <HolographicPanel
+                      key={`left-${currentFeature.id}`}
+                      feature={currentFeature}
+                      position="left"
+                      prefersReducedMotion={prefersReducedMotion}
+                    />
+                  </AnimatePresence>
+                  
+                  {/* Connection line to product */}
+                  <ConnectionLine
+                    accentColor={currentFeature.accentColor}
                     position="left"
                     prefersReducedMotion={prefersReducedMotion}
                   />
-                </AnimatePresence>
+                </div>
+
+                {/* Central Product Hero with 3D transforms */}
+                <div className="relative flex items-center justify-center py-8 lg:py-0">
+                  <ProductHero3D
+                    perspective={currentFeature.perspective}
+                    accentColor={currentFeature.accentColor}
+                    prefersReducedMotion={prefersReducedMotion}
+                    showcaseImage={currentFeature.showcaseImage}
+                    featureName={currentFeature.name}
+                    isMobile={false}
+                  />
+                  
+                  {/* Feature-specific accent effects - desktop only */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`effect-${currentFeature.id}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 z-10"
+                    >
+                      <FeatureAccentEffect
+                        featureId={currentFeature.id}
+                        accentColor={currentFeature.accentColor}
+                        prefersReducedMotion={prefersReducedMotion}
+                        isMobile={isMobile}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Right placeholder for grid balance (desktop) */}
+                <div className="hidden lg:block" />
               </div>
-            </div>
+            )}
           </motion.div>
 
-          {/* Bottom Feature Quick Stats (Mobile visible, desktop subtle) */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex justify-center gap-8 md:gap-12 pt-4"
-          >
-            {currentFeature.specs.map((spec, idx) => (
-              <motion.div
-                key={idx}
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 + 0.3 }}
-              >
-                <p 
-                  className="text-2xl md:text-3xl font-bold"
-                  style={{ color: currentFeature.accentColor }}
+          {/* Bottom Feature Quick Stats - Desktop only, mobile shows in card */}
+          {!isMobile && (
+            <motion.div 
+              variants={itemVariants}
+              className="flex justify-center gap-8 md:gap-12 pt-4"
+            >
+              {currentFeature.specs.map((spec, idx) => (
+                <motion.div
+                  key={idx}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 + 0.3 }}
                 >
-                  {spec.value}
-                </p>
-                <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">
-                  {spec.label}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+                  <p 
+                    className="text-2xl md:text-3xl font-bold"
+                    style={{ color: currentFeature.accentColor }}
+                  >
+                    {spec.value}
+                  </p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">
+                    {spec.label}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>
