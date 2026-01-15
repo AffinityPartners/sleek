@@ -177,7 +177,7 @@ export default function BlogListingPage() {
   return (
     <main className="relative min-h-screen bg-white">
       {/* Sticky navigation */}
-      <StickyNav />
+      <StickyNav lightHero={true} />
 
       {/* Hero section */}
       <BlogHero postCount={allPosts.length} />

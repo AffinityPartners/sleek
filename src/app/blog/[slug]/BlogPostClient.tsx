@@ -134,7 +134,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   return (
     <main className="relative min-h-screen bg-white">
       {/* Sticky navigation */}
-      <StickyNav />
+      <StickyNav lightHero={true} />
 
       {/* Hero section with featured image */}
       <section className="relative pt-24 pb-0">

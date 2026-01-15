@@ -320,8 +320,8 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main className="relative min-h-screen bg-gray-50">
-      {/* Sticky navigation */}
-      <StickyNav />
+      {/* Sticky navigation - lightHero for dark text on light background */}
+      <StickyNav lightHero={true} />
 
       {/* Progress indicator bar */}
       <motion.div
