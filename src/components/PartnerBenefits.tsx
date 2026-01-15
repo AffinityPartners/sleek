@@ -48,7 +48,7 @@ const partnerBenefitsData = [
       'Personalized treatment plans',
       'E-prescriptions of non-narcotic medication'
     ],
-    imageSrc: '/images/Teledentistry.jpg',
+    imageSrc: '/images/products/Teledentistry-Consultations.jpg',
     imageAlt: 'TheTeleDentists Virtual Dental Care',
     imageOrder: 'order-1 md:order-2', // Image on right for md screens
     textOrder: 'order-2 md:order-1', // Text on left for md screens
@@ -66,7 +66,7 @@ const partnerBenefitsData = [
       'Smile Science Advanced Aesthetic treatment.',
       'Byte for Life guarantee™'
     ],
-    imageSrc: '/images/Byte.jpg',
+    imageSrc: '/images/products/Byte-Aligner-Discount.jpg',
     imageAlt: 'byte Aligners',
     imageOrder: 'order-1', // Image on left for md screens (default)
     textOrder: 'order-2',    // Text on right for md screens (default)
@@ -83,7 +83,7 @@ const partnerBenefitsData = [
       'Mail Order Service Available',
       'Members Always Receive the Lowest Price at the Pharmacy that day'
     ],
-    imageSrc: '/images/OptumRx.jpg',
+    imageSrc: '/images/products/Discount-Rx-Benefits.jpg',
     imageAlt: 'Optum Rx Prescription Benefits',
     imageOrder: 'order-1 md:order-2', // Image on right for md screens
     textOrder: 'order-2 md:order-1', // Text on left for md screens

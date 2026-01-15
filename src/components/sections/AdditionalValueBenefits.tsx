@@ -30,7 +30,7 @@ const valueBenefits: ValueBenefit[] = [
       'Get professional advice on oral health concerns without leaving home',
       'Included with OCP, PRO, and MAX membership levels'
     ],
-    imageSrc: '/images/Teledentistry.jpg',
+    imageSrc: '/images/products/Teledentistry-Consultations.jpg',
     ctaText: 'Learn about teledentistry',
     ctaLink: '/teledentistry',
     accent: '#4fa8df'
@@ -43,7 +43,7 @@ const valueBenefits: ValueBenefit[] = [
       'Straighten your teeth from the comfort of home',
       'Save on professional-grade invisible aligners as a SLEEK member'
     ],
-    imageSrc: '/images/SLEEK-Dental-Club-Kit-Graphic.jpg',
+    imageSrc: '/images/products/Byte-Aligner-Discount.jpg',
     ctaText: 'Explore Byte aligners',
     ctaLink: '/byte-discount',
     accent: '#1ab9a3'
@@ -56,7 +56,7 @@ const valueBenefits: ValueBenefit[] = [
       'No limits on usage with your SLEEK membership',
       'Access discounts on thousands of brand and generic drugs'
     ],
-    imageSrc: '/images/SLEEK-Dental-Club-Complete-Kit-Graphic.jpg',
+    imageSrc: '/images/products/Discount-Rx-Benefits.jpg',
     ctaText: 'View Rx savings',
     ctaLink: '/rx-benefits',
     accent: '#8757e6'
