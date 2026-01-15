@@ -334,7 +334,7 @@ export default function Footer() {
                 
                 {/* Affinity Partners Copyright */}
                 <p className="pt-2">
-                  © Copyright 2026 Affinity Partners | Content, Pricing and Availability Subject to Change.
+                  © Copyright 2026 Affinity Partners Marketing, LLC | Content, Pricing and Availability Subject to Change.
                 </p>
               </div>
               
@@ -418,7 +418,7 @@ export default function Footer() {
                         
                         {/* Affinity Partners Copyright */}
                         <p className="pt-2">
-                          © Copyright 2026 Affinity Partners | Content, Pricing and Availability Subject to Change.
+                          © Copyright 2026 Affinity Partners Marketing, LLC | Content, Pricing and Availability Subject to Change.
                         </p>
                       </div>
                     </motion.div>
