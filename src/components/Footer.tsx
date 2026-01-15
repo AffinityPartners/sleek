@@ -168,8 +168,8 @@ export default function Footer() {
           }}
         />
         
-        {/* Main footer content - uses section-padding-sm for consistency */}
-        <div className="bg-gray-900 text-gray-100">
+        {/* Main footer content - charcoal background matching SLEEK product */}
+        <div className="bg-charcoal-900 text-gray-100">
           <div className="container-standard py-16 md:py-20 lg:py-24">
             {/* Improved mobile layout: Brand + Nav sections, then Newsletter */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
@@ -196,7 +196,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow us on Facebook"
-                    className="w-10 h-10 rounded-xl bg-gray-800/50 flex items-center justify-center text-gray-400 hover:text-teal-400 hover:bg-teal-500/10 transition-all duration-300 border border-white/5 hover:border-teal-500/30"
+                    className="w-10 h-10 rounded-xl bg-charcoal-800/50 flex items-center justify-center text-gray-400 hover:text-teal-400 hover:bg-teal-500/10 transition-all duration-300 border border-white/5 hover:border-teal-500/30"
                   >
                     <Facebook className="w-5 h-5" />
                   </a>
@@ -206,7 +206,7 @@ export default function Footer() {
                 <div className="flex flex-wrap gap-4 sm:gap-6 lg:flex-col lg:gap-3">
                   {footerNavigation.contact.map((item) => (
                     <div key={item.name} className="flex items-center group">
-                      <div className="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center mr-3 group-hover:bg-teal-500/10 transition-colors duration-300">
+                      <div className="w-8 h-8 rounded-lg bg-charcoal-800/50 flex items-center justify-center mr-3 group-hover:bg-teal-500/10 transition-colors duration-300">
                         <item.icon className="w-4 h-4 text-teal-500" />
                       </div>
                       <a 
@@ -272,7 +272,7 @@ export default function Footer() {
           </div>
           
           {/* Legal Disclosures Section - Collapsible on mobile for better UX */}
-          <div className="border-t border-gray-800">
+          <div className="border-t border-charcoal-800">
             <div className="container-standard py-6 md:py-8">
               {/* Desktop: show all, Mobile: collapsible */}
               <div className="hidden md:block space-y-4 text-xs text-gray-500 leading-relaxed">
@@ -396,7 +396,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom bar - links have touch target padding for mobile */}
-          <div className="border-t border-gray-800">
+          <div className="border-t border-charcoal-800">
             <div className="container-standard py-4 md:py-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4">
                 <p className="text-sm text-gray-500 py-2">

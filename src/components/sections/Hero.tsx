@@ -40,9 +40,9 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-gradient-to-b from-[#070708] to-[#141526]">
-      {/* Soft gradient background */}
-      <div className="absolute inset-0 bg-[#0c1124]/90 mix-blend-overlay z-0"></div>
+    <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-charcoal-900">
+      {/* Subtle dark overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent z-0"></div>
       
       {/* Subtle overlay pattern */}
       <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-repeat opacity-[0.05] z-0"></div>
@@ -195,12 +195,13 @@ const Hero: React.FC = () => {
         </motion.div>
       </div>
       
-      {/* Scroll indicator */}
+      {/* Scroll indicator - uses left-0 right-0 + justify-center instead of translate for centering
+         because framer-motion overwrites the transform property with its animations */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/50 text-sm gap-2 z-20"
+        className="absolute bottom-8 left-0 right-0 flex flex-col items-center justify-center text-white/50 text-sm gap-2 z-20"
       >
         <span>Scroll to explore</span>
         <motion.div 
