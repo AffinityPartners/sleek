@@ -894,8 +894,8 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
             
             {(planId === 'pro' || planId === 'max') && (
               <div className="space-y-6">
-                {/* MetLife Logo */}
-                <div className="flex justify-center">
+                {/* MetLife Logo - Left aligned per design requirements */}
+                <div className="flex justify-start">
                   <Image 
                     src="/images/metlife-logo-400x88.png" 
                     alt="MetLife" 
