@@ -77,14 +77,14 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   // Category color classes
   const categoryColors = {
     teal: 'bg-teal-500 text-white',
-    amber: 'bg-amber-500 text-white',
+    amber: 'bg-teal-500 text-white',
     gray: 'bg-gray-700 text-white',
   };
 
   // Tag color classes
   const tagColors = {
     teal: 'bg-teal-50 text-teal-700 border-teal-200 hover:bg-teal-100',
-    amber: 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100',
+    amber: 'bg-teal-50 text-teal-700 border-teal-200 hover:bg-teal-100',
     gray: 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100',
   };
 

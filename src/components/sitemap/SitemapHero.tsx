@@ -43,7 +43,7 @@ export default function SitemapHero({
       icon: BookOpen,
       value: totalPosts,
       label: 'Blog Posts',
-      color: 'amber',
+      color: 'teal',
     },
     {
       icon: Layers,
@@ -68,14 +68,14 @@ export default function SitemapHero({
             filter: 'blur(60px)',
           }}
         />
-        {/* Amber gradient blob */}
+        {/* Secondary teal gradient blob */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.1 }}
           transition={{ duration: 1, delay: 0.3 }}
           className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(45, 212, 191, 0.4) 0%, transparent 70%)',
             filter: 'blur(50px)',
           }}
         />
@@ -143,7 +143,7 @@ export default function SitemapHero({
                 className={`
                   w-10 h-10 rounded-xl flex items-center justify-center
                   ${stat.color === 'teal' ? 'bg-teal-500/20 text-teal-400' : ''}
-                  ${stat.color === 'amber' ? 'bg-amber-500/20 text-amber-400' : ''}
+                  ${stat.color === 'amber' ? 'bg-teal-500/20 text-teal-400' : ''}
                   ${stat.color === 'gray' ? 'bg-gray-500/20 text-gray-400' : ''}
                 `}
               >

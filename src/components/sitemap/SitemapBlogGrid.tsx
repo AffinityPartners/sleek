@@ -63,7 +63,7 @@ const BlogPostCard = forwardRef<HTMLElement, BlogPostCardProps>(
                   inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
                   backdrop-blur-sm
                   ${category?.color === 'teal' ? 'bg-teal-500/90 text-white' : ''}
-                  ${category?.color === 'amber' ? 'bg-amber-500/90 text-white' : ''}
+                  ${category?.color === 'amber' ? 'bg-teal-500/90 text-white' : ''}
                   ${category?.color === 'gray' ? 'bg-gray-700/90 text-white' : ''}
                 `}
               >
@@ -182,7 +182,7 @@ export default function SitemapBlogGrid({
                     ? category.color === 'teal'
                       ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/25'
                       : category.color === 'amber'
-                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/25'
+                      ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/25'
                       : 'bg-gray-700 text-white shadow-lg shadow-gray-500/25'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }

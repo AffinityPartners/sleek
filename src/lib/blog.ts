@@ -106,7 +106,7 @@ export const CATEGORIES: Category[] = [
     key: 'sleek-membership',
     name: 'SLEEK Membership',
     description: 'Learn about SLEEK Dental Club membership benefits',
-    color: 'amber',
+    color: 'teal',
   },
 ];
 

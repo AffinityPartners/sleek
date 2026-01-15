@@ -297,7 +297,7 @@ export default function SitemapSearch({
                     <div className={`
                       flex-shrink-0 w-10 h-10 rounded-xl
                       flex items-center justify-center
-                      ${result.type === 'blog' ? 'bg-amber-100 text-amber-600' : ''}
+                      ${result.type === 'blog' ? 'bg-teal-100 text-teal-600' : ''}
                       ${result.type === 'legal' ? 'bg-gray-100 text-gray-600' : ''}
                       ${result.type === 'page' ? 'bg-teal-100 text-teal-600' : ''}
                       ${result.type === 'anchor' ? 'bg-teal-50 text-teal-500' : ''}
@@ -312,7 +312,7 @@ export default function SitemapSearch({
                           {highlightMatch(result.title, query)}
                         </h4>
                         {result.category && (
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-teal-50 text-teal-700">
                             {result.category}
                           </span>
                         )}

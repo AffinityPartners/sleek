@@ -136,9 +136,9 @@ const FeatureCardComponent = ({
       dotColor: 'bg-teal-400',
     },
     amber: {
-      iconBg: 'bg-amber-500/20',
-      iconColor: 'text-amber-400',
-      dotColor: 'bg-amber-400',
+      iconBg: 'bg-teal-500/20',
+      iconColor: 'text-teal-400',
+      dotColor: 'bg-teal-400',
     },
     white: {
       iconBg: 'bg-white/10',
@@ -284,7 +284,7 @@ export default function Hero({
       icon: ShieldCheck,
       title: "Dental Insurance Included",
       subtitle: "PRO & MAX memberships",
-      color: 'amber',
+      color: 'teal',
       delay: 1.0,
     },
     {
@@ -471,7 +471,7 @@ export default function Hero({
                           isGradientWord && (word === 'Sonic' || word === 'Tech.')
                             ? 'bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent pb-1'
                             : isGradientWord && (word === 'Dental' || word === 'Coverage.')
-                            ? 'bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent pb-1'
+                            ? 'bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent pb-1'
                             : 'text-white'
                         }`}
                       >

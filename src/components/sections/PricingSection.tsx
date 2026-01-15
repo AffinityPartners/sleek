@@ -112,7 +112,7 @@ const pricingPlans: Plan[] = [
     isPopular: false,
     badge: 'Best Value',
     logo: '/images/plans/sleek-max.png',
-    accentColor: '#f59e0b',
+    accentColor: '#0d9488',
     features: [
       { text: 'Everything in CLUB', icon: <Check className="h-4 w-4" />, included: true },
       { text: '100 / 80 / 50 Co-Insurance', icon: <Shield className="h-4 w-4" />, included: true },
@@ -152,7 +152,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
               {planId === 'club' && <span className="text-blue-500">SLEEK Dental Club</span>}
               {planId === 'ocp' && <span className="text-teal-500">SLEEK Dental OCP (Aetna Dental Access®)</span>}
               {planId === 'pro' && <span className="text-teal-600">SLEEK Dental PRO (Underwritten by MetLife)</span>}
-              {planId === 'max' && <span className="text-amber-600">SLEEK Dental MAX (Underwritten by MetLife)</span>}
+              {planId === 'max' && <span className="text-teal-600">SLEEK Dental MAX (Underwritten by MetLife)</span>}
             </h3>
             <button 
               onClick={onClose}
@@ -768,7 +768,7 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
               {planId === 'club' && <span className="text-blue-500">SLEEK Dental Club</span>}
               {planId === 'ocp' && <span className="text-teal-500">Provider Network: Aetna Dental Access®</span>}
               {planId === 'pro' && <span className="text-teal-500">Locate A Provider</span>}
-              {planId === 'max' && <span className="text-amber-500">Locate A Provider</span>}
+              {planId === 'max' && <span className="text-teal-500">Locate A Provider</span>}
             </h3>
             <button
               onClick={onClose}
@@ -914,7 +914,7 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                 {/* Provider Search Instructions */}
                 <div className={cn(
                   "border rounded-xl p-5",
-                  planId === 'pro' ? "bg-teal-50 border-teal-100" : "bg-amber-50 border-amber-100"
+                  planId === 'pro' ? "bg-teal-50 border-teal-100" : "bg-teal-50 border-teal-100"
                 )}>
                   <h4 className="text-lg font-semibold mb-3 text-gray-900">To Locate a Dentist in the MetLife PDP Plus Network:</h4>
                   <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-700 mb-4">
@@ -928,7 +928,7 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                     rel="noopener noreferrer"
                     className={cn(
                       "inline-flex items-center px-6 py-3 text-white rounded-xl transition-colors font-medium shadow-sm",
-                      planId === 'pro' ? "bg-teal-500 hover:bg-teal-600" : "bg-amber-500 hover:bg-amber-600"
+                      planId === 'pro' ? "bg-teal-500 hover:bg-teal-600" : "bg-teal-500 hover:bg-teal-600"
                     )}
                   >
                     <MapPin size={18} className="mr-2" />

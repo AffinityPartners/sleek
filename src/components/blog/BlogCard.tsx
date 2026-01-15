@@ -34,7 +34,7 @@ export default function BlogCard({ post, featured = false, index = 0 }: BlogCard
   // Category color classes based on category type
   const categoryColors = {
     teal: 'bg-teal-50 text-teal-700 border-teal-200/50',
-    amber: 'bg-amber-50 text-amber-700 border-amber-200/50',
+    amber: 'bg-teal-50 text-teal-700 border-teal-200/50',
     gray: 'bg-gray-100 text-gray-700 border-gray-200/50',
   };
   

@@ -54,8 +54,8 @@ export default function CategoryFilter({ totalPosts }: CategoryFilterProps) {
       hover: 'hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700',
     },
     amber: {
-      active: 'bg-amber-500 text-white border-amber-500',
-      hover: 'hover:bg-amber-50 hover:border-amber-300 hover:text-amber-700',
+      active: 'bg-teal-500 text-white border-teal-500',
+      hover: 'hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700',
     },
     gray: {
       active: 'bg-gray-700 text-white border-gray-700',
@@ -168,7 +168,7 @@ export default function CategoryFilter({ totalPosts }: CategoryFilterProps) {
                     boxShadow: category.color === 'teal'
                       ? '0 0 20px rgba(20, 184, 166, 0.4)'
                       : category.color === 'amber'
-                      ? '0 0 20px rgba(245, 158, 11, 0.4)'
+                      ? '0 0 20px rgba(20, 184, 166, 0.4)'
                       : '0 0 20px rgba(107, 114, 128, 0.3)',
                   }}
                   transition={{ duration: 0.3 }}

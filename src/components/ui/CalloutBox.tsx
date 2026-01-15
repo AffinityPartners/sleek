@@ -45,7 +45,7 @@ export default function CalloutBox({
     teal: 'bg-teal-50 border border-teal-100',
     dark: 'bg-sleek-blue text-white',
     gradient: 'bg-gradient-to-r from-teal-400 to-teal-600 text-white',
-    warning: 'bg-amber-50 border border-amber-100',
+    warning: 'bg-teal-50 border border-teal-100',
     success: 'bg-green-50 border border-green-100',
   };
 
@@ -63,7 +63,7 @@ export default function CalloutBox({
     teal: 'text-teal-600',
     dark: 'text-teal-300',
     gradient: 'text-white',
-    warning: 'text-amber-500',
+    warning: 'text-teal-500',
     success: 'text-green-500',
   };
 
@@ -72,7 +72,7 @@ export default function CalloutBox({
     teal: 'text-teal-700',
     dark: 'text-gray-300',
     gradient: 'text-teal-50',
-    warning: 'text-amber-700',
+    warning: 'text-teal-700',
     success: 'text-green-700',
   };
 

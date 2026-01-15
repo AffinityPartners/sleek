@@ -66,9 +66,9 @@ function TreeNodeItem({ node, level, showDescriptions }: TreeNodeItemProps) {
     
     if (isFolder) {
       return isOpen ? (
-        <FolderOpen className="w-4 h-4 text-amber-500" />
+        <FolderOpen className="w-4 h-4 text-teal-500" />
       ) : (
-        <Folder className="w-4 h-4 text-amber-500" />
+        <Folder className="w-4 h-4 text-teal-500" />
       );
     }
     
@@ -226,7 +226,7 @@ const defaultTreeData: TreeNode[] = [
     id: 'blog',
     label: 'Blog',
     type: 'folder',
-    icon: <BookOpen className="w-4 h-4 text-amber-500" />,
+    icon: <BookOpen className="w-4 h-4 text-teal-500" />,
     badge: '12 articles',
     children: [
       {

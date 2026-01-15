@@ -107,7 +107,7 @@ export default function RootLayout({
           {/* Enhanced ambient background gradient shapes */}
           <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
             <div className="absolute -top-[30%] -left-[10%] w-[50%] h-[60%] rounded-full bg-gradient-to-br from-teal-100/40 to-teal-50/20 blur-3xl animate-pulse-slow" />
-            <div className="absolute top-[20%] -right-[20%] w-[70%] h-[40%] rounded-full bg-gradient-to-bl from-amber-50/30 to-teal-50/20 blur-3xl" />
+            <div className="absolute top-[20%] -right-[20%] w-[70%] h-[40%] rounded-full bg-gradient-to-bl from-teal-100/30 to-teal-50/20 blur-3xl" />
             <div className="absolute -bottom-[10%] left-[20%] w-[60%] h-[40%] rounded-full bg-gradient-to-tr from-teal-100/30 to-transparent blur-3xl" />
           </div>
           {children}

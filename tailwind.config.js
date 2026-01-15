@@ -32,28 +32,14 @@ module.exports = {
           900: '#134e4a',
           950: '#042f2e',
         },
-        // Amber accent palette - warm accent for premium feel and CTAs
-        amber: {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
-          950: '#451a03',
-        },
         // Brand colors with semantic naming
         brand: {
           primary: '#0f766e',
           'primary-light': '#14b8a6',
           'primary-dark': '#115e59',
-          accent: '#f59e0b',
-          'accent-light': '#fcd34d',
-          'accent-dark': '#d97706',
+          accent: '#2dd4bf',        // teal-400 - clean, dental-appropriate accent
+          'accent-light': '#5eead4', // teal-300
+          'accent-dark': '#14b8a6',  // teal-500
         },
         // Legacy SLEEK colors for backward compatibility
         sleek: {
@@ -69,6 +55,20 @@ module.exports = {
           DEFAULT: '#f8fafb',
           elevated: '#ffffff',
           muted: '#f1f5f9',
+        },
+        // Charcoal black color matching the SLEEK product
+        charcoal: {
+          50: '#f6f6f6',
+          100: '#e7e7e7',
+          200: '#d1d1d1',
+          300: '#b0b0b0',
+          400: '#888888',
+          500: '#6d6d6d',
+          600: '#5d5d5d',
+          700: '#3d3d3d',
+          800: '#2a2a2a',
+          900: '#141414',
+          950: '#121212',
         },
       },
       spacing: {
@@ -147,8 +147,6 @@ module.exports = {
         'teal-lg': '0 8px 30px rgba(15, 118, 110, 0.35)',
         'teal-glow': '0 0 40px rgba(15, 118, 110, 0.3)',
         'teal-glow-intense': '0 0 60px rgba(15, 118, 110, 0.5)',
-        'amber': '0 4px 14px rgba(245, 158, 11, 0.25)',
-        'amber-glow': '0 0 40px rgba(245, 158, 11, 0.3)',
         // Glass effects
         'glass': '0 8px 32px rgba(0, 0, 0, 0.06)',
         'glass-hover': '0 12px 48px rgba(0, 0, 0, 0.1)',
@@ -306,9 +304,6 @@ module.exports = {
         'gradient-teal-subtle': 'linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(15, 118, 110, 0.04) 100%)',
         'gradient-teal-vibrant': 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
         'gradient-teal-dark': 'linear-gradient(135deg, #0f766e 0%, #115e59 100%)',
-        // Premium amber gradients
-        'gradient-amber-soft': 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
-        'gradient-amber-vibrant': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
         // Section backgrounds
         'gradient-section-light': 'linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(255, 255, 255, 1) 100%)',
         'gradient-section-teal': 'linear-gradient(135deg, rgba(240, 253, 250, 0.7) 0%, rgba(255, 255, 255, 1) 100%)',
@@ -317,7 +312,7 @@ module.exports = {
         'gradient-mesh-teal': 'radial-gradient(at 40% 20%, rgba(20, 184, 166, 0.15) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(15, 118, 110, 0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(94, 234, 212, 0.1) 0px, transparent 50%)',
         // Button gradients
         'gradient-btn-primary': 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-        'gradient-btn-accent': 'linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%)',
+        'gradient-btn-accent': 'linear-gradient(135deg, #5eead4 0%, #14b8a6 100%)',
       },
       typography: (theme) => ({
         DEFAULT: {

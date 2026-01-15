@@ -107,7 +107,7 @@ export default function MarketProgramHero({
     <section className="relative pt-24 pb-16 md:pb-20 overflow-hidden">
       {/* Premium gradient mesh background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50/80 via-white to-amber-50/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-50/80 via-white to-teal-50/30" />
         <motion.div
           className="absolute -top-[30%] -right-[20%] w-[60%] h-[80%] rounded-full blur-3xl"
           style={{

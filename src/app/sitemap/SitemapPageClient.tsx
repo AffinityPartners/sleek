@@ -66,7 +66,7 @@ export default function SitemapPageClient() {
       description: 'OCP, PRO, and MAX membership options with pricing details',
       count: 3,
       anchorId: 'site-tree',
-      accentColor: 'amber' as const,
+      accentColor: 'teal' as const,
     },
     {
       icon: BookOpen,
@@ -309,13 +309,13 @@ export default function SitemapPageClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.35 }}
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/20 hover:border-amber-400/40 transition-all duration-300"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-600/10 border border-teal-500/20 hover:border-teal-400/40 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-amber-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+                <div className="w-12 h-12 rounded-xl bg-teal-500 flex items-center justify-center shadow-lg shadow-teal-500/30">
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm text-amber-400 font-medium mb-0.5">Call Us</p>
+                  <p className="text-sm text-teal-400 font-medium mb-0.5">Call Us</p>
                   <p className="text-white font-medium">(888) 918-2386</p>
                 </div>
               </motion.a>
@@ -396,8 +396,8 @@ export default function SitemapPageClient() {
                   href="/terms"
                   className="group flex items-start gap-5 p-6 bg-white rounded-2xl border border-gray-100 hover:border-teal-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-amber-50 flex items-center justify-center group-hover:bg-amber-500 transition-colors duration-300">
-                    <FileText className="w-7 h-7 text-amber-600 group-hover:text-white transition-colors" />
+                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-500 transition-colors duration-300">
+                    <FileText className="w-7 h-7 text-teal-600 group-hover:text-white transition-colors" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2 text-lg group-hover:text-teal-700 transition-colors">
