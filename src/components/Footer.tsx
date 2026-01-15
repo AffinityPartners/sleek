@@ -433,7 +433,7 @@ export default function Footer() {
             <div className="container-standard py-4 md:py-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4">
                 <p className="text-sm text-gray-500 py-2">
-                  © {currentYear} SLEEK Dental Club. All rights reserved.
+                  © Copyright {currentYear} Affinity Partners Marketing, LLC | Content, Pricing and Availability Subject to Change.
                 </p>
                 <div className="flex flex-wrap justify-center gap-2 md:gap-6">
                   <Link href="/privacy" className="text-sm text-gray-500 hover:text-teal-400 transition-colors px-3 py-2 min-h-[44px] flex items-center">
