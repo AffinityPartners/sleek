@@ -319,9 +319,19 @@ export default function Footer() {
                   <strong className="text-gray-400">Product Imagery:</strong> Product images and illustrations shown on this website are for representational purposes only and may vary from actual products received. Differences may occur due to photography, display settings, packaging updates, and ongoing product enhancements.
                 </p>
                 
+                {/* Product Specifications Disclosure */}
+                <p>
+                  <strong className="text-gray-400">Product Specifications:</strong> Battery life based on twice daily use of 2 minutes per session. Actual battery life may vary based on usage patterns and cleaning mode selected. Product specifications sourced from official SLEEK Dental Club packaging. IPX7 rating indicates water resistance for immersion up to 1 meter for 30 minutes.
+                </p>
+                
+                {/* Product Certifications */}
+                <p>
+                  SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
+                </p>
+                
                 {/* Affinity Partners Copyright */}
                 <p className="pt-2">
-                  © Copyright 2025 Affinity Partners | Content, Pricing and Availability Subject to Change.
+                  © Copyright 2026 Affinity Partners | Content, Pricing and Availability Subject to Change.
                 </p>
               </div>
               
@@ -393,9 +403,19 @@ export default function Footer() {
                           <strong className="text-gray-400">Product Imagery:</strong> Product images and illustrations shown on this website are for representational purposes only and may vary from actual products received. Differences may occur due to photography, display settings, packaging updates, and ongoing product enhancements.
                         </p>
                         
+                        {/* Product Specifications Disclosure */}
+                        <p>
+                          <strong className="text-gray-400">Product Specifications:</strong> Battery life based on twice daily use of 2 minutes per session. Actual battery life may vary based on usage patterns and cleaning mode selected. Product specifications sourced from official SLEEK Dental Club packaging. IPX7 rating indicates water resistance for immersion up to 1 meter for 30 minutes.
+                        </p>
+                        
+                        {/* Product Certifications */}
+                        <p>
+                          SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
+                        </p>
+                        
                         {/* Affinity Partners Copyright */}
                         <p className="pt-2">
-                          © Copyright 2025 Affinity Partners | Content, Pricing and Availability Subject to Change.
+                          © Copyright 2026 Affinity Partners | Content, Pricing and Availability Subject to Change.
                         </p>
                       </div>
                     </motion.div>

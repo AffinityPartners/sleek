@@ -410,12 +410,12 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="relative"
           >
-            {/* Showcase image - compact on mobile (220x320px), larger on desktop */}
+            {/* Showcase image - compact on mobile, reduced size on desktop to fit viewport */}
             <div className={cn(
               "relative mx-auto",
               isMobile 
                 ? "w-[200px] h-[300px]" 
-                : "w-[340px] h-[560px] md:w-[420px] md:h-[680px] lg:w-[520px] lg:h-[780px]"
+                : "w-[300px] h-[450px] md:w-[340px] md:h-[510px] lg:w-[380px] lg:h-[570px]"
             )}>
               <Image
                 src={showcaseImage}
@@ -423,7 +423,7 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
                 fill
                 className="object-contain drop-shadow-2xl"
                 priority
-                sizes={isMobile ? "200px" : "(max-width: 768px) 340px, (max-width: 1024px) 420px, 520px"}
+                sizes={isMobile ? "200px" : "(max-width: 768px) 300px, (max-width: 1024px) 340px, 380px"}
               />
             </div>
             
@@ -1867,9 +1867,9 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           initial={false}
         >
-          {/* Outer timer ring */}
+          {/* Outer timer ring - scaled down for compact desktop */}
           <div 
-            className="w-[180px] h-[180px] rounded-full border-2 relative"
+            className="w-[140px] h-[140px] rounded-full border-2 relative"
             style={{ borderColor: `${accentColor}30` }}
           >
             {/* Quadrant arc segments that light up sequentially */}
@@ -1903,9 +1903,9 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               })}
             </svg>
 
-            {/* Sweeping clock hand */}
+            {/* Sweeping clock hand - scaled proportionally */}
             <motion.div
-              className="absolute top-1/2 left-1/2 w-1 h-[70px] rounded-full origin-bottom"
+              className="absolute top-1/2 left-1/2 w-1 h-[55px] rounded-full origin-bottom"
               style={{ 
                 backgroundColor: accentColor,
                 boxShadow: `0 0 10px ${accentColor}80`,
@@ -1986,9 +1986,9 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
             })}
           </div>
 
-          {/* Countdown display */}
+          {/* Countdown display - positioned closer for compact layout */}
           <motion.div
-            className="absolute -bottom-16 left-1/2 -translate-x-1/2"
+            className="absolute -bottom-12 left-1/2 -translate-x-1/2"
           >
             <div
               className="px-4 py-2 rounded-xl backdrop-blur-sm text-center"
@@ -2336,9 +2336,8 @@ const ProductTechHighlight: React.FC = () => {
       id="technology" 
       className={cn(
         "relative overflow-hidden",
-        // Mobile: Compact padding, no min-height. Desktop: Full immersive experience
-        "py-10 md:py-20 lg:py-28",
-        "md:min-h-screen"
+        // Mobile: Compact padding. Desktop: Reduced padding to fit on single screen
+        "py-10 md:py-16 lg:py-16"
       )}
       ref={setRefs}
     >
@@ -2357,8 +2356,8 @@ const ProductTechHighlight: React.FC = () => {
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
           className={cn(
-            // Tighter spacing on mobile, normal on desktop
-            isMobile ? "space-y-5" : "space-y-12"
+            // Tighter spacing on mobile, reduced on desktop to fit viewport
+            isMobile ? "space-y-5" : "space-y-8"
           )}
         >
           {/* Section Header - more compact on mobile */}
@@ -2398,7 +2397,7 @@ const ProductTechHighlight: React.FC = () => {
               )}
               style={{ lineHeight: 1.1 }}
             >
-              Cutting-Edge Toothbrush
+              Simple Features for
               <br />
               <span 
                 className="bg-clip-text text-transparent"
@@ -2406,7 +2405,7 @@ const ProductTechHighlight: React.FC = () => {
                   backgroundImage: `linear-gradient(135deg, ${currentFeature.accentColor}, white)`,
                 }}
               >
-                Features
+                Easy Use
               </span>
             </motion.h2>
             
@@ -2474,7 +2473,7 @@ const ProductTechHighlight: React.FC = () => {
               </div>
             ) : (
               /* Desktop Layout: Three-column with holographic panels */
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-4 items-center min-h-[600px] lg:min-h-[700px]">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-4 items-center min-h-[450px] lg:min-h-[500px]">
                 
                 {/* Left Info Panel (desktop only) */}
                 <div className="relative hidden lg:block">
@@ -2496,7 +2495,7 @@ const ProductTechHighlight: React.FC = () => {
                 </div>
 
                 {/* Central Product Hero with 3D transforms */}
-                <div className="relative flex items-center justify-center py-8 lg:py-0">
+                <div className="relative flex items-center justify-center py-4 lg:py-0">
                   <ProductHero3D
                     perspective={currentFeature.perspective}
                     accentColor={currentFeature.accentColor}
@@ -2560,23 +2559,6 @@ const ProductTechHighlight: React.FC = () => {
             </motion.div>
           )}
 
-          {/* Product Disclosures Footer */}
-          <motion.div 
-            variants={itemVariants}
-            className="mt-12 pt-8 border-t border-white/10"
-          >
-            <div className="max-w-2xl mx-auto text-center space-y-2">
-              <p className="text-[10px] text-gray-500 leading-relaxed">
-                <sup>¹</sup>Battery life based on twice daily use of 2 minutes per session. Actual battery life may vary based on usage patterns and cleaning mode selected.
-              </p>
-              <p className="text-[10px] text-gray-500 leading-relaxed">
-                Product specifications sourced from official SLEEK Dental Club packaging. IPX7 rating indicates water resistance for immersion up to 1 meter for 30 minutes.
-              </p>
-              <p className="text-[10px] text-gray-400 mt-4">
-                SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
-              </p>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

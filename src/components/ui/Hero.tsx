@@ -430,13 +430,13 @@ export default function Hero({
         {/* Mobile: flex-col with ordering, Desktop: grid-cols-2 */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-[calc(100vh-10rem)]">
           
-          {/* ===== SECTION 1: TEXT HEADER (Badge + Headline + Subheadline) ===== */}
-          {/* Mobile: order-1 (top), Desktop: part of left column */}
+          {/* ===== SECTION 1: TEXT HEADER (Badge + Headline + Subheadline + Desktop CTAs) ===== */}
+          {/* Mobile: order-1 (top), Desktop: left column with vertical centering */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={controls}
-            className="relative z-10 text-center lg:text-left order-1 lg:row-span-1"
+            className="relative z-10 text-center lg:text-left order-1"
           >
             {/* Premium badge */}
             <motion.div
@@ -554,7 +554,7 @@ export default function Hero({
           {/* ===== SECTION 2: PRODUCT SHOWCASE ===== */}
           {/* Mobile: order-2 (middle), Desktop: right column */}
           <motion.div
-            className="relative order-2 lg:row-span-2"
+            className="relative order-2"
             variants={imageVariants}
             initial="hidden"
             animate={controls}
