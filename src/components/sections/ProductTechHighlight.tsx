@@ -118,7 +118,7 @@ const features: TechFeature[] = [
       'Up to 3 weeks of use per charge',
       'LED indicator shows charging status'
     ],
-    showcaseImage: '/images/edited_product_photography__bbc8e3c9.png',
+    showcaseImage: '/images/products/USB-Rechargeable.png',
     perspective: { rotateY: 0, rotateX: 8, scale: 1 }
   },
   {

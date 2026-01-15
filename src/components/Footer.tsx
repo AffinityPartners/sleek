@@ -69,7 +69,7 @@ const FooterLinkGroup = ({ title, links, isHomePage }: { title: string; links: F
         <li key={link.name}>
           <Link 
             href={isHomePage && link.anchorId ? `#${link.anchorId}` : link.href}
-            scroll={false}
+            scroll={!link.anchorId}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
             onClick={(e) => {
