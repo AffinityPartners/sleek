@@ -2385,7 +2385,7 @@ const ProductTechHighlight: React.FC = () => {
                   style={{ backgroundColor: currentFeature.accentColor }}
                 />
               </span>
-              ADVANCED TECHNOLOGY
+              MODERN TECHNOLOGY
             </motion.span>
             
             <motion.h2 
@@ -2415,7 +2415,7 @@ const ProductTechHighlight: React.FC = () => {
                 variants={itemVariants}
                 className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
               >
-                Experience next-generation oral care with features designed for superior cleaning results.
+                Smart features designed for a cleaner, healthier smile.
               </motion.p>
             )}
           </div>
