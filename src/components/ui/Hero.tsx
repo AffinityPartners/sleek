@@ -582,10 +582,12 @@ export default function Hero({
               </motion.div>
               
               {/* Product image with floating animation - OVERSIZED and ROTATED for dramatic effect
-                  Animation disabled on mobile for performance */}
+                  Animation disabled on mobile for performance. Uses initial prop for rotation to avoid
+                  conflict between inline style and framer-motion on mobile where animate is empty. */}
               <motion.div
                 className="relative h-full w-full flex items-center justify-center"
-                animate={(prefersReducedMotion || isMobile) ? {} : {
+                initial={{ rotate: -8 }}
+                animate={(prefersReducedMotion || isMobile) ? { rotate: -8 } : {
                   y: [0, -20, 0],
                   rotate: [-8, -6, -8],
                 }}
@@ -594,12 +596,10 @@ export default function Hero({
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                style={{
-                  transform: 'rotate(-8deg)',
-                }}
               >
-                {/* Oversized container - uses max-w on mobile to prevent overflow on 375px screens */}
-                <div className="relative w-full max-w-[280px] h-[350px] sm:max-w-[340px] sm:h-[450px] md:w-[550px] md:max-w-none md:h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
+                {/* Oversized container - adjusted mobile heights to fit within parent container
+                    while maintaining visual impact. Uses max-w on mobile to prevent overflow on 375px screens */}
+                <div className="relative w-full max-w-[280px] h-[260px] sm:max-w-[340px] sm:h-[330px] md:w-[550px] md:max-w-none md:h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
                   <Image
                     src={mediaSrc}
                     alt={mediaAlt}
