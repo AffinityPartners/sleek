@@ -583,9 +583,10 @@ export default function Hero({
               
               {/* Product image with floating animation - OVERSIZED and ROTATED for dramatic effect
                   Animation disabled on mobile for performance. Uses initial prop for rotation to avoid
-                  conflict between inline style and framer-motion on mobile where animate is empty. */}
+                  conflict between inline style and framer-motion on mobile where animate is empty.
+                  z-10 ensures image stays above background glow but below feature tags (z-20). */}
               <motion.div
-                className="relative h-full w-full flex items-center justify-center"
+                className="relative z-10 h-full w-full flex items-center justify-center"
                 initial={{ rotate: -8 }}
                 animate={(prefersReducedMotion || isMobile) ? { rotate: -8 } : {
                   y: [0, -20, 0],
@@ -612,7 +613,8 @@ export default function Hero({
               </motion.div>
               
               {/* ===== DESKTOP FEATURE CARDS - Floating around product ===== */}
-              <div className="absolute inset-0 pointer-events-none">
+              {/* z-20 ensures cards float above the product image (z-10) */}
+              <div className="absolute inset-0 z-20 pointer-events-none">
                 <div className="hidden lg:block">
                   {/* Top right card */}
                   <div className="absolute top-[10%] right-0 xl:right-[-5%] pointer-events-auto">
@@ -647,7 +649,8 @@ export default function Hero({
               </div>
               
               {/* ===== MOBILE FEATURE TAGS - Small tags surrounding product ===== */}
-              <div className="lg:hidden absolute inset-0 pointer-events-none">
+              {/* z-20 ensures tags float above the product image (z-10) */}
+              <div className="lg:hidden absolute inset-0 z-20 pointer-events-none">
                 {/* Top left tag */}
                 <motion.div 
                   className="absolute top-[5%] left-[2%] pointer-events-auto"
