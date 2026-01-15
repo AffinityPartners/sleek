@@ -80,6 +80,10 @@ const FooterLinkGroup = ({ title, links, isHomePage }: { title: string; links: F
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
+              } else if (!link.anchorId) {
+                // For regular page links (like /blog), explicitly scroll to top
+                // This ensures scroll position resets even when navigating from footer
+                window.scrollTo(0, 0);
               }
             }}
             className="py-2 text-sm text-gray-400 hover:text-teal-400 transition-colors duration-200 min-h-[44px] flex items-center"

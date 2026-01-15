@@ -69,7 +69,7 @@ export default function Home() {
             subheadline="Experience the perfect fusion of cutting-edge sonic technology and comprehensive dental insurance. One membership, total oral care."
             ctaText="Find My Perfect Plan"
             secondaryCtaText="See How It Works"
-            mediaSrc="/images/hero/sleek-brush-splash.png"
+            mediaSrc="/images/Sleekbrush-splash.png"
             mediaAlt="SLEEK Sonic Electric Toothbrush with Water Splash"
             onCtaClick={() => {
               window.location.href = 'https://enrollment.sleekdentalclub.com/onboarding';
