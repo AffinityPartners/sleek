@@ -19,7 +19,7 @@ interface ValueBenefit {
 
 /**
  * Value-added benefits aligned with official SLEEK marketing materials.
- * Features Teledentistry, Aligner discount, and Discount Rx benefits.
+ * Features Teledentistry and Discount Rx benefits.
  */
 const valueBenefits: ValueBenefit[] = [
   {
@@ -32,17 +32,6 @@ const valueBenefits: ValueBenefit[] = [
     ],
     imageSrc: '/images/products/Teledentistry-Consultations.jpg',
     accent: '#4fa8df'
-  },
-  {
-    id: 'aligner-discount',
-    title: 'Aligner Discount',
-    description: [
-      'Exclusive discount on clear aligner impression kits',
-      'Straighten your teeth from the comfort of home',
-      'Save on professional-grade invisible aligners as a SLEEK member'
-    ],
-    imageSrc: '/images/products/Aligner-Discount.jpg',
-    accent: '#1ab9a3'
   },
   {
     id: 'discount-rx',

@@ -534,7 +534,7 @@ export default function PrivacyPolicyPage() {
                     <li>
                       <strong className="text-gray-900">Company</strong> (referred to as either
                       &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot;)
-                      refers to SLEEK Dental Club, 16775 Addison Rd., Suite 612 Addison, TX 75001.
+                      refers to SLEEK Dental Club, 16775 Addison Rd. Suite 605, Addison, Texas 75001.
                     </li>
                     <li>
                       <strong className="text-gray-900">Consumer</strong> (for the purpose of the
@@ -1402,7 +1402,7 @@ export default function PrivacyPolicyPage() {
                       <MapPin className="w-4 h-4 text-teal-600" />
                     </div>
                     <span>
-                      By mail: SLEEK Dental Club, 16775 Addison Rd., Suite 612, Addison, TX 75001
+                      By mail: SLEEK Dental Club, 16775 Addison Rd. Suite 605, Addison, Texas 75001
                     </span>
                   </li>
                 </ul>

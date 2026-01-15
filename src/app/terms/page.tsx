@@ -522,7 +522,7 @@ export default function TermsPage() {
                   <ul className="space-y-3 mt-4">
                     <li><strong className="text-gray-900">Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
                     <li><strong className="text-gray-900">Country</strong> refers to: Texas, United States</li>
-                    <li><strong className="text-gray-900">Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to SLEEK Dental Club, 16775 Addison Rd., Suite 612 Addison, TX 75001.</li>
+                    <li><strong className="text-gray-900">Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to SLEEK Dental Club, 16775 Addison Rd. Suite 605, Addison, Texas 75001.</li>
                     <li><strong className="text-gray-900">Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
                     <li><strong className="text-gray-900">Feedback</strong> means feedback, innovations or suggestions sent by You regarding the attributes, performance or features of our Service.</li>
                     <li><strong className="text-gray-900">Service</strong> refers to the Website.</li>
@@ -734,7 +734,7 @@ export default function TermsPage() {
                     <div className="w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center flex-shrink-0">
                       <Globe className="w-4 h-4 text-teal-600" />
                     </div>
-                    <span>By mail: SLEEK Dental Club, 16775 Addison Rd., Suite 612, Addison, TX 75001</span>
+                    <span>By mail: SLEEK Dental Club, 16775 Addison Rd. Suite 605, Addison, Texas 75001</span>
                   </li>
                 </ul>
               </SectionCard>

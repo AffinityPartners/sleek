@@ -56,24 +56,6 @@ const partnerBenefitsData = [
     ctaText: 'TheTeleDentists Virtual Dental Care'
   },
   {
-    id: 'aligners',
-    name: 'Aligner Discount',
-    tagline: 'Discounted Impression Kit',
-    description: 'Save on impression kits and aligners. Professional care. Faster results. Straighten your teeth from home.',
-    features: [
-      'No in-office visits required',
-      'Shorter treatment time than traditional braces',
-      'Professional-grade clear aligners',
-      'Convenient at-home treatment'
-    ],
-    imageSrc: '/images/products/Aligner-Discount.jpg',
-    imageAlt: 'Clear Aligners',
-    imageOrder: 'order-1', // Image on left for md screens (default)
-    textOrder: 'order-2',    // Text on right for md screens (default)
-    disclosure: null,
-    ctaText: 'Clear Aligners'
-  },
-  {
     id: 'optumrx',
     name: 'Optum Rx®',
     tagline: 'Prescription Benefit',
@@ -85,8 +67,8 @@ const partnerBenefitsData = [
     ],
     imageSrc: '/images/products/Discount-Rx-Benefits.jpg',
     imageAlt: 'Optum Rx Prescription Benefits',
-    imageOrder: 'order-1 md:order-2', // Image on right for md screens
-    textOrder: 'order-2 md:order-1', // Text on left for md screens
+    imageOrder: 'order-1', // Image on left for md screens (alternating with teledentists)
+    textOrder: 'order-2', // Text on right for md screens (alternating with teledentists)
     disclosure: 'Terms, Conditions and Disclosures',
     ctaText: 'Optum Rx Prescription Benefits'
   }

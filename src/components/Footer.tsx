@@ -192,21 +192,8 @@ export default function Footer() {
                   Transform your dental routine with SLEEK Dental Club. Premium electric toothbrush kits, quarterly refills, and dental benefits delivered to your door.
                 </p>
                 
-                {/* Social link */}
-                <div className="mb-6">
-                  <a 
-                    href="https://www.facebook.com/sleekdentalclub"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow us on Facebook"
-                    className="w-10 h-10 rounded-xl bg-charcoal-800/50 flex items-center justify-center text-gray-400 hover:text-teal-400 hover:bg-teal-500/10 transition-all duration-300 border border-white/5 hover:border-teal-500/30"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                </div>
-                
                 {/* Contact info - horizontal on mobile, vertical on desktop */}
-                <div className="flex flex-wrap gap-4 sm:gap-6 lg:flex-col lg:gap-3">
+                <div className="flex flex-wrap gap-4 sm:gap-6 lg:flex-col lg:gap-3 mb-6">
                   {footerNavigation.contact.map((item) => (
                     <div key={item.name} className="flex items-center group">
                       <div className="w-8 h-8 rounded-lg bg-charcoal-800/50 flex items-center justify-center mr-3 group-hover:bg-teal-500/10 transition-colors duration-300">
@@ -220,6 +207,19 @@ export default function Footer() {
                       </a>
                     </div>
                   ))}
+                </div>
+                
+                {/* Social link - positioned under contact info */}
+                <div>
+                  <a 
+                    href="https://www.facebook.com/sleekdentalclub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow us on Facebook"
+                    className="w-10 h-10 rounded-xl bg-charcoal-800/50 flex items-center justify-center text-gray-400 hover:text-teal-400 hover:bg-teal-500/10 transition-all duration-300 border border-white/5 hover:border-teal-500/30"
+                  >
+                    <Facebook className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
               

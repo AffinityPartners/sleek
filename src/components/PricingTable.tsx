@@ -16,7 +16,6 @@ import {
   CreditCard,
   Gift,
   Users,
-  Smile,
   Stethoscope,
   Lightbulb,
   Zap
@@ -60,8 +59,7 @@ const plans = [
       { label: 'SLEEK Electronic Toothbrush Kit¹', included: true },
       { label: 'Quarterly Oral Care Refills¹', included: true },
       { label: 'Discount Rx Benefits¹', included: true },
-      { label: 'Teledentistry¹', included: true },
-      { label: 'Aligner Discount¹', included: true }
+      { label: 'Teledentistry¹', included: true }
     ],
     planInfoLink: '#',
     providerInfoLink: '#',
@@ -86,8 +84,7 @@ const plans = [
       { label: 'Quarterly Oral Care Refills¹', included: true },
       { label: 'Teledentistry¹', included: true },
       { label: 'Discount Rx Benefits¹', included: true },
-      { label: 'Association Benefits¹', included: true },
-      { label: 'Aligner Discount¹', included: true }
+      { label: 'Association Benefits¹', included: true }
     ],
     planInfoLink: '#',
     providerInfoLink: '#',
@@ -116,8 +113,7 @@ const plans = [
       { label: 'Quarterly Oral Care Refills¹', included: true },
       { label: 'Teledentistry¹', included: true },
       { label: 'Discount Rx Benefits¹', included: true },
-      { label: 'Association Benefits¹', included: true },
-      { label: 'Aligner Discount¹', included: true }
+      { label: 'Association Benefits¹', included: true }
     ],
     planInfoLink: '#',
     providerInfoLink: '#',
@@ -782,7 +778,6 @@ export default function PricingTable() {
                       if (feature.label.includes('Teledentistry')) return <Stethoscope {...iconProps} />;
                       if (feature.label.includes('Discount')) return <CreditCard {...iconProps} />;
                       if (feature.label.includes('Association')) return <Users {...iconProps} />;
-                      if (feature.label.includes('Aligner')) return <Smile {...iconProps} />;
                       if (feature.label.includes('Network')) return <Star {...iconProps} />;
                       
                       // Default icon

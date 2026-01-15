@@ -590,9 +590,6 @@ export const BLOG_POSTS: BlogPost[] = [
       <h2>10. Association Benefits</h2>
       <p>SLEEK Dental PRO members receive access to association benefits, providing members with professional, lifestyle and health-related perks. Example benefits include vision and hearing savings, chiropractic discounts and a 24-hour nurse line.</p>
 
-      <h2>11. Aligner Discount</h2>
-      <p>SLEEK Dental PRO members can benefit from savings on impression kits and aligners. There is no in-office visit required as everything is handled by mail. The impression kit makes it easier and more affordable to achieve a straighter, more beautiful smile.</p>
-
       <p>With SLEEK Dental PRO, you're not just getting dental insurance, you're unlocking a world of benefits to support your oral health journey. From affordable pricing to cutting-edge tools, it's your key to a brighter smile!</p>
 
       <p>Ready to sign up for your SLEEK Dental PRO membership today? <a href="/">Click here to enroll</a>.</p>
@@ -754,11 +751,8 @@ export const BLOG_POSTS: BlogPost[] = [
       <h3>4. Teledentistry at Your Fingertips</h3>
       <p>In today's fast-paced world, convenience matters. With SLEEK OCP, you have 24/7 access to online dental care through teledentistry. Whenever you need guidance or assistance, our virtual dental experts are a click away.</p>
 
-      <h3>5. Aligner Discount</h3>
-      <p>Are you dreaming of a straighter smile? SLEEK OCP members can save on impression kits and aligners. Achieve the smile you've always wanted without breaking the bank.</p>
-
       <h2>Summary</h2>
-      <p>In summary, SLEEK OCP is your one-stop dental care solution. From discounts on dental services and prescriptions to access to cutting-edge teledentistry and savings on teeth aligners, we're here to help you maintain a healthy, beautiful smile. Say goodbye to dental care worries and hello to SLEEK OCP: your path to a confident, beaming smile starts here.</p>
+      <p>In summary, SLEEK OCP is your one-stop dental care solution. From discounts on dental services and prescriptions to access to cutting-edge teledentistry, we're here to help you maintain a healthy, beautiful smile. Say goodbye to dental care worries and hello to SLEEK OCP: your path to a confident, beaming smile starts here.</p>
 
       <p>Have questions or need more information? Contact our Member Services Team at <a href="tel:2143899072">(214)389-9072</a>.</p>
     `,
@@ -792,7 +786,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       <h3>Oral Care Plan (OCP)</h3>
       <p><strong>Membership Eligibility:</strong> Be a member of the SLEEK Dental Club</p>
-      <p>SLEEK OCP provides members with several opportunities to practice good oral hygiene. Included in this plan are access to savings on dental care, prescriptions, and teeth aligners with 24/7 teledentistry available when needed. Plan details include:</p>
+      <p>SLEEK OCP provides members with several opportunities to practice good oral hygiene. Included in this plan are access to savings on dental care and prescriptions with 24/7 teledentistry available when needed. Plan details include:</p>
       <ul>
         <li>SLEEK Dental Club Membership Fulfillment Kit & Quarterly Oral Care Refills</li>
         <li>Helping members save 15-50% on dental care without paying for insurance</li>
@@ -800,7 +794,6 @@ export const BLOG_POSTS: BlogPost[] = [
         <li>Discount Rx Benefits with 10-85% savings on Name Brand & Generic Prescriptions at over 65,000 Pharmacies Nationwide</li>
         <li>Members can also save on Orthodontics & Periodontics Where Available</li>
         <li>Teledentistry Included with 24/7 Online Dental Care</li>
-        <li>Aligner Discount on Impression Kits & Aligners</li>
       </ul>
 
       <h3>PRO</h3>
@@ -809,12 +802,11 @@ export const BLOG_POSTS: BlogPost[] = [
       <ul>
         <li>Underwritten by MetLife, members have access to MetLife PDP Plus Network</li>
         <li>80/60/50 Co-Insurance with an Increasing Annual Max per Year</li>
-        <li>Discount Vision and Rx Benefits with Aligner Discount</li>
+        <li>Discount Vision and Rx Benefits</li>
         <li>Premier Business Association membership for additional savings</li>
         <li>100% Coverage for Preventative care for in-network exams, cleanings & X-rays</li>
         <li>Freedom to Visit Any Dentist with ~30-45% Savings with In-Network Providers</li>
         <li>Teledentistry Included with 24/7 Online Dental Care</li>
-        <li>Aligner Discount on Impression Kits & Aligners</li>
         <li>Family Plan Includes Domestic Partners</li>
         <li>Chiropractic & Hearing Discounts</li>
       </ul>
@@ -824,13 +816,12 @@ export const BLOG_POSTS: BlogPost[] = [
       <ul>
         <li>Underwritten by MetLife, members have access to MetLife PDP Plus Network</li>
         <li>100/80/50 Co-Insurance with an Increasing Annual Max per Year</li>
-        <li>Discount Vision and Rx Benefits with Aligner Discount</li>
+        <li>Discount Vision and Rx Benefits</li>
         <li>Premier Business Association membership for additional savings</li>
         <li>100% Coverage for Preventative care for in-network exams, cleanings & X-rays</li>
         <li>Freedom to Visit Any Dentist with ~30-45% Savings with In-Network Providers</li>
         <li>$1,500 Orthodontia Coverage Available up to Age 19</li>
         <li>Teledentistry Included with 24/7 Online Dental Care</li>
-        <li>Aligner Discount on Impression Kits & Aligners</li>
         <li>Family Plan Includes Domestic Partners</li>
         <li>Chiropractic and Hearing Discounts</li>
       </ul>

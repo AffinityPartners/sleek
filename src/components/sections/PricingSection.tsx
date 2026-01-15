@@ -75,7 +75,6 @@ const pricingPlans: Plan[] = [
       { text: 'Aetna Dental Access® Network¹', icon: <Shield className="h-4 w-4" />, included: true },
       { text: 'Discount Rx Benefits¹', icon: <Pill className="h-4 w-4" />, included: true },
       { text: 'Teledentistry¹', icon: <Stethoscope className="h-4 w-4" />, included: true },
-      { text: 'Byte Impression Kit Discount¹', icon: <Gift className="h-4 w-4" />, included: true },
     ],
     ctaText: 'Get Started',
     ctaLink: 'https://enrollment.sleekdentalclub.com/onboarding',
@@ -98,7 +97,6 @@ const pricingPlans: Plan[] = [
       { text: 'Teledentistry¹', icon: <Stethoscope className="h-4 w-4" />, included: true },
       { text: 'Discount Rx Benefits¹', icon: <Pill className="h-4 w-4" />, included: true },
       { text: 'Association Benefits¹', icon: <Users className="h-4 w-4" />, included: true },
-      { text: 'Byte Impression Kit Discount¹', icon: <Gift className="h-4 w-4" />, included: true },
     ],
     ctaText: 'Join Pro Plan',
     ctaLink: 'https://enrollment.sleekdentalclub.com/onboarding',
@@ -122,7 +120,6 @@ const pricingPlans: Plan[] = [
       { text: 'MetLife PDP Plus Network', icon: <Award className="h-4 w-4" />, included: true },
       { text: 'Teledentistry¹', icon: <Stethoscope className="h-4 w-4" />, included: true },
       { text: 'Discount Rx & Association Benefits¹', icon: <Pill className="h-4 w-4" />, included: true },
-      { text: 'Byte Impression Kit Discount¹', icon: <Gift className="h-4 w-4" />, included: true },
     ],
     ctaText: 'Join Max Plan',
     ctaLink: 'https://enrollment.sleekdentalclub.com/onboarding',
@@ -353,6 +350,104 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
             {/* PRO Plan Content */}
             {planId === 'pro' && (
               <div className="space-y-6 text-xs">
+                {/* Coverage Summary Table */}
+                <div className="overflow-x-auto rounded-lg border border-gray-200">
+                  <table className="min-w-full border-collapse">
+                    {/* Table Header */}
+                    <thead>
+                      <tr className="bg-teal-500">
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-white border-r border-teal-400">Coverage Type</th>
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white border-r border-teal-400">
+                          In-Network<br />
+                          <span className="font-normal text-xs">% of Negotiated Fee*</span>
+                        </th>
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white">
+                          Out-of-Network<br />
+                          <span className="font-normal text-xs">% of MAC**</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {/* Type A: Preventive */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type A: Preventive</p>
+                          <p className="text-gray-500 text-[10px]">(cleanings, exams, X-rays)</p>
+                          <p className="font-semibold text-gray-900 text-xs mt-1">No waiting period</p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">80%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">80%</td>
+                      </tr>
+                      {/* Type B: Basic Restorative */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type B: Basic Restorative</p>
+                          <p className="text-gray-500 text-[10px]">(fillings, extractions)</p>
+                          <p className="font-semibold text-gray-900 text-xs mt-1">No waiting period</p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">60%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">60%</td>
+                      </tr>
+                      {/* Type C: Major Restorative */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type C: Major Restorative</p>
+                          <p className="text-gray-500 text-[10px] leading-snug">
+                            Benefit Waiting Period: Benefits are payable after a<br />
+                            12-month waiting period from the start date of an<br />
+                            individual&apos;s benefits
+                          </p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">50%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">50%</td>
+                      </tr>
+                    </tbody>
+                    {/* Deductible Section */}
+                    <tbody>
+                      <tr className="bg-teal-500">
+                        <td colSpan={3} className="px-4 py-2 text-white font-semibold text-sm">Deductible†</td>
+                      </tr>
+                      <tr className="border-b border-gray-200">
+                        <td className="px-4 py-3 text-gray-700 border-r border-gray-200">Individual (per calendar year)</td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">$100</td>
+                        <td className="px-4 py-3 text-center text-gray-700">$100</td>
+                      </tr>
+                      <tr className="border-b border-gray-200">
+                        <td className="px-4 py-3 text-gray-700 border-r border-gray-200">Family (per calendar year)</td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">$300</td>
+                        <td className="px-4 py-3 text-center text-gray-700">$300</td>
+                      </tr>
+                    </tbody>
+                    {/* Annual Maximum Section */}
+                    <tbody>
+                      <tr className="bg-teal-500">
+                        <td colSpan={3} className="px-4 py-2 text-white font-semibold text-sm">Annual Maximum Benefit (Through Year 3)</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-3 text-gray-700 border-r border-gray-200">Per Person</td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">
+                          Year 1–$1,000<br />
+                          Year 2–$1,250<br />
+                          Year 3+–$1,500
+                        </td>
+                        <td className="px-4 py-3 text-center text-gray-700">
+                          Year 1–$1,000<br />
+                          Year 2–$1,250<br />
+                          Year 3+–$1,500
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                {/* Table Footnotes */}
+                <div className="space-y-2 text-[10px] text-gray-600">
+                  <p><strong>Child(ren)&apos;s eligibility</strong> for dental coverage is from birth up to age 26</p>
+                  <p><sup>*</sup>Negotiated Fee refers to the fees that participating dentists have agreed to accept as payment in full for covered services, subject to any copayments, deductibles, cost sharing and benefits maximums. Negotiated fees are subject to change.</p>
+                  <p><sup>**</sup>MAC refers to the Maximum Allowed Charge, which is based on the lesser of (1) the amount charged by the out-of-network dentist or (2) the out-of-network scheduled amount for the state where the dental service is performed.</p>
+                  <p><sup>†</sup>Applies only to Type B and C Services.</p>
+                </div>
+                
                 <h4 className="text-base font-semibold text-teal-500">Dental Insurance: Description of Covered Services</h4>
                 
                 {/* Type A Covered Services */}
@@ -530,14 +625,133 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
             {/* MAX Plan Content */}
             {planId === 'max' && (
               <div className="space-y-6 text-xs">
-                <h4 className="text-base font-semibold text-teal-500">Dental Insurance: Description of Covered Services</h4>
+                {/* Coverage Summary Table */}
+                <div className="overflow-x-auto rounded-lg border border-gray-200">
+                  <table className="min-w-full border-collapse">
+                    {/* Table Header */}
+                    <thead>
+                      <tr className="bg-teal-500">
+                        <th className="px-4 py-3 text-left text-sm font-semibold text-white border-r border-teal-400">Coverage Type</th>
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white border-r border-teal-400">
+                          In-Network<br />
+                          <span className="font-normal text-xs">% of Negotiated Fee*</span>
+                        </th>
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white">
+                          Out-of-Network<br />
+                          <span className="font-normal text-xs">% of MAC**</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {/* Type A: Preventive */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type A: Preventive</p>
+                          <p className="text-gray-500 text-[10px]">(cleanings, exams, X-rays)</p>
+                          <p className="font-semibold text-gray-900 text-xs mt-1">No waiting period</p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">100%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">100%</td>
+                      </tr>
+                      {/* Type B: Basic Restorative */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type B: Basic Restorative</p>
+                          <p className="text-gray-500 text-[10px]">(fillings, extractions)</p>
+                          <p className="font-semibold text-gray-900 text-xs mt-1">No waiting period</p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">80%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">80%</td>
+                      </tr>
+                      {/* Type C: Major Restorative */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type C: Major Restorative</p>
+                          <p className="text-gray-500 text-[10px]">(bridges, dentures)</p>
+                          <p className="font-semibold text-gray-900 text-xs mt-1">No waiting period</p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">50%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">50%</td>
+                      </tr>
+                      {/* Type D: Orthodontia */}
+                      <tr>
+                        <td className="px-4 py-4 border-r border-gray-200">
+                          <p className="text-teal-500 font-medium text-sm">Type D: Orthodontia</p>
+                          <p className="text-gray-500 text-[10px]">(orthodontic diagnostics and orthodontic treatment)</p>
+                          <p className="font-semibold text-gray-900 text-xs mt-1">No waiting period</p>
+                        </td>
+                        <td className="px-4 py-4 text-center text-gray-700 border-r border-gray-200">50%</td>
+                        <td className="px-4 py-4 text-center text-gray-700">50%</td>
+                      </tr>
+                    </tbody>
+                    {/* Deductible Section */}
+                    <tbody>
+                      <tr className="bg-teal-500">
+                        <td colSpan={3} className="px-4 py-2 text-white font-semibold text-sm">Deductible†</td>
+                      </tr>
+                      <tr className="border-b border-gray-200">
+                        <td className="px-4 py-3 text-gray-700 border-r border-gray-200">Individual (per calendar year)</td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">$50</td>
+                        <td className="px-4 py-3 text-center text-gray-700">$50</td>
+                      </tr>
+                      <tr className="border-b border-gray-200">
+                        <td className="px-4 py-3 text-gray-700 border-r border-gray-200">Family (per calendar year)</td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">$150</td>
+                        <td className="px-4 py-3 text-center text-gray-700">$150</td>
+                      </tr>
+                    </tbody>
+                    {/* Annual Maximum Section */}
+                    <tbody>
+                      <tr className="bg-teal-500">
+                        <td colSpan={3} className="px-4 py-2 text-white font-semibold text-sm">Annual Maximum Benefit (Through Year 3)</td>
+                      </tr>
+                      <tr className="border-b border-gray-200">
+                        <td className="px-4 py-3 text-gray-700 border-r border-gray-200">Per Person</td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">
+                          Year 1–$1,500<br />
+                          Year 2–$1,750<br />
+                          Year 3+–$2,000
+                        </td>
+                        <td className="px-4 py-3 text-center text-gray-700">
+                          Year 1–$1,500<br />
+                          Year 2–$1,750<br />
+                          Year 3+–$2,000
+                        </td>
+                      </tr>
+                    </tbody>
+                    {/* Orthodontia Lifetime Maximum Section */}
+                    <tbody>
+                      <tr className="bg-teal-500">
+                        <td colSpan={3} className="px-4 py-2 text-white font-semibold text-sm">Orthodontia Lifetime Maximum</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-3 border-r border-gray-200">
+                          <p className="text-gray-700">Per Person</p>
+                          <p className="text-gray-500 text-[10px]">(for children up to age 19 only)</p>
+                        </td>
+                        <td className="px-4 py-3 text-center text-gray-700 border-r border-gray-200">$1,500</td>
+                        <td className="px-4 py-3 text-center text-gray-700">$1,500</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
                 
+                {/* Table Footnotes */}
+                <div className="space-y-2 text-[10px] text-gray-600">
+                  <p><strong>Child(ren)&apos;s eligibility</strong> for dental coverage is from birth up to age 26</p>
+                  <p><sup>*</sup>Negotiated Fee refers to the fees that participating dentists have agreed to accept as payment in full for covered services, subject to any copayments, deductibles, cost sharing and benefits maximums. Negotiated fees are subject to change.</p>
+                  <p><sup>**</sup>MAC refers to the Maximum Allowed Charge, which is based on the lesser of (1) the amount charged by the out-of-network dentist or (2) the out-of-network scheduled amount for the state where the dental service is performed.</p>
+                  <p><sup>†</sup>Applies only to Type B and C Services.</p>
+                </div>
+                
+                <h4 className="text-base font-semibold text-teal-500">Dental Insurance: Description of Covered Services</h4>
+
                 {/* Type A Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Type A Covered Services</p>
                   <ol className="list-decimal pl-5 space-y-1.5 text-gray-700">
                     <li>Oral exams and problem-focused exams, but no more than one exam (whether the exam is an oral exam or problem-focused exam) every 6 months.</li>
-                    <li>Screenings, including state or federally mandated screenings, to determine an individual's need to be seen by a dentist for diagnosis, but no more than once every 6 months.</li>
+                    <li>Screenings, including state or federally mandated screenings, to determine an individual&apos;s need to be seen by a dentist for diagnosis, but no more than once every 6 months.</li>
                     <li>Patient assessments (limited clinical inspection that is performed to identify possible signs of oral or systemic disease, malformation, or injury, and the potential need for referral for diagnosis and treatment), but no more than once every 6 months.</li>
                     <li>Bitewing x-rays 1 set every 12 months.</li>
                     <li>Cleaning of teeth also referred to as oral prophylaxis (including full mouth scaling in presence of generalized moderate or severe gingival inflammation after oral evaluation) once every 6 months.</li>
