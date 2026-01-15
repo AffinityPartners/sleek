@@ -1,7 +1,10 @@
-import { Fragment, ReactNode } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import { ReactNode, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/**
+ * Modal component with click-outside-to-close and escape key support.
+ * Uses Framer Motion for smooth enter/exit animations.
+ */
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -24,66 +27,69 @@ export default function Modal({
     xl: 'max-w-xl',
   };
 
+  /**
+   * Handle escape key to close modal.
+   * Adds event listener when modal opens, removes it when modal closes.
+   */
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <Transition show={isOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="fixed inset-0 z-50 overflow-y-auto"
-            onClose={onClose}
+        <>
+          {/* Backdrop overlay - clicking this closes the modal. z-[9998] ensures it's above most content but below the modal panel */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[9998] bg-black/50"
+            onClick={onClose}
+            aria-hidden="true"
+          />
+
+          {/* Modal container - z-[9999] ensures it's above the backdrop */}
+          <div
+            className="fixed inset-0 z-[9999] overflow-y-auto pointer-events-none"
+            role="dialog"
+            aria-modal="true"
           >
-            <div className="min-h-screen px-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
+            <div className="min-h-screen px-4 flex items-center justify-center">
+              {/* Modal panel - pointer-events-auto re-enables clicks on the modal itself */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className={`relative w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left shadow-2xl ring-1 ring-black/5 pointer-events-auto ${sizeClasses[size]}`}
               >
-                <Dialog.Overlay className="fixed inset-0 bg-black/40" />
-              </Transition.Child>
-
-              {/* This element is to trick the browser into centering the modal contents. */}
-              <span
-                className="inline-block h-screen align-middle"
-                aria-hidden="true"
-              >
-                &#8203;
-              </span>
-
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.2 }}
-                  className={`my-8 inline-block w-full transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all ${sizeClasses[size]}`}
-                >
-                  {title && (
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
-                    >
-                      {title}
-                    </Dialog.Title>
-                  )}
-                  <div className={title ? 'mt-4' : ''}>{children}</div>
-                </motion.div>
-              </Transition.Child>
+                {title && (
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">
+                    {title}
+                  </h3>
+                )}
+                <div className={title ? 'mt-4' : ''}>{children}</div>
+              </motion.div>
             </div>
-          </Dialog>
-        </Transition>
+          </div>
+        </>
       )}
     </AnimatePresence>
   );

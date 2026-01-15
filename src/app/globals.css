@@ -89,6 +89,86 @@
 }
 
 /* ==========================================================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   Automatically reduce heavy animations on mobile devices for better performance.
+   These rules apply regardless of user motion preferences to ensure smooth UX.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* Disable complex background animations on mobile */
+  .animate-gradient {
+    animation: none !important;
+    background-position: 50% 50% !important;
+  }
+  
+  .animate-float {
+    animation: none !important;
+    transform: translateY(0) !important;
+  }
+  
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+  
+  /* Reduce blur effects which are GPU-intensive on mobile */
+  .blur-gradient-shape {
+    filter: blur(30px);
+    opacity: 0.4;
+  }
+  
+  /* Simplify popular card glow animation */
+  .popular-card-glow::before {
+    animation: none !important;
+    background-position: 50% 50% !important;
+  }
+  
+  .popular-card-glow::after {
+    filter: blur(10px);
+    opacity: 0.3;
+  }
+  
+  /* Disable particle-like elements */
+  .mobile-hide-particles {
+    display: none !important;
+  }
+  
+  /* Reduce backdrop blur intensity on mobile for better performance */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+  }
+  
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+  
+  /* Disable hover transforms on mobile since hover doesn't apply */
+  .card:hover,
+  .card-elevated:hover,
+  .card-glow:hover,
+  .feature-card:hover {
+    transform: none !important;
+  }
+  
+  /* Shorten transition durations on mobile */
+  .transition-all {
+    transition-duration: 200ms !important;
+  }
+  
+  /* Disable shimmer animations on buttons */
+  .group:hover .group-hover\:translate-x-full {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
    BASE RESETS
    ========================================================================== */
 
@@ -406,9 +486,9 @@ a {
      ========================================================================== */
 
   .input {
-    @apply w-full px-4 py-3 rounded-xl;
+    @apply w-full px-4 py-3 rounded-xl min-h-[44px];
     @apply bg-white border border-gray-200;
-    @apply text-gray-900 placeholder-gray-400;
+    @apply text-gray-900 placeholder-gray-400 text-base;
     @apply transition-all duration-200 ease-out;
     @apply outline-none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -428,7 +508,7 @@ a {
      ========================================================================== */
 
   .section-header {
-    @apply text-center mb-16 md:mb-20;
+    @apply text-center mb-12 md:mb-16 lg:mb-20;
   }
 
   .section-badge {
@@ -457,7 +537,7 @@ a {
   }
 
   .feature-card {
-    @apply bg-white rounded-2xl p-8 border border-gray-100;
+    @apply bg-white rounded-2xl p-6 md:p-8 border border-gray-100;
     @apply transition-all duration-300 ease-out;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }

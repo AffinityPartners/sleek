@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,77 +18,89 @@ interface SitemapBlogGridProps {
 }
 
 /**
+ * Props for the BlogPostCard component.
+ */
+interface BlogPostCardProps {
+  post: BlogPost;
+  index: number;
+}
+
+/**
  * BlogPostCard displays a single blog post in a card format.
+ * Uses forwardRef to properly handle refs from AnimatePresence.
  * Features image thumbnail, title, excerpt, metadata, and hover effects.
  */
-function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
-  const category = CATEGORIES.find(c => c.key === post.category);
+const BlogPostCard = forwardRef<HTMLElement, BlogPostCardProps>(
+  function BlogPostCard({ post, index }, ref) {
+    const category = CATEGORIES.find(c => c.key === post.category);
 
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      layout
-    >
-      <Link
-        href={`/blog/${post.slug}`}
-        className="group block bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+    return (
+      <motion.article
+        ref={ref}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+        layout
       >
-        {/* Image */}
-        <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
-          <Image
-            src={post.image}
-            alt={post.imageAlt}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          {/* Category badge overlay */}
-          <div className="absolute top-3 left-3">
-            <span
-              className={`
-                inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
-                backdrop-blur-sm
-                ${category?.color === 'teal' ? 'bg-teal-500/90 text-white' : ''}
-                ${category?.color === 'amber' ? 'bg-amber-500/90 text-white' : ''}
-                ${category?.color === 'gray' ? 'bg-gray-700/90 text-white' : ''}
-              `}
-            >
-              {category?.name}
-            </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-5">
-          {/* Title */}
-          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-teal-700 transition-colors">
-            {post.title}
-          </h3>
-
-          {/* Excerpt */}
-          <p className="text-sm text-gray-500 mb-4 line-clamp-2">
-            {post.excerpt}
-          </p>
-
-          {/* Meta row */}
-          <div className="flex items-center justify-between text-xs text-gray-400">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5" />
-                {post.readTime} min read
+        <Link
+          href={`/blog/${post.slug}`}
+          className="group block bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+        >
+          {/* Image */}
+          <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
+            <Image
+              src={post.image}
+              alt={post.imageAlt}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            {/* Category badge overlay */}
+            <div className="absolute top-3 left-3">
+              <span
+                className={`
+                  inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+                  backdrop-blur-sm
+                  ${category?.color === 'teal' ? 'bg-teal-500/90 text-white' : ''}
+                  ${category?.color === 'amber' ? 'bg-amber-500/90 text-white' : ''}
+                  ${category?.color === 'gray' ? 'bg-gray-700/90 text-white' : ''}
+                `}
+              >
+                {category?.name}
               </span>
-              <span>{post.dateFormatted}</span>
             </div>
-            <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-teal-500 group-hover:translate-x-1 transition-all" />
           </div>
-        </div>
-      </Link>
-    </motion.article>
-  );
-}
+
+          {/* Content */}
+          <div className="p-5">
+            {/* Title */}
+            <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-teal-700 transition-colors">
+              {post.title}
+            </h3>
+
+            {/* Excerpt */}
+            <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+              {post.excerpt}
+            </p>
+
+            {/* Meta row */}
+            <div className="flex items-center justify-between text-xs text-gray-400">
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" />
+                  {post.readTime} min read
+                </span>
+                <span>{post.dateFormatted}</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-teal-500 group-hover:translate-x-1 transition-all" />
+            </div>
+          </div>
+        </Link>
+      </motion.article>
+    );
+  }
+);
 
 /**
  * SitemapBlogGrid displays all blog posts with filtering capabilities.

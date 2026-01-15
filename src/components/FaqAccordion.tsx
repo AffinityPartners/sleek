@@ -282,38 +282,6 @@ export default function FaqAccordion() {
           </Accordion.Root>
         </motion.div>
         
-        {/* Contact prompt */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex flex-col items-center p-8 md:p-10 rounded-2xl bg-white border border-gray-100 shadow-card">
-            <h3 className="text-xl md:text-2xl font-semibold mb-3 text-gray-900 font-heading">
-              Still have questions?
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-md">
-              Our support team is here to help with any questions about your SLEEK experience.
-            </p>
-            <motion.a
-              href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-white"
-              style={{
-                background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-                boxShadow: '0 4px 14px rgba(15, 118, 110, 0.3)'
-              }}
-              whileHover={{ 
-                scale: 1.03,
-                boxShadow: '0 8px 25px rgba(15, 118, 110, 0.4)'
-              }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Contact Support
-            </motion.a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

@@ -56,22 +56,22 @@ const partnerBenefitsData = [
     ctaText: 'TheTeleDentists Virtual Dental Care'
   },
   {
-    id: 'byte',
-    name: 'byte®',
+    id: 'aligners',
+    name: 'Aligner Discount',
     tagline: 'Discounted Impression Kit',
-    description: 'Save $85 off impression kit and $100 off aligners. Professional care. 2x faster results. Guaranteed for life.',
+    description: 'Save on impression kits and aligners. Professional care. Faster results. Straighten your teeth from home.',
     features: [
-      'No in-office visits.',
-      'Half the treatment time of competitors.',
-      'Smile Science Advanced Aesthetic treatment.',
-      'Byte for Life guarantee™'
+      'No in-office visits required',
+      'Shorter treatment time than traditional braces',
+      'Professional-grade clear aligners',
+      'Convenient at-home treatment'
     ],
-    imageSrc: '/images/products/Byte-Aligner-Discount.jpg',
-    imageAlt: 'byte Aligners',
+    imageSrc: '/images/products/Aligner-Discount.jpg',
+    imageAlt: 'Clear Aligners',
     imageOrder: 'order-1', // Image on left for md screens (default)
     textOrder: 'order-2',    // Text on right for md screens (default)
     disclosure: null,
-    ctaText: 'byte Aligners'
+    ctaText: 'Clear Aligners'
   },
   {
     id: 'optumrx',

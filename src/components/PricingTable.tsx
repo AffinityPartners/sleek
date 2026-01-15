@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
@@ -62,7 +61,7 @@ const plans = [
       { label: 'Quarterly Oral Care Refills¹', included: true },
       { label: 'Discount Rx Benefits¹', included: true },
       { label: 'Teledentistry¹', included: true },
-      { label: 'Byte Impression Kit Discount¹', included: true }
+      { label: 'Aligner Discount¹', included: true }
     ],
     planInfoLink: '#',
     providerInfoLink: '#',
@@ -88,7 +87,7 @@ const plans = [
       { label: 'Teledentistry¹', included: true },
       { label: 'Discount Rx Benefits¹', included: true },
       { label: 'Association Benefits¹', included: true },
-      { label: 'Byte Impression Kit Discount¹', included: true }
+      { label: 'Aligner Discount¹', included: true }
     ],
     planInfoLink: '#',
     providerInfoLink: '#',
@@ -118,7 +117,7 @@ const plans = [
       { label: 'Teledentistry¹', included: true },
       { label: 'Discount Rx Benefits¹', included: true },
       { label: 'Association Benefits¹', included: true },
-      { label: 'Byte Impression Kit Discount¹', included: true }
+      { label: 'Aligner Discount¹', included: true }
     ],
     planInfoLink: '#',
     providerInfoLink: '#',
@@ -194,7 +193,12 @@ const Tooltip = ({ text }: { text: string }) => (
   </div>
 );
 
-// Modal component for plan information
+/**
+ * Modal component for displaying plan information details.
+ * Shows different content based on the plan type (OCP, PRO, MAX).
+ * OCP shows sample savings table and discount disclosure.
+ * PRO/MAX show coverage details and covered services by type.
+ */
 const PlanInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose: () => void; plan: string }) => {
   if (!isOpen) return null;
   
@@ -377,14 +381,181 @@ const PlanInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose: ()
   );
 };
 
+/**
+ * Modal component for displaying provider/network information.
+ * Shows the appropriate provider network details based on the plan type.
+ * OCP uses Aetna Dental Access network, PRO/MAX use MetLife PDP Plus network.
+ * Includes links to external provider search tools.
+ */
+const ProviderInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose: () => void; plan: string }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="bg-white rounded-xl shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div className="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
+          <h3 className="text-xl font-bold">
+            {plan === 'ocp' && 'Provider Network: Aetna Dental Access®'}
+            {plan === 'pro' && 'Provider Network: MetLife PDP Plus'}
+            {plan === 'max' && 'Provider Network: MetLife PDP Plus'}
+          </h3>
+          <button 
+            onClick={onClose}
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
+        
+        <div className="p-6">
+          {plan === 'ocp' && (
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-lg font-semibold mb-3">Aetna Dental Access® Network</h4>
+                <p className="text-sm text-gray-700 mb-4">
+                  The Aetna Dental Access® network includes over 262,000 dentist locations nationwide. 
+                  As a member, you have access to significant discounts on dental services when you visit 
+                  participating providers.
+                </p>
+                <div className="bg-[#00e0cb]/10 border border-[#00e0cb]/20 rounded-lg p-4 mb-4">
+                  <h5 className="font-semibold text-gray-900 mb-2">Network Highlights</h5>
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                    <li>Over 262,000 dentist locations nationwide</li>
+                    <li>Save 15-50% on most dental procedures</li>
+                    <li>No waiting periods or annual maximums</li>
+                    <li>Immediate access to savings</li>
+                    <li>Specialists included in the network</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-3">Find a Provider</h4>
+                <p className="text-sm text-gray-700 mb-4">
+                  Use the Aetna Dental Access® provider search tool to find participating dentists in your area.
+                </p>
+                <a 
+                  href="https://www.aetna.com/dsepublic/#/contentPage?page=providerSearchLanding&site_id=dac" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-[#00e0cb] text-white rounded-lg hover:bg-[#00c9b6] transition-colors"
+                >
+                  <Stethoscope size={18} className="mr-2" />
+                  Search for Providers
+                </a>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h5 className="font-semibold text-gray-900 mb-2">Important Note</h5>
+                <p className="text-sm text-gray-600">
+                  When searching for providers, select "Aetna Dental Access®" as your plan type. 
+                  Always confirm that the provider participates in the network before your appointment.
+                </p>
+              </div>
+            </div>
+          )}
+          
+          {(plan === 'pro' || plan === 'max') && (
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-lg font-semibold mb-3">MetLife PDP Plus Network</h4>
+                <p className="text-sm text-gray-700 mb-4">
+                  The MetLife PDP Plus network is one of the largest dental networks in the nation, 
+                  featuring over 475,000 dentist access points. This extensive network ensures you 
+                  can find quality dental care wherever you are.
+                </p>
+                <div className="bg-[#5cbbff]/10 border border-[#5cbbff]/20 rounded-lg p-4 mb-4">
+                  <h5 className="font-semibold text-gray-900 mb-2">Network Highlights</h5>
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                    <li>Over 475,000 dentist access points nationwide</li>
+                    <li>Negotiated fees for all covered services</li>
+                    <li>General dentists and specialists included</li>
+                    <li>No referrals required for specialist visits</li>
+                    <li>Freedom to see any licensed dentist (in-network benefits apply to PDP Plus providers)</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-3">Find a Provider</h4>
+                <p className="text-sm text-gray-700 mb-4">
+                  Use the MetLife provider search tool to find PDP Plus participating dentists in your area.
+                </p>
+                <a 
+                  href="https://www.metlife.com/dental-providers/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-[#5cbbff] text-white rounded-lg hover:bg-[#4aa8ec] transition-colors"
+                >
+                  <Stethoscope size={18} className="mr-2" />
+                  Search for Providers
+                </a>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h5 className="font-semibold text-gray-900 mb-2">Important Note</h5>
+                <p className="text-sm text-gray-600">
+                  When searching for providers, select "PDP Plus" as your network type. You may also 
+                  visit out-of-network dentists, but your benefits will be based on the lesser of 
+                  the submitted charge or the negotiated fee.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-3">Out-of-Network Coverage</h4>
+                <p className="text-sm text-gray-700">
+                  While you can see any licensed dentist, visiting an in-network PDP Plus provider 
+                  ensures you receive the maximum benefit. Out-of-network claims are processed at 
+                  the negotiated fee level, which may result in higher out-of-pocket costs.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+        
+        <div className="sticky bottom-0 bg-white p-4 border-t">
+          <button 
+            onClick={onClose}
+            className="w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 export default function PricingTable() {
   const [selectedPlan, setSelectedPlan] = useState('pro');
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentModalPlan, setCurrentModalPlan] = useState('');
+  // State for plan information modal
+  const [planModalOpen, setPlanModalOpen] = useState(false);
+  const [currentPlanModalPlan, setCurrentPlanModalPlan] = useState('');
+  // State for provider information modal
+  const [providerModalOpen, setProviderModalOpen] = useState(false);
+  const [currentProviderModalPlan, setCurrentProviderModalPlan] = useState('');
   
+  /**
+   * Opens the plan information modal for the specified plan.
+   * Sets the current plan ID and opens the modal.
+   */
   const openPlanModal = (planId: string) => {
-    setCurrentModalPlan(planId);
-    setModalOpen(true);
+    setCurrentPlanModalPlan(planId);
+    setPlanModalOpen(true);
+  };
+  
+  /**
+   * Opens the provider information modal for the specified plan.
+   * Sets the current plan ID and opens the modal.
+   */
+  const openProviderModal = (planId: string) => {
+    setCurrentProviderModalPlan(planId);
+    setProviderModalOpen(true);
   };
   
   return (
@@ -611,7 +782,7 @@ export default function PricingTable() {
                       if (feature.label.includes('Teledentistry')) return <Stethoscope {...iconProps} />;
                       if (feature.label.includes('Discount')) return <CreditCard {...iconProps} />;
                       if (feature.label.includes('Association')) return <Users {...iconProps} />;
-                      if (feature.label.includes('Byte')) return <Smile {...iconProps} />;
+                      if (feature.label.includes('Aligner')) return <Smile {...iconProps} />;
                       if (feature.label.includes('Network')) return <Star {...iconProps} />;
                       
                       // Default icon
@@ -663,12 +834,12 @@ export default function PricingTable() {
                     >
                       PLAN INFORMATION
                     </button>
-                    <Link 
-                      href={plan.providerInfoLink} 
+                    <button 
+                      onClick={() => openProviderModal(plan.id)}
                       className="block w-full text-sm py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors font-medium"
                     >
                       PROVIDER INFORMATION
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -694,9 +865,16 @@ export default function PricingTable() {
       
       {/* Plan Information Modal */}
       <PlanInfoModal 
-        isOpen={modalOpen} 
-        onClose={() => setModalOpen(false)} 
-        plan={currentModalPlan} 
+        isOpen={planModalOpen} 
+        onClose={() => setPlanModalOpen(false)} 
+        plan={currentPlanModalPlan} 
+      />
+      
+      {/* Provider Information Modal */}
+      <ProviderInfoModal 
+        isOpen={providerModalOpen} 
+        onClose={() => setProviderModalOpen(false)} 
+        plan={currentProviderModalPlan} 
       />
     </section>
   );

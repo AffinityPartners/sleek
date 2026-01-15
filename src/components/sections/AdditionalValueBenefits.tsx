@@ -19,7 +19,7 @@ interface ValueBenefit {
 
 /**
  * Value-added benefits aligned with official SLEEK marketing materials.
- * Features Teledentistry, Byte aligner discount, and Discount Rx benefits.
+ * Features Teledentistry, Aligner discount, and Discount Rx benefits.
  */
 const valueBenefits: ValueBenefit[] = [
   {
@@ -31,21 +31,17 @@ const valueBenefits: ValueBenefit[] = [
       'Included with OCP, PRO, and MAX membership levels'
     ],
     imageSrc: '/images/products/Teledentistry-Consultations.jpg',
-    ctaText: 'Learn about teledentistry',
-    ctaLink: '/teledentistry',
     accent: '#4fa8df'
   },
   {
-    id: 'byte-discount',
-    title: 'Byte Aligner Discount',
+    id: 'aligner-discount',
+    title: 'Aligner Discount',
     description: [
-      'Exclusive discount on Byte clear aligner impression kits',
+      'Exclusive discount on clear aligner impression kits',
       'Straighten your teeth from the comfort of home',
       'Save on professional-grade invisible aligners as a SLEEK member'
     ],
-    imageSrc: '/images/products/Byte-Aligner-Discount.jpg',
-    ctaText: 'Explore Byte aligners',
-    ctaLink: '/byte-discount',
+    imageSrc: '/images/products/Aligner-Discount.jpg',
     accent: '#1ab9a3'
   },
   {
@@ -57,8 +53,6 @@ const valueBenefits: ValueBenefit[] = [
       'Access discounts on thousands of brand and generic drugs'
     ],
     imageSrc: '/images/products/Discount-Rx-Benefits.jpg',
-    ctaText: 'View Rx savings',
-    ctaLink: '/rx-benefits',
     accent: '#8757e6'
   }
 ];

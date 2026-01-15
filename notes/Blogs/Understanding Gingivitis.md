@@ -54,3 +54,9 @@ Conclusion
 In conclusion, gingivitis is a common but entirely manageable oral health issue. By practicing good oral hygiene, seeking regular dental care, and addressing risk factors, individuals can effectively prevent and treat gingivitis, ensuring the health of their gums and overall well-being. Prioritizing oral health not only maintains a beautiful smile but also contributes to a healthier, happier life.
 
 Have questions or need more information? Contact our Member Services Team at (214)389-9072.
+
+
+uv run "/Users/jkh/.claude/plugins/cache/buildatscale-claude-code/nano-banana-pro/1.0.0/scripts/generate_image.py" \
+  --prompt "Product marketing photo of a premium matte black electric toothbrush on dark background. Focus on the 5 cleaning mode indicators glowing on the handle: Clean, Soft, Whiten, Massage, Deep Clean. Each mode shown with subtle teal/cyan LED indicator lights. Modern minimalist product photography style with dramatic lighting. Professional dental product advertisement. No text overlays." \
+  --output "/Volumes/ssd/Websites/sleek/public/images/features/cleaning-modes.png" \
+  --aspect square

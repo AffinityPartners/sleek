@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Home, ArrowLeft, Sparkles } from 'lucide-react';
+import { Home, ArrowLeft } from 'lucide-react';
+import Lottie from 'lottie-react';
+import toothAnimation from '../../public/images/404.json';
 
 export default function NotFound() {
   // Animation variants
@@ -42,13 +43,15 @@ export default function NotFound() {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Toothbrush icon */}
+        {/* Animated tooth icon using Lottie animation */}
         <motion.div variants={itemVariants} className="mb-8 mx-auto">
-          <div className="relative w-24 h-24 mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#00e0cb]/20 to-[#5cbbff]/20 rounded-full blur-lg"></div>
-            <div className="relative w-full h-full flex items-center justify-center bg-white/10 backdrop-blur-md rounded-full">
-              <Sparkles className="h-10 w-10 text-[#00e0cb]" />
-            </div>
+          <div className="relative w-40 h-40 mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00e0cb]/20 to-[#5cbbff]/20 rounded-full blur-xl"></div>
+            <Lottie 
+              animationData={toothAnimation}
+              loop={true}
+              className="relative w-full h-full"
+            />
           </div>
         </motion.div>
 
@@ -62,7 +65,7 @@ export default function NotFound() {
         
         <motion.h2 
           variants={itemVariants} 
-          className="text-2xl font-bold mb-6"
+          className="text-2xl font-bold mb-6 bg-gradient-to-r from-[#00e0cb] to-[#5cbbff] bg-clip-text text-transparent"
         >
           Page Not Found
         </motion.h2>
@@ -90,22 +93,6 @@ export default function NotFound() {
             <ArrowLeft size={18} />
             <span>Go Back</span>
           </button>
-        </motion.div>
-        
-        {/* Brand element */}
-        <motion.div 
-          variants={itemVariants}
-          className="mt-16 flex justify-center items-center"
-        >
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/SLEEK-Favicon.png"
-              alt="SLEEK Dental"
-              width={24}
-              height={24}
-            />
-            <span className="text-sm font-medium text-white/70">SLEEK Dental</span>
-          </div>
         </motion.div>
       </motion.div>
     </main>

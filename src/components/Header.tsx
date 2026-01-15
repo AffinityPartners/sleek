@@ -41,7 +41,8 @@ export default function Header() {
                     alt="SLEEK" 
                     width={150} 
                     height={39} 
-                    className="h-12 w-auto" 
+                    className="h-12 w-auto"
+                    style={{ width: 'auto' }}
                     priority
                   />
                 </div>
@@ -53,7 +54,7 @@ export default function Header() {
                 <NavLink href="#">SLEEK Dental Club</NavLink>
                 <NavLink href="#">Membership</NavLink>
                 <NavLink href="#">Benefits</NavLink>
-                <NavLink href="#">Blog</NavLink>
+                <NavLink href="/blog">Blog</NavLink>
                 <NavLink href="#">Contact</NavLink>
                 
                 <Button 
@@ -112,7 +113,7 @@ export default function Header() {
             <MobileNavLink href="#" onClick={() => setIsMenuOpen(false)}>SLEEK Dental Club</MobileNavLink>
             <MobileNavLink href="#" onClick={() => setIsMenuOpen(false)}>Membership</MobileNavLink>
             <MobileNavLink href="#" onClick={() => setIsMenuOpen(false)}>Benefits</MobileNavLink>
-            <MobileNavLink href="#" onClick={() => setIsMenuOpen(false)}>Blog</MobileNavLink>
+            <MobileNavLink href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</MobileNavLink>
             <MobileNavLink href="#" onClick={() => setIsMenuOpen(false)}>Contact</MobileNavLink>
             <div className="mt-4 pt-4 border-t border-gray-100">
               <Button 

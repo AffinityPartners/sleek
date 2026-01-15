@@ -55,7 +55,7 @@ export default function OldHeroSection() {
             {/* Feature list */}
             <div className="space-y-4">
               {[
-                { icon: <Zap className="w-5 h-5 text-[#00e0cb]" />, text: "40,000 Sonic Vibrations/Min" },
+                { icon: <Zap className="w-5 h-5 text-[#00e0cb]" />, text: "31,000 Sonic Vibrations/Min" },
                 { icon: <ShieldCheck className="w-5 h-5 text-[#00e0cb]" />, text: "Tiered Dental Insurance Options" },
                 { icon: <Sparkles className="w-5 h-5 text-[#00e0cb]" />, text: "Quarterly Oral Care Refills Included" }
               ].map((feature, index) => (

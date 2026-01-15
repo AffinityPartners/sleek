@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Mail, MapPin, Phone, ChevronUp, ChevronDown, Facebook } from 'lucide-react';
+import { ArrowRight, Mail, Phone, ChevronUp, ChevronDown, Facebook } from 'lucide-react';
 import { getAllPosts } from '@/lib/blog';
 
 /**
@@ -14,6 +15,8 @@ type FooterLinkItem = {
   name: string;
   href: string;
   external?: boolean;
+  /** Anchor ID for smooth scroll (when on homepage) */
+  anchorId?: string;
 };
 
 type ContactItem = {
@@ -24,26 +27,25 @@ type ContactItem = {
 
 /**
  * Footer navigation data organized by category.
+ * Programs section links to partner/marketing landing pages for different audiences.
+ * Anchor links use full paths (/#section) for cross-page navigation.
  */
 const footerNavigation = {
-  company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Our Mission', href: '/mission' },
-    { name: 'Press', href: '/press' },
-  ],
   pages: [
     { name: 'Home', href: '/' },
-    { name: 'Plans', href: '#plans' },
-    { name: 'Technology', href: '#technology' },
-    { name: 'Benefits', href: '#benefits' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Plans', href: '/#plans', anchorId: 'plans' },
+    { name: 'Technology', href: '/#technology', anchorId: 'technology' },
+    { name: 'Benefits', href: '/#benefits', anchorId: 'benefits' },
+    { name: 'FAQ', href: '/#faq', anchorId: 'faq' },
     { name: 'Blog', href: '/blog' }
   ],
+  programs: [
+    { name: 'For Dentists', href: '/market-programs/dentists' },
+    { name: 'For Affiliates', href: '/market-programs/affiliates' },
+    { name: 'For Groups', href: '/market-programs/groups' },
+    { name: 'For Agents', href: '/market-programs/agents' },
+  ],
   support: [
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'Help Center', href: '/help' },
-    { name: 'Returns Policy', href: '/returns' },
     { name: 'Shipping Information', href: '/shipping' },
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' },
@@ -51,24 +53,36 @@ const footerNavigation = {
   contact: [
     { name: 'members@sleekdentalclub.com', icon: Mail, href: 'mailto:members@sleekdentalclub.com' },
     { name: '(888) 918-2386', icon: Phone, href: 'tel:18889182386' },
-    { name: 'Addison, TX 75001', icon: MapPin, href: '#' },
   ],
 };
 
 /**
  * FooterLinkGroup component renders a column of navigation links.
+ * Each link has padding for 44px minimum touch targets on mobile.
+ * Handles smooth scrolling for anchor links when already on homepage.
  */
-const FooterLinkGroup = ({ title, links }: { title: string; links: FooterLinkItem[] }) => (
+const FooterLinkGroup = ({ title, links, isHomePage }: { title: string; links: FooterLinkItem[]; isHomePage: boolean }) => (
   <div className="flex flex-col">
-    <h3 className="text-sm font-semibold mb-5 text-white uppercase tracking-wider">{title}</h3>
-    <ul className="space-y-3">
+    <h3 className="text-sm font-semibold mb-4 text-white uppercase tracking-wider">{title}</h3>
+    <ul className="space-y-1">
       {links.map((link) => (
         <li key={link.name}>
           <Link 
-            href={link.href}
+            href={isHomePage && link.anchorId ? `#${link.anchorId}` : link.href}
+            scroll={false}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
-            className="text-sm text-gray-400 hover:text-teal-400 transition-colors duration-200"
+            onClick={(e) => {
+              // If on homepage and this is an anchor link, use smooth scroll
+              if (isHomePage && link.anchorId) {
+                e.preventDefault();
+                const element = document.getElementById(link.anchorId);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }}
+            className="py-2 text-sm text-gray-400 hover:text-teal-400 transition-colors duration-200 min-h-[44px] flex items-center"
           >
             {link.name}
           </Link>
@@ -129,10 +143,15 @@ const ScrollToTopButton = () => {
 /**
  * Footer component renders the site footer with navigation,
  * contact info, latest blog post, and social links.
+ * Handles cross-page anchor navigation for homepage sections.
  */
 export default function Footer() {
   const [showFullDisclosure, setShowFullDisclosure] = useState(false);
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  
+  // Check if we're on the homepage for smooth scroll behavior
+  const isHomePage = pathname === '/';
   
   // Get the most recent blog post to display in the footer
   const latestPost = getAllPosts()[0];
@@ -149,9 +168,9 @@ export default function Footer() {
           }}
         />
         
-        {/* Main footer content */}
+        {/* Main footer content - uses section-padding-sm for consistency */}
         <div className="bg-gray-900 text-gray-100">
-          <div className="container-standard py-16 md:py-20">
+          <div className="container-standard py-16 md:py-20 lg:py-24">
             {/* Improved mobile layout: Brand + Nav sections, then Newsletter */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
               {/* Brand column - full width on mobile/tablet, 4 cols on desktop */}
@@ -163,6 +182,7 @@ export default function Footer() {
                     width={120}
                     height={32}
                     className="h-8 w-auto brightness-0 invert"
+                    style={{ width: 'auto' }}
                   />
                 </Link>
                 <p className="text-gray-400 text-sm mb-6 max-w-sm leading-relaxed">
@@ -200,18 +220,18 @@ export default function Footer() {
                 </div>
               </div>
               
-              {/* Navigation columns - 2x2 grid on mobile/tablet, inline on desktop */}
+              {/* Navigation columns - 3 columns grid on mobile/tablet, inline on desktop */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:contents gap-6 lg:col-span-6">
                 <div className="lg:col-span-2">
-                  <FooterLinkGroup title="Company" links={footerNavigation.company} />
+                  <FooterLinkGroup title="Navigation" links={footerNavigation.pages} isHomePage={isHomePage} />
                 </div>
                 
                 <div className="lg:col-span-2">
-                  <FooterLinkGroup title="Navigation" links={footerNavigation.pages} />
+                  <FooterLinkGroup title="Programs" links={footerNavigation.programs} isHomePage={isHomePage} />
                 </div>
                 
-                <div className="col-span-2 sm:col-span-1 lg:col-span-2">
-                  <FooterLinkGroup title="Support" links={footerNavigation.support} />
+                <div className="lg:col-span-2">
+                  <FooterLinkGroup title="Support" links={footerNavigation.support} isHomePage={isHomePage} />
                 </div>
               </div>
               
@@ -375,21 +395,21 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Bottom bar */}
+          {/* Bottom bar - links have touch target padding for mobile */}
           <div className="border-t border-gray-800">
-            <div className="container-standard py-6">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-sm text-gray-500">
+            <div className="container-standard py-4 md:py-6">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4">
+                <p className="text-sm text-gray-500 py-2">
                   © {currentYear} SLEEK Dental Club. All rights reserved.
                 </p>
-                <div className="flex flex-wrap justify-center gap-6">
-                  <Link href="/privacy" className="text-sm text-gray-500 hover:text-teal-400 transition-colors">
+                <div className="flex flex-wrap justify-center gap-2 md:gap-6">
+                  <Link href="/privacy" className="text-sm text-gray-500 hover:text-teal-400 transition-colors px-3 py-2 min-h-[44px] flex items-center">
                     Privacy
                   </Link>
-                  <Link href="/terms" className="text-sm text-gray-500 hover:text-teal-400 transition-colors">
+                  <Link href="/terms" className="text-sm text-gray-500 hover:text-teal-400 transition-colors px-3 py-2 min-h-[44px] flex items-center">
                     Terms
                   </Link>
-                  <Link href="/sitemap" className="text-sm text-gray-500 hover:text-teal-400 transition-colors">
+                  <Link href="/sitemap" className="text-sm text-gray-500 hover:text-teal-400 transition-colors px-3 py-2 min-h-[44px] flex items-center">
                     Sitemap
                   </Link>
                 </div>

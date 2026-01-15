@@ -151,7 +151,7 @@ export default function BlogSection() {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              View All Articles
+              View All Posts
               <ArrowRight className="w-4 h-4" />
             </motion.div>
           </Link>

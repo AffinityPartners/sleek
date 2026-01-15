@@ -590,8 +590,8 @@ export const BLOG_POSTS: BlogPost[] = [
       <h2>10. Association Benefits</h2>
       <p>SLEEK Dental PRO members receive access to association benefits, providing members with professional, lifestyle and health-related perks. Example benefits include vision and hearing savings, chiropractic discounts and a 24-hour nurse line.</p>
 
-      <h2>11. Byte Impression Kit Discount</h2>
-      <p>Byte is a leader in clear aligner therapy. SLEEK Dental PRO members can benefit from savings of $85 off impression kits and $100 off aligners. There is no in-office visit required as everything is handled by US mail. Byte's impression kit makes it easier and more affordable to achieve a straighter, more beautiful smile in half the time of competitors.</p>
+      <h2>11. Aligner Discount</h2>
+      <p>SLEEK Dental PRO members can benefit from savings on impression kits and aligners. There is no in-office visit required as everything is handled by mail. The impression kit makes it easier and more affordable to achieve a straighter, more beautiful smile.</p>
 
       <p>With SLEEK Dental PRO, you're not just getting dental insurance, you're unlocking a world of benefits to support your oral health journey. From affordable pricing to cutting-edge tools, it's your key to a brighter smile!</p>
 
@@ -754,8 +754,8 @@ export const BLOG_POSTS: BlogPost[] = [
       <h3>4. Teledentistry at Your Fingertips</h3>
       <p>In today's fast-paced world, convenience matters. With SLEEK OCP, you have 24/7 access to online dental care through teledentistry. Whenever you need guidance or assistance, our virtual dental experts are a click away.</p>
 
-      <h3>5. Align and Shine with Byte</h3>
-      <p>Are you dreaming of a straighter smile? SLEEK OCP members can save $65 off the Impression Kit and $100 off Aligners with Byte. Achieve the smile you've always wanted without breaking the bank.</p>
+      <h3>5. Aligner Discount</h3>
+      <p>Are you dreaming of a straighter smile? SLEEK OCP members can save on impression kits and aligners. Achieve the smile you've always wanted without breaking the bank.</p>
 
       <h2>Summary</h2>
       <p>In summary, SLEEK OCP is your one-stop dental care solution. From discounts on dental services and prescriptions to access to cutting-edge teledentistry and savings on teeth aligners, we're here to help you maintain a healthy, beautiful smile. Say goodbye to dental care worries and hello to SLEEK OCP: your path to a confident, beaming smile starts here.</p>
@@ -800,7 +800,7 @@ export const BLOG_POSTS: BlogPost[] = [
         <li>Discount Rx Benefits with 10-85% savings on Name Brand & Generic Prescriptions at over 65,000 Pharmacies Nationwide</li>
         <li>Members can also save on Orthodontics & Periodontics Where Available</li>
         <li>Teledentistry Included with 24/7 Online Dental Care</li>
-        <li>Save $65 off Impression Kit & $100 off Aligners with Byte</li>
+        <li>Aligner Discount on Impression Kits & Aligners</li>
       </ul>
 
       <h3>PRO</h3>
@@ -809,12 +809,12 @@ export const BLOG_POSTS: BlogPost[] = [
       <ul>
         <li>Underwritten by MetLife, members have access to MetLife PDP Plus Network</li>
         <li>80/60/50 Co-Insurance with an Increasing Annual Max per Year</li>
-        <li>Discount Vision and Rx Benefits with Byte Impression Kit Discount</li>
+        <li>Discount Vision and Rx Benefits with Aligner Discount</li>
         <li>Premier Business Association membership for additional savings</li>
         <li>100% Coverage for Preventative care for in-network exams, cleanings & X-rays</li>
         <li>Freedom to Visit Any Dentist with ~30-45% Savings with In-Network Providers</li>
         <li>Teledentistry Included with 24/7 Online Dental Care</li>
-        <li>Save $65 off Impression Kit & $100 off Aligners with Byte</li>
+        <li>Aligner Discount on Impression Kits & Aligners</li>
         <li>Family Plan Includes Domestic Partners</li>
         <li>Chiropractic & Hearing Discounts</li>
       </ul>
@@ -824,13 +824,13 @@ export const BLOG_POSTS: BlogPost[] = [
       <ul>
         <li>Underwritten by MetLife, members have access to MetLife PDP Plus Network</li>
         <li>100/80/50 Co-Insurance with an Increasing Annual Max per Year</li>
-        <li>Discount Vision and Rx Benefits with Byte Impression Kit Discount</li>
+        <li>Discount Vision and Rx Benefits with Aligner Discount</li>
         <li>Premier Business Association membership for additional savings</li>
         <li>100% Coverage for Preventative care for in-network exams, cleanings & X-rays</li>
         <li>Freedom to Visit Any Dentist with ~30-45% Savings with In-Network Providers</li>
         <li>$1,500 Orthodontia Coverage Available up to Age 19</li>
         <li>Teledentistry Included with 24/7 Online Dental Care</li>
-        <li>Save $65 off Impression Kit & $100 off Aligners with Byte</li>
+        <li>Aligner Discount on Impression Kits & Aligners</li>
         <li>Family Plan Includes Domestic Partners</li>
         <li>Chiropractic and Hearing Discounts</li>
       </ul>

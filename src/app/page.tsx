@@ -62,19 +62,21 @@ export default function Home() {
       
       {/* Main content */}
       <div className="relative">
-        {/* Hero section - with extra top padding for nav */}
-        <section id="hero" className="pt-20">
+        {/* Hero section - Dark immersive hero with full viewport height */}
+        <section id="hero">
           <Hero 
-            headline="A Dental Experience Worth Smiling About" 
-            subheadline="Experience the perfect blend of cutting-edge technology and comprehensive dental care with our premium electric toothbrush subscription service."
+            headline="Premium Sonic Tech. Complete Dental Coverage."
+            subheadline="Experience the perfect fusion of cutting-edge sonic technology and comprehensive dental insurance. One membership, total oral care."
             ctaText="Find My Perfect Plan"
-            mediaType="image"
-            mediaSrc="/images/sleek-hero-box.jpg"
-            mediaAlt="SLEEK Electric Toothbrush Premium Packaging"
+            secondaryCtaText="See How It Works"
+            mediaSrc="/images/hero/sleek-brush-splash.png"
+            mediaAlt="SLEEK Sonic Electric Toothbrush with Water Splash"
             onCtaClick={() => {
               window.location.href = 'https://enrollment.sleekdentalclub.com/onboarding';
             }}
-            variant="light"
+            onSecondaryCtaClick={() => {
+              document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' });
+            }}
           />
         </section>
         
@@ -89,7 +91,9 @@ export default function Home() {
         </section>
         
         {/* Product Technology Highlight section */}
-        <ProductTechHighlight />
+        <section id="technology" className="scroll-mt-20">
+          <ProductTechHighlight />
+        </section>
         
         {/* Membership Benefits section */}
         <section id="benefits" className="scroll-mt-20">

@@ -129,8 +129,8 @@ export default function MembershipBenefitsGrid({
                 }}
                 className="group relative"
               >
-                {/* Card with hover glow effect */}
-                <div className="relative h-full p-8 rounded-2xl bg-white border border-gray-100 transition-all duration-300 group-hover:border-teal-200/50 group-hover:shadow-card-hover">
+                {/* Card with hover glow effect - responsive padding for mobile */}
+                <div className="relative h-full p-6 md:p-8 rounded-2xl bg-white border border-gray-100 transition-all duration-300 group-hover:border-teal-200/50 group-hover:shadow-card-hover">
                   {/* Subtle gradient overlay on hover */}
                   <div 
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
