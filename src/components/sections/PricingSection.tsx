@@ -44,7 +44,7 @@ const pricingPlans: Plan[] = [
     name: 'CLUB',
     description: 'Smart toothbrush with quarterly refills',
     monthlyPrice: '$16.95',
-    enrollmentFee: 'billed quarterly',
+    enrollmentFee: '$39.95',
     isPopular: false,
     logo: '/images/SLEEK-logo.svg',
     accentColor: '#3b82f6',
@@ -1187,11 +1187,13 @@ const PricingSection: React.FC = () => {
                       <span className="text-3xl md:text-4xl font-bold text-gray-900 font-heading tracking-tight">
                         {plan.monthlyPrice}
                       </span>
-                      <span className="text-gray-500 ml-1.5 text-base">/month</span>
+                      <span className="text-gray-500 ml-1.5 text-base">
+                        {plan.id === 'club' ? '/quarterly' : '/month'}
+                      </span>
                     </div>
                     <p className="text-xs text-gray-500 mt-1">
                       {plan.id === 'club' 
-                        ? plan.enrollmentFee
+                        ? `+ ${plan.enrollmentFee} one-time welcome kit`
                         : `+ ${plan.enrollmentFee} one-time enrollment fee`}
                     </p>
                   </div>
