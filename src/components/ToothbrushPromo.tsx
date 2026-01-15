@@ -58,7 +58,7 @@ const featureBadges = [
   },
   { 
     icon: <Battery size={18} />, 
-    label: "Up to 3 Weeks Per Charge",
+    label: "Up to 20 Days Per Charge",
     position: "top-1/3 left-[5%] md:left-[8%] lg:left-[15%]"
   },
   { 
@@ -75,9 +75,9 @@ export default function ToothbrushPromo() {
 
   const cleaningModes = [
     { id: 'clean', name: 'Clean', description: 'Everyday thorough cleaning mode' },
-    { id: 'white', name: 'White', description: 'Polishing for a brighter smile' },
-    { id: 'gum', name: 'Gum Care', description: 'Gentle gum stimulation and massage' },
-    { id: 'sensitive', name: 'Sensitive', description: 'Extra gentle for sensitive teeth' },
+    { id: 'soft', name: 'Soft', description: 'Extra gentle for sensitive teeth' },
+    { id: 'whiten', name: 'Whiten', description: 'Polishing for a brighter smile' },
+    { id: 'massage', name: 'Massage', description: 'Gentle gum stimulation and circulation' },
     { id: 'deep', name: 'Deep Clean', description: 'Intensive cleaning session' },
   ];
 

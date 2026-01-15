@@ -64,15 +64,15 @@ const features: TechFeature[] = [
     accentColorRGB: '26, 185, 163',
     specs: [
       { label: 'Modes', value: '5' },
-      { label: 'Settings', value: '15' },
-      { label: 'Memory', value: 'Yes' },
+      { label: 'Timer', value: '2 Min' },
+      { label: 'Pacer', value: '30 Sec' },
     ],
     benefits: [
       'Clean mode for thorough daily brushing',
-      'Sensitive mode for gentle care',
-      'Whitening mode for stain removal',
-      'Gum care mode for improved circulation',
-      'Deep clean mode for intensive cleaning'
+      'Soft mode for gentle care',
+      'Whiten mode for stain removal',
+      'Massage mode for gum circulation',
+      'Deep Clean mode for intensive cleaning'
     ],
     showcaseImage: '/images/products/5-modes.png',
     perspective: { rotateY: 5, rotateX: -2, scale: 1 }
@@ -89,7 +89,7 @@ const features: TechFeature[] = [
     specs: [
       { label: 'VPM', value: '31K' },
       { label: 'Power', value: 'Sonic' },
-      { label: 'Clean', value: '10x' },
+      { label: 'Rating', value: 'IPX7' },
     ],
     benefits: [
       'Reaches between teeth and along the gumline',
@@ -103,19 +103,19 @@ const features: TechFeature[] = [
     id: 'usb-charging',
     name: 'USB Rechargeable',
     shortName: 'USB',
-    tagline: '3 Week Battery',
+    tagline: '20-Day Battery',
     description: 'Convenient built-in USB charging keeps your brush powered and ready. Charge anywhere with any USB port.',
     icon: <Battery className="w-5 h-5" />,
     accentColor: '#2563eb',
     accentColorRGB: '37, 99, 235',
     specs: [
-      { label: 'Battery', value: '3 Wk' },
-      { label: 'Charge', value: '4 Hr' },
+      { label: 'Battery', value: '20 Day' },
+      { label: 'Charge', value: '6-10 Hr' },
       { label: 'Type', value: 'USB' },
     ],
     benefits: [
       'Charge with any USB port or adapter',
-      'Up to 3 weeks of use per charge',
+      'Up to 20 days of use per charge¹',
       'LED indicator shows charging status'
     ],
     showcaseImage: '/images/USB-Charge.png',
@@ -177,7 +177,7 @@ const features: TechFeature[] = [
     specs: [
       { label: 'Items', value: '6+' },
       { label: 'Case', value: 'Travel' },
-      { label: 'Value', value: '$150+' },
+      { label: 'Refills', value: 'Quarterly' },
     ],
     benefits: [
       'Premium matte black electric toothbrush',
@@ -2559,6 +2559,24 @@ const ProductTechHighlight: React.FC = () => {
               ))}
             </motion.div>
           )}
+
+          {/* Product Disclosures Footer */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-12 pt-8 border-t border-white/10"
+          >
+            <div className="max-w-2xl mx-auto text-center space-y-2">
+              <p className="text-[10px] text-gray-500 leading-relaxed">
+                <sup>¹</sup>Battery life based on twice daily use of 2 minutes per session. Actual battery life may vary based on usage patterns and cleaning mode selected.
+              </p>
+              <p className="text-[10px] text-gray-500 leading-relaxed">
+                Product specifications sourced from official SLEEK Dental Club packaging. IPX7 rating indicates water resistance for immersion up to 1 meter for 30 minutes.
+              </p>
+              <p className="text-[10px] text-gray-400 mt-4">
+                SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

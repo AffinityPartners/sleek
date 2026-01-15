@@ -82,7 +82,7 @@ export default function ValueSection() {
               variants={fadeIn(0.4)}
               className="text-gray-700 text-lg leading-relaxed mb-12"
             >
-              We provide members with advanced sonic technology that removes up to 10x more plaque than manual brushing. Each membership includes a premium sonic electric toothbrush welcome kit with quarterly brush head and floss picks auto shipped. Our OCP, PRO and MAX membership levels also include specialized dental care benefits to maintain optimal oral health year-round.
+              We provide members with advanced sonic technology for superior plaque removal compared to manual brushing. Each membership includes a premium sonic electric toothbrush welcome kit with quarterly brush head and floss picks auto shipped. Our OCP, PRO and MAX membership levels also include specialized dental care benefits to maintain optimal oral health year-round.
             </motion.p>
 
             {/* Membership Kit Details Card */}
@@ -96,10 +96,10 @@ export default function ValueSection() {
               <ul className="space-y-3">
                 {[
                   "Sonic Electric Toothbrush with powerful cleaning action",
-                  "5 Cleaning Modes: Clean, White, Polish, Gum Care, Sensitive",
+                  "5 Cleaning Modes: Clean, Soft, Whiten, Massage, Deep Clean",
                   "2-Minute Smart Timer with 30-second quadrant reminders",
                   "Water-resistant design for shower use",
-                  "Up to 3 weeks battery life with USB charging",
+                  "Up to 20 days battery life with USB charging¹",
                   "Quarterly brush head and floss pick refills",
                   "Premium travel case and toothbrush holder"
                 ].map((item, index) => (
@@ -119,7 +119,9 @@ export default function ValueSection() {
                   </motion.li>
                 ))}
               </ul>
-              {/* Removed Clinically proven benefits section */}
+              <p className="text-[10px] text-gray-500 mt-4 leading-relaxed">
+                <sup>¹</sup>Battery life based on twice daily use. Specifications per official product packaging.
+              </p>
             </motion.div>
           </motion.div>
 

@@ -15,7 +15,7 @@ interface FaqItem {
 const faqItems: FaqItem[] = [
   {
     question: "What comes with the subscription?",
-    answer: "Our subscription includes a premium sonic electric toothbrush, a USB charger, a travel case, and quarterly replacement brush heads. The brush features 5 cleaning modes, up to 3 weeks of battery life per charge, and a 2-minute smart timer. Each quarterly shipment also includes floss picks to complete your oral care routine."
+    answer: "Our subscription includes a premium sonic electric toothbrush, a USB charger, a travel case, and quarterly replacement brush heads. The brush features 5 cleaning modes, up to 20 days of battery life per charge, and a 2-minute smart timer. Each quarterly shipment also includes floss picks to complete your oral care routine."
   },
   {
     question: "Can I cancel or pause anytime?",
