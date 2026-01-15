@@ -9,6 +9,171 @@ import { motion, useTransform, useScroll, useMotionValueEvent, AnimatePresence, 
 import { Disclosure } from '@headlessui/react';
 
 /**
+ * Props for the MobileMenu component.
+ * Extracted to its own component to properly handle useEffect for body scroll lock.
+ */
+interface MobileMenuProps {
+  navItems: Array<{ id: string; label: string }>;
+  activeSection: string;
+  isHomePage: boolean;
+  useScrolledStyling: boolean;
+}
+
+/**
+ * MobileMenu component handles the mobile navigation with proper React patterns.
+ * The body scroll lock is handled in a child component that properly uses useEffect
+ * inside a component body, not inside a render function.
+ */
+function MobileMenu({ navItems, activeSection, isHomePage, useScrolledStyling }: MobileMenuProps) {
+  return (
+    <Disclosure as="div" className="lg:hidden">
+      {({ open }) => (
+        <MobileMenuContent
+          open={open}
+          navItems={navItems}
+          activeSection={activeSection}
+          isHomePage={isHomePage}
+          useScrolledStyling={useScrolledStyling}
+        />
+      )}
+    </Disclosure>
+  );
+}
+
+/**
+ * MobileMenuContent is a separate component to properly use useEffect for body scroll lock.
+ * This pattern is necessary because useEffect cannot be called inside render functions.
+ */
+function MobileMenuContent({ 
+  open, 
+  navItems, 
+  activeSection, 
+  isHomePage, 
+  useScrolledStyling 
+}: MobileMenuProps & { open: boolean }) {
+  const prefersReducedMotion = useReducedMotion();
+  
+  // Body scroll lock effect when menu is open - now properly in component body
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  return (
+    <>
+      <Disclosure.Button className={`inline-flex items-center justify-center p-3 min-h-[44px] min-w-[44px] rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 transition-all duration-300 relative z-50 ${
+        useScrolledStyling 
+          ? 'text-gray-700 hover:text-teal-600 hover:bg-gray-100/50' 
+          : 'text-white hover:text-teal-300 hover:bg-white/10'
+      }`}>
+        <span className="sr-only">Open main menu</span>
+        <motion.div
+          animate={{ rotate: open ? 90 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {open ? (
+            <X className="block h-6 w-6" aria-hidden="true" />
+          ) : (
+            <Menu className="block h-6 w-6" aria-hidden="true" />
+          )}
+        </motion.div>
+      </Disclosure.Button>
+      
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Backdrop overlay for visual focus */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+              aria-hidden="true"
+            />
+            
+            {/* Menu panel */}
+            <Disclosure.Panel
+              static
+              as={motion.div}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-2xl shadow-elevation-3 border-t border-gray-100 z-50"
+            >
+              <div className="container-standard py-4 space-y-1">
+                {navItems.map((item, index) => (
+                  <Disclosure.Button
+                    key={item.id}
+                    as={Link}
+                    href={isHomePage ? `#${item.id}` : `/#${item.id}`}
+                    scroll={false}
+                    onClick={(e: React.MouseEvent) => {
+                      // If on homepage, use smooth scroll
+                      if (isHomePage) {
+                        e.preventDefault();
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }
+                    }}
+                    className={`block px-4 py-3 min-h-[44px] rounded-xl text-base font-medium ${
+                      activeSection === item.id
+                        ? 'text-teal-700 bg-teal-50'
+                        : 'text-gray-800 hover:text-teal-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      {item.label}
+                    </motion.span>
+                  </Disclosure.Button>
+                ))}
+                <div className="pt-4 pb-2 px-2">
+                  <Disclosure.Button
+                    as={Link}
+                    href={isHomePage ? '#plans' : '/#plans'}
+                    scroll={false}
+                    onClick={(e: React.MouseEvent) => {
+                      if (isHomePage) {
+                        e.preventDefault();
+                        const element = document.getElementById('plans');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }
+                    }}
+                    className="block w-full text-center py-3.5 min-h-[48px] rounded-xl text-white font-semibold"
+                    style={{
+                      background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+                    }}
+                  >
+                    <motion.span whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}>
+                      GET STARTED
+                    </motion.span>
+                  </Disclosure.Button>
+                </div>
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+/**
  * Props for StickyNav component.
  * Allows customization of visual behavior based on hero background.
  */
@@ -262,128 +427,12 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
           </div>
           
           {/* Mobile menu with backdrop overlay and improved animations */}
-          <Disclosure as="div" className="lg:hidden">
-            {({ open }) => {
-              // Body scroll lock effect when menu is open
-              useEffect(() => {
-                if (open) {
-                  document.body.style.overflow = 'hidden';
-                } else {
-                  document.body.style.overflow = '';
-                }
-                return () => {
-                  document.body.style.overflow = '';
-                };
-              }, [open]);
-
-              return (
-                <>
-                  <Disclosure.Button className={`inline-flex items-center justify-center p-3 min-h-[44px] min-w-[44px] rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 transition-all duration-300 relative z-50 ${
-                    useScrolledStyling 
-                      ? 'text-gray-700 hover:text-teal-600 hover:bg-gray-100/50' 
-                      : 'text-white hover:text-teal-300 hover:bg-white/10'
-                  }`}>
-                    <span className="sr-only">Open main menu</span>
-                    <motion.div
-                      animate={{ rotate: open ? 90 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {open ? (
-                        <X className="block h-6 w-6" aria-hidden="true" />
-                      ) : (
-                        <Menu className="block h-6 w-6" aria-hidden="true" />
-                      )}
-                    </motion.div>
-                  </Disclosure.Button>
-                  
-                  <AnimatePresence>
-                    {open && (
-                      <>
-                        {/* Backdrop overlay for visual focus */}
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-                          aria-hidden="true"
-                        />
-                        
-                        {/* Menu panel */}
-                        <Disclosure.Panel
-                          static
-                          as={motion.div}
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-2xl shadow-elevation-3 border-t border-gray-100 z-50"
-                        >
-                          <div className="container-standard py-4 space-y-1">
-                            {navItems.map((item, index) => (
-                              <Disclosure.Button
-                                key={item.id}
-                                as={Link}
-                                href={isHomePage ? `#${item.id}` : `/#${item.id}`}
-                                scroll={false}
-                                onClick={(e: React.MouseEvent) => {
-                                  // If on homepage, use smooth scroll
-                                  if (isHomePage) {
-                                    e.preventDefault();
-                                    const element = document.getElementById(item.id);
-                                    if (element) {
-                                      element.scrollIntoView({ behavior: 'smooth' });
-                                    }
-                                  }
-                                }}
-                                className={`block px-4 py-3 min-h-[44px] rounded-xl text-base font-medium ${
-                                  activeSection === item.id
-                                    ? 'text-teal-700 bg-teal-50'
-                                    : 'text-gray-800 hover:text-teal-600 hover:bg-gray-50'
-                                }`}
-                              >
-                                <motion.span
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: index * 0.05 }}
-                                >
-                                  {item.label}
-                                </motion.span>
-                              </Disclosure.Button>
-                            ))}
-                            <div className="pt-4 pb-2 px-2">
-                              <Disclosure.Button
-                                as={Link}
-                                href={isHomePage ? '#plans' : '/#plans'}
-                                scroll={false}
-                                onClick={(e: React.MouseEvent) => {
-                                  if (isHomePage) {
-                                    e.preventDefault();
-                                    const element = document.getElementById('plans');
-                                    if (element) {
-                                      element.scrollIntoView({ behavior: 'smooth' });
-                                    }
-                                  }
-                                }}
-                                className="block w-full text-center py-3.5 min-h-[48px] rounded-xl text-white font-semibold"
-                                style={{
-                                  background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-                                }}
-                              >
-                                <motion.span whileTap={{ scale: 0.98 }}>
-                                  GET STARTED
-                                </motion.span>
-                              </Disclosure.Button>
-                            </div>
-                          </div>
-                        </Disclosure.Panel>
-                      </>
-                    )}
-                  </AnimatePresence>
-                </>
-              );
-            }}
-          </Disclosure>
+          <MobileMenu 
+            navItems={navItems}
+            activeSection={activeSection}
+            isHomePage={isHomePage}
+            useScrolledStyling={useScrolledStyling}
+          />
         </div>
       </div>
     </motion.header>

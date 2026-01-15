@@ -1074,10 +1074,10 @@ const PricingSection: React.FC = () => {
             </motion.p>
           </div>
 
-          {/* Pricing cards grid - increased gap on mobile for better separation */}
+          {/* Pricing cards grid - explicit 1 column on mobile, 2 on tablet, 4 on desktop */}
           <motion.div
             variants={containerVariants}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-5 items-stretch"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-5 items-stretch"
           >
             {pricingPlans.map((plan, planIndex) => (
               <motion.div
