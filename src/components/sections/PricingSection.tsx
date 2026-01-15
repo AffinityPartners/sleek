@@ -1181,6 +1181,10 @@ const PricingSection: React.FC = () => {
                       {plan.name}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4">{plan.description}</p>
+                    {/* "Starting at" label shown for OCP, PRO, and MAX plans to indicate variable pricing */}
+                    {(plan.id === 'ocp' || plan.id === 'pro' || plan.id === 'max') && (
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-0.5">Starting at</p>
+                    )}
                     <div className="flex items-baseline">
                       <span className="text-3xl md:text-4xl font-bold text-gray-900 font-heading tracking-tight">
                         {plan.monthlyPrice}
