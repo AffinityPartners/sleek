@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,51 +18,6 @@ interface MobileMenuProps {
   isHomePage: boolean;
   useScrolledStyling: boolean;
 }
-
-/**
- * Animation variants for the mobile menu container.
- * Uses staggered children animations for a premium cascading effect.
- */
-const menuContainerVariants = {
-  closed: { 
-    opacity: 0,
-    transition: {
-      staggerChildren: 0.03,
-      staggerDirection: -1,
-    }
-  },
-  open: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.1,
-      ease: [0.22, 1, 0.36, 1],
-    }
-  }
-};
-
-/**
- * Animation variants for individual menu items.
- * Items slide up and fade in with a spring animation.
- */
-const menuItemVariants = {
-  closed: { 
-    opacity: 0, 
-    y: 20,
-    transition: {
-      duration: 0.2,
-    }
-  },
-  open: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 24,
-    }
-  }
-};
 
 /**
  * MobileMenu component handles the mobile navigation with proper React patterns.
@@ -106,6 +62,12 @@ function MobileMenuContent({
   useScrolledStyling 
 }: MobileMenuProps & { open: boolean }) {
   const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  
+  // Track if component is mounted (needed for portal SSR safety)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   /**
    * Body scroll lock effect when menu is open.
@@ -159,32 +121,17 @@ function MobileMenuContent({
         </span>
       </Disclosure.Button>
       
-      <AnimatePresence mode="wait">
-        {open && (
-          <>
-            {/* Full-screen backdrop overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[55]"
-              aria-hidden="true"
-            />
-            
-            {/* Full-screen menu panel - fixed positioning eliminates gaps */}
-            <Disclosure.Panel
-              static
-              as={motion.div}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ 
-                duration: 0.4, 
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              className="fixed inset-x-0 top-[72px] bottom-0 bg-white z-[58] overflow-y-auto"
-            >
+      {/* Mobile menu panel - renders via portal when open to escape header stacking context */}
+      {open && mounted && createPortal(
+        <>
+          {/* Full-screen backdrop overlay */}
+          <div 
+            className="fixed inset-0 bg-black/50 z-[9998]"
+            aria-hidden="true"
+          />
+          
+          {/* Full-screen menu panel */}
+          <div className="fixed inset-x-0 top-[72px] bottom-0 bg-white z-[9999] overflow-y-auto">
               {/* Brand gradient accent line at the top */}
               <div 
                 className="absolute top-0 left-0 right-0 h-1"
@@ -195,13 +142,9 @@ function MobileMenuContent({
               />
               
               {/* Menu content container with safe area padding */}
-              <motion.div 
+              <div 
                 className="flex flex-col min-h-full px-6 pt-8 pb-safe"
                 style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
-                variants={menuContainerVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
               >
                 {/* Navigation items with staggered animation */}
                 <nav className="flex-1 space-y-1" role="navigation" aria-label="Mobile navigation">
@@ -215,7 +158,9 @@ function MobileMenuContent({
                     return (
                     <motion.div
                       key={item.id}
-                      variants={prefersReducedMotion ? {} : menuItemVariants}
+                      initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.2 }}
                     >
                       <Disclosure.Button
                         as={Link}
@@ -266,10 +211,7 @@ function MobileMenuContent({
                 </nav>
                 
                 {/* CTA Button section with premium styling */}
-                <motion.div 
-                  className="mt-8 pt-6 border-t border-gray-100"
-                  variants={prefersReducedMotion ? {} : menuItemVariants}
-                >
+                <div className="mt-8 pt-6 border-t border-gray-100">
                   <Disclosure.Button
                     as={Link}
                     href={isHomePage ? '#plans' : '/#plans'}
@@ -303,12 +245,12 @@ function MobileMenuContent({
                   <p className="mt-4 text-center text-sm text-gray-500">
                     Join thousands of members with healthier smiles
                   </p>
-                </motion.div>
-              </motion.div>
-            </Disclosure.Panel>
-          </>
+                </div>
+              </div>
+            </div>
+          </>,
+        document.body
         )}
-      </AnimatePresence>
     </>
   );
 }
