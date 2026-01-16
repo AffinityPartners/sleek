@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://sleekdentalclub.com/market-programs/groups',
   },
+  twitter: {
+    card: 'summary',
+    title: 'Group Partnership | SLEEK Dental Club',
+    description: 'Exclusive group rates for organizations and associations.',
+  },
+  alternates: {
+    canonical: 'https://sleekdentalclub.com/market-programs/groups',
+  },
 };
 
 /**

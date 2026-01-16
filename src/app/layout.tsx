@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Lato } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
+import { createBaseSchemaGraph } from '@/lib/schema'
 
 /**
  * Lato font for all typography (headings and body).
@@ -29,15 +31,38 @@ export const viewport: Viewport = {
 }
 
 /**
- * Site metadata configuration for SEO and social sharing.
- * 
+ * Site-wide default metadata configuration for SEO and social sharing.
+ *
+ * This serves as the base metadata that individual pages can override.
  * OpenGraph and Twitter images use the static social-share.png for consistent
  * branding across all platforms (iMessage, Slack, Twitter/X, Facebook, LinkedIn, etc.).
+ *
+ * Individual pages should export their own metadata to override these defaults
+ * with page-specific titles, descriptions, and canonical URLs.
  */
 export const metadata: Metadata = {
   metadataBase: new URL('https://sleekdentalclub.com'),
-  title: 'SLEEK Dental | A Dental Experience Worth Smiling About',
-  description: 'SLEEK Dental offers affordable dental care memberships with electric toothbrush kits and value-added benefits for individuals and families.',
+  title: {
+    default: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
+    template: '%s | SLEEK Dental Club',
+  },
+  description:
+    'SLEEK Dental Club offers affordable dental care memberships with premium sonic electric toothbrush kits, quarterly refills, and dental insurance options.',
+  keywords: [
+    'dental membership',
+    'electric toothbrush',
+    'dental insurance',
+    'oral care subscription',
+    'MetLife dental',
+  ],
+  authors: [{ name: 'SLEEK Dental Club' }],
+  creator: 'SLEEK Dental Club',
+  publisher: 'Affinity Partners Marketing, LLC',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: [
       {
@@ -51,16 +76,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'SLEEK Dental | A Dental Experience Worth Smiling About',
-    description: 'Affordable dental care memberships with electric toothbrush kits and more.',
+    title: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
+    description:
+      'Affordable dental care memberships with premium sonic electric toothbrush kits and dental insurance options.',
     url: 'https://sleekdentalclub.com',
-    siteName: 'SLEEK Dental',
+    siteName: 'SLEEK Dental Club',
     images: [
       {
         url: '/images/social-share.png',
         width: 1200,
         height: 630,
-        alt: 'SLEEK Dental - A Dental Experience Worth Smiling About',
+        alt: 'SLEEK Dental Club - Premium Electric Toothbrush and Dental Coverage',
       },
     ],
     locale: 'en_US',
@@ -68,9 +94,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SLEEK Dental | A Dental Experience Worth Smiling About',
-    description: 'Affordable dental care memberships with electric toothbrush kits and more.',
+    title: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
+    description:
+      'Affordable dental care memberships with premium sonic electric toothbrush kits and dental insurance options.',
     images: ['/images/social-share.png'],
+    creator: '@sleekdentalclub',
   },
   robots: {
     index: true,
@@ -83,6 +111,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    // Add your verification codes here when available
+    // google: 'your-google-site-verification-code',
+    // yandex: 'your-yandex-verification-code',
+  },
+  category: 'Health & Dental Care',
 }
 
 export default function RootLayout({
@@ -102,6 +136,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white font-body antialiased selection:bg-teal-200 selection:text-teal-900">
+        {/* Site-wide JSON-LD structured data for Organization and WebSite */}
+        <Script
+          id="site-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(createBaseSchemaGraph()),
+          }}
+        />
+        
         {/* Global grain texture overlay for premium feel */}
         <div className="grain-overlay" aria-hidden="true" />
         

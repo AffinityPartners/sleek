@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://sleekdentalclub.com/market-programs/affiliates',
   },
+  twitter: {
+    card: 'summary',
+    title: 'Become a SLEEK Affiliate | Affiliate Marketing Program',
+    description: 'Earn commissions promoting SLEEK Dental Club memberships.',
+  },
+  alternates: {
+    canonical: 'https://sleekdentalclub.com/market-programs/affiliates',
+  },
 };
 
 /**

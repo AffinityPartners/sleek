@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://sleekdentalclub.com/market-programs/dentists',
   },
+  twitter: {
+    card: 'summary',
+    title: 'Partner with SLEEK Dental Club | Dentist Partnership',
+    description: 'Grow your practice with SLEEK Dental Club partnership.',
+  },
+  alternates: {
+    canonical: 'https://sleekdentalclub.com/market-programs/dentists',
+  },
 };
 
 /**

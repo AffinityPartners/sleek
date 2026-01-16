@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://sleekdentalclub.com/market-programs/agents',
   },
+  twitter: {
+    card: 'summary',
+    title: 'Sell SLEEK Dental Plans | Agent Partnership',
+    description: 'Licensed products and competitive commissions for agents.',
+  },
+  alternates: {
+    canonical: 'https://sleekdentalclub.com/market-programs/agents',
+  },
 };
 
 /**
