@@ -375,6 +375,16 @@ export default function Hero({
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
+      {/* ===== MOBILE HERO IMAGE - Placed at section level to avoid nesting/stacking issues ===== */}
+      {/* DEBUG: Using plain img tag to test if Next.js Image is the issue */}
+      <div className="absolute inset-0 z-[200] flex items-center justify-center pointer-events-none">
+        <img
+          src="/images/Sleekbrush-splash.png"
+          alt="SLEEK Sonic Electric Toothbrush with Water Splash"
+          className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] md:w-[550px] md:h-[720px] mt-16 md:mt-0 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
+        />
+      </div>
+      
       {/* ===== DARK CINEMATIC BACKGROUND ===== */}
       <div className="absolute inset-0">
         {/* Base gradient */}
@@ -560,19 +570,7 @@ export default function Hero({
             animate={{ opacity: 1, scale: 1 }}
           >
             <div className="relative h-[280px] sm:h-[350px] md:h-[550px] lg:h-[600px] w-full">
-              {/* MOBILE-ONLY: Next.js Image with very high z-index to ensure visibility above all layers.
-                  Uses fill prop with explicit container dimensions for proper sizing. */}
-              <div className="md:hidden absolute inset-0 z-[100] flex items-center justify-center">
-                <div className="relative w-[280px] h-[260px] sm:w-[340px] sm:h-[330px] -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]">
-                  <Image
-                    src={mediaSrc}
-                    alt={mediaAlt}
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </div>
+              {/* NOTE: Mobile image is now rendered at section level (above) to avoid nesting/stacking issues */}
               
               {/* DESKTOP-ONLY: Pulsing ambient glow behind product */}
               <motion.div
