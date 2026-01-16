@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Lato } from 'next/font/google'
 import Script from 'next/script'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { createBaseSchemaGraph } from '@/lib/schema'
 
@@ -169,6 +171,12 @@ export default function RootLayout({
           </div>
           {children}
         </div>
+        
+        {/* Vercel Speed Insights for performance monitoring */}
+        <SpeedInsights />
+        
+        {/* Vercel Analytics for visitor and page view tracking */}
+        <Analytics />
       </body>
     </html>
   )
