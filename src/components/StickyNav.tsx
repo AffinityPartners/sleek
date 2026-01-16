@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useTransform, useScroll, useMotionValueEvent, AnimatePresence, useReducedMotion, useMotionTemplate } from 'framer-motion';
 import { Disclosure } from '@headlessui/react';
+import { Mail, Phone, ChevronRight, X } from 'lucide-react';
 
 /**
  * Props for the MobileMenu component.
@@ -18,6 +19,34 @@ interface MobileMenuProps {
   isHomePage: boolean;
   useScrolledStyling: boolean;
 }
+
+/**
+ * Partner programs navigation data for mobile menu.
+ * These link to dedicated marketing pages for different audiences.
+ */
+const programsNav = [
+  { name: 'For Dentists', href: '/market-programs/dentists' },
+  { name: 'For Affiliates', href: '/market-programs/affiliates' },
+  { name: 'For Groups', href: '/market-programs/groups' },
+  { name: 'For Agents', href: '/market-programs/agents' },
+];
+
+/**
+ * Support/legal links for mobile menu footer section.
+ */
+const supportNav = [
+  { name: 'Privacy Policy', href: '/privacy' },
+  { name: 'Terms of Service', href: '/terms' },
+  { name: 'Sitemap', href: '/sitemap' },
+];
+
+/**
+ * Contact information displayed in mobile menu.
+ */
+const contactInfo = {
+  email: 'members@sleekdentalclub.com',
+  phone: '(888) 918-2386',
+};
 
 /**
  * MobileMenu component handles the mobile navigation with proper React patterns.
@@ -47,11 +76,13 @@ function MobileMenu({ navItems, activeSection, isHomePage, useScrolledStyling }:
 /**
  * MobileMenuContent is a separate component to properly use useEffect for body scroll lock.
  * This premium implementation features:
- * - Fixed full-screen overlay (no positioning gaps)
- * - Morphing hamburger-to-X animation with three animated spans
+ * - Dark charcoal theme matching site aesthetic
+ * - Clickable backdrop to close menu
+ * - Slide-in animation from right
+ * - Organized navigation sections (Main, Programs, Contact, Support)
+ * - Morphing hamburger-to-X animation
  * - Staggered Framer Motion entrance for menu items
  * - Brand gradient accent line at top
- * - Proper visual hierarchy with separators and active states
  * - iOS safe area padding for notched devices
  */
 function MobileMenuContent({ 
@@ -84,6 +115,79 @@ function MobileMenuContent({
       document.body.style.overflow = '';
     };
   }, [open]);
+
+  /**
+   * Animation variants for the menu panel slide-in effect.
+   * Uses translateX for smooth GPU-accelerated animation.
+   */
+  const menuPanelVariants = {
+    closed: { 
+      x: '100%',
+      opacity: 0.8,
+    },
+    open: { 
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+        mass: 0.8,
+      }
+    },
+    exit: {
+      x: '100%',
+      opacity: 0.8,
+      transition: {
+        type: 'spring',
+        stiffness: 400,
+        damping: 40,
+      }
+    }
+  };
+
+  /**
+   * Animation variants for backdrop fade effect.
+   */
+  const backdropVariants = {
+    closed: { opacity: 0 },
+    open: { 
+      opacity: 1,
+      transition: { duration: 0.2 }
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.15, delay: 0.1 }
+    }
+  };
+
+  /**
+   * Stagger container for menu items animation.
+   */
+  const staggerContainer = {
+    open: {
+      transition: {
+        staggerChildren: 0.04,
+        delayChildren: 0.1,
+      }
+    }
+  };
+
+  /**
+   * Individual menu item animation variant.
+   */
+  const menuItemVariants = {
+    closed: { opacity: 0, x: 20 },
+    open: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 24,
+      }
+    }
+  };
 
   return (
     <>
@@ -121,17 +225,39 @@ function MobileMenuContent({
         </span>
       </Disclosure.Button>
       
-      {/* Mobile menu panel - renders via portal when open to escape header stacking context */}
-      {open && mounted && createPortal(
-        <>
-          {/* Full-screen backdrop overlay */}
-          <div 
-            className="fixed inset-0 bg-black/50 z-[9998]"
-            aria-hidden="true"
-          />
-          
-          {/* Full-screen menu panel */}
-          <div className="fixed inset-x-0 top-[72px] bottom-0 bg-white z-[9999] overflow-y-auto">
+      {/* Mobile menu panel - renders via portal to document.body to escape header stacking context.
+          IMPORTANT: AnimatePresence must be INSIDE the portal, not wrapping it, because:
+          1. Portal content renders outside React's tree at document.body
+          2. AnimatePresence can only track direct motion component children
+          3. Wrapping the portal breaks exit animations and initial render */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {open && (
+            <>
+              {/* Clickable backdrop overlay - closes menu when clicked */}
+              <Disclosure.Button
+                as={motion.div}
+                key="mobile-menu-backdrop"
+                variants={backdropVariants}
+                initial="closed"
+                animate="open"
+                exit="exit"
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998] cursor-pointer"
+                aria-label="Close menu"
+              />
+              
+              {/* Slide-in menu panel with dark premium theme */}
+              <motion.div 
+                key="mobile-menu-panel"
+                variants={prefersReducedMotion ? {} : menuPanelVariants}
+                initial="closed"
+                animate="open"
+                exit="exit"
+                className="fixed inset-y-0 right-0 w-full max-w-sm z-[9999] overflow-hidden"
+                style={{
+                  background: 'linear-gradient(180deg, #0C1015 0%, #111518 50%, #161B1E 100%)',
+                }}
+              >
               {/* Brand gradient accent line at the top */}
               <div 
                 className="absolute top-0 left-0 right-0 h-1"
@@ -141,95 +267,193 @@ function MobileMenuContent({
                 aria-hidden="true"
               />
               
+              {/* Close button in top right corner */}
+              <Disclosure.Button
+                className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200 z-10"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </Disclosure.Button>
+              
               {/* Menu content container with safe area padding */}
               <div 
-                className="flex flex-col min-h-full px-6 pt-8 pb-safe"
+                className="flex flex-col h-full px-6 pt-6 pb-safe overflow-y-auto"
                 style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
               >
-                {/* Navigation items with staggered animation */}
-                <nav className="flex-1 space-y-1" role="navigation" aria-label="Mobile navigation">
-                  {navItems.map((item, index) => {
+                {/* Logo section */}
+                <motion.div
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="mb-6"
+                >
+                  <Image
+                    src="/images/hero/SLEEK-logo-white.png"
+                    alt="SLEEK"
+                    width={100}
+                    height={28}
+                    className="h-7 w-auto"
+                    style={{ width: 'auto' }}
+                  />
+                  <p className="text-[10px] text-gray-500 mt-1 tracking-wide">
+                    A Dental Experience Worth Smiling About
+                  </p>
+                </motion.div>
+                
+                {/* Main Navigation Section */}
+                <motion.nav 
+                  variants={staggerContainer}
+                  initial="closed"
+                  animate="open"
+                  className="space-y-1 mb-6" 
+                  role="navigation" 
+                  aria-label="Mobile navigation"
+                >
+                  <p className="text-[10px] font-semibold text-teal-500/80 uppercase tracking-wider mb-3 px-1">
+                    Navigate
+                  </p>
+                  {navItems.map((item) => {
                     // Blog links to its own page, not an anchor
                     const isBlogItem = item.id === 'blog';
                     const href = isBlogItem 
                       ? '/blog' 
                       : isHomePage ? `#${item.id}` : `/#${item.id}`;
                     
+                    // scroll={false} when on homepage (we handle smooth scroll manually)
+                    // scroll={true} when navigating cross-page to allow hash scroll
+                    const shouldScroll = !isHomePage && !isBlogItem;
+                    
                     return (
-                    <motion.div
-                      key={item.id}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05, duration: 0.2 }}
-                    >
-                      <Disclosure.Button
-                        as={Link}
-                        href={href}
-                        scroll={false}
-                        onClick={(e: React.MouseEvent) => {
-                          // Blog item navigates to /blog page, no special handling needed
-                          if (isBlogItem) return;
-                          
-                          // If on homepage, use smooth scroll for anchor navigation
-                          if (isHomePage) {
-                            e.preventDefault();
-                            const element = document.getElementById(item.id);
-                            if (element) {
-                              element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-                            }
-                          }
-                        }}
-                        className={`group flex items-center w-full px-4 py-4 min-h-[56px] rounded-2xl text-lg font-semibold tracking-wide transition-all duration-200 ${
-                          activeSection === item.id
-                            ? 'text-teal-700 bg-gradient-to-r from-teal-50 to-teal-100/50 border-l-4 border-teal-500 pl-3'
-                            : 'text-gray-800 hover:text-teal-600 hover:bg-gray-50 border-l-4 border-transparent'
-                        }`}
+                      <motion.div
+                        key={item.id}
+                        variants={prefersReducedMotion ? {} : menuItemVariants}
                       >
-                        {item.label}
-                        {/* Arrow indicator for active item */}
-                        {activeSection === item.id && (
-                          <motion.span 
-                            className="ml-auto text-teal-500"
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.1 }}
-                          >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </motion.span>
-                        )}
-                      </Disclosure.Button>
-                      
-                      {/* Separator line between items (except last) */}
-                      {index < navItems.length - 1 && (
-                        <div className="mx-4 mt-1 border-b border-gray-100" aria-hidden="true" />
-                      )}
-                    </motion.div>
-                  );
+                        <Disclosure.Button
+                          as={Link}
+                          href={href}
+                          scroll={shouldScroll}
+                          onClick={(e: React.MouseEvent) => {
+                            // Blog item navigates to /blog page, no special handling needed
+                            if (isBlogItem) return;
+                            
+                            // If on homepage, use smooth scroll for anchor navigation
+                            if (isHomePage) {
+                              e.preventDefault();
+                              const element = document.getElementById(item.id);
+                              if (element) {
+                                element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                              }
+                            }
+                          }}
+                          className={`group flex items-center w-full px-4 py-3.5 min-h-[52px] rounded-xl text-base font-medium tracking-wide transition-all duration-200 ${
+                            activeSection === item.id
+                              ? 'text-white bg-gradient-to-r from-teal-500/20 to-teal-600/10 border-l-2 border-teal-400'
+                              : 'text-gray-300 hover:text-white hover:bg-white/5 border-l-2 border-transparent'
+                          }`}
+                        >
+                          {item.label}
+                          {/* Arrow indicator */}
+                          <ChevronRight className={`ml-auto w-4 h-4 transition-all duration-200 ${
+                            activeSection === item.id 
+                              ? 'text-teal-400 translate-x-0 opacity-100' 
+                              : 'text-gray-600 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-50'
+                          }`} />
+                        </Disclosure.Button>
+                      </motion.div>
+                    );
                   })}
-                </nav>
+                </motion.nav>
+                
+                {/* Divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
+                
+                {/* Partner Programs Section */}
+                <motion.div
+                  variants={staggerContainer}
+                  initial="closed"
+                  animate="open"
+                  className="mb-6"
+                >
+                  <p className="text-[10px] font-semibold text-teal-500/80 uppercase tracking-wider mb-3 px-1">
+                    Partner Programs
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {programsNav.map((item) => (
+                      <motion.div
+                        key={item.name}
+                        variants={prefersReducedMotion ? {} : menuItemVariants}
+                      >
+                        <Disclosure.Button
+                          as={Link}
+                          href={item.href}
+                          className="flex items-center justify-center px-3 py-2.5 min-h-[44px] rounded-lg text-sm font-medium text-gray-400 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-white/10 transition-all duration-200"
+                        >
+                          {item.name}
+                        </Disclosure.Button>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+                
+                {/* Contact Section */}
+                <motion.div
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mb-6"
+                >
+                  <p className="text-[10px] font-semibold text-teal-500/80 uppercase tracking-wider mb-3 px-1">
+                    Contact Us
+                  </p>
+                  <div className="space-y-2">
+                    <a 
+                      href={`tel:${contactInfo.phone.replace(/[^0-9]/g, '')}`}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 hover:border-teal-500/30 transition-all duration-200"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center">
+                        <Phone className="w-4 h-4 text-teal-400" />
+                      </div>
+                      <span className="text-sm font-medium">{contactInfo.phone}</span>
+                    </a>
+                    <a 
+                      href={`mailto:${contactInfo.email}`}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 hover:border-teal-500/30 transition-all duration-200"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center">
+                        <Mail className="w-4 h-4 text-teal-400" />
+                      </div>
+                      <span className="text-sm font-medium truncate">{contactInfo.email}</span>
+                    </a>
+                  </div>
+                </motion.div>
+                
+                {/* Spacer to push CTA and footer to bottom */}
+                <div className="flex-1 min-h-4" />
                 
                 {/* CTA Button section with premium styling */}
-                <div className="mt-8 pt-6 border-t border-gray-100">
+                <motion.div 
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                  className="mb-6"
+                >
                   <Disclosure.Button
                     as={Link}
-                    href={isHomePage ? '#plans' : '/#plans'}
-                    scroll={false}
-                    onClick={(e: React.MouseEvent) => {
-                      if (isHomePage) {
-                        e.preventDefault();
-                        const element = document.getElementById('plans');
-                        if (element) {
-                          element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-                        }
-                      }
-                    }}
-                    className="group relative block w-full text-center py-4 min-h-[56px] rounded-2xl text-white font-bold text-lg tracking-wide overflow-hidden shadow-lg shadow-teal-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                    href="https://enrollment.sleekdentalclub.com/onboarding"
+                    className="group relative flex items-center justify-center w-full py-4 min-h-[56px] rounded-2xl text-white font-bold text-base tracking-wide overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                     style={{
                       background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 50%, #115e59 100%)',
+                      boxShadow: '0 0 30px rgba(20, 184, 166, 0.25), 0 4px 15px rgba(0, 0, 0, 0.3)',
                     }}
                   >
+                    {/* Glow effect behind button */}
+                    <span 
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        boxShadow: '0 0 40px rgba(20, 184, 166, 0.4)',
+                      }}
+                      aria-hidden="true"
+                    />
                     {/* Shimmer effect overlay */}
                     <span 
                       className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
@@ -239,18 +463,42 @@ function MobileMenuContent({
                       aria-hidden="true"
                     />
                     <span className="relative">GET STARTED</span>
+                    <ChevronRight className="relative w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                   </Disclosure.Button>
                   
                   {/* Secondary info text */}
-                  <p className="mt-4 text-center text-sm text-gray-500">
+                  <p className="mt-3 text-center text-xs text-gray-500">
                     Join thousands of members with healthier smiles
                   </p>
-                </div>
+                </motion.div>
+                
+                {/* Footer Links */}
+                <motion.div
+                  initial={prefersReducedMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="pt-4 border-t border-white/5"
+                >
+                  <div className="flex items-center justify-center gap-4">
+                    {supportNav.map((item) => (
+                      <Disclosure.Button
+                        key={item.name}
+                        as={Link}
+                        href={item.href}
+                        className="text-xs text-gray-500 hover:text-teal-400 transition-colors duration-200 py-2"
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
-            </div>
-          </>,
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
         document.body
-        )}
+      )}
     </>
   );
 }
