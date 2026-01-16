@@ -375,10 +375,10 @@ export default function Hero({
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* ===== HERO IMAGE - Placed at section level with subtle float animation ===== */}
-      {/* z-[50] keeps it above background but below feature tags (z-[60]) and content (z-[100]) */}
+      {/* ===== MOBILE HERO IMAGE - Placed at section level with subtle float animation ===== */}
+      {/* md:hidden ensures this only shows on mobile. Desktop has its own image in the grid layout. */}
       <motion.div 
-        className="absolute inset-0 z-[50] flex items-center justify-center pointer-events-none"
+        className="md:hidden absolute inset-0 z-[50] flex items-center justify-center pointer-events-none"
         animate={{
           y: [0, -12, 0],
         }}
@@ -391,7 +391,7 @@ export default function Hero({
         <img
           src="/images/Sleekbrush-splash.png"
           alt="SLEEK Sonic Electric Toothbrush with Water Splash"
-          className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] md:w-[550px] md:h-[720px] -mt-4 md:mt-0 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
+          className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] mt-12 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
         />
       </motion.div>
       
@@ -670,7 +670,7 @@ export default function Hero({
               <div className="lg:hidden absolute inset-0 z-[60] pointer-events-none">
                 {/* Top left tag - floats with 4s cycle, no delay */}
                 <motion.div 
-                  className="absolute top-[18%] left-[3%] pointer-events-auto"
+                  className="absolute top-[22%] left-[-2%] pointer-events-auto"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ 
                     opacity: 1, 
@@ -689,7 +689,7 @@ export default function Hero({
                 
                 {/* Top right tag - floats with 4s cycle, 0.5s delay offset */}
                 <motion.div 
-                  className="absolute top-[28%] right-[3%] pointer-events-auto"
+                  className="absolute top-[32%] right-[-2%] pointer-events-auto"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ 
                     opacity: 1, 
@@ -708,7 +708,7 @@ export default function Hero({
                 
                 {/* Bottom center tag - floats with 4s cycle, 1s delay offset */}
                 <motion.div 
-                  className="absolute bottom-[22%] left-1/2 -translate-x-1/2 pointer-events-auto"
+                  className="absolute bottom-[18%] left-1/2 -translate-x-1/2 pointer-events-auto"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ 
                     opacity: 1, 
