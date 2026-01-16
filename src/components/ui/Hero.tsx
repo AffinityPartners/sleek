@@ -376,9 +376,10 @@ export default function Hero({
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* ===== MOBILE HERO IMAGE - Placed at section level with subtle float animation ===== */}
-      {/* md:hidden ensures this only shows on mobile. Desktop has its own image in the grid layout. */}
+      {/* md:hidden ensures this only shows on mobile. Desktop has its own image in the grid layout.
+          z-30 keeps this below the sticky nav (z-50) so it doesn't overlap the menu on scroll. */}
       <motion.div 
-        className="md:hidden absolute inset-0 z-[50] flex items-center justify-center pointer-events-none"
+        className="md:hidden absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
         animate={{
           y: [0, -12, 0],
         }}
@@ -396,8 +397,9 @@ export default function Hero({
       </motion.div>
       
       {/* ===== MOBILE FEATURE TAGS - Placed at section level to escape container padding ===== */}
-      {/* md:hidden ensures this only shows on mobile. Uses absolute positioning relative to section. */}
-      <div className="md:hidden absolute inset-0 z-[60] pointer-events-none">
+      {/* md:hidden ensures this only shows on mobile. Uses absolute positioning relative to section.
+          z-40 keeps these above the hero image (z-30) but below the sticky nav (z-50). */}
+      <div className="md:hidden absolute inset-0 z-40 pointer-events-none">
         {/* 31,000 Vibrations tag - top right, near brush head */}
         <motion.div 
           className="absolute top-[40%] right-8 pointer-events-auto"
