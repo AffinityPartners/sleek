@@ -375,15 +375,25 @@ export default function Hero({
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* ===== MOBILE HERO IMAGE - Placed at section level to avoid nesting/stacking issues ===== */}
-      {/* DEBUG: Using plain img tag to test if Next.js Image is the issue */}
-      <div className="absolute inset-0 z-[200] flex items-center justify-center pointer-events-none">
+      {/* ===== HERO IMAGE - Placed at section level with subtle float animation ===== */}
+      {/* z-[50] keeps it above background but below feature tags (z-[60]) and content (z-[100]) */}
+      <motion.div 
+        className="absolute inset-0 z-[50] flex items-center justify-center pointer-events-none"
+        animate={{
+          y: [0, -12, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
         <img
           src="/images/Sleekbrush-splash.png"
           alt="SLEEK Sonic Electric Toothbrush with Water Splash"
-          className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] md:w-[550px] md:h-[720px] mt-16 md:mt-0 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
+          className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] md:w-[550px] md:h-[720px] -mt-4 md:mt-0 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
         />
-      </div>
+      </motion.div>
       
       {/* ===== DARK CINEMATIC BACKGROUND ===== */}
       <div className="absolute inset-0">
@@ -655,43 +665,61 @@ export default function Hero({
                 </div>
               </div>
               
-              {/* ===== MOBILE FEATURE TAGS - Small tags surrounding product ===== */}
-              {/* z-20 ensures tags float above the product image (z-10) */}
-              <div className="lg:hidden absolute inset-0 z-20 pointer-events-none">
-                {/* Top left tag */}
+              {/* ===== MOBILE FEATURE TAGS - Small tags floating around product with staggered animations ===== */}
+              {/* z-[60] ensures tags float above the product image (z-[50]) */}
+              <div className="lg:hidden absolute inset-0 z-[60] pointer-events-none">
+                {/* Top left tag - floats with 4s cycle, no delay */}
                 <motion.div 
-                  className="absolute top-[5%] left-[2%] pointer-events-auto"
-                  variants={textVariants}
-                  initial="hidden"
-                  animate={controls}
+                  className="absolute top-[18%] left-[3%] pointer-events-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.6, delay: 0.3 },
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                  }}
                 >
-                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
                     <Zap className="w-3 h-3 text-teal-400" />
                     <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">31,000 Vibrations/min</span>
                   </div>
                 </motion.div>
                 
-                {/* Top right tag */}
+                {/* Top right tag - floats with 4s cycle, 0.5s delay offset */}
                 <motion.div 
-                  className="absolute top-[15%] right-[2%] pointer-events-auto"
-                  variants={textVariants}
-                  initial="hidden"
-                  animate={controls}
+                  className="absolute top-[28%] right-[3%] pointer-events-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.6, delay: 0.5 },
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+                  }}
                 >
-                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
                     <ShieldCheck className="w-3 h-3 text-teal-400" />
                     <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Dental Insurance Included</span>
                   </div>
                 </motion.div>
                 
-                {/* Bottom center tag */}
+                {/* Bottom center tag - floats with 4s cycle, 1s delay offset */}
                 <motion.div 
-                  className="absolute bottom-[5%] left-1/2 -translate-x-1/2 pointer-events-auto"
-                  variants={textVariants}
-                  initial="hidden"
-                  animate={controls}
+                  className="absolute bottom-[22%] left-1/2 -translate-x-1/2 pointer-events-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.6, delay: 0.7 },
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                  }}
                 >
-                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
                     <Sparkles className="w-3 h-3 text-white/70" />
                     <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Quarterly Refills Included</span>
                   </div>
