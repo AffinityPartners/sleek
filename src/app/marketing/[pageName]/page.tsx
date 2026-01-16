@@ -1,14 +1,25 @@
+/**
+ * Props for the MarketingPage component.
+ * In Next.js 15, params is now a Promise and must be awaited.
+ */
 type MarketingPageProps = {
-  params: {
+  params: Promise<{
     pageName: string;
-  };
+  }>;
 };
 
-export default function MarketingPage({ params }: MarketingPageProps) {
+/**
+ * MarketingPage is a dynamic route component for marketing landing pages.
+ * The pageName param is extracted from the URL path (e.g., /marketing/new-campaign).
+ * This is an async server component to support Next.js 15's async params API.
+ */
+export default async function MarketingPage({ params }: MarketingPageProps) {
+  const { pageName } = await params;
+  
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8">Marketing Page: {params.pageName}</h1>
-      <p className="text-lg">This is a placeholder for the "{params.pageName}" marketing page.</p>
+      <h1 className="text-4xl font-bold mb-8">Marketing Page: {pageName}</h1>
+      <p className="text-lg">This is a placeholder for the &quot;{pageName}&quot; marketing page.</p>
       {/* Placeholder for specific marketing content */}
     </div>
   );

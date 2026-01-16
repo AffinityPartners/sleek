@@ -72,12 +72,18 @@ module.exports = {
       priority = 0.8;
       changefreq = 'weekly';
     }
+    // Market programs pages (partner landing pages for dentists, affiliates, groups, agents)
+    // These are important B2B/partnership pages that should rank well for relevant searches
+    else if (path.startsWith('/market-programs/')) {
+      priority = 0.8;
+      changefreq = 'monthly';
+    }
     // Legal pages (privacy, terms)
     else if (path === '/privacy' || path === '/terms') {
       priority = 0.5;
       changefreq = 'yearly';
     }
-    // Marketing pages
+    // Marketing pages (campaign-specific landing pages)
     else if (path.startsWith('/marketing/')) {
       priority = 0.6;
       changefreq = 'monthly';

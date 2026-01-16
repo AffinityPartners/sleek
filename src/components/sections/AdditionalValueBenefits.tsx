@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
-import { ArrowRight, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Check, FileText } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
-// Define type for a value-added benefit
+/**
+ * Type definition for a value-added benefit item.
+ * Used to display Teledentistry and Discount Rx benefits.
+ */
 interface ValueBenefit {
   id: string;
   title: string;
@@ -46,6 +49,186 @@ const valueBenefits: ValueBenefit[] = [
   }
 ];
 
+/**
+ * Props for the BenefitCard component.
+ */
+interface BenefitCardProps {
+  benefit: ValueBenefit;
+  index: number;
+}
+
+/**
+ * BenefitCard is a separate component to properly use the useInView hook.
+ * React hooks cannot be called inside callbacks like .map(), so each card
+ * needs its own component instance to track visibility independently.
+ */
+const BenefitCard = ({ benefit, index }: BenefitCardProps) => {
+  const isEven = index % 2 === 0;
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="mb-20 last:mb-0"
+    >
+      <div className={`
+        flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16
+        ${isEven ? '' : 'lg:flex-row-reverse'} 
+      `}>
+        {/* Image Side */}
+        <motion.div 
+          className="w-full lg:w-1/2"
+          initial={{ 
+            opacity: 0, 
+            x: isEven ? -20 : 20 
+          }}
+          animate={inView ? { 
+            opacity: 1, 
+            x: 0 
+          } : {}}
+          transition={{ 
+            duration: 0.15, 
+            ease: [0.22, 1, 0.36, 1]
+          }}
+        >
+          <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl group">
+            {/* Image container with hover effect */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
+            
+            <motion.div 
+              className="relative h-full w-full"
+              whileHover={{
+                scale: 1.05
+              }}
+              transition={{
+                duration: 1,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+            >
+              <Image
+                src={benefit.imageSrc}
+                alt={benefit.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-500"
+              />
+            </motion.div>
+            
+            {/* Decorative accent corner element */}
+            <div className="absolute top-0 left-0 h-16 w-16 overflow-hidden">
+              <div 
+                className="absolute top-0 left-0 w-32 h-32 -rotate-45 -translate-x-16 -translate-y-8 opacity-90"
+                style={{ background: benefit.accent }}
+              ></div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Text Side */}
+        <motion.div 
+          className="w-full lg:w-1/2 p-0 md:p-6"
+          initial={{ 
+            opacity: 0, 
+            x: isEven ? 20 : -20
+          }}
+          animate={inView ? { 
+            opacity: 1, 
+            x: 0 
+          } : {}}
+          transition={{ 
+            duration: 0.15, 
+            ease: [0.22, 1, 0.36, 1]
+          }}
+        >
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100">
+            <motion.h3 
+              initial={{ opacity: 0, y: 5 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.15 }}
+              className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 tracking-tight"
+              style={{ color: benefit.accent }}
+            >
+              {benefit.title}
+            </motion.h3>
+            
+            <motion.ul 
+              className="space-y-4 mb-8"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.15 }}
+            >
+              {benefit.description.map((item, idx) => (
+                <motion.li 
+                  key={idx} 
+                  className="flex items-start"
+                  initial={{ opacity: 0, x: -5 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.1 }}
+                >
+                  <div 
+                    className="mr-3 mt-1 p-0.5 rounded-full"
+                    style={{ background: `${benefit.accent}20` }}
+                  >
+                    <Check className="h-4 w-4" style={{ color: benefit.accent }} />
+                  </div>
+                  <span className="text-gray-700 leading-relaxed">{item}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+            
+            {benefit.ctaText && benefit.ctaLink && (
+              <motion.a 
+                href={benefit.ctaLink} 
+                className="inline-flex items-center font-medium rounded-lg px-5 py-2.5 transition-all duration-300 group"
+                style={{
+                  backgroundColor: `${benefit.accent}10`,
+                  color: benefit.accent
+                }}
+                initial={{ opacity: 0, y: 5 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.15 }}
+                whileHover={{ 
+                  backgroundColor: benefit.accent,
+                  color: 'white',
+                  scale: 1.05,
+                }}
+              >
+                {benefit.ctaText}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </motion.a>
+            )}
+            
+            {/* Terms, Conditions and Disclosures link - required for Teledentistry and Discount Rx benefits */}
+            <motion.div
+              className="mt-6 pt-4 border-t border-gray-100"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.15, delay: 0.1 }}
+            >
+              <a 
+                href="/images/Sleek-TC-Website.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              >
+                <FileText className="h-4 w-4 mr-2" />
+                Terms, Conditions and Disclosures
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+/**
+ * AdditionalValueBenefits displays the value-added benefits section.
+ * Shows Teledentistry and Discount Rx benefits with animated cards.
+ */
 const AdditionalValueBenefits = () => {
   return (
     <section className="section-padding relative overflow-hidden">
@@ -76,151 +259,9 @@ const AdditionalValueBenefits = () => {
           </p>
         </motion.div>
 
-        {valueBenefits.map((benefit, index) => {
-          const isEven = index % 2 === 0;
-          const [ref, inView] = useInView({
-            triggerOnce: true,
-            threshold: 0.1,
-          });
-          
-          return (
-            <motion.div 
-              key={benefit.id}
-              ref={ref}
-              className="mb-20 last:mb-0"
-            >
-              <div className={`
-                flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16
-                ${isEven ? '' : 'lg:flex-row-reverse'} 
-              `}>
-                {/* Image Side */}
-                <motion.div 
-                  className="w-full lg:w-1/2"
-                  initial={{ 
-                    opacity: 0, 
-                    x: isEven ? -20 : 20 
-                  }}
-                  animate={inView ? { 
-                    opacity: 1, 
-                    x: 0 
-                  } : {}}
-                  transition={{ 
-                    duration: 0.15, 
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                >
-                  <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl group">
-                    {/* Image container with hover effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
-                    
-                    <motion.div 
-                      className="relative h-full w-full"
-                      whileHover={{
-                        scale: 1.05
-                      }}
-                      transition={{
-                        duration: 1,
-                        ease: [0.25, 0.1, 0.25, 1]
-                      }}
-                    >
-                      <Image
-                        src={benefit.imageSrc}
-                        alt={benefit.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-500"
-                      />
-                    </motion.div>
-                    
-                    {/* Decorative accent corner element */}
-                    <div className="absolute top-0 left-0 h-16 w-16 overflow-hidden">
-                      <div 
-                        className="absolute top-0 left-0 w-32 h-32 -rotate-45 -translate-x-16 -translate-y-8 opacity-90"
-                        style={{ background: benefit.accent }}
-                      ></div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Text Side */}
-                <motion.div 
-                  className="w-full lg:w-1/2 p-0 md:p-6"
-                  initial={{ 
-                    opacity: 0, 
-                    x: isEven ? 20 : -20
-                  }}
-                  animate={inView ? { 
-                    opacity: 1, 
-                    x: 0 
-                  } : {}}
-                  transition={{ 
-                    duration: 0.15, 
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                >
-                  <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100">
-                    <motion.h3 
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.15 }}
-                      className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 tracking-tight"
-                      style={{ color: benefit.accent }}
-                    >
-                      {benefit.title}
-                    </motion.h3>
-                    
-                    <motion.ul 
-                      className="space-y-4 mb-8"
-                      initial={{ opacity: 0 }}
-                      animate={inView ? { opacity: 1 } : {}}
-                      transition={{ duration: 0.15 }}
-                    >
-                      {benefit.description.map((item, idx) => (
-                        <motion.li 
-                          key={idx} 
-                          className="flex items-start"
-                          initial={{ opacity: 0, x: -5 }}
-                          animate={inView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ duration: 0.1 }}
-                        >
-                          <div 
-                            className="mr-3 mt-1 p-0.5 rounded-full"
-                            style={{ background: `${benefit.accent}20` }}
-                          >
-                            <Check className="h-4 w-4" style={{ color: benefit.accent }} />
-                          </div>
-                          <span className="text-gray-700 leading-relaxed">{item}</span>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                    
-                    {benefit.ctaText && benefit.ctaLink && (
-                      <motion.a 
-                        href={benefit.ctaLink} 
-                        className="inline-flex items-center font-medium rounded-lg px-5 py-2.5 transition-all duration-300 group"
-                        style={{
-                          backgroundColor: `${benefit.accent}10`,
-                          color: benefit.accent
-                        }}
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.15 }}
-                        whileHover={{ 
-                          backgroundColor: benefit.accent,
-                          color: 'white',
-                          scale: 1.05,
-                        }}
-                      >
-                        {benefit.ctaText}
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </motion.a>
-                    )}
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          );
-        })}
+        {valueBenefits.map((benefit, index) => (
+          <BenefitCard key={benefit.id} benefit={benefit} index={index} />
+        ))}
       </div>
     </section>
   );

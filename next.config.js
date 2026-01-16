@@ -8,7 +8,6 @@
  */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
 
   /**
    * Image Optimization Configuration

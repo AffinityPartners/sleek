@@ -297,7 +297,7 @@ const PlanInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose: ()
               <div>
                 <h4 className="text-lg font-semibold mb-3">Coverage Details</h4>
                 <p className="text-sm mb-3">
-                  <strong>Child(ren)'s eligibility</strong> for dental coverage is from birth up to age 26
+                  <strong>Child(ren)&apos;s eligibility</strong> for dental coverage is from birth up to age 26
                 </p>
                 <p className="text-sm mb-3">
                   <strong>*Negotiated Fee</strong> refers to the fees that participating dentists have agreed to accept as payment in full for covered services, subject to any copayments, deductibles, cost sharing and benefits maximums. Negotiated fees are subject to change.
@@ -313,7 +313,7 @@ const PlanInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose: ()
                 <h4 className="text-lg font-semibold mb-3">Type A Covered Services</h4>
                 <ul className="list-disc pl-5 space-y-1 text-sm">
                   <li>Oral exams and problem-focused exams, but no more than one exam every 6 months.</li>
-                  <li>Screenings to determine an individual's need to be seen by a dentist for diagnosis, but no more than once every 6 months.</li>
+                  <li>Screenings to determine an individual&apos;s need to be seen by a dentist for diagnosis, but no more than once every 6 months.</li>
                   <li>Bitewing x-rays 1 set every 12 months.</li>
                   <li>Cleaning of teeth (oral prophylaxis) once every 6 months.</li>
                   <li>Topical fluoride treatment for a Child under age 14 once in 12 months.</li>
@@ -449,7 +449,7 @@ const ProviderInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose
               <div className="bg-gray-50 rounded-lg p-4">
                 <h5 className="font-semibold text-gray-900 mb-2">Important Note</h5>
                 <p className="text-sm text-gray-600">
-                  When searching for providers, select "Aetna Dental Access®" as your plan type. 
+                  When searching for providers, select &quot;Aetna Dental Access®&quot; as your plan type. 
                   Always confirm that the provider participates in the network before your appointment.
                 </p>
               </div>
@@ -496,7 +496,7 @@ const ProviderInfoModal = ({ isOpen, onClose, plan }: { isOpen: boolean; onClose
               <div className="bg-gray-50 rounded-lg p-4">
                 <h5 className="font-semibold text-gray-900 mb-2">Important Note</h5>
                 <p className="text-sm text-gray-600">
-                  When searching for providers, select "PDP Plus" as your network type. You may also 
+                  When searching for providers, select &quot;PDP Plus&quot; as your network type. You may also 
                   visit out-of-network dentists, but your benefits will be based on the lesser of 
                   the submitted charge or the negotiated fee.
                 </p>

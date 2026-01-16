@@ -331,11 +331,6 @@ export default function Footer() {
                 <p>
                   SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
                 </p>
-                
-                {/* Affinity Partners Copyright */}
-                <p className="pt-2">
-                  © Copyright 2026 Affinity Partners Marketing, LLC | Content, Pricing and Availability Subject to Change.
-                </p>
               </div>
               
               {/* Mobile: collapsible disclosure */}
@@ -414,11 +409,6 @@ export default function Footer() {
                         {/* Product Certifications */}
                         <p>
                           SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
-                        </p>
-                        
-                        {/* Affinity Partners Copyright */}
-                        <p className="pt-2">
-                          © Copyright 2026 Affinity Partners Marketing, LLC | Content, Pricing and Availability Subject to Change.
                         </p>
                       </div>
                     </motion.div>

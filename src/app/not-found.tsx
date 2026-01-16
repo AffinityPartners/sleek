@@ -74,7 +74,7 @@ export default function NotFound() {
           variants={itemVariants}
           className="text-gray-300 mb-10"
         >
-          Oops! The page you're looking for seems to have vanished like plaque after a good brushing.
+          Oops! The page you&apos;re looking for seems to have vanished like plaque after a good brushing.
         </motion.p>
         
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">

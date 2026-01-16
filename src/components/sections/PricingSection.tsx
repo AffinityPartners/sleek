@@ -455,7 +455,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <p className="font-bold text-gray-900 mb-2">Type A Covered Services</p>
                   <ol className="list-decimal pl-5 space-y-1.5 text-gray-700">
                     <li>Oral exams and problem-focused exams, but no more than one exam (whether the exam is an oral exam or problem-focused exam) every 6 months.</li>
-                    <li>Screenings, including state or federally mandated screenings, to determine an individual's need to be seen by a dentist for diagnosis, but no more than once every 6 months.</li>
+                    <li>Screenings, including state or federally mandated screenings, to determine an individual&apos;s need to be seen by a dentist for diagnosis, but no more than once every 6 months.</li>
                     <li>Patient assessments (limited clinical inspection that is performed to identify possible signs of oral or systemic disease, malformation, or injury, and the potential need for referral for diagnosis and treatment), but no more than once every 6 months.</li>
                     <li>Bitewing x-rays 1 set every 12 months.</li>
                     <li>Cleaning of teeth also referred to as oral prophylaxis (including full mouth scaling in presence of generalized moderate or severe gingival inflammation after oral evaluation) once every 6 months.</li>
@@ -580,7 +580,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>missed appointments;</li>
                     <li>services:
                       <ul className="list-disc pl-5 mt-1 space-y-0.5">
-                        <li>covered under any workers' compensation or occupational disease law;</li>
+                        <li>covered under any workers&apos; compensation or occupational disease law;</li>
                         <li>covered under any employer liability law;</li>
                         <li>for which the employer of the person receiving such services is required to pay; or</li>
                         <li>received at a facility maintained by the Policyholder, labor union, mutual benefit association, or VA hospital;</li>
@@ -907,7 +907,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>missed appointments;</li>
                     <li>services:
                       <ul className="list-disc pl-5 mt-1 space-y-0.5">
-                        <li>covered under any workers' compensation or occupational disease law;</li>
+                        <li>covered under any workers&apos; compensation or occupational disease law;</li>
                         <li>covered under any employer liability law;</li>
                         <li>for which the employer of the person receiving such services is required to pay; or</li>
                         <li>received at a facility maintained by the Policyholder, labor union, mutual benefit association, or VA hospital;</li>
@@ -1132,9 +1132,9 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                 )}>
                   <h4 className="text-lg font-semibold mb-3 text-gray-900">To Locate a Dentist in the MetLife PDP Plus Network:</h4>
                   <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-700 mb-4">
-                    <li>Click on "Find a Dentist" button below</li>
-                    <li>Choose "PDP Plus" from the "Your Network" drop down list</li>
-                    <li>Enter your zip code and/or your dentist's name</li>
+                    <li>Click on &quot;Find a Dentist&quot; button below</li>
+                    <li>Choose &quot;PDP Plus&quot; from the &quot;Your Network&quot; drop down list</li>
+                    <li>Enter your zip code and/or your dentist&apos;s name</li>
                   </ol>
                   <a 
                     href="https://providers.online.metlife.com/findDentist?searchType=findDentistMetLife" 
@@ -1415,7 +1415,7 @@ const PricingSection: React.FC = () => {
                   {/* Plan features - increased padding and text size for mobile readability */}
                   <div className="p-4 md:p-5 flex-grow">
                     <h4 className="font-semibold text-gray-900 mb-3 text-xs uppercase tracking-wide">
-                      What's included:
+                      What&apos;s included:
                     </h4>
                     <ul className="space-y-2.5 md:space-y-2">
                       {plan.features.map((feature, idx) => (
