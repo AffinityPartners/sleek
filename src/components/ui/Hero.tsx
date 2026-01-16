@@ -560,16 +560,15 @@ export default function Hero({
             animate={{ opacity: 1, scale: 1 }}
           >
             <div className="relative h-[280px] sm:h-[350px] md:h-[550px] lg:h-[600px] w-full">
-              {/* MOBILE-ONLY: Simple static image without animation wrappers for reliable rendering.
-                  Positioned absolutely with high z-index to ensure visibility. */}
+              {/* MOBILE-ONLY: Uses CSS background-image instead of img tag for more reliable rendering
+                  in complex stacking contexts with transforms. Positioned with high z-index. */}
               <div className="md:hidden absolute inset-0 z-10 flex items-center justify-center">
-                <div className="relative w-[280px] h-[260px] sm:w-[340px] sm:h-[330px] -rotate-[8deg]">
-                  <img
-                    src={mediaSrc}
-                    alt={mediaAlt}
-                    className="w-full h-full object-contain drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
-                  />
-                </div>
+                <div 
+                  className="w-[280px] h-[260px] sm:w-[340px] sm:h-[330px] -rotate-[8deg] bg-contain bg-center bg-no-repeat drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
+                  style={{ backgroundImage: `url(${mediaSrc})` }}
+                  role="img"
+                  aria-label={mediaAlt}
+                />
               </div>
               
               {/* DESKTOP-ONLY: Pulsing ambient glow behind product */}
