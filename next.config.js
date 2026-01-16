@@ -122,27 +122,8 @@ const nextConfig = {
     ];
   },
 
-  /**
-   * Redirects Configuration
-   *
-   * Handles common URL patterns and ensures canonical URLs.
-   */
-  async redirects() {
-    return [
-      // Redirect www to non-www (canonical URL)
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.sleekdentalclub.com',
-          },
-        ],
-        destination: 'https://sleekdentalclub.com/:path*',
-        permanent: true,
-      },
-    ];
-  },
+  // NOTE: www to non-www redirect removed - handle in Vercel dashboard instead
+  // to avoid conflicts with Vercel's domain redirect settings
 };
 
 module.exports = nextConfig;
