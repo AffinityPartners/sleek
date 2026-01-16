@@ -383,7 +383,7 @@ export default function Hero({
           y: [0, -12, 0],
         }}
         transition={{
-          duration: 4,
+          duration: 6,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -394,6 +394,67 @@ export default function Hero({
           className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] mt-12 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
         />
       </motion.div>
+      
+      {/* ===== MOBILE FEATURE TAGS - Placed at section level to escape container padding ===== */}
+      {/* md:hidden ensures this only shows on mobile. Uses absolute positioning relative to section. */}
+      <div className="md:hidden absolute inset-0 z-[60] pointer-events-none">
+        {/* 31,000 Vibrations tag - top right, near brush head */}
+        <motion.div 
+          className="absolute top-[40%] right-8 pointer-events-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            y: [0, -8, 0],
+          }}
+          transition={{
+            opacity: { duration: 0.6, delay: 0.3 },
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+          }}
+        >
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+            <Zap className="w-3 h-3 text-teal-400" />
+            <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">31,000 Vibrations/min</span>
+          </div>
+        </motion.div>
+        
+        {/* Dental Insurance tag - left side, mid-height near handle */}
+        <motion.div 
+          className="absolute top-[50%] left-3 pointer-events-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            y: [0, -8, 0],
+          }}
+          transition={{
+            opacity: { duration: 0.6, delay: 0.5 },
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.75 }
+          }}
+        >
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+            <ShieldCheck className="w-3 h-3 text-teal-400" />
+            <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Dental Insurance Included</span>
+          </div>
+        </motion.div>
+        
+        {/* Quarterly Refills tag - bottom right, below brush */}
+        <motion.div 
+          className="absolute top-[58%] right-3 pointer-events-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            y: [0, -8, 0],
+          }}
+          transition={{
+            opacity: { duration: 0.6, delay: 0.7 },
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }
+          }}
+        >
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
+            <Sparkles className="w-3 h-3 text-white/70" />
+            <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Quarterly Refills Included</span>
+          </div>
+        </motion.div>
+      </div>
       
       {/* ===== DARK CINEMATIC BACKGROUND ===== */}
       <div className="absolute inset-0">
@@ -665,66 +726,6 @@ export default function Hero({
                 </div>
               </div>
               
-              {/* ===== MOBILE FEATURE TAGS - Small tags floating around product with staggered animations ===== */}
-              {/* z-[60] ensures tags float above the product image (z-[50]) */}
-              <div className="lg:hidden absolute inset-0 z-[60] pointer-events-none">
-                {/* Top left tag - floats with 4s cycle, no delay */}
-                <motion.div 
-                  className="absolute top-[22%] left-[-2%] pointer-events-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: [0, -8, 0],
-                  }}
-                  transition={{
-                    opacity: { duration: 0.6, delay: 0.3 },
-                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                  }}
-                >
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
-                    <Zap className="w-3 h-3 text-teal-400" />
-                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">31,000 Vibrations/min</span>
-                  </div>
-                </motion.div>
-                
-                {/* Top right tag - floats with 4s cycle, 0.5s delay offset */}
-                <motion.div 
-                  className="absolute top-[32%] right-[-2%] pointer-events-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: [0, -8, 0],
-                  }}
-                  transition={{
-                    opacity: { duration: 0.6, delay: 0.5 },
-                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
-                  }}
-                >
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
-                    <ShieldCheck className="w-3 h-3 text-teal-400" />
-                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Dental Insurance Included</span>
-                  </div>
-                </motion.div>
-                
-                {/* Bottom center tag - floats with 4s cycle, 1s delay offset */}
-                <motion.div 
-                  className="absolute bottom-[18%] left-1/2 -translate-x-1/2 pointer-events-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: [0, -8, 0],
-                  }}
-                  transition={{
-                    opacity: { duration: 0.6, delay: 0.7 },
-                    y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
-                  }}
-                >
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
-                    <Sparkles className="w-3 h-3 text-white/70" />
-                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Quarterly Refills Included</span>
-                  </div>
-                </motion.div>
-              </div>
             </div>
           </motion.div>
           
