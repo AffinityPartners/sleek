@@ -63,18 +63,30 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  /**
+   * Favicon configuration for browsers, Google, and mobile devices.
+   * - favicon.ico (32x32) is auto-served by Next.js from src/app/favicon.ico
+   * - icon-192.png is the preferred size for Google and PWA
+   * - icon-512.png is used for PWA splash screens
+   * - apple-touch-icon.png (180x180) is for iOS home screen bookmarks
+   */
   icons: {
     icon: [
-      {
-        url: '/images/SLEEK-Favicon.png',
-        type: 'image/png',
-      },
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: {
-      url: '/images/SLEEK-Favicon.png',
+      url: '/apple-touch-icon.png',
+      sizes: '180x180',
       type: 'image/png',
     },
   },
+  /**
+   * Link to web manifest for PWA support and improved Google indexing.
+   * The manifest provides app metadata including icons for install prompts.
+   */
+  manifest: '/manifest.json',
   openGraph: {
     title: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
     description:
