@@ -1,3 +1,8 @@
+/**
+ * Simple test page for verifying rendering works correctly.
+ * Noindex metadata is applied via the parent layout.tsx file,
+ * ensuring this page is not indexed by search engines.
+ */
 export default function TestPage() {
   return (
     <div className="p-10">

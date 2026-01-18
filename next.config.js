@@ -10,6 +10,15 @@ const nextConfig = {
   reactStrictMode: true,
 
   /**
+   * Trailing Slash Configuration
+   *
+   * Explicitly set to false to ensure consistent URL behavior.
+   * This prevents redirect issues where /page/ redirects to /page,
+   * which Google Search Console reports as "Page with redirect".
+   */
+  trailingSlash: false,
+
+  /**
    * Image Optimization Configuration
    *
    * Enables modern image formats (AVIF, WebP) for better compression

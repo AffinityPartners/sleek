@@ -1,5 +1,16 @@
 "use client";
 
+/**
+ * Example Marketing Page
+ *
+ * A complete example marketing page showcasing all available components.
+ * Used as a reference/template for building new marketing landing pages.
+ *
+ * Important: This page is noindexed via the parent marketing/layout.tsx
+ * to prevent search engines from indexing this internal template page.
+ * It is also explicitly blocked in robots.txt at /marketing/example.
+ */
+
 import React from 'react';
 import StickyNav from '@/components/StickyNav';
 import HeroSection from '@/components/HeroSection';

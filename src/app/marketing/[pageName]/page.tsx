@@ -1,4 +1,20 @@
 /**
+ * Dynamic Marketing Landing Page
+ *
+ * This is a placeholder route for dynamic marketing pages that can be created
+ * on-the-fly by appending any slug to /marketing/ (e.g., /marketing/new-campaign).
+ *
+ * Important: This page is noindexed via the parent marketing/layout.tsx to prevent
+ * search engines from indexing these thin content/template pages. This resolves
+ * "Soft 404" issues reported in Google Search Console.
+ *
+ * Use cases:
+ * - Quick landing pages for marketing campaigns
+ * - Partner-specific pages shared via direct links
+ * - Testing new page layouts before full implementation
+ */
+
+/**
  * Props for the MarketingPage component.
  * In Next.js 15, params is now a Promise and must be awaited.
  */

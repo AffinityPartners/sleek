@@ -1,5 +1,13 @@
 'use client';
 
+/**
+ * Benefits Grid Test Page
+ *
+ * Development page for testing the MembershipBenefitsGrid component.
+ * Noindex metadata is applied via the parent test/layout.tsx file,
+ * ensuring this page is not indexed by search engines.
+ */
+
 import React from 'react';
 import MembershipBenefitsGrid, { BenefitItem } from '@/components/MembershipBenefitsGrid';
 import { 
