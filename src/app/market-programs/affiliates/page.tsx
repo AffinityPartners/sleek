@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       'Earn competitive commissions by promoting premium dental care subscriptions with the SLEEK affiliate program.',
     type: 'website',
-    url: 'https://sleekdentalclub.com/market-programs/affiliates',
+    url: 'https://www.sleekdentalclub.com/market-programs/affiliates',
   },
   twitter: {
     card: 'summary',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Earn commissions promoting SLEEK Dental Club memberships.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/market-programs/affiliates',
+    canonical: 'https://www.sleekdentalclub.com/market-programs/affiliates',
   },
 };
 

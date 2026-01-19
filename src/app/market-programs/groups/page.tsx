@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       'Exclusive group rates and branded enrollment options for organizations partnering with SLEEK Dental Club.',
     type: 'website',
-    url: 'https://sleekdentalclub.com/market-programs/groups',
+    url: 'https://www.sleekdentalclub.com/market-programs/groups',
   },
   twitter: {
     card: 'summary',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Exclusive group rates for organizations and associations.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/market-programs/groups',
+    canonical: 'https://www.sleekdentalclub.com/market-programs/groups',
   },
 };
 

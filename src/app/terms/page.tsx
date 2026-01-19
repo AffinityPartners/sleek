@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'Terms and Conditions | SLEEK Dental Club',
     description:
       'Terms of service governing the use of SLEEK Dental Club membership services.',
-    url: 'https://sleekdentalclub.com/terms',
+    url: 'https://www.sleekdentalclub.com/terms',
     siteName: 'SLEEK Dental Club',
     type: 'website',
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: 'Terms of service for SLEEK Dental Club membership services.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/terms',
+    canonical: 'https://www.sleekdentalclub.com/terms',
   },
   robots: {
     index: true,

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       'Licensed products and competitive commissions for agents selling SLEEK dental plans with MetLife coverage.',
     type: 'website',
-    url: 'https://sleekdentalclub.com/market-programs/agents',
+    url: 'https://www.sleekdentalclub.com/market-programs/agents',
   },
   twitter: {
     card: 'summary',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Licensed products and competitive commissions for agents.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/market-programs/agents',
+    canonical: 'https://www.sleekdentalclub.com/market-programs/agents',
   },
 };
 

@@ -43,7 +43,8 @@ export const viewport: Viewport = {
  * with page-specific titles, descriptions, and canonical URLs.
  */
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sleekdentalclub.com'),
+  // Using www subdomain to match Vercel's canonical domain redirect
+  metadataBase: new URL('https://www.sleekdentalclub.com'),
   title: {
     default: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
     template: '%s | SLEEK Dental Club',
@@ -93,7 +94,7 @@ export const metadata: Metadata = {
     title: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
     description:
       'Affordable dental care memberships with premium sonic electric toothbrush kits and dental insurance options.',
-    url: 'https://sleekdentalclub.com',
+    url: 'https://www.sleekdentalclub.com',
     siteName: 'SLEEK Dental Club',
     images: [
       {

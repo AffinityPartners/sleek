@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sitemap | SLEEK Dental Club',
     description: 'Explore all pages and content on SLEEK Dental Club.',
-    url: 'https://sleekdentalclub.com/sitemap',
+    url: 'https://www.sleekdentalclub.com/sitemap',
     siteName: 'SLEEK Dental Club',
     type: 'website',
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: 'Browse all SLEEK Dental Club pages and content.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/sitemap',
+    canonical: 'https://www.sleekdentalclub.com/sitemap',
   },
   robots: {
     index: true,

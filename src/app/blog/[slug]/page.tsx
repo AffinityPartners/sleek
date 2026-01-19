@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const ogImage = `https://sleekdentalclub.com${post.image}`;
-  const url = `https://sleekdentalclub.com/blog/${post.slug}`;
+  const ogImage = `https://www.sleekdentalclub.com${post.image}`;
+  const url = `https://www.sleekdentalclub.com/blog/${post.slug}`;
 
   return {
     title: `${post.title} | SLEEK Dental Blog`,

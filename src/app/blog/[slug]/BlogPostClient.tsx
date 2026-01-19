@@ -39,7 +39,7 @@ function createArticleSchema(post: BlogPost) {
     '@type': 'BlogPosting',
     'headline': post.title,
     'description': post.excerpt,
-    'image': `https://sleekdentalclub.com${post.image}`,
+    'image': `https://www.sleekdentalclub.com${post.image}`,
     'datePublished': post.date,
     'dateModified': post.date,
     'author': {
@@ -51,12 +51,12 @@ function createArticleSchema(post: BlogPost) {
       'name': 'SLEEK Dental Club',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://sleekdentalclub.com/images/logo.png',
+        'url': 'https://www.sleekdentalclub.com/images/logo.png',
       },
     },
     'mainEntityOfPage': {
       '@type': 'WebPage',
-      '@id': `https://sleekdentalclub.com/blog/${post.slug}`,
+      '@id': `https://www.sleekdentalclub.com/blog/${post.slug}`,
     },
     'articleSection': CATEGORY_MAP[post.category].name,
     'keywords': post.tags.map((tag) => TAG_MAP[tag].name).join(', '),

@@ -18,8 +18,12 @@ import { getAllPosts } from '@/lib/blog';
 /**
  * Base URL for all sitemap entries.
  * Used to construct absolute URLs for each page.
+ *
+ * Note: Uses www subdomain because Vercel is configured to redirect
+ * non-www to www. All sitemap URLs must match the canonical domain
+ * to avoid "Page with redirect" errors in Google Search Console.
  */
-const BASE_URL = 'https://sleekdentalclub.com';
+const BASE_URL = 'https://www.sleekdentalclub.com';
 
 /**
  * Static pages that should be included in the sitemap.

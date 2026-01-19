@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       'Offer your patients premium oral care products and earn recurring revenue with the SLEEK dentist partnership program.',
     type: 'website',
-    url: 'https://sleekdentalclub.com/market-programs/dentists',
+    url: 'https://www.sleekdentalclub.com/market-programs/dentists',
   },
   twitter: {
     card: 'summary',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Grow your practice with SLEEK Dental Club partnership.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/market-programs/dentists',
+    canonical: 'https://www.sleekdentalclub.com/market-programs/dentists',
   },
 };
 

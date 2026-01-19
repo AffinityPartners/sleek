@@ -20,9 +20,10 @@
 export const SITE_CONFIG = {
   name: 'SLEEK Dental Club',
   legalName: 'Affinity Partners Marketing, LLC',
-  url: 'https://sleekdentalclub.com',
-  logo: 'https://sleekdentalclub.com/images/blog/logo/sleek-black.svg',
-  image: 'https://sleekdentalclub.com/images/social-share.png',
+  // Using www subdomain to match Vercel's canonical domain redirect
+  url: 'https://www.sleekdentalclub.com',
+  logo: 'https://www.sleekdentalclub.com/images/blog/logo/sleek-black.svg',
+  image: 'https://www.sleekdentalclub.com/images/social-share.png',
   description:
     'Premium dental care memberships with electric toothbrush kits, quarterly refills, and dental insurance benefits. Transform your oral care routine.',
   email: 'members@sleekdentalclub.com',
@@ -326,7 +327,7 @@ export function createAllProductSchemas() {
         'Discount dental care membership with sonic electric toothbrush kit, quarterly refills, teledentistry access, and Aetna Dental Access Network savings of 15-50% on dental care.',
       price: '19.95',
       sku: 'SLEEK-OCP',
-      image: 'https://sleekdentalclub.com/images/SleekKit.jpg',
+      image: 'https://www.sleekdentalclub.com/images/SleekKit.jpg',
       url: 'https://enrollment.sleekdentalclub.com/onboarding',
     },
     {
@@ -335,7 +336,7 @@ export function createAllProductSchemas() {
         'Premium dental insurance membership with MetLife PDP Plus Network, 80/60/50 co-insurance, sonic electric toothbrush kit, quarterly refills, teledentistry, and increasing annual max benefits.',
       price: '65.95',
       sku: 'SLEEK-PRO',
-      image: 'https://sleekdentalclub.com/images/SleekKit.jpg',
+      image: 'https://www.sleekdentalclub.com/images/SleekKit.jpg',
       url: 'https://enrollment.sleekdentalclub.com/onboarding',
     },
     {
@@ -344,7 +345,7 @@ export function createAllProductSchemas() {
         'Ultimate dental insurance membership with MetLife PDP Plus Network, 100/80/50 co-insurance, orthodontia coverage up to age 19, sonic electric toothbrush kit, quarterly refills, teledentistry, and maximum annual benefits.',
       price: '79.95',
       sku: 'SLEEK-MAX',
-      image: 'https://sleekdentalclub.com/images/SleekKit.jpg',
+      image: 'https://www.sleekdentalclub.com/images/SleekKit.jpg',
       url: 'https://enrollment.sleekdentalclub.com/onboarding',
     },
   ];

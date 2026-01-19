@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: 'Oral Health Blog | SLEEK Dental Club',
     description:
       'Expert advice on oral health, dental care tips, and the latest research from SLEEK Dental Club.',
-    url: 'https://sleekdentalclub.com/blog',
+    url: 'https://www.sleekdentalclub.com/blog',
     siteName: 'SLEEK Dental Club',
     images: [
       {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     images: ['/images/social-share.png'],
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/blog',
+    canonical: 'https://www.sleekdentalclub.com/blog',
   },
 };
 

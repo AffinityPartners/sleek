@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'Privacy Policy | SLEEK Dental Club',
     description:
       'Learn how SLEEK Dental Club collects, uses, and protects your personal information.',
-    url: 'https://sleekdentalclub.com/privacy',
+    url: 'https://www.sleekdentalclub.com/privacy',
     siteName: 'SLEEK Dental Club',
     type: 'website',
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: 'Learn how SLEEK Dental Club protects your personal information.',
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com/privacy',
+    canonical: 'https://www.sleekdentalclub.com/privacy',
   },
   robots: {
     index: true,

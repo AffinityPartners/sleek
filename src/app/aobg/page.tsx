@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'SLEEK Dental Club | Premium Electric Toothbrush + Dental Coverage',
     description:
       'Premium sonic electric toothbrush kit with dental insurance options. Transform your oral care routine with quarterly refills and MetLife coverage.',
-    url: 'https://sleekdentalclub.com',
+    url: 'https://www.sleekdentalclub.com',
     siteName: 'SLEEK Dental Club',
     images: [
       {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     images: ['/images/social-share.png'],
   },
   alternates: {
-    canonical: 'https://sleekdentalclub.com',
+    canonical: 'https://www.sleekdentalclub.com',
   },
   robots: {
     index: true,

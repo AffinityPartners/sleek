@@ -38,7 +38,8 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://sleekdentalclub.com/sitemap.xml',
-    host: 'https://sleekdentalclub.com',
+    // Use www subdomain to match Vercel's canonical domain redirect
+    sitemap: 'https://www.sleekdentalclub.com/sitemap.xml',
+    host: 'https://www.sleekdentalclub.com',
   };
 }
