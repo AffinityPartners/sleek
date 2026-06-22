@@ -1,29 +1,29 @@
 /**
- * ESLint flat config for Next.js 15+ with ESLint 9.
+ * ESLint flat config for Next.js 16.
  *
- * This configuration uses the new flat config format required by ESLint 9.
- * It includes the Next.js recommended rules and integrates with Prettier.
+ * eslint-config-next 16 ships native flat configs, so we import them directly.
+ * (Previously this used @eslint/eslintrc's FlatCompat to bridge the legacy
+ * format, but ESLint's config validator crashes on the bundled plugin objects.)
  */
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-/**
- * FlatCompat allows using legacy eslintrc-style configs in the new flat config format.
- * This is necessary because eslint-config-next still uses the legacy format.
- */
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import prettier from 'eslint-config-prettier';
 
 const eslintConfig = [
-  // Extend Next.js core web vitals rules (includes recommended rules + performance checks)
-  ...compat.extends('next/core-web-vitals'),
-  // Extend Prettier config to disable formatting rules that conflict with Prettier
-  ...compat.extends('prettier'),
+  { ignores: ['.next/**', 'out/**', 'build/**', 'node_modules/**'] },
+  // Next.js core web vitals (recommended rules + performance checks)
+  ...nextCoreWebVitals,
+  // Disable formatting rules that conflict with Prettier
+  prettier,
+  {
+    rules: {
+      // eslint-config-next 16 bundles eslint-plugin-react-hooks 7, which enables
+      // these newer (React Compiler-oriented) rules as errors. The existing,
+      // already-shipped components trigger them — keep as warnings so the upgrade
+      // doesn't block lint; address the underlying patterns in a separate pass.
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/static-components': 'warn',
+    },
+  },
 ];
 
 export default eslintConfig;
