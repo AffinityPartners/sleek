@@ -124,7 +124,7 @@ export default function Button({
               repeat: Infinity,
               repeatDelay: 3,
               duration: 1.5,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             }}
           />
         </span>
@@ -193,7 +193,7 @@ export default function Button({
       <motion.button
         whileTap={{ scale: disabled || loading ? 1 : 0.97 }}
         whileHover={{ scale: disabled || loading ? 1 : 1.02 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+        transition={{ type: 'spring' as const, stiffness: 400, damping: 10 }}
         type={type}
         className={buttonClasses}
         onClick={handleClick}

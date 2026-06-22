@@ -186,7 +186,7 @@ export default function PartnerContactForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: prefersReducedMotion ? 0.3 : 0.5,
-          ease: [0.22, 1, 0.36, 1],
+          ease: [0.22, 1, 0.36, 1] as const,
         }}
         className="py-16 md:py-20"
       >
@@ -227,7 +227,7 @@ export default function PartnerContactForm({
       viewport={{ once: true, margin: '-50px' }}
       transition={{
         duration: prefersReducedMotion ? 0.3 : 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       }}
       className="py-16 md:py-20"
     >

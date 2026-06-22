@@ -130,7 +130,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, value, 
               }}
               transition={{ 
                 duration: prefersReducedMotion ? 0.2 : 0.3,
-                ease: [0.22, 1, 0.36, 1]
+                ease: [0.22, 1, 0.36, 1] as const
               }}
               className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
             >
@@ -152,7 +152,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, value, 
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ 
                   duration: prefersReducedMotion ? 0.2 : 0.4,
-                  ease: [0.22, 1, 0.36, 1]
+                  ease: [0.22, 1, 0.36, 1] as const
                 }}
               >
                 <div className="px-6 pb-6">
@@ -188,7 +188,7 @@ export default function FaqAccordion() {
       transition: {
         duration: 0.15,
         delay: 0,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     })
   };

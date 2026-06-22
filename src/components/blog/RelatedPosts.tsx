@@ -38,7 +38,7 @@ export default function RelatedPosts({ currentPost, maxPosts = 3 }: RelatedPosts
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.4 : 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };

@@ -70,7 +70,7 @@ export default function TestimonialsSection() {
       opacity: 1,
       transition: { 
         duration: 0.15,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -130,7 +130,7 @@ export default function TestimonialsSection() {
                 variants={itemVariants}
                 whileHover={prefersReducedMotion ? {} : { 
                   y: -8,
-                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }
                 }}
                 className="relative bg-white rounded-2xl p-8 shadow-card border border-gray-100 hover:shadow-card-hover hover:border-teal-200/30 transition-all duration-300"
               >

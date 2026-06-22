@@ -129,7 +129,7 @@ function MobileMenuContent({
       x: 0,
       opacity: 1,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 300,
         damping: 30,
         mass: 0.8,
@@ -139,7 +139,7 @@ function MobileMenuContent({
       x: '100%',
       opacity: 0.8,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 400,
         damping: 40,
       }
@@ -182,7 +182,7 @@ function MobileMenuContent({
       opacity: 1, 
       x: 0,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 300,
         damping: 24,
       }
@@ -623,7 +623,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
       className="fixed top-0 left-0 right-0 z-50"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
     >
       <div className="container-standard py-4">
         <div className="flex items-center justify-between">
@@ -631,7 +631,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
           <Link href="/" className="flex flex-col relative z-10">
             <motion.div 
               style={{ scale: prefersReducedMotion ? 1 : logoScale }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              transition={{ type: "spring" as const, stiffness: 300, damping: 30 }}
               className="relative"
             >
               {/* White logo for dark hero (shown when not scrolled and not lightHero) */}
@@ -705,7 +705,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                         : 'text-white/90 hover:text-white'
                   }`}
                   whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
                 >
                   {item.label}
                   {/* Active indicator with animated underline */}
@@ -718,7 +718,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                           ? 'linear-gradient(90deg, #14b8a6 0%, #0f766e 100%)'
                           : 'linear-gradient(90deg, #5eead4 0%, #14b8a6 100%)'
                       }}
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      transition={{ type: "spring" as const, stiffness: 400, damping: 30 }}
                     />
                   )}
                 </motion.span>
@@ -753,7 +753,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                   boxShadow: '0 8px 25px rgba(15, 118, 110, 0.35)' 
                 }}
                 whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                transition={{ type: "spring" as const, stiffness: 400, damping: 20 }}
               >
                 {/* Shimmer effect on hover */}
                 <span 

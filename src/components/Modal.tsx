@@ -77,7 +77,7 @@ export default function Modal({
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                transition={{ duration: 0.2, ease: 'easeOut' as const }}
                 className={`relative w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left shadow-2xl ring-1 ring-black/5 pointer-events-auto ${sizeClasses[size]}`}
               >
                 {title && (

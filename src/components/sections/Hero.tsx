@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
     },
   };
 
@@ -143,7 +143,7 @@ const Hero: React.FC = () => {
               transition={{ 
                 repeat: Infinity, 
                 duration: 4,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
               }}
               className="relative z-10"
             >
@@ -168,7 +168,7 @@ const Hero: React.FC = () => {
                 transition={{ 
                   repeat: Infinity, 
                   duration: 5,
-                  ease: "easeInOut"
+                  ease: "easeInOut" as const
                 }}
                 className="absolute top-1/4 -right-12 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-lg border border-white/10 text-white shadow-lg"
               >
@@ -184,7 +184,7 @@ const Hero: React.FC = () => {
                 transition={{ 
                   repeat: Infinity, 
                   duration: 6,
-                  ease: "easeInOut"
+                  ease: "easeInOut" as const
                 }}
                 className="absolute bottom-1/4 -left-12 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-lg border border-white/10 text-white shadow-lg"
               >

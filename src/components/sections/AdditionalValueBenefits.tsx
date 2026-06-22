@@ -91,7 +91,7 @@ const BenefitCard = ({ benefit, index }: BenefitCardProps) => {
           } : {}}
           transition={{ 
             duration: 0.15, 
-            ease: [0.22, 1, 0.36, 1]
+            ease: [0.22, 1, 0.36, 1] as const
           }}
         >
           <div className="relative aspect-video md:aspect-[4/3] lg:aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl group">
@@ -105,7 +105,7 @@ const BenefitCard = ({ benefit, index }: BenefitCardProps) => {
               }}
               transition={{
                 duration: 1,
-                ease: [0.25, 0.1, 0.25, 1]
+                ease: [0.25, 0.1, 0.25, 1] as const
               }}
             >
               <Image
@@ -140,7 +140,7 @@ const BenefitCard = ({ benefit, index }: BenefitCardProps) => {
           } : {}}
           transition={{ 
             duration: 0.15, 
-            ease: [0.22, 1, 0.36, 1]
+            ease: [0.22, 1, 0.36, 1] as const
           }}
         >
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100">

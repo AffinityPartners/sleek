@@ -177,7 +177,7 @@ export default function PBABenefitsSection() {
       opacity: 1,
       transition: { 
         duration: 0.15,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -265,7 +265,7 @@ export default function PBABenefitsSection() {
                 variants={itemVariants}
                 whileHover={prefersReducedMotion ? {} : { 
                   y: -5,
-                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }
                 }}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-card border border-gray-100 hover:shadow-card-hover hover:border-gray-200 transition-all duration-300"
               >

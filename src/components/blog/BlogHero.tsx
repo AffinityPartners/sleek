@@ -46,7 +46,7 @@ export default function BlogHero({
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -66,7 +66,7 @@ export default function BlogHero({
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.6,
         delay: prefersReducedMotion ? 0 : custom * 0.08,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
   };
@@ -93,7 +93,7 @@ export default function BlogHero({
             duration: 15,
             repeat: Infinity,
             repeatType: 'reverse',
-            ease: 'easeInOut',
+            ease: 'easeInOut' as const,
           }}
         />
         <motion.div
@@ -110,7 +110,7 @@ export default function BlogHero({
             duration: 18,
             repeat: Infinity,
             repeatType: 'reverse',
-            ease: 'easeInOut',
+            ease: 'easeInOut' as const,
             delay: 2,
           }}
         />

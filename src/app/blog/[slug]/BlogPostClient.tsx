@@ -126,7 +126,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.4 : 0.7,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };

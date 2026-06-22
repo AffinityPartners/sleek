@@ -47,7 +47,7 @@ export default function BlogCard({ post, featured = false, index = 0 }: BlogCard
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.5,
         delay: prefersReducedMotion ? 0 : index * 0.1,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };

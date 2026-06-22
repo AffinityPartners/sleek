@@ -29,7 +29,7 @@ const fadeIn = (delay = 0) => ({
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: [0.6, -0.05, 0.01, 0.99] }
+    transition: { duration: 0.6, delay, ease: [0.6, -0.05, 0.01, 0.99] as const }
   }
 });
 
@@ -131,7 +131,7 @@ const sectionVariants = {
     y: 0,
     transition: { 
       duration: 0.6, 
-      ease: [0.04, 0.62, 0.23, 0.98],
+      ease: [0.04, 0.62, 0.23, 0.98] as const,
       staggerChildren: 0.1,
       delayChildren: 0.1
     }
@@ -146,7 +146,7 @@ const cardVariants = {
     scale: 1,
     transition: { 
       duration: 0.5,
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100
     }
   },
@@ -154,7 +154,7 @@ const cardVariants = {
     y: -12,
     boxShadow: "0 22px 40px rgba(0,0,0,0.15)",
     transition: { 
-      type: "spring", 
+      type: "spring" as const, 
       stiffness: 300,
       damping: 15
     }
@@ -164,7 +164,7 @@ const cardVariants = {
     scale: 1.02,
     boxShadow: "0 25px 50px rgba(92, 187, 255, 0.35)",
     transition: { 
-      type: "spring", 
+      type: "spring" as const, 
       stiffness: 300,
       damping: 15
     }
@@ -173,7 +173,7 @@ const cardVariants = {
 
 const checkVariants = {
   hidden: { scale: 0, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 300 } }
+  visible: { scale: 1, opacity: 1, transition: { type: "spring" as const, stiffness: 300 } }
 };
 
 // Tooltip component
@@ -640,7 +640,7 @@ export default function PricingTable() {
                     className="inline-block bg-gradient-to-r from-[#00e0cb] to-[#5cbbff] text-white text-sm font-semibold py-1.5 px-6 rounded-b-lg shadow-md"
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+                    transition={{ delay: 0.5, type: "spring" as const, stiffness: 300 }}
                     whileHover={{ 
                       scale: 1.05,
                       boxShadow: "0 5px 15px rgba(0,0,0,0.2)"

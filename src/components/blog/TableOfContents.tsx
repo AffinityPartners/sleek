@@ -98,7 +98,7 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.5,
         delay: prefersReducedMotion ? 0 : 0.3,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };

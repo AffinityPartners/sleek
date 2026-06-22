@@ -97,7 +97,7 @@ export default function MarketProgramHero({
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -125,7 +125,7 @@ export default function MarketProgramHero({
             duration: 15,
             repeat: Infinity,
             repeatType: 'reverse',
-            ease: 'easeInOut',
+            ease: 'easeInOut' as const,
           }}
         />
         <motion.div
@@ -145,7 +145,7 @@ export default function MarketProgramHero({
             duration: 18,
             repeat: Infinity,
             repeatType: 'reverse',
-            ease: 'easeInOut',
+            ease: 'easeInOut' as const,
             delay: 2,
           }}
         />

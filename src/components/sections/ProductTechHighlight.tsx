@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { 
-  Activity, 
-  Battery, 
-  Droplets, 
-  Sparkles, 
+import { motion, AnimatePresence, useReducedMotion, type TargetAndTransition, type Transition } from 'framer-motion';
+import {
+  Activity,
+  Battery,
+  Droplets,
+  Sparkles,
   RotateCcw,
   Timer,
   CheckCircle,
@@ -48,7 +48,7 @@ interface TechFeature {
 
 /* ==========================================================================
    FEATURE DATA
-   Each feature drives unique 3D transforms, holographic overlays, and 
+   Each feature drives unique 3D transforms, holographic overlays, and
    accent effects throughout the component.
    ========================================================================== */
 
@@ -216,8 +216,8 @@ interface BackgroundLayersProps {
  * animations are disabled for performance. Parallax is mouse-based so naturally
  * disabled on touch devices.
  */
-const BackgroundLayers: React.FC<BackgroundLayersProps> = ({ 
-  accentColor, 
+const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
+  accentColor,
   accentColorRGB,
   mousePosition,
   prefersReducedMotion,
@@ -226,10 +226,10 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
   // Calculate parallax offset - disabled on mobile since mouse tracking doesn't apply
   const parallaxX = (prefersReducedMotion || isMobile) ? 0 : (mousePosition.x - 0.5) * 20;
   const parallaxY = (prefersReducedMotion || isMobile) ? 0 : (mousePosition.y - 0.5) * 20;
-  
+
   // Determine particle count: 0 on mobile, reduced with motion preference, full otherwise
   const particleCount = isMobile ? 0 : (prefersReducedMotion ? 10 : 40);
-  
+
   // Should we animate? Disabled on mobile or if user prefers reduced motion
   const shouldAnimate = !prefersReducedMotion && !isMobile;
 
@@ -237,9 +237,9 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
     <>
       {/* Base gradient - deep dark with subtle color influence */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#050608] via-[#0a0d10] to-[#0d1114]" />
-      
+
       {/* Tech grid pattern layer with parallax - static on mobile */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03] transition-transform duration-700 ease-out"
         style={{
           transform: isMobile ? 'none' : `translate(${parallaxX * 0.5}px, ${parallaxY * 0.5}px)`,
@@ -270,7 +270,7 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
                 duration: 3 + (i % 3),
                 repeat: Infinity,
                 delay: i * 0.1,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
               }}
             />
           ))}
@@ -278,7 +278,7 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
       )}
 
       {/* Primary accent glow - smaller and less intense on mobile */}
-      <motion.div 
+      <motion.div
         className={cn(
           "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none",
           isMobile ? "w-[400px] h-[400px] blur-[80px]" : "w-[900px] h-[900px] blur-[180px]"
@@ -287,24 +287,24 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
           backgroundColor: accentColor,
           opacity: isMobile ? 0.1 : 0.15,
         }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" as const }}
       />
 
       {/* Secondary ambient glows - smaller on mobile */}
-      <div 
+      <div
         className={cn(
           "absolute rounded-full pointer-events-none",
-          isMobile 
-            ? "-top-20 -left-20 w-[200px] h-[200px] blur-[60px]" 
+          isMobile
+            ? "-top-20 -left-20 w-[200px] h-[200px] blur-[60px]"
             : "-top-40 -left-40 w-[500px] h-[500px] blur-[150px]"
         )}
         style={{ backgroundColor: `rgba(${accentColorRGB}, ${isMobile ? 0.05 : 0.08})` }}
       />
-      <div 
+      <div
         className={cn(
           "absolute rounded-full pointer-events-none",
-          isMobile 
-            ? "-bottom-20 -right-20 w-[250px] h-[250px] blur-[80px]" 
+          isMobile
+            ? "-bottom-20 -right-20 w-[250px] h-[250px] blur-[80px]"
             : "-bottom-40 -right-40 w-[600px] h-[600px] blur-[180px]"
         )}
         style={{ backgroundColor: `rgba(${accentColorRGB}, ${isMobile ? 0.04 : 0.06})` }}
@@ -328,7 +328,7 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
             transition={{
               duration: 8,
               repeat: Infinity,
-              ease: "linear",
+              ease: "linear" as const,
             }}
           />
         </motion.div>
@@ -345,7 +345,7 @@ const BackgroundLayers: React.FC<BackgroundLayersProps> = ({
  * Central showcase image with 3D perspective transforms.
  * Responds to feature selection with smooth perspective shifts and image changes.
  * Each feature displays a unique showcase image that highlights that specific feature.
- * 
+ *
  * Mobile optimization: Uses smaller image (220x320px) to fit more content on screen.
  * Desktop: Full 3D transforms and larger images (420x680px / 520x780px).
  */
@@ -359,8 +359,8 @@ interface ProductHero3DProps {
   specs?: { label: string; value: string }[];
 }
 
-const ProductHero3D: React.FC<ProductHero3DProps> = ({ 
-  perspective, 
+const ProductHero3D: React.FC<ProductHero3DProps> = ({
+  perspective,
   accentColor,
   prefersReducedMotion,
   showcaseImage,
@@ -374,8 +374,8 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
       <motion.div
         className={cn(
           "absolute rounded-full pointer-events-none",
-          isMobile 
-            ? "inset-0 blur-[60px]" 
+          isMobile
+            ? "inset-0 blur-[60px]"
             : "inset-0 blur-[100px]"
         )}
         animate={{
@@ -383,7 +383,7 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
           opacity: isMobile ? 0.2 : 0.25,
           scale: isMobile ? 1 : 1.2,
         }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: "easeOut" as const }}
       />
 
       {/* 3D Transform container - disabled on mobile for performance */}
@@ -396,7 +396,7 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
         }}
         transition={{
           duration: 0.6,
-          ease: [0.22, 1, 0.36, 1],
+          ease: [0.22, 1, 0.36, 1] as const,
         }}
         style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
       >
@@ -407,14 +407,14 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
             className="relative"
           >
             {/* Showcase image - compact on mobile, reduced size on desktop to fit viewport */}
             <div className={cn(
               "relative mx-auto",
-              isMobile 
-                ? "w-[200px] h-[300px]" 
+              isMobile
+                ? "w-[200px] h-[300px]"
                 : "w-[300px] h-[450px] md:w-[340px] md:h-[510px] lg:w-[380px] lg:h-[570px]"
             )}>
               <Image
@@ -426,7 +426,7 @@ const ProductHero3D: React.FC<ProductHero3DProps> = ({
                 sizes={isMobile ? "200px" : "(max-width: 768px) 300px, (max-width: 1024px) 340px, 380px"}
               />
             </div>
-            
+
             {/* Mobile-only: Floating spec badges overlay on the image */}
             {isMobile && specs.length > 0 && (
               <div className="absolute -bottom-2 left-0 right-0 flex justify-center gap-2 z-20">
@@ -468,10 +468,10 @@ interface HolographicPanelProps {
   prefersReducedMotion: boolean | null;
 }
 
-const HolographicPanel: React.FC<HolographicPanelProps> = ({ 
-  feature, 
+const HolographicPanel: React.FC<HolographicPanelProps> = ({
+  feature,
   position,
-  prefersReducedMotion 
+  prefersReducedMotion
 }) => {
   // Animation variants for panel entrance - near-instant for better UX
   const panelVariants = {
@@ -486,7 +486,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
       scale: 1,
       transition: {
         duration: 0.15,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
         staggerChildren: 0.02,
         delayChildren: 0,
       }
@@ -497,17 +497,17 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
       scale: 0.99,
       transition: {
         duration: 0.1,
-        ease: "easeIn",
+        ease: "easeIn" as const,
       }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 5 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.1, ease: "easeOut" }
+      transition: { duration: 0.1, ease: "easeOut" as const }
     }
   };
 
@@ -532,7 +532,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
       }}
     >
       {/* Top edge glow */}
-      <div 
+      <div
         className="absolute top-0 left-4 right-4 h-[1px]"
         style={{
           background: `linear-gradient(90deg, transparent, ${feature.accentColor}60, transparent)`,
@@ -555,7 +555,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
           transition={{
             duration: 4,
             repeat: Infinity,
-            ease: "linear",
+            ease: "linear" as const,
           }}
         />
       </motion.div>
@@ -566,9 +566,9 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
           "flex items-center gap-3 mb-4",
           position === 'right' && 'flex-row-reverse'
         )}>
-          <div 
+          <div
             className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ 
+            style={{
               backgroundColor: `${feature.accentColor}20`,
               boxShadow: `0 0 20px ${feature.accentColor}30`,
             }}
@@ -578,7 +578,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
             </span>
           </div>
           <div>
-            <p 
+            <p
               className="text-xs font-semibold uppercase tracking-wider"
               style={{ color: feature.accentColor }}
             >
@@ -591,7 +591,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
         </motion.div>
 
         {/* Specs row */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className={cn(
             "flex gap-4 mb-5",
@@ -599,15 +599,15 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
           )}
         >
           {feature.specs.map((spec, idx) => (
-            <div 
+            <div
               key={idx}
               className="text-center px-3 py-2 rounded-lg"
-              style={{ 
+              style={{
                 backgroundColor: `${feature.accentColor}10`,
                 border: `1px solid ${feature.accentColor}20`,
               }}
             >
-              <p 
+              <p
                 className="text-lg font-bold"
                 style={{ color: feature.accentColor }}
               >
@@ -621,7 +621,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
         </motion.div>
 
         {/* Description */}
-        <motion.p 
+        <motion.p
           variants={itemVariants}
           className="text-gray-400 text-sm leading-relaxed mb-5"
         >
@@ -631,7 +631,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
         {/* Benefits list */}
         <motion.ul variants={itemVariants} className="space-y-2.5">
           {feature.benefits.slice(0, 3).map((benefit, idx) => (
-            <motion.li 
+            <motion.li
               key={idx}
               variants={itemVariants}
               className={cn(
@@ -639,8 +639,8 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
                 position === 'right' && 'flex-row-reverse text-right'
               )}
             >
-              <CheckCircle 
-                className="h-4 w-4 flex-shrink-0 mt-0.5" 
+              <CheckCircle
+                className="h-4 w-4 flex-shrink-0 mt-0.5"
                 style={{ color: feature.accentColor }}
               />
               <span className="text-gray-300 text-sm">{benefit}</span>
@@ -663,10 +663,10 @@ interface ConnectionLineProps {
   prefersReducedMotion: boolean | null;
 }
 
-const ConnectionLine: React.FC<ConnectionLineProps> = ({ 
-  accentColor, 
+const ConnectionLine: React.FC<ConnectionLineProps> = ({
+  accentColor,
   position,
-  prefersReducedMotion 
+  prefersReducedMotion
 }) => {
   return (
     <svg
@@ -679,8 +679,8 @@ const ConnectionLine: React.FC<ConnectionLineProps> = ({
     >
       {/* Main connection line */}
       <motion.path
-        d={position === 'left' 
-          ? "M80 64 Q40 64 20 40 Q0 16 0 64 Q0 112 20 88 Q40 64 80 64" 
+        d={position === 'left'
+          ? "M80 64 Q40 64 20 40 Q0 16 0 64 Q0 112 20 88 Q40 64 80 64"
           : "M0 64 Q40 64 60 40 Q80 16 80 64 Q80 112 60 88 Q40 64 0 64"
         }
         stroke={accentColor}
@@ -689,9 +689,9 @@ const ConnectionLine: React.FC<ConnectionLineProps> = ({
         fill="none"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: "easeOut" }}
+        transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: "easeOut" as const }}
       />
-      
+
       {/* Animated pulse along the line */}
       <motion.circle
         r="3"
@@ -703,16 +703,16 @@ const ConnectionLine: React.FC<ConnectionLineProps> = ({
         transition={{
           duration: 2,
           repeat: Infinity,
-          ease: "linear",
+          ease: "linear" as const,
         }}
         style={{
-          offsetPath: `path("${position === 'left' 
-            ? 'M80 64 Q40 64 20 40 Q0 16 0 64 Q0 112 20 88 Q40 64 80 64' 
+          offsetPath: `path("${position === 'left'
+            ? 'M80 64 Q40 64 20 40 Q0 16 0 64 Q0 112 20 88 Q40 64 80 64'
             : 'M0 64 Q40 64 60 40 Q80 16 80 64 Q80 112 60 88 Q40 64 0 64'
           }")`,
         }}
       />
-      
+
       {/* End node */}
       <motion.circle
         cx={position === 'left' ? 0 : 80}
@@ -733,10 +733,10 @@ const ConnectionLine: React.FC<ConnectionLineProps> = ({
         strokeOpacity="0.3"
         initial={{ scale: 0 }}
         animate={prefersReducedMotion ? { scale: 1 } : { scale: [1, 1.5, 1] }}
-        transition={{ 
-          duration: 2, 
+        transition={{
+          duration: 2,
           repeat: Infinity,
-          delay: prefersReducedMotion ? 0 : 0.5 
+          delay: prefersReducedMotion ? 0 : 0.5
         }}
       />
     </svg>
@@ -753,10 +753,10 @@ const ConnectionLine: React.FC<ConnectionLineProps> = ({
  * All icon animations return this shape to avoid TypeScript errors.
  */
 interface IconAnimationResult {
-  animate?: Record<string, unknown>;
-  whileHover?: Record<string, unknown>;
-  whileTap?: Record<string, unknown>;
-  transition?: Record<string, unknown>;
+  animate?: TargetAndTransition;
+  whileHover?: TargetAndTransition;
+  whileTap?: TargetAndTransition;
+  transition?: Transition;
 }
 
 const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMotion: boolean | null): IconAnimationResult => {
@@ -767,7 +767,7 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
 
   const baseActive: IconAnimationResult = isActive ? {
     animate: { scale: [1, 1.1, 1] },
-    transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+    transition: { duration: 2, repeat: Infinity, ease: "easeInOut" as const }
   } : { animate: {}, whileHover: {}, whileTap: {}, transition: {} };
 
   switch (featureId) {
@@ -780,9 +780,9 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
         } : {},
         whileHover: { rotate: 45, scale: 1.15 },
         whileTap: { rotate: 180, scale: 0.9 },
-        transition: isActive ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { type: "spring", stiffness: 400 }
+        transition: isActive ? { duration: 3, repeat: Infinity, ease: "easeInOut" as const } : { type: "spring" as const, stiffness: 400 }
       };
-    
+
     case 'sonic-technology':
       // Vibration shake animation
       return {
@@ -794,7 +794,7 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
         whileTap: { scale: 0.85, x: 0 },
         transition: isActive ? { duration: 0.2, repeat: Infinity } : undefined
       };
-    
+
     case 'usb-charging':
       // Pulse/glow charging animation
       return {
@@ -804,9 +804,9 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
         } : {},
         whileHover: { scale: 1.2, y: -2 },
         whileTap: { scale: 0.9, y: 2 },
-        transition: isActive ? { duration: 1, repeat: Infinity, ease: "easeInOut" } : { type: "spring", stiffness: 500 }
+        transition: isActive ? { duration: 1, repeat: Infinity, ease: "easeInOut" as const } : { type: "spring" as const, stiffness: 500 }
       };
-    
+
     case 'water-resistant':
       // Wobble/splash animation
       return {
@@ -816,9 +816,9 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
         } : {},
         whileHover: { rotate: [0, -10, 10, -5, 5, 0], y: -3 },
         whileTap: { scale: 0.9, rotate: 0, y: 3 },
-        transition: isActive ? { duration: 1.5, repeat: Infinity, ease: "easeInOut" } : { duration: 0.5 }
+        transition: isActive ? { duration: 1.5, repeat: Infinity, ease: "easeInOut" as const } : { duration: 0.5 }
       };
-    
+
     case 'smart-timer':
       // Clock tick rotation
       return {
@@ -827,9 +827,9 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
         } : {},
         whileHover: { rotate: 180, scale: 1.1 },
         whileTap: { rotate: 360, scale: 0.95 },
-        transition: isActive ? { duration: 4, repeat: Infinity, ease: "linear" } : { type: "spring", stiffness: 300 }
+        transition: isActive ? { duration: 4, repeat: Infinity, ease: "linear" as const } : { type: "spring" as const, stiffness: 300 }
       };
-    
+
     case 'complete-kit':
       // Sparkle/bounce animation
       return {
@@ -839,9 +839,9 @@ const getIconAnimation = (featureId: string, isActive: boolean, prefersReducedMo
         } : {},
         whileHover: { scale: 1.2, rotate: [0, -10, 10, 0] },
         whileTap: { scale: 0.85 },
-        transition: isActive ? { duration: 1.5, repeat: Infinity, ease: "easeInOut" } : { duration: 0.4 }
+        transition: isActive ? { duration: 1.5, repeat: Infinity, ease: "easeInOut" as const } : { duration: 0.4 }
       };
-    
+
     default:
       return baseActive;
   }
@@ -880,10 +880,10 @@ const MobileFeatureNav: React.FC<MobileFeatureNavProps> = ({
       const button = activeButtonRef.current;
       const containerRect = container.getBoundingClientRect();
       const buttonRect = button.getBoundingClientRect();
-      
+
       // Calculate scroll position to center the active button
       const scrollLeft = button.offsetLeft - (containerRect.width / 2) + (buttonRect.width / 2);
-      
+
       container.scrollTo({
         left: scrollLeft,
         behavior: 'smooth'
@@ -894,20 +894,20 @@ const MobileFeatureNav: React.FC<MobileFeatureNavProps> = ({
   return (
     <div className="relative md:hidden">
       {/* Left fade edge - indicates more content on the left */}
-      <div 
-        className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0a0d10] to-transparent z-10 pointer-events-none" 
+      <div
+        className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0a0d10] to-transparent z-10 pointer-events-none"
         aria-hidden="true"
       />
-      
+
       {/* Scrollable container with horizontal scroll and snap behavior */}
-      <div 
+      <div
         ref={scrollContainerRef}
         className="flex gap-2 overflow-x-auto scrollbar-hide px-6 py-2 snap-x snap-mandatory"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {features.map((feature, index) => {
           const isActive = index === activeIndex;
-          
+
           return (
             <button
               key={feature.id}
@@ -918,13 +918,13 @@ const MobileFeatureNav: React.FC<MobileFeatureNavProps> = ({
                 "text-sm font-medium transition-all duration-200",
                 "backdrop-blur-md border min-h-[48px] min-w-[90px]",
                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
-                isActive 
-                  ? "bg-white/[0.12] border-white/25 text-white" 
+                isActive
+                  ? "bg-white/[0.12] border-white/25 text-white"
                   : "bg-white/[0.04] border-white/[0.08] text-gray-400"
               )}
               style={{
-                boxShadow: isActive 
-                  ? `0 0 20px -5px ${feature.accentColor}50` 
+                boxShadow: isActive
+                  ? `0 0 20px -5px ${feature.accentColor}50`
                   : undefined,
                 borderColor: isActive ? `${feature.accentColor}50` : undefined,
               }}
@@ -937,10 +937,10 @@ const MobileFeatureNav: React.FC<MobileFeatureNavProps> = ({
           );
         })}
       </div>
-      
+
       {/* Right fade edge - indicates more content on the right */}
-      <div 
-        className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0a0d10] to-transparent z-10 pointer-events-none" 
+      <div
+        className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0a0d10] to-transparent z-10 pointer-events-none"
         aria-hidden="true"
       />
     </div>
@@ -992,7 +992,7 @@ const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      transition={{ duration: 0.3, ease: "easeOut" as const }}
       className="relative backdrop-blur-xl rounded-xl overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y"
       style={{
         background: `linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)`,
@@ -1001,7 +1001,7 @@ const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
       }}
     >
       {/* Top accent line */}
-      <div 
+      <div
         className="absolute top-0 left-4 right-4 h-[1px]"
         style={{
           background: `linear-gradient(90deg, transparent, ${feature.accentColor}60, transparent)`,
@@ -1011,9 +1011,9 @@ const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
       <div className="relative p-4">
         {/* Header: Icon + Title + Tagline */}
         <div className="flex items-center gap-3 mb-3">
-          <div 
+          <div
             className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-            style={{ 
+            style={{
               backgroundColor: `${feature.accentColor}20`,
               boxShadow: `0 0 15px ${feature.accentColor}30`,
             }}
@@ -1023,7 +1023,7 @@ const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
             </span>
           </div>
           <div className="min-w-0 flex-1">
-            <p 
+            <p
               className="text-[10px] font-semibold uppercase tracking-wider"
               style={{ color: feature.accentColor }}
             >
@@ -1063,8 +1063,8 @@ const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
         <div className="space-y-1.5">
           {feature.benefits.slice(0, 2).map((benefit, idx) => (
             <div key={idx} className="flex items-start gap-2">
-              <CheckCircle 
-                className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" 
+              <CheckCircle
+                className="h-3.5 w-3.5 flex-shrink-0 mt-0.5"
                 style={{ color: feature.accentColor }}
               />
               <span className="text-xs text-gray-300 line-clamp-1">{benefit}</span>
@@ -1108,7 +1108,7 @@ const FeatureNavigation: React.FC<FeatureNavigationProps> = ({
       {features.map((feature, index) => {
         const isActive = index === activeIndex;
         const iconAnimation = getIconAnimation(feature.id, isActive, prefersReducedMotion);
-        
+
         return (
           <motion.button
             key={feature.id}
@@ -1118,13 +1118,13 @@ const FeatureNavigation: React.FC<FeatureNavigationProps> = ({
               "text-sm font-medium transition-colors duration-300",
               "backdrop-blur-md border min-h-[48px]",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
-              isActive 
-                ? "bg-white/[0.1] border-white/20 text-white" 
+              isActive
+                ? "bg-white/[0.1] border-white/20 text-white"
                 : "bg-white/[0.03] border-white/[0.06] text-gray-400 hover:bg-white/[0.06] hover:border-white/10 hover:text-gray-200"
             )}
             style={{
-              boxShadow: isActive 
-                ? `0 0 30px -5px ${feature.accentColor}60, inset 0 1px 1px rgba(255,255,255,0.1)` 
+              boxShadow: isActive
+                ? `0 0 30px -5px ${feature.accentColor}60, inset 0 1px 1px rgba(255,255,255,0.1)`
                 : undefined,
               borderColor: isActive ? `${feature.accentColor}40` : undefined,
             }}
@@ -1148,7 +1148,7 @@ const FeatureNavigation: React.FC<FeatureNavigationProps> = ({
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    ease: "linear",
+                    ease: "linear" as const,
                   }}
                 />
               </motion.div>
@@ -1220,7 +1220,7 @@ const FeatureNavigation: React.FC<FeatureNavigationProps> = ({
             )}
 
             {/* Icon with feature-specific animation */}
-            <motion.span 
+            <motion.span
               className="relative z-10 transition-colors duration-300"
               style={{ color: isActive ? feature.accentColor : undefined }}
               animate={iconAnimation.animate}
@@ -1230,17 +1230,17 @@ const FeatureNavigation: React.FC<FeatureNavigationProps> = ({
             >
               {feature.icon}
             </motion.span>
-            
+
             {/* Label */}
             <span className="relative z-10">{feature.shortName}</span>
-            
+
             {/* Active indicator dot */}
             {isActive && (
               <motion.span
                 layoutId="activeNavIndicator"
                 className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full"
                 style={{ backgroundColor: feature.accentColor }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                transition={{ type: "spring" as const, stiffness: 500, damping: 30 }}
               />
             )}
 
@@ -1291,7 +1291,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
   if (isMobile) {
     return null;
   }
-  
+
   // Different effects based on feature
   switch (featureId) {
     case 'sonic-technology':
@@ -1311,14 +1311,14 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
             transition={{
               duration: 0.15,
               repeat: Infinity,
-              ease: "linear",
+              ease: "linear" as const,
             }}
           >
             {[...Array(4)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
-                style={{ 
+                style={{
                   borderColor: accentColor,
                   borderWidth: '3px',
                   borderStyle: 'solid',
@@ -1332,7 +1332,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                   duration: 1.2,
                   repeat: Infinity,
                   delay: i * 0.3,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                 }}
               />
             ))}
@@ -1361,7 +1361,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 0.3,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
             />
           </svg>
@@ -1389,7 +1389,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 0.3,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
             />
           </svg>
@@ -1418,7 +1418,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                   duration: 0.8 + (i % 3) * 0.2,
                   repeat: Infinity,
                   delay: i * 0.08,
-                  ease: "easeInOut",
+                  ease: "easeInOut" as const,
                 }}
               />
             );
@@ -1433,7 +1433,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
             transition={{
               duration: 0.1,
               repeat: Infinity,
-              ease: "linear",
+              ease: "linear" as const,
             }}
           >
             <div
@@ -1457,7 +1457,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               >
                 31,000
               </motion.span>
-              <span 
+              <span
                 className="text-[9px] uppercase tracking-wider font-medium"
                 style={{ color: 'white' }}
               >
@@ -1486,7 +1486,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                 duration: 0.35,
                 repeat: Infinity,
                 delay: i * 0.05,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
             />
           ))}
@@ -1514,7 +1514,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
             />
           </motion.div>
@@ -1537,7 +1537,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "easeInOut" as const,
                 }}
               />
               {/* Battery segments */}
@@ -1579,7 +1579,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                   duration: 1.5,
                   repeat: Infinity,
                   delay: i * 0.2,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                 }}
               />
             </motion.div>
@@ -1601,7 +1601,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 1,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
             >
               <motion.span
@@ -1644,7 +1644,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 1,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
             />
           </motion.div>
@@ -1667,12 +1667,12 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                 duration: 2,
                 repeat: Infinity,
                 delay: i * 0.5,
-                ease: "easeOut",
+                ease: "easeOut" as const,
               }}
             >
-              <Zap 
-                className="w-3 h-3" 
-                style={{ color: accentColor, filter: `drop-shadow(0 0 4px ${accentColor})` }} 
+              <Zap
+                className="w-3 h-3"
+                style={{ color: accentColor, filter: `drop-shadow(0 0 4px ${accentColor})` }}
               />
             </motion.div>
           ))}
@@ -1710,7 +1710,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                   duration: 2.5 + (i % 3) * 0.5,
                   repeat: Infinity,
                   delay: i * 0.35,
-                  ease: "easeIn",
+                  ease: "easeIn" as const,
                 }}
               />
             );
@@ -1745,7 +1745,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                       repeat: Infinity,
                       delay: i * 0.8 + 0.3,
                       repeatDelay: 2,
-                      ease: "easeOut",
+                      ease: "easeOut" as const,
                     }}
                   />
                 );
@@ -1778,7 +1778,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                   duration: 3 + (i % 3),
                   repeat: Infinity,
                   delay: i * 0.25,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                 }}
               />
             );
@@ -1800,7 +1800,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "linear",
+                ease: "linear" as const,
               }}
             />
           </motion.div>
@@ -1823,7 +1823,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                   duration: 1.5,
                   repeat: Infinity,
                   delay: i * 0.5,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                 }}
               />
             ))}
@@ -1838,7 +1838,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             }}
           >
             <div
@@ -1849,7 +1849,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               }}
             >
               <Droplets className="w-4 h-4" style={{ color: accentColor }} />
-              <span 
+              <span
                 className="text-xs font-bold uppercase"
                 style={{ color: accentColor }}
               >
@@ -1868,7 +1868,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
           initial={false}
         >
           {/* Outer timer ring - scaled down for compact desktop */}
-          <div 
+          <div
             className="w-[140px] h-[140px] rounded-full border-2 relative"
             style={{ borderColor: `${accentColor}30` }}
           >
@@ -1883,7 +1883,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                 const y1 = 50 + 45 * Math.sin(startRad);
                 const x2 = 50 + 45 * Math.cos(endRad);
                 const y2 = 50 + 45 * Math.sin(endRad);
-                
+
                 return (
                   <motion.path
                     key={quadrant}
@@ -1896,7 +1896,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                       duration: 8,
                       repeat: Infinity,
                       delay: quadrant * 2,
-                      ease: "easeInOut",
+                      ease: "easeInOut" as const,
                     }}
                   />
                 );
@@ -1906,7 +1906,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
             {/* Sweeping clock hand - scaled proportionally */}
             <motion.div
               className="absolute top-1/2 left-1/2 w-1 h-[55px] rounded-full origin-bottom"
-              style={{ 
+              style={{
                 backgroundColor: accentColor,
                 boxShadow: `0 0 10px ${accentColor}80`,
                 translateX: '-50%',
@@ -1918,14 +1918,14 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 8,
                 repeat: Infinity,
-                ease: "linear",
+                ease: "linear" as const,
               }}
             />
 
             {/* Center dot */}
             <motion.div
               className="absolute top-1/2 left-1/2 w-4 h-4 rounded-full -translate-x-1/2 -translate-y-1/2"
-              style={{ 
+              style={{
                 backgroundColor: accentColor,
                 boxShadow: `0 0 15px ${accentColor}60`,
               }}
@@ -1955,7 +1955,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                     duration: 8,
                     repeat: Infinity,
                     delay: i * 2,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                   }}
                 />
               );
@@ -1968,9 +1968,9 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               const x = 50 + Math.cos(rad) * 38;
               const y = 50 + Math.sin(rad) * 38;
               const isQuadrant = i % 3 === 0;
-              
+
               if (isQuadrant) return null; // Skip quadrant positions (already have markers)
-              
+
               return (
                 <div
                   key={i}
@@ -2010,7 +2010,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               >
                 2:00
               </motion.div>
-              <div 
+              <div
                 className="text-[9px] uppercase tracking-wider mt-0.5"
                 style={{ color: `${accentColor}80` }}
               >
@@ -2060,7 +2060,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeOut",
+              ease: "easeOut" as const,
             }}
           />
         </motion.div>
@@ -2083,7 +2083,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               className="absolute inset-0 rounded-full border-2"
               style={{ borderColor: `${accentColor}40` }}
             />
-            
+
             {/* 5 mode position markers around the dial */}
             {[0, 1, 2, 3, 4].map((i) => {
               const angle = -90 + (i * 45); // Spread across 180 degrees
@@ -2108,16 +2108,16 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                     duration: 2,
                     repeat: Infinity,
                     delay: i * 0.4,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                   }}
                 />
               );
             })}
-            
+
             {/* Rotating dial pointer */}
             <motion.div
               className="absolute top-1/2 left-1/2 w-8 h-1 rounded-full origin-left"
-              style={{ 
+              style={{
                 backgroundColor: accentColor,
                 boxShadow: `0 0 10px ${accentColor}`,
               }}
@@ -2127,15 +2127,15 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
                 times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
               }}
             />
-            
+
             {/* Center knob */}
             <motion.div
               className="absolute top-1/2 left-1/2 w-4 h-4 rounded-full -translate-x-1/2 -translate-y-1/2"
-              style={{ 
+              style={{
                 backgroundColor: accentColor,
                 boxShadow: `0 0 15px ${accentColor}60`,
               }}
@@ -2168,7 +2168,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                     duration: 2.5,
                     repeat: Infinity,
                     delay: i * 0.5,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                   }}
                 />
                 <motion.span
@@ -2181,7 +2181,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
                     duration: 2.5,
                     repeat: Infinity,
                     delay: i * 0.5,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                   }}
                 >
                   {mode}
@@ -2207,7 +2207,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
 
 /**
  * ProductTechHighlight Component
- * 
+ *
  * An immersive 3D product showcase featuring the SLEEK toothbrush with:
  * - Multi-layer parallax background with particle effects
  * - Central floating product with 3D perspective transforms
@@ -2215,7 +2215,7 @@ const FeatureAccentEffect: React.FC<FeatureAccentEffectProps> = ({
  * - Enhanced pill navigation with glow effects
  * - SVG connection lines linking product to panels
  * - Feature-specific accent animations (ripples, glows, etc.)
- * 
+ *
  * The design creates a premium, tech-forward experience that positions
  * SLEEK as a cutting-edge brand.
  */
@@ -2225,9 +2225,9 @@ const ProductTechHighlight: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
-  
+
   const currentFeature = features[activeFeature];
-  
+
   const { ref: inViewRef, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -2250,10 +2250,10 @@ const ProductTechHighlight: React.FC = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -2267,17 +2267,17 @@ const ProductTechHighlight: React.FC = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
-      
+
       const rect = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
-      
+
       setMousePosition({ x, y });
     };
 
     const container = containerRef.current;
     container?.addEventListener('mousemove', handleMouseMove);
-    
+
     return () => {
       container?.removeEventListener('mousemove', handleMouseMove);
     };
@@ -2308,9 +2308,9 @@ const ProductTechHighlight: React.FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.15, 
-        ease: [0.22, 1, 0.36, 1] 
+      transition: {
+        duration: 0.15,
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
@@ -2332,8 +2332,8 @@ const ProductTechHighlight: React.FC = () => {
   }, []);
 
   return (
-    <section 
-      id="technology" 
+    <section
+      id="technology"
       className={cn(
         "relative overflow-hidden",
         // Mobile: Compact padding. Desktop: Reduced padding to fit on single screen
@@ -2376,19 +2376,19 @@ const ProductTechHighlight: React.FC = () => {
               }}
             >
               <span className="relative flex h-2 w-2 mr-2">
-                <span 
+                <span
                   className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
                   style={{ backgroundColor: currentFeature.accentColor }}
                 />
-                <span 
+                <span
                   className="relative inline-flex rounded-full h-2 w-2"
                   style={{ backgroundColor: currentFeature.accentColor }}
                 />
               </span>
               MODERN TECHNOLOGY
             </motion.span>
-            
-            <motion.h2 
+
+            <motion.h2
               variants={itemVariants}
               className={cn(
                 "font-bold text-white font-heading tracking-tight",
@@ -2399,7 +2399,7 @@ const ProductTechHighlight: React.FC = () => {
             >
               Simple Features for
               <br />
-              <span 
+              <span
                 className="bg-clip-text text-transparent"
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${currentFeature.accentColor}, white)`,
@@ -2408,10 +2408,10 @@ const ProductTechHighlight: React.FC = () => {
                 Easy Use
               </span>
             </motion.h2>
-            
+
             {/* Hide subtitle on mobile to save space */}
             {!isMobile && (
-              <motion.p 
+              <motion.p
                 variants={itemVariants}
                 className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
               >
@@ -2428,7 +2428,7 @@ const ProductTechHighlight: React.FC = () => {
               activeIndex={activeFeature}
               onSelect={handleFeatureSelect}
             />
-            
+
             {/* Desktop: Wrapped pill navigation with animations */}
             <FeatureNavigation
               features={features}
@@ -2439,7 +2439,7 @@ const ProductTechHighlight: React.FC = () => {
           </motion.div>
 
           {/* Main Showcase Area */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="relative"
           >
@@ -2458,7 +2458,7 @@ const ProductTechHighlight: React.FC = () => {
                     specs={currentFeature.specs}
                   />
                 </div>
-                
+
                 {/* Mobile Feature Card - swipeable */}
                 <div className="px-2">
                   <AnimatePresence mode="wait">
@@ -2474,7 +2474,7 @@ const ProductTechHighlight: React.FC = () => {
             ) : (
               /* Desktop Layout: Three-column with holographic panels */
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-4 items-center min-h-[450px] lg:min-h-[500px]">
-                
+
                 {/* Left Info Panel (desktop only) */}
                 <div className="relative hidden lg:block">
                   <AnimatePresence mode="wait">
@@ -2485,7 +2485,7 @@ const ProductTechHighlight: React.FC = () => {
                       prefersReducedMotion={prefersReducedMotion}
                     />
                   </AnimatePresence>
-                  
+
                   {/* Connection line to product */}
                   <ConnectionLine
                     accentColor={currentFeature.accentColor}
@@ -2504,7 +2504,7 @@ const ProductTechHighlight: React.FC = () => {
                     featureName={currentFeature.name}
                     isMobile={false}
                   />
-                  
+
                   {/* Feature-specific accent effects - desktop only */}
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -2533,7 +2533,7 @@ const ProductTechHighlight: React.FC = () => {
 
           {/* Bottom Feature Quick Stats - Desktop only, mobile shows in card */}
           {!isMobile && (
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex justify-center gap-8 md:gap-12 pt-4"
             >
@@ -2545,7 +2545,7 @@ const ProductTechHighlight: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 + 0.3 }}
                 >
-                  <p 
+                  <p
                     className="text-2xl md:text-3xl font-bold"
                     style={{ color: currentFeature.accentColor }}
                   >

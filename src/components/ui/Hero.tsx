@@ -83,7 +83,7 @@ const Particle = ({ index, prefersReducedMotion }: { index: number; prefersReduc
         duration: randomValues.duration,
         repeat: Infinity,
         delay: randomValues.delay,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       }}
     />
   );
@@ -162,7 +162,7 @@ const FeatureCardComponent = ({
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.6,
         delay: prefersReducedMotion ? 0.1 : card.delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -315,7 +315,7 @@ export default function Hero({
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.4 : 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -333,7 +333,7 @@ export default function Hero({
       filter: "blur(0px)",
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
         delay: prefersReducedMotion ? 0 : 0.3 + custom * 0.08,
       },
     }),
@@ -349,7 +349,7 @@ export default function Hero({
       scale: 1,
       transition: {
         duration: prefersReducedMotion ? 0.5 : 0.9,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
         delay: prefersReducedMotion ? 0.1 : 0.15,
       },
     },
@@ -362,7 +362,7 @@ export default function Hero({
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.4 : 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -386,7 +386,7 @@ export default function Hero({
         transition={{
           duration: 6,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         }}
       >
         <img
@@ -410,7 +410,7 @@ export default function Hero({
           }}
           transition={{
             opacity: { duration: 0.6, delay: 0.3 },
-            y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" as const }
           }}
         >
           <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
@@ -429,7 +429,7 @@ export default function Hero({
           }}
           transition={{
             opacity: { duration: 0.6, delay: 0.5 },
-            y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.75 }
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" as const, delay: 0.75 }
           }}
         >
           <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
@@ -448,7 +448,7 @@ export default function Hero({
           }}
           transition={{
             opacity: { duration: 0.6, delay: 0.7 },
-            y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" as const, delay: 1.5 }
           }}
         >
           <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.05]">
@@ -490,7 +490,7 @@ export default function Hero({
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
           }}
         />
         
@@ -655,7 +655,7 @@ export default function Hero({
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "easeInOut" as const,
                 }}
               >
                 <div 
@@ -677,7 +677,7 @@ export default function Hero({
                 transition={{
                   duration: 8,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "easeInOut" as const,
                 }}
               >
                 <div className="relative w-[550px] h-[720px] lg:w-[650px] lg:h-[850px] xl:w-[750px] xl:h-[950px]">
@@ -817,7 +817,7 @@ export default function Hero({
           transition={{
             duration: 1.5,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
           }}
         >
           <ChevronDown className="w-5 h-5" />

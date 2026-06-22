@@ -13,7 +13,7 @@ const fadeIn = (delay = 0) => ({
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay, ease: [0.6, -0.05, 0.01, 0.99] }
+    transition: { duration: 0.8, delay, ease: [0.6, -0.05, 0.01, 0.99] as const }
   }
 });
 
@@ -89,7 +89,7 @@ export default function ValueSection() {
             <motion.div
               variants={fadeIn(0.5)}
               whileHover={{ scale: 1.02, boxShadow: 'var(--tw-shadow-elevation-3)' }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
               className="p-6 md:p-8 bg-gradient-teal-soft rounded-3xl shadow-elevation-2 backdrop-blur-sm border border-white/50"
             >
               <p className="font-semibold text-gray-900 mb-6 text-lg">Every SLEEK Membership kit contains:</p>
@@ -234,7 +234,7 @@ export default function ValueSection() {
                 key={index}
                 variants={fadeIn()}
                 whileHover={{ y: -6, boxShadow: 'var(--tw-shadow-elevation-2)' }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                transition={{ type: "spring" as const, stiffness: 300, damping: 15 }}
                 className="bg-white/70 backdrop-blur-md rounded-2xl p-6 shadow-elevation-1 border border-white/60 text-center md:text-left"
               >
                 <div className="inline-flex md:flex items-center justify-center w-12 h-12 bg-teal-100 rounded-xl mb-5 shadow-sm">
@@ -318,7 +318,7 @@ export default function ValueSection() {
                 key={index}
                 variants={fadeIn()}
                 whileHover={{ y: -6, boxShadow: 'var(--tw-shadow-elevation-1)' }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                transition={{ type: "spring" as const, stiffness: 300, damping: 15 }}
                 className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-soft border border-gray-100/80"
               >
                 <div className="w-16 h-16 rounded-full bg-gradient-teal-soft flex items-center justify-center mb-6 shadow-sm ring-1 ring-teal-500/10">

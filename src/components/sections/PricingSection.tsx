@@ -134,11 +134,11 @@ const pricingPlans: Plan[] = [
  */
 const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: () => void; planId: string }) => {
   if (!isOpen) return null;
-  
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
@@ -151,7 +151,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
               {planId === 'pro' && <span className="text-teal-600">SLEEK Dental PRO (Underwritten by MetLife)</span>}
               {planId === 'max' && <span className="text-teal-600">SLEEK Dental MAX (Underwritten by MetLife)</span>}
             </h3>
-            <button 
+            <button
               onClick={onClose}
               className="p-2 rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Close modal"
@@ -159,7 +159,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
               <X size={24} className="text-gray-500" />
             </button>
           </div>
-          
+
           <div className="p-6">
             {/* Club Plan Content */}
             {planId === 'club' && (
@@ -170,7 +170,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     SLEEK Dental Club members receive a smart sonic electric toothbrush kit with quarterly brush head and floss picks auto shipped.
                   </p>
                 </div>
-                
+
                 {/* Kit Contents */}
                 <div className="bg-blue-50 border border-blue-100 rounded-xl p-5">
                   <h5 className="font-semibold text-gray-900 mb-3">Every SLEEK Dental Club Kit Includes:</h5>
@@ -197,7 +197,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     </li>
                   </ul>
                 </div>
-                
+
                 {/* Quarterly Refills */}
                 <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
                   <h5 className="font-semibold text-gray-900 mb-3">Quarterly Refills per Kit:</h5>
@@ -212,7 +212,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     </li>
                   </ul>
                 </div>
-                
+
                 {/* Benefits */}
                 <div>
                   <h5 className="font-semibold text-gray-900 mb-3">Sonic Electric Toothbrush Benefits:</h5>
@@ -231,7 +231,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     </li>
                   </ul>
                 </div>
-                
+
                 {/* Hassle Free */}
                 <div>
                   <h5 className="font-semibold text-gray-900 mb-3">Hassle Free Quarterly Refills:</h5>
@@ -252,7 +252,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                 </div>
               </div>
             )}
-            
+
             {planId === 'ocp' && (
               <div className="space-y-6">
                 {/* Sample Savings Table */}
@@ -319,7 +319,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     The discount program provides access to the Aetna Dental Access® network. This network is administered by Aetna Life Insurance Company (ALIC). Neither ALIC nor any of its affiliates offers or administers the discount program. Neither ALIC nor any of its affiliates is an affiliate, agent, representative or employee of the discount program. Dental providers are independent contractors and not employees or agents of ALIC or its affiliates. ALIC does not provide dental care or treatment and is not responsible for outcomes.
                   </p>
                 </div>
-                
+
                 {/* Marketing Disclosure */}
                 <div>
                   <h4 className="text-lg font-semibold mb-3 text-teal-500">SLEEK OCP Marketing Disclosure</h4>
@@ -328,9 +328,9 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   </p>
                   <p className="text-sm text-gray-600 mt-4">
                     Click to view{' '}
-                    <a 
-                      href="/documents/Sleek-OCP-TC.pdf" 
-                      target="_blank" 
+                    <a
+                      href="/documents/Sleek-OCP-TC.pdf"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-teal-500 hover:text-teal-600 underline"
                     >
@@ -338,7 +338,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     </a>
                   </p>
                 </div>
-                
+
                 {/* Important notices */}
                 <div className="space-y-1">
                   <p className="text-sm font-bold text-gray-800">This benefit is not available to residents of Vermont</p>
@@ -346,7 +346,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                 </div>
               </div>
             )}
-            
+
             {/* PRO Plan Content */}
             {planId === 'pro' && (
               <div className="space-y-6 text-xs">
@@ -439,7 +439,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     </tbody>
                   </table>
                 </div>
-                
+
                 {/* Table Footnotes */}
                 <div className="space-y-2 text-[10px] text-gray-600">
                   <p><strong>Child(ren)&apos;s eligibility</strong> for dental coverage is from birth up to age 26</p>
@@ -447,9 +447,9 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <p><sup>**</sup>MAC refers to the Maximum Allowed Charge, which is based on the lesser of (1) the amount charged by the out-of-network dentist or (2) the out-of-network scheduled amount for the state where the dental service is performed.</p>
                   <p><sup>†</sup>Applies only to Type B and C Services.</p>
                 </div>
-                
+
                 <h4 className="text-base font-semibold text-teal-500">Dental Insurance: Description of Covered Services</h4>
-                
+
                 {/* Type A Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Type A Covered Services</p>
@@ -462,7 +462,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>Topical fluoride treatment for a Child under age 14 once in 12 months.</li>
                   </ol>
                 </div>
-                
+
                 {/* Type B Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Type B Covered Services</p>
@@ -500,7 +500,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>Application of desensitizing medicaments where periodontal treatment (including scaling, root planing, and periodontal surgery, such as osseous surgery) has been performed.</li>
                   </ol>
                 </div>
-                
+
                 {/* Type C Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Type C Covered Services</p>
@@ -555,7 +555,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>Occlusal adjustments, but not more than once in a 12 month period.</li>
                   </ol>
                 </div>
-                
+
                 {/* Exclusions */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Dental Insurance: Exclusions</p>
@@ -621,7 +621,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                 </div>
               </div>
             )}
-            
+
             {/* MAX Plan Content */}
             {planId === 'max' && (
               <div className="space-y-6 text-xs">
@@ -735,7 +735,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     </tbody>
                   </table>
                 </div>
-                
+
                 {/* Table Footnotes */}
                 <div className="space-y-2 text-[10px] text-gray-600">
                   <p><strong>Child(ren)&apos;s eligibility</strong> for dental coverage is from birth up to age 26</p>
@@ -743,7 +743,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <p><sup>**</sup>MAC refers to the Maximum Allowed Charge, which is based on the lesser of (1) the amount charged by the out-of-network dentist or (2) the out-of-network scheduled amount for the state where the dental service is performed.</p>
                   <p><sup>†</sup>Applies only to Type B and C Services.</p>
                 </div>
-                
+
                 <h4 className="text-base font-semibold text-teal-500">Dental Insurance: Description of Covered Services</h4>
 
                 {/* Type A Covered Services */}
@@ -758,7 +758,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>Topical fluoride treatment for a Child under age 14 once in 12 months.</li>
                   </ol>
                 </div>
-                
+
                 {/* Type B Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Type B Covered Services</p>
@@ -796,7 +796,7 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>Application of desensitizing medicaments where periodontal treatment (including scaling, root planing, and periodontal surgery, such as osseous surgery) has been performed.</li>
                   </ol>
                 </div>
-                
+
                 {/* Type C Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Type C Covered Services</p>
@@ -876,13 +876,13 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                     <li>Cleaning and inspection of a removable appliance once every 6 months.</li>
                   </ol>
                 </div>
-                
+
                 {/* Orthodontic Covered Services */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Orthodontic Covered Services</p>
                   <p className="text-gray-700">Orthodontia, for a Child under 19.</p>
                 </div>
-                
+
                 {/* Exclusions */}
                 <div>
                   <p className="font-bold text-gray-900 mb-2">Dental Insurance: Exclusions</p>
@@ -944,9 +944,9 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
               </div>
             )}
           </div>
-          
+
           <div className="sticky bottom-0 bg-white p-4 border-t">
-            <button 
+            <button
               onClick={onClose}
               className="w-full py-3 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors font-medium text-gray-700"
             >
@@ -967,11 +967,11 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
  */
 const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: () => void; planId: string }) => {
   if (!isOpen) return null;
-  
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
@@ -992,7 +992,7 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
               <X size={24} className="text-gray-500" />
             </button>
           </div>
-          
+
           <div className="p-6">
             {/* Club plan - no provider network */}
             {planId === 'club' && (
@@ -1001,7 +1001,7 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                   <Package className="h-16 w-16 text-blue-500 mx-auto mb-4" />
                   <h4 className="text-lg font-semibold mb-2 text-gray-900">Product-Only Plan</h4>
                   <p className="text-sm text-gray-600 leading-relaxed max-w-md mx-auto">
-                    The SLEEK Dental Club is a toothbrush subscription plan and does not include dental provider access. 
+                    The SLEEK Dental Club is a toothbrush subscription plan and does not include dental provider access.
                     For dental coverage and provider networks, consider our OCP, PRO, or MAX plans.
                   </p>
                 </div>
@@ -1024,14 +1024,14 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                 </div>
               </div>
             )}
-            
+
             {planId === 'ocp' && (
               <div className="space-y-6">
                 <div>
                   <h4 className="text-lg font-semibold mb-3 text-gray-900">Aetna Dental Access® Network</h4>
                   <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                    The Aetna Dental Access® network includes over 262,000 dentist locations nationwide. 
-                    As a member, you have access to significant discounts on dental services when you visit 
+                    The Aetna Dental Access® network includes over 262,000 dentist locations nationwide.
+                    As a member, you have access to significant discounts on dental services when you visit
                     participating providers.
                   </p>
                   <div className="bg-teal-50 border border-teal-100 rounded-xl p-5 mb-4">
@@ -1060,16 +1060,16 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                     </ul>
                   </div>
                 </div>
-                
+
                 {/* Provider Search Form */}
                 <div className="bg-white border border-gray-200 rounded-xl p-5">
                   <h4 className="text-lg font-semibold mb-3 text-gray-900">Find a Provider</h4>
                   <p className="text-sm text-gray-600 mb-4 leading-relaxed">
                     Enter a valid zip code, then press the search button. The search engine will return a sampling of the participating providers nearest the zip code entered.
                   </p>
-                  <form 
-                    action="https://providers.bestbenefits.com" 
-                    method="post" 
+                  <form
+                    action="https://providers.bestbenefits.com"
+                    method="post"
                     target="_blank"
                     className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
                   >
@@ -1079,16 +1079,16 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                       <label htmlFor="ocp-zip" className="text-sm font-medium text-gray-700 whitespace-nowrap">
                         Zip Code:
                       </label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         id="ocp-zip"
-                        name="Zip" 
+                        name="Zip"
                         maxLength={5}
                         placeholder="Enter zip"
                         className="w-32 px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all"
                       />
                     </div>
-                    <button 
+                    <button
                       type="submit"
                       className="px-5 py-2.5 bg-teal-500 text-white rounded-xl hover:bg-teal-600 transition-colors font-medium text-sm shadow-sm"
                     >
@@ -1096,7 +1096,7 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                     </button>
                   </form>
                 </div>
-                
+
                 <div className="bg-gray-50 rounded-xl p-5">
                   <h5 className="font-semibold text-gray-900 mb-2">Important Note</h5>
                   <p className="text-sm text-gray-600 leading-relaxed">
@@ -1105,26 +1105,26 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                 </div>
               </div>
             )}
-            
+
             {(planId === 'pro' || planId === 'max') && (
               <div className="space-y-6">
                 {/* MetLife Logo - Left aligned per design requirements */}
                 <div className="flex justify-start">
-                  <Image 
-                    src="/images/metlife-logo-400x88.png" 
-                    alt="MetLife" 
-                    width={200} 
+                  <Image
+                    src="/images/metlife-logo-400x88.png"
+                    alt="MetLife"
+                    width={200}
                     height={44}
                     className="object-contain"
                   />
                 </div>
-                
+
                 <div>
                   <p className="text-sm text-gray-600 mb-4 leading-relaxed">
                     With 153 years of experience, the MetLife companies are a leading innovator and a recognized leader in protection planning and retirement and savings solutions around the world. We have established a strong presence in more than 40 markets globally through organic growth, acquisitions, joint ventures and other partnerships. We are strengthening our global brand by extending core products and competencies to markets around the world, an important driver of growth for the enterprise.
                   </p>
                 </div>
-                
+
                 {/* Provider Search Instructions */}
                 <div className={cn(
                   "border rounded-xl p-5",
@@ -1136,9 +1136,9 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                     <li>Choose &quot;PDP Plus&quot; from the &quot;Your Network&quot; drop down list</li>
                     <li>Enter your zip code and/or your dentist&apos;s name</li>
                   </ol>
-                  <a 
-                    href="https://providers.online.metlife.com/findDentist?searchType=findDentistMetLife" 
-                    target="_blank" 
+                  <a
+                    href="https://providers.online.metlife.com/findDentist?searchType=findDentistMetLife"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
                       "inline-flex items-center px-6 py-3 text-white rounded-xl transition-colors font-medium shadow-sm",
@@ -1152,9 +1152,9 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
               </div>
             )}
           </div>
-          
+
           <div className="sticky bottom-0 bg-white p-4 border-t">
-            <button 
+            <button
               onClick={onClose}
               className="w-full py-3 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors font-medium text-gray-700"
             >
@@ -1178,15 +1178,15 @@ const PricingSection: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
-  
+
   // State for plan information modal
   const [planModalOpen, setPlanModalOpen] = useState(false);
   const [currentPlanModal, setCurrentPlanModal] = useState('');
-  
+
   // State for provider information modal
   const [providerModalOpen, setProviderModalOpen] = useState(false);
   const [currentProviderModal, setCurrentProviderModal] = useState('');
-  
+
   /**
    * Opens the plan information modal for the specified plan.
    * Sets the current plan ID and opens the modal.
@@ -1195,7 +1195,7 @@ const PricingSection: React.FC = () => {
     setCurrentPlanModal(planId);
     setPlanModalOpen(true);
   };
-  
+
   /**
    * Opens the provider information modal for the specified plan.
    * Sets the current plan ID and opens the modal.
@@ -1228,19 +1228,19 @@ const PricingSection: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
+      transition: {
         duration: 0.15,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
 
   const featureVariants = {
     hidden: { opacity: 0, x: -4 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { duration: 0.1, ease: "easeOut" },
+      transition: { duration: 0.1, ease: "easeOut" as const },
     },
   };
 
@@ -1248,7 +1248,7 @@ const PricingSection: React.FC = () => {
     <section className="section-padding relative overflow-hidden">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 pointer-events-none">
-        <div 
+        <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[60%] rounded-full blur-3xl opacity-30"
           style={{
             background: 'radial-gradient(ellipse at center, rgba(20, 184, 166, 0.15) 0%, transparent 70%)'
@@ -1266,20 +1266,20 @@ const PricingSection: React.FC = () => {
         >
           {/* Section header */}
           <div className="section-header">
-            <motion.span 
+            <motion.span
               variants={itemVariants}
               className="section-badge"
             >
               PRICING PLANS
             </motion.span>
-            
+
             <motion.h2
               variants={itemVariants}
               className="section-title"
             >
               Choose Your Perfect Plan
             </motion.h2>
-            
+
             <motion.p
               variants={itemVariants}
               className="section-subtitle"
@@ -1297,9 +1297,9 @@ const PricingSection: React.FC = () => {
               <motion.div
                 key={plan.id}
                 variants={itemVariants}
-                whileHover={prefersReducedMotion ? {} : { 
+                whileHover={prefersReducedMotion ? {} : {
                   y: -8,
-                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }
                 }}
                 className={cn(
                   "relative flex flex-col h-full",
@@ -1311,7 +1311,7 @@ const PricingSection: React.FC = () => {
                 {plan.isPopular && (
                   <>
                     {/* Animated gradient border */}
-                    <div 
+                    <div
                       className="absolute -inset-[2px] rounded-3xl opacity-80 animate-gradient"
                       style={{
                         background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 25%, #14b8a6 50%, #0f766e 75%, #14b8a6 100%)',
@@ -1319,7 +1319,7 @@ const PricingSection: React.FC = () => {
                       }}
                     />
                     {/* Glow effect */}
-                    <div 
+                    <div
                       className="absolute -inset-[2px] rounded-3xl blur-xl opacity-40"
                       style={{
                         background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
@@ -1332,36 +1332,36 @@ const PricingSection: React.FC = () => {
                 <div className={cn(
                   "relative rounded-3xl overflow-hidden bg-white flex flex-col h-full",
                   "transition-all duration-300",
-                  plan.isPopular 
-                    ? "shadow-card-glow" 
+                  plan.isPopular
+                    ? "shadow-card-glow"
                     : "shadow-card border border-gray-100 hover:shadow-card-hover hover:border-teal-200/30"
                 )}>
                   {/* Subtle inner highlight for popular card */}
                   {plan.isPopular && (
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 pointer-events-none"
                       style={{
                         background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, transparent 50%, rgba(15, 118, 110, 0.05) 100%)'
                       }}
-                      animate={prefersReducedMotion ? {} : { 
+                      animate={prefersReducedMotion ? {} : {
                         opacity: [0.5, 0.8, 0.5],
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 4,
                         repeat: Infinity,
-                        repeatType: "reverse" 
+                        repeatType: "reverse"
                       }}
                     />
                   )}
-                  
+
                   {/* Plan badge */}
                   {plan.badge && (
-                    <div 
+                    <div
                       className={cn(
                         "absolute top-0 right-0 py-2 px-5 rounded-bl-2xl shadow-md z-20 font-semibold text-xs text-white tracking-wide",
                         plan.isPopular ? "animate-pulse-slow" : ""
                       )}
-                      style={{ 
+                      style={{
                         backgroundColor: plan.accentColor,
                         boxShadow: plan.isPopular ? `0 4px 14px ${plan.accentColor}50` : undefined
                       }}
@@ -1406,7 +1406,7 @@ const PricingSection: React.FC = () => {
                       </span>
                     </div>
                     <p className="text-xs text-gray-500 mt-1">
-                      {plan.id === 'club' 
+                      {plan.id === 'club'
                         ? `+ ${plan.enrollmentFee} one-time welcome kit`
                         : `+ ${plan.enrollmentFee} one-time enrollment fee`}
                     </p>
@@ -1430,13 +1430,13 @@ const PricingSection: React.FC = () => {
                         >
                           <div className={cn(
                             "flex-shrink-0 w-5 h-5 rounded flex items-center justify-center mr-2 transition-all duration-300",
-                            feature.included 
+                            feature.included
                               ? plan.isPopular
                                 ? "bg-gradient-to-br from-teal-100 to-teal-50 text-teal-600"
                                 : "bg-gray-100 text-gray-600 group-hover:bg-teal-100 group-hover:text-teal-600"
                               : "bg-gray-50 text-gray-300"
                           )}>
-                            {React.cloneElement(feature.icon as React.ReactElement, { className: 'h-3 w-3' })}
+                            {React.cloneElement(feature.icon as React.ReactElement<{ className?: string }>, { className: 'h-3 w-3' })}
                           </div>
                           <span className={cn(
                             "text-sm md:text-xs leading-snug",
@@ -1459,8 +1459,8 @@ const PricingSection: React.FC = () => {
                         href={plan.ctaLink}
                         className={cn(
                           "w-full inline-flex justify-center items-center py-3 px-5 rounded-xl font-semibold text-sm transition-all duration-300",
-                          plan.isPopular 
-                            ? "text-white" 
+                          plan.isPopular
+                            ? "text-white"
                             : "btn-secondary"
                         )}
                         style={plan.isPopular ? {
@@ -1471,7 +1471,7 @@ const PricingSection: React.FC = () => {
                         {plan.ctaText}
                       </Link>
                     </motion.div>
-                    
+
                     {/* Plan Information and Provider Information links - 44px touch targets */}
                     <div className="mt-2 flex justify-center items-center gap-1 text-xs">
                       <button
@@ -1495,7 +1495,7 @@ const PricingSection: React.FC = () => {
           </motion.div>
 
           {/* Trust indicators */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-row items-center justify-center gap-4 sm:gap-6 pt-8"
           >
@@ -1514,19 +1514,19 @@ const PricingSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      
+
       {/* Plan Information Modal */}
-      <PlanInfoModal 
-        isOpen={planModalOpen} 
-        onClose={() => setPlanModalOpen(false)} 
-        planId={currentPlanModal} 
+      <PlanInfoModal
+        isOpen={planModalOpen}
+        onClose={() => setPlanModalOpen(false)}
+        planId={currentPlanModal}
       />
-      
+
       {/* Provider Information Modal */}
-      <ProviderInfoModal 
-        isOpen={providerModalOpen} 
-        onClose={() => setProviderModalOpen(false)} 
-        planId={currentProviderModal} 
+      <ProviderInfoModal
+        isOpen={providerModalOpen}
+        onClose={() => setProviderModalOpen(false)}
+        planId={currentProviderModal}
       />
     </section>
   );

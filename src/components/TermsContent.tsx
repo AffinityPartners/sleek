@@ -90,7 +90,7 @@ function TableOfContents({
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
             }`}
             whileHover={prefersReducedMotion ? {} : { x: 2 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            transition={{ type: 'spring' as const, stiffness: 400, damping: 25 }}
           >
             <Icon
               className={`w-4 h-4 flex-shrink-0 ${
@@ -103,7 +103,7 @@ function TableOfContents({
                 layoutId="activeIndicator"
                 className="absolute left-0 w-0.5 h-6 bg-teal-500 rounded-full"
                 initial={false}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                transition={{ type: 'spring' as const, stiffness: 400, damping: 30 }}
               />
             )}
           </motion.button>
@@ -155,7 +155,7 @@ function MobileTableOfContents({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
             className="overflow-hidden"
           >
             <div className="pt-3 pb-1 space-y-1 max-h-[50vh] overflow-y-auto">
@@ -211,7 +211,7 @@ function SectionCard({
       initial={{ opacity: 0, y: prefersReducedMotion ? 10 : 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: prefersReducedMotion ? 0.3 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: prefersReducedMotion ? 0.3 : 0.5, ease: [0.22, 1, 0.36, 1] as const }}
       className="scroll-mt-28 mb-12"
     >
       <div className="bg-white rounded-2xl border border-gray-100 shadow-soft overflow-hidden">
@@ -306,7 +306,7 @@ export default function TermsContent() {
       y: 0,
       transition: {
         duration: prefersReducedMotion ? 0.3 : 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -341,7 +341,7 @@ export default function TermsContent() {
               duration: 15,
               repeat: Infinity,
               repeatType: 'reverse',
-              ease: 'easeInOut',
+              ease: 'easeInOut' as const,
             }}
           />
         </div>
