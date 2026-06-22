@@ -182,7 +182,7 @@ const FeatureCardComponent = ({
       {/* Glass card with dark glassmorphism */}
       <div className="relative flex items-center gap-4 px-5 py-4 rounded-2xl backdrop-blur-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300">
         {/* Icon container */}
-        <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center`}>
+        <div className={`shrink-0 w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center`}>
           <Icon className={`w-6 h-6 ${colors.iconColor}`} />
         </div>
         

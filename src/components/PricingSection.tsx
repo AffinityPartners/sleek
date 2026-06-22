@@ -209,7 +209,7 @@ export default function PricingSection() {
                 {/* Insurance info if available */}
                 {plan.insuranceInfo && (
                   <div className="mb-6 flex items-center text-sm bg-[#f4f9f8] p-3 rounded-lg">
-                    <Shield className="text-[#1ab9a3] h-5 w-5 mr-2 flex-shrink-0" />
+                    <Shield className="text-[#1ab9a3] h-5 w-5 mr-2 shrink-0" />
                     <span>{plan.insuranceInfo}</span>
                   </div>
                 )}
@@ -225,7 +225,7 @@ export default function PricingSection() {
                     >
                       <Check 
                         className={cn(
-                          "h-5 w-5 mr-3 mt-0.5 flex-shrink-0",
+                          "h-5 w-5 mr-3 mt-0.5 shrink-0",
                           feature.included ? "text-[#1ab9a3]" : "text-gray-300"
                         )} 
                       />

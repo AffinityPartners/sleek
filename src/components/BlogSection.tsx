@@ -139,7 +139,7 @@ export default function BlogSection() {
             </p>
           </div>
           
-          <Link href="/blog" className="mt-6 md:mt-0 flex-shrink-0">
+          <Link href="/blog" className="mt-6 md:mt-0 shrink-0">
             <motion.div
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white"
               style={{

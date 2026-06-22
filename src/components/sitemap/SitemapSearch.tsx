@@ -295,7 +295,7 @@ export default function SitemapSearch({
                   >
                     {/* Type icon */}
                     <div className={`
-                      flex-shrink-0 w-10 h-10 rounded-xl
+                      shrink-0 w-10 h-10 rounded-xl
                       flex items-center justify-center
                       ${result.type === 'blog' ? 'bg-teal-100 text-teal-600' : ''}
                       ${result.type === 'legal' ? 'bg-gray-100 text-gray-600' : ''}
@@ -326,7 +326,7 @@ export default function SitemapSearch({
 
                     {/* Arrow indicator */}
                     <div className={`
-                      flex-shrink-0 self-center
+                      shrink-0 self-center
                       text-gray-300 transition-colors
                       ${isSelected ? 'text-teal-500' : ''}
                     `}>

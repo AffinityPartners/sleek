@@ -314,7 +314,7 @@ export default function SitemapPageClient() {
                   href="/privacy"
                   className="group flex items-start gap-5 p-6 bg-white rounded-2xl border border-gray-100 hover:border-teal-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-500 transition-colors duration-300">
+                  <div className="shrink-0 w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-500 transition-colors duration-300">
                     <Shield className="w-7 h-7 text-teal-600 group-hover:text-white transition-colors" />
                   </div>
                   <div>
@@ -338,7 +338,7 @@ export default function SitemapPageClient() {
                   href="/terms"
                   className="group flex items-start gap-5 p-6 bg-white rounded-2xl border border-gray-100 hover:border-teal-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-500 transition-colors duration-300">
+                  <div className="shrink-0 w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-500 transition-colors duration-300">
                     <FileText className="w-7 h-7 text-teal-600 group-hover:text-white transition-colors" />
                   </div>
                   <div>

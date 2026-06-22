@@ -241,7 +241,7 @@ export default function ToothbrushPromo() {
                     transition={{ delay: 0.8 + idx * 0.1, duration: 0.3 }}
                     className="flex items-start"
                   >
-                    <CheckCircle2 className="h-5 w-5 text-[#00e0cb] mr-3 mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-[#00e0cb] mr-3 mt-0.5 shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </motion.div>
                 ))}

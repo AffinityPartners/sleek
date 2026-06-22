@@ -118,7 +118,7 @@ const Hero: React.FC = () => {
                 "Mobile App Connectivity"
               ].map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1ab9a3]/20 flex items-center justify-center">
+                  <div className="shrink-0 w-6 h-6 rounded-full bg-[#1ab9a3]/20 flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-[#1ab9a3]"></div>
                   </div>
                   <span className="text-sm text-gray-200">{feature}</span>

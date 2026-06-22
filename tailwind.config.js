@@ -404,10 +404,8 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-    require('tailwindcss-animate'),
     // Add text-shadow utilities
-    function({ addUtilities, theme, variants }) {
+    function({ addUtilities, theme }) {
       const textShadows = theme('textShadow', {});
       const textShadowUtilities = Object.entries(textShadows).reduce(
         (utilities, [key, value]) => {
@@ -420,7 +418,8 @@ module.exports = {
         },
         {}
       );
-      addUtilities(textShadowUtilities, variants('textShadow', ['responsive', 'hover']));
+      // Tailwind v4: variants are automatic; addUtilities no longer takes a variants arg.
+      addUtilities(textShadowUtilities);
     },
   ],
-} 
+}

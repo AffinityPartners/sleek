@@ -161,11 +161,11 @@ export default function Button({
       )}
       
       {icon && iconPosition === 'left' && !loading && (
-        <span className="flex-shrink-0">{icon}</span>
+        <span className="shrink-0">{icon}</span>
       )}
       <span>{children}</span>
       {icon && iconPosition === 'right' && !loading && (
-        <span className="flex-shrink-0">{icon}</span>
+        <span className="shrink-0">{icon}</span>
       )}
 
       {variant === 'dental-outline' && (

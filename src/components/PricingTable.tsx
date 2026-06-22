@@ -745,7 +745,7 @@ export default function PricingTable() {
                           className="flex items-center justify-center text-sm mb-2"
                           style={{ color: plan.color }}
                         >
-                          <Shield size={16} className="mr-2 flex-shrink-0" />
+                          <Shield size={16} className="mr-2 shrink-0" />
                           <span className="font-medium">{info}</span>
                         </div>
                       ))}
@@ -786,7 +786,7 @@ export default function PricingTable() {
                     
                     return (
                       <div key={idx} className="flex items-start group">
-                        <div className="mt-0.5 mr-3 flex-shrink-0">
+                        <div className="mt-0.5 mr-3 shrink-0">
                           <motion.div
                             initial="hidden"
                             whileInView="visible"

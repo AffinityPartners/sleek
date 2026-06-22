@@ -1,6 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+/* Tailwind v4 defaults `border`/`divide` color to currentColor; restore the v3
+   default (gray-200) so existing borders render unchanged. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: #e5e7eb;
+  }
+}
 
 /* ==========================================================================
    SLEEK DENTAL - PREMIUM DESIGN SYSTEM
@@ -17,23 +28,23 @@
   /* Core color tokens */
   --foreground-rgb: 17, 24, 39;
   --background-rgb: 255, 255, 255;
-  
+
   /* ==========================================================================
      ENHANCED BRAND COLOR SYSTEM
      ========================================================================== */
-  
+
   /* Primary - Deep, saturated teal for trust and sophistication */
   --color-primary: #0F766E;
   --color-primary-light: #14B8A6;
   --color-primary-lighter: #5EEAD4;
   --color-primary-dark: #115E59;
   --color-primary-darker: #134E4A;
-  
+
   /* Accent - Teal secondary for clean, dental-appropriate visual hierarchy */
   --color-accent: #2DD4BF;
   --color-accent-light: #5EEAD4;
   --color-accent-dark: #14B8A6;
-  
+
   /* Neutral palette - Warmer grays for approachability */
   --color-bg-deep: #0C1015;
   --color-bg-dark: #1B2223;
@@ -43,7 +54,7 @@
   --text-secondary: #4B5563;
   --text-muted: #6B7280;
   --text-subtle: #9CA3AF;
-  
+
   /* Design System Variables */
   --section-padding-sm: 5rem;
   --section-padding-md: 7rem;
@@ -59,7 +70,7 @@
   --glass-highlight: rgba(255, 255, 255, 0.15);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-shadow: rgba(0, 0, 0, 0.08);
-  
+
   /* Glow effects */
   --glow-primary: 0 0 40px rgba(15, 118, 110, 0.3);
   --glow-primary-intense: 0 0 60px rgba(15, 118, 110, 0.5);
@@ -80,7 +91,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .allow-animation {
     animation-duration: unset !important;
     animation-iteration-count: unset !important;
@@ -100,54 +111,54 @@
     animation: none !important;
     background-position: 50% 50% !important;
   }
-  
+
   .animate-float {
     animation: none !important;
     transform: translateY(0) !important;
   }
-  
+
   .animate-pulse-glow {
     animation: none !important;
   }
-  
+
   /* Reduce blur effects which are GPU-intensive on mobile */
   .blur-gradient-shape {
     filter: blur(30px);
     opacity: 0.4;
   }
-  
+
   /* Simplify popular card glow animation */
   .popular-card-glow::before {
     animation: none !important;
     background-position: 50% 50% !important;
   }
-  
+
   .popular-card-glow::after {
     filter: blur(10px);
     opacity: 0.3;
   }
-  
+
   /* Disable particle-like elements */
   .mobile-hide-particles {
     display: none !important;
   }
-  
+
   /* Reduce backdrop blur intensity on mobile for better performance */
   .backdrop-blur-xl {
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
   }
-  
+
   .backdrop-blur-2xl {
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
   }
-  
+
   .backdrop-blur-3xl {
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
   }
-  
+
   /* Disable hover transforms on mobile since hover doesn't apply */
   .card:hover,
   .card-elevated:hover,
@@ -155,12 +166,12 @@
   .feature-card:hover {
     transform: none !important;
   }
-  
+
   /* Shorten transition durations on mobile */
   .transition-all {
     transition-duration: 200ms !important;
   }
-  
+
   /* Disable shimmer animations on buttons */
   .group:hover .group-hover\:translate-x-full {
     transform: none !important;
@@ -346,7 +357,7 @@ a {
     @apply transition-all duration-300 ease-out;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), var(--glow-primary);
   }
-  
+
   .card-glow:hover {
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12), var(--glow-primary-intense);
     @apply -translate-y-2 border-teal-300/50;
@@ -360,7 +371,7 @@ a {
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   }
-  
+
   .glass-card-dark {
     @apply backdrop-blur-xl rounded-2xl overflow-hidden;
     @apply transition-all duration-300 ease-out;
@@ -380,13 +391,13 @@ a {
     background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
     box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   }
-  
+
   .btn-primary:hover {
     @apply scale-[1.02];
     box-shadow: 0 8px 25px rgba(15, 118, 110, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   }
-  
+
   .btn-primary:active {
     @apply scale-[0.98];
   }
@@ -398,13 +409,13 @@ a {
     background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
     box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   }
-  
+
   .btn-primary-lg:hover {
     @apply scale-[1.02];
     box-shadow: 0 10px 30px rgba(15, 118, 110, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   }
-  
+
   .btn-primary-lg:active {
     @apply scale-[0.98];
   }
@@ -416,12 +427,12 @@ a {
     @apply transition-all duration-300 ease-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
-  
+
   .btn-secondary:hover {
     @apply bg-gray-50 border-gray-300 scale-[1.02];
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
-  
+
   .btn-secondary:active {
     @apply scale-[0.98];
   }
@@ -432,12 +443,12 @@ a {
     @apply border-2 border-teal-600 text-teal-600 bg-transparent;
     @apply transition-all duration-300 ease-out;
   }
-  
+
   .btn-outline:hover {
     @apply bg-teal-600 text-white scale-[1.02];
     box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3);
   }
-  
+
   .btn-outline:active {
     @apply scale-[0.98];
   }
@@ -450,7 +461,7 @@ a {
     background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
     box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
   }
-  
+
   .btn-accent:hover {
     @apply scale-[1.02];
     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
@@ -466,17 +477,18 @@ a {
   }
 
   .badge-primary {
-    @apply badge;
+    /* Tailwind v4: @apply only accepts utilities, so inline `.badge`'s utilities. */
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold;
     background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(15, 118, 110, 0.1) 100%);
     @apply text-teal-700 border border-teal-200/50;
   }
 
   .badge-secondary {
-    @apply badge bg-gray-100 text-gray-700 border border-gray-200/50;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold bg-gray-100 text-gray-700 border border-gray-200/50;
   }
 
   .badge-accent {
-    @apply badge;
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold;
     background: linear-gradient(135deg, rgba(45, 212, 191, 0.15) 0%, rgba(20, 184, 166, 0.1) 100%);
     @apply text-teal-700 border border-teal-200/50;
   }
@@ -493,11 +505,11 @@ a {
     @apply outline-none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
-  
+
   .input:hover {
     @apply border-gray-300;
   }
-  
+
   .input:focus {
     @apply border-teal-400;
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -541,7 +553,7 @@ a {
     @apply transition-all duration-300 ease-out;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
-  
+
   .feature-card:hover {
     @apply -translate-y-2 border-teal-200/50;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
@@ -553,7 +565,7 @@ a {
     background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(15, 118, 110, 0.1) 100%);
     @apply text-teal-600;
   }
-  
+
   .feature-card:hover .feature-icon {
     background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
     @apply text-white scale-110;
@@ -615,7 +627,7 @@ a {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
-  
+
   .glass-card-dark:hover {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.12);
@@ -628,7 +640,7 @@ a {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
-  
+
   .glass-card-dark-elevated:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.15);
@@ -644,69 +656,69 @@ a {
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .text-pretty {
     text-wrap: pretty;
   }
-  
+
   /* ==========================================================================
      GLASSMORPHISM UTILITIES
      ========================================================================== */
-  
+
   .glassmorphism {
     @apply backdrop-blur-xl;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   }
-  
+
   .glassmorphism-dark {
     @apply backdrop-blur-xl;
     background: linear-gradient(135deg, rgba(12, 16, 21, 0.9) 0%, rgba(12, 16, 21, 0.7) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
-  
+
   /* Subtle glass effect for dark backgrounds */
   .glass-subtle-dark {
     @apply backdrop-blur-md;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
-  
+
   .glass-subtle-dark:hover {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.1);
   }
-  
+
   /* ==========================================================================
      ANIMATION DELAY UTILITIES
      ========================================================================== */
-  
+
   .animation-delay-100 {
     animation-delay: 100ms;
   }
-  
+
   .animation-delay-200 {
     animation-delay: 200ms;
   }
-  
+
   .animation-delay-300 {
     animation-delay: 300ms;
   }
-  
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
-  
+
   .animation-delay-500 {
     animation-delay: 500ms;
   }
-  
+
   .animation-delay-600 {
     animation-delay: 600ms;
   }
-  
+
   .animation-delay-700 {
     animation-delay: 700ms;
   }
@@ -714,19 +726,19 @@ a {
   /* ==========================================================================
      GLOW EFFECT UTILITIES
      ========================================================================== */
-  
+
   .glow-teal {
     box-shadow: var(--glow-primary);
   }
-  
+
   .glow-teal-intense {
     box-shadow: var(--glow-primary-intense);
   }
-  
+
   .glow-accent {
     box-shadow: var(--glow-accent);
   }
-  
+
   .glow-white {
     box-shadow: var(--glow-white);
   }
@@ -750,7 +762,7 @@ a {
   .shadow-teal {
     box-shadow: 0 4px 14px rgba(15, 118, 110, 0.25);
   }
-  
+
   .shadow-teal-lg {
     box-shadow: 0 8px 30px rgba(15, 118, 110, 0.35);
   }
@@ -762,12 +774,12 @@ a {
   /* ==========================================================================
      GRADIENT TEXT UTILITY
      ========================================================================== */
-  
+
   .text-gradient-teal {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
   }
-  
+
   .text-gradient-accent {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
@@ -777,15 +789,15 @@ a {
      TOUCH TARGET UTILITIES
      Ensures minimum 44x44px touch targets for mobile accessibility
      ========================================================================== */
-  
+
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
   }
-  
+
   .touch-target-sm {
     @apply min-h-[36px] min-w-[36px];
   }
-  
+
   .touch-target-lg {
     @apply min-h-[48px] min-w-[48px];
   }
@@ -794,7 +806,7 @@ a {
      SCROLL MARGIN FOR ANCHOR LINKS
      Accounts for sticky header when navigating to sections
      ========================================================================== */
-  
+
   .scroll-mt-header {
     scroll-margin-top: 5rem;
   }
@@ -810,24 +822,24 @@ a {
 }
 
 @keyframes slideUp {
-  from { 
-    transform: translateY(30px); 
-    opacity: 0; 
+  from {
+    transform: translateY(30px);
+    opacity: 0;
   }
-  to { 
-    transform: translateY(0); 
-    opacity: 1; 
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideDown {
-  from { 
-    transform: translateY(-30px); 
-    opacity: 0; 
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
   }
-  to { 
-    transform: translateY(0); 
-    opacity: 1; 
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -837,10 +849,10 @@ a {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
+  0%, 100% {
     box-shadow: 0 0 20px rgba(15, 118, 110, 0.3);
   }
-  50% { 
+  50% {
     box-shadow: 0 0 40px rgba(15, 118, 110, 0.5);
   }
 }

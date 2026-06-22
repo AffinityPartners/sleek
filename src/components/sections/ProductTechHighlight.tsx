@@ -640,7 +640,7 @@ const HolographicPanel: React.FC<HolographicPanelProps> = ({
               )}
             >
               <CheckCircle
-                className="h-4 w-4 flex-shrink-0 mt-0.5"
+                className="h-4 w-4 shrink-0 mt-0.5"
                 style={{ color: feature.accentColor }}
               />
               <span className="text-gray-300 text-sm">{benefit}</span>
@@ -1064,7 +1064,7 @@ const MobileFeatureCard: React.FC<MobileFeatureCardProps> = ({
           {feature.benefits.slice(0, 2).map((benefit, idx) => (
             <div key={idx} className="flex items-start gap-2">
               <CheckCircle
-                className="h-3.5 w-3.5 flex-shrink-0 mt-0.5"
+                className="h-3.5 w-3.5 shrink-0 mt-0.5"
                 style={{ color: feature.accentColor }}
               />
               <span className="text-xs text-gray-300 line-clamp-1">{benefit}</span>

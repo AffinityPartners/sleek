@@ -92,7 +92,7 @@ function TreeNodeItem({ node, level, showDescriptions }: TreeNodeItemProps) {
           <motion.span
             animate={{ rotate: isOpen ? 90 : 0 }}
             transition={{ duration: 0.2 }}
-            className="flex-shrink-0 text-gray-400"
+            className="shrink-0 text-gray-400"
           >
             <ChevronRight className="w-4 h-4" />
           </motion.span>
@@ -102,7 +102,7 @@ function TreeNodeItem({ node, level, showDescriptions }: TreeNodeItemProps) {
         {!hasChildren && <span className="w-4" />}
         
         {/* Icon */}
-        <span className="flex-shrink-0">{getIcon()}</span>
+        <span className="shrink-0">{getIcon()}</span>
         
         {/* Label and description */}
         <span className="flex-1 min-w-0">
@@ -118,7 +118,7 @@ function TreeNodeItem({ node, level, showDescriptions }: TreeNodeItemProps) {
         
         {/* Badge */}
         {node.badge && (
-          <span className="flex-shrink-0 text-xs px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 font-medium">
+          <span className="shrink-0 text-xs px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 font-medium">
             {node.badge}
           </span>
         )}

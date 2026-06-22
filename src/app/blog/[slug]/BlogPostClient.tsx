@@ -332,7 +332,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                 className="mt-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-50 to-white border border-teal-100"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-full bg-teal-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-teal-600 flex items-center justify-center shrink-0">
                     <span className="text-xl font-bold text-white">{post.author[0]}</span>
                   </div>
                   <div>

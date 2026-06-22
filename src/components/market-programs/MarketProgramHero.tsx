@@ -234,7 +234,7 @@ export default function MarketProgramHero({
                   delay: prefersReducedMotion ? 0 : 0.4 + index * 0.1,
                 }}
               >
-                <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
                   <Check className="w-4 h-4 text-teal-600" />
                 </div>
                 <span className="text-base md:text-lg">{benefit}</span>

@@ -132,7 +132,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, value, 
                 duration: prefersReducedMotion ? 0.2 : 0.3,
                 ease: [0.22, 1, 0.36, 1] as const
               }}
-              className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
+              className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
             >
               {isOpen ? (
                 <Minus className="w-4 h-4 text-teal-600" />

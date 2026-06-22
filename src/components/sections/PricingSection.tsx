@@ -176,23 +176,23 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <h5 className="font-semibold text-gray-900 mb-3">Every SLEEK Dental Club Kit Includes:</h5>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Electric Toothbrush with 5 Cleaning Modes
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Oscillating Brush Head with 2-Minute Timer
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Built-In Rechargeable USB Charger
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Toothbrush Holder
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Traveling Case
                     </li>
                   </ul>
@@ -203,11 +203,11 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <h5 className="font-semibold text-gray-900 mb-3">Quarterly Refills per Kit:</h5>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-start">
-                      <RefreshCw className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <RefreshCw className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       (1) Brush Head
                     </li>
                     <li className="flex items-start">
-                      <RefreshCw className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <RefreshCw className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       (50) Floss Picks
                     </li>
                   </ul>
@@ -218,15 +218,15 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <h5 className="font-semibold text-gray-900 mb-3">Sonic Electric Toothbrush Benefits:</h5>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Sparkles className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Help prevent cavities with deep cleaning
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Sparkles className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Perfect for individuals with sensitive teeth
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Sparkles className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Ideal for whitening and plaque removal
                     </li>
                   </ul>
@@ -237,15 +237,15 @@ const PlanInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClose: 
                   <h5 className="font-semibold text-gray-900 mb-3">Hassle Free Quarterly Refills:</h5>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-start">
-                      <Truck className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Truck className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Automatic delivery to your doorstep every 3 months
                     </li>
                     <li className="flex items-start">
-                      <Truck className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Truck className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Free Shipping in the contiguous United States
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Cancel your plan at anytime
                     </li>
                   </ul>
@@ -1009,15 +1009,15 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                   <h5 className="font-semibold text-gray-900 mb-3">What You Get:</h5>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Premium sonic electric toothbrush kit shipped to your door
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Automatic quarterly refills of brush head and floss picks
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
                       Free shipping in the contiguous United States
                     </li>
                   </ul>
@@ -1038,23 +1038,23 @@ const ProviderInfoModal = ({ isOpen, onClose, planId }: { isOpen: boolean; onClo
                     <h5 className="font-semibold text-gray-900 mb-3">Network Highlights</h5>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 shrink-0" />
                         Over 262,000 dentist locations nationwide
                       </li>
                       <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 shrink-0" />
                         Save 15-50% on most dental procedures
                       </li>
                       <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 shrink-0" />
                         No waiting periods or annual maximums
                       </li>
                       <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 shrink-0" />
                         Immediate access to savings
                       </li>
                       <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-teal-600 mr-2 mt-0.5 shrink-0" />
                         Specialists included in the network
                       </li>
                     </ul>
@@ -1413,7 +1413,7 @@ const PricingSection: React.FC = () => {
                   </div>
 
                   {/* Plan features - increased padding and text size for mobile readability */}
-                  <div className="p-4 md:p-5 flex-grow">
+                  <div className="p-4 md:p-5 grow">
                     <h4 className="font-semibold text-gray-900 mb-3 text-xs uppercase tracking-wide">
                       What&apos;s included:
                     </h4>
@@ -1429,7 +1429,7 @@ const PricingSection: React.FC = () => {
                           )}
                         >
                           <div className={cn(
-                            "flex-shrink-0 w-5 h-5 rounded flex items-center justify-center mr-2 transition-all duration-300",
+                            "shrink-0 w-5 h-5 rounded flex items-center justify-center mr-2 transition-all duration-300",
                             feature.included
                               ? plan.isPopular
                                 ? "bg-gradient-to-br from-teal-100 to-teal-50 text-teal-600"

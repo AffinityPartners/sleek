@@ -98,7 +98,7 @@ export default function FaqSection() {
                   <>
                     <Disclosure.Button className="flex justify-between w-full px-6 py-4 text-lg font-medium text-gray-900 hover:text-[#1ab9a3] focus:outline-none focus:text-[#1ab9a3] transition-colors duration-200">
                       <span>{item.question}</span>
-                      <span className="ml-6 flex-shrink-0">
+                      <span className="ml-6 shrink-0">
                         {open ? (
                           <Minus className="h-5 w-5 text-[#1ab9a3] transition-transform duration-300" />
                         ) : (

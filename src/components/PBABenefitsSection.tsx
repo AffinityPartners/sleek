@@ -295,7 +295,7 @@ export default function PBABenefitsSection() {
                       className="flex items-start gap-3"
                     >
                       <div 
-                        className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                        className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
                         style={{ backgroundColor: category.accentColor }}
                       />
                       <div className="flex flex-col">
@@ -322,7 +322,7 @@ export default function PBABenefitsSection() {
           >
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-teal-50 border border-purple-100/50">
               <div className="flex items-center gap-2 text-purple-700">
-                <Gift className="w-5 h-5 flex-shrink-0" />
+                <Gift className="w-5 h-5 shrink-0" />
                 <span className="font-semibold text-sm">Included with PRO & MAX Plans</span>
               </div>
               <span className="text-gray-400 hidden sm:block leading-none">|</span>

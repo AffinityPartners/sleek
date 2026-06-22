@@ -91,7 +91,7 @@ function TableOfContents({
             transition={{ type: 'spring' as const, stiffness: 400, damping: 25 }}
           >
             <Icon
-              className={`w-4 h-4 flex-shrink-0 ${
+              className={`w-4 h-4 shrink-0 ${
                 isActive ? 'text-teal-600' : 'text-gray-400 group-hover:text-gray-600'
               }`}
             />
@@ -676,7 +676,7 @@ export default function PrivacyContent() {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center shrink-0">
                       <MapPin className="w-4 h-4 text-teal-600" />
                     </div>
                     <span>

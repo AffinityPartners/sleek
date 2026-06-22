@@ -143,7 +143,7 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
                     {/* Active indicator */}
                     <span
                       className={`
-                        flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5 transition-all duration-200
+                        shrink-0 w-1.5 h-1.5 rounded-full mt-1.5 transition-all duration-200
                         ${isActive ? 'bg-teal-500' : 'bg-gray-300'}
                       `}
                     />

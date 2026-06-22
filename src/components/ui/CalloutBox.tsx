@@ -123,7 +123,7 @@ export default function CalloutBox({
       </div>
       
       {buttonText && (
-        <div className={layout === 'row' ? 'mt-4 md:mt-0 md:flex-shrink-0' : 'mt-2'}>
+        <div className={layout === 'row' ? 'mt-4 md:mt-0 md:shrink-0' : 'mt-2'}>
           <Button
             variant={buttonVariantType}
             onClick={buttonAction}

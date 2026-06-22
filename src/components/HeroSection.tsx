@@ -63,7 +63,7 @@ export default function OldHeroSection() {
                   key={index}
                   className="flex items-center gap-3"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
                     {feature.icon}
                   </div>
                   <span className="text-sm leading-snug text-gray-200">{feature.text}</span>

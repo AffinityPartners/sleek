@@ -110,7 +110,7 @@ export default function ValueSection() {
                     initial="hidden"
                     animate="visible"
                   >
-                    <span className="flex-shrink-0 flex items-center justify-center bg-teal-500 text-white w-5 h-5 rounded-full mr-3 mt-1 shadow-sm">
+                    <span className="shrink-0 flex items-center justify-center bg-teal-500 text-white w-5 h-5 rounded-full mr-3 mt-1 shadow-sm">
                       <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
@@ -175,7 +175,7 @@ export default function ValueSection() {
                {/* Optional: Floating card effect 
               <div className="absolute -right-6 -bottom-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-elevation-2 max-w-[200px] hidden lg:block z-20">
                 <div className="flex items-start gap-3">
-                  <span className="text-teal-500 flex-shrink-0 mt-0.5">
+                  <span className="text-teal-500 shrink-0 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                   </span>
                   <p className="text-xs text-gray-800">
