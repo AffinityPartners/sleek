@@ -1,6 +1,6 @@
 /**
  * Blog Data Layer for SLEEK Dental
- * 
+ *
  * This module contains all blog post data, categories, tags, and helper functions
  * for the blog system. All content is stored statically for optimal build-time generation.
  */
@@ -70,15 +70,15 @@ export interface Tag {
 // =============================================================================
 
 export type CategoryKey = 'oral-health' | 'health' | 'sleek-membership';
-export type TagKey = 
-  | 'prevention' 
-  | 'treatment' 
-  | 'symptoms' 
-  | 'children' 
-  | 'nutrition' 
-  | 'products' 
-  | 'membership' 
-  | 'tips' 
+export type TagKey =
+  | 'prevention'
+  | 'treatment'
+  | 'symptoms'
+  | 'children'
+  | 'nutrition'
+  | 'products'
+  | 'membership'
+  | 'tips'
   | 'insurance';
 
 // =============================================================================
@@ -301,7 +301,7 @@ export const BLOG_POSTS: BlogPost[] = [
       <h2>Final Verdict: Is Charcoal Toothpaste Worth It?</h2>
       <p>Charcoal toothpaste may offer temporary stain removal, but it won't dramatically whiten teeth. Due to its abrasiveness and lack of scientific backing, it's best used with caution. Before trying any whitening product, consult your dentist to find the best solution for your smile.</p>
 
-      <p>Need discount dental care or dental insurance? SLEEK Dental Club has multiple plans to choose from to accommodate your oral health care needs. <a href="/">Contact us today</a>.</p>
+      <p>Need discount dental care or dental insurance? SLEEK Dental Club has multiple plans to choose from to accommodate your oral health care needs. A consistent routine is easier with a <a href="/#plans">sonic electric toothbrush subscription</a> that ships fresh brush heads automatically. <a href="/">Contact us today</a>.</p>
     `,
   },
 
@@ -364,7 +364,7 @@ export const BLOG_POSTS: BlogPost[] = [
       <h2>Regular Dental Check-ups</h2>
       <p>Regular dental visits play a vital role in early detection of oral cancer. Dentists can identify suspicious areas in the mouth that may require further examination. Early detection through routine screenings can lead to more effective treatment and better survival rates.</p>
 
-      <p>By understanding the signs, symptoms, and risk factors associated with oral cancer, you can take proactive steps to protect your oral and overall health. If you notice any unusual changes in your mouth, consult a healthcare professional promptly. SLEEK Dental Club offers discount dental coverage, as well as insurance plans underwritten by MetLife. <a href="/">Contact us today</a> for more information.</p>
+      <p>By understanding the signs, symptoms, and risk factors associated with oral cancer, you can take proactive steps to protect your oral and overall health. If you notice any unusual changes in your mouth, consult a healthcare professional promptly. Routine dental care matters — a <a href="/#plans">SLEEK dental membership</a> includes coverage and a sonic toothbrush to help you stay on top of your oral health. SLEEK Dental Club offers discount dental coverage, as well as insurance plans underwritten by MetLife. <a href="/">Contact us today</a> for more information.</p>
     `,
   },
 
@@ -592,7 +592,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       <p>With SLEEK Dental PRO, you're not just getting dental insurance, you're unlocking a world of benefits to support your oral health journey. From affordable pricing to cutting-edge tools, it's your key to a brighter smile!</p>
 
-      <p>Ready to sign up for your SLEEK Dental PRO membership today? <a href="/">Click here to enroll</a>.</p>
+      <p>Compare the <a href="/#plans">SLEEK Dental membership plans</a> to find the right coverage, then sign up for your SLEEK Dental PRO membership today.</p>
     `,
   },
 
@@ -848,7 +848,7 @@ export function getAllPosts(): BlogPost[] {
 /**
  * Retrieves a single blog post by its slug.
  * Returns undefined if no post matches the slug.
- * 
+ *
  * @param slug - The URL-friendly slug to search for
  */
 export function getPostBySlug(slug: string): BlogPost | undefined {
@@ -858,7 +858,7 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 /**
  * Returns all blog posts in a specific category.
  * Used for category filtering on the blog listing page.
- * 
+ *
  * @param categoryKey - The category key to filter by
  */
 export function getPostsByCategory(categoryKey: CategoryKey): BlogPost[] {
@@ -868,7 +868,7 @@ export function getPostsByCategory(categoryKey: CategoryKey): BlogPost[] {
 /**
  * Returns all blog posts that have a specific tag.
  * Used for tag filtering and related posts.
- * 
+ *
  * @param tagKey - The tag key to filter by
  */
 export function getPostsByTag(tagKey: TagKey): BlogPost[] {
@@ -879,30 +879,30 @@ export function getPostsByTag(tagKey: TagKey): BlogPost[] {
  * Returns related posts based on category and tags.
  * Prioritizes posts from the same category, then by shared tags.
  * Excludes the current post and limits to maxPosts results.
- * 
+ *
  * @param currentPost - The post to find related content for
  * @param maxPosts - Maximum number of related posts to return (default: 3)
  */
 export function getRelatedPosts(currentPost: BlogPost, maxPosts: number = 3): BlogPost[] {
   // Get all posts except the current one
   const otherPosts = BLOG_POSTS.filter((post) => post.id !== currentPost.id);
-  
+
   // Score each post based on relevance
   const scoredPosts = otherPosts.map((post) => {
     let score = 0;
-    
+
     // Same category gets highest priority (score: 10)
     if (post.category === currentPost.category) {
       score += 10;
     }
-    
+
     // Each shared tag adds to the score (score: 3 per tag)
     const sharedTags = post.tags.filter((tag) => currentPost.tags.includes(tag));
     score += sharedTags.length * 3;
-    
+
     return { post, score };
   });
-  
+
   // Sort by score (descending) then by date (newest first)
   scoredPosts.sort((a, b) => {
     if (b.score !== a.score) {
@@ -910,7 +910,7 @@ export function getRelatedPosts(currentPost: BlogPost, maxPosts: number = 3): Bl
     }
     return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
   });
-  
+
   // Return the top maxPosts results
   return scoredPosts.slice(0, maxPosts).map((item) => item.post);
 }
@@ -921,11 +921,11 @@ export function getRelatedPosts(currentPost: BlogPost, maxPosts: number = 3): Bl
  */
 export function getCategoryCounts(): Record<CategoryKey, number> {
   const counts = {} as Record<CategoryKey, number>;
-  
+
   CATEGORIES.forEach((category) => {
     counts[category.key] = BLOG_POSTS.filter((post) => post.category === category.key).length;
   });
-  
+
   return counts;
 }
 
@@ -940,14 +940,14 @@ export function getAllSlugs(): string[] {
 /**
  * Extracts headings from HTML content for table of contents.
  * Returns an array of heading objects with id, text, and level.
- * 
+ *
  * @param content - HTML content string to parse
  */
 export function extractHeadings(content: string): { id: string; text: string; level: number }[] {
   const headingRegex = /<h([2-3])(?:[^>]*)>([^<]+)<\/h[2-3]>/gi;
   const headings: { id: string; text: string; level: number }[] = [];
   let match;
-  
+
   while ((match = headingRegex.exec(content)) !== null) {
     const level = parseInt(match[1], 10);
     const text = match[2].trim();
@@ -955,17 +955,17 @@ export function extractHeadings(content: string): { id: string; text: string; le
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
-    
+
     headings.push({ id, text, level });
   }
-  
+
   return headings;
 }
 
 /**
  * Adds IDs to headings in HTML content for anchor links.
  * This enables the table of contents to link to specific sections.
- * 
+ *
  * @param content - HTML content string to process
  */
 export function addHeadingIds(content: string): string {
