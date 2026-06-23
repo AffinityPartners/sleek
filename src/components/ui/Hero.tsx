@@ -220,7 +220,7 @@ const FeatureCardComponent = ({
  */
 export default function Hero({
   headline = "Premium Sonic Tech. Complete Dental Coverage.",
-  subheadline = "Experience the perfect fusion of cutting-edge sonic technology and comprehensive dental insurance. One membership, total oral care.",
+  subheadline = "Experience the perfect fusion of an electric toothbrush subscription and comprehensive dental coverage. One SLEEK dental membership delivers a premium sonic toothbrush with quarterly refills plus real insurance savings — total oral care.",
   ctaText = "Find My Perfect Plan",
   secondaryCtaText = "See How It Works",
   mediaSrc = "/images/hero/sleek-box-premium.png",
