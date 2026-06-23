@@ -490,7 +490,7 @@ git commit -m "fix(seo): drop /aobg homepage duplicate from sitemap"
 Improve titles/descriptions where impressions are highest but CTR is poor (homepage 3.4% CTR @ pos 11; affiliates 0.66% CTR @ pos 16). Keep them unique, ≤60-char titles / ≤155-char descriptions, value-prop first.
 
 **Files:**
-- Modify: `src/app/layout.tsx` (root `metadata` title/description template — read current values first)
+- Read for context only: `src/app/layout.tsx` (root `metadata` title template — leave unchanged unless the homepage `description` is missing/empty)
 - Modify: `src/app/market-programs/affiliates/page.tsx` (`metadata` export)
 
 - [ ] **Step 1: Read the current metadata**
