@@ -168,8 +168,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'SLEEK Dental Team',
     date: '2026-06-20',
     dateFormatted: 'June 20, 2026',
-    image: '/images/SLEEK-ToothBrush.jpg',
-    imageAlt: 'SLEEK sonic electric toothbrush',
+    image: '/images/SleekKit.jpg',
+    imageAlt: 'SLEEK Dental Club sonic electric toothbrush kit',
     readTime: 5,
     content: `
       <p><strong>Does dental insurance cover an electric toothbrush? In most cases, no.</strong> Standard dental insurance is built to help pay for treatment and procedures &mdash; cleanings, fillings, crowns, and the like &mdash; not for everyday products you use at home. Most plans treat an electric toothbrush as an out-of-pocket purchase, and many FSA and HSA accounts exclude general-use toothbrushes too. It always pays to check the specific rules of your plan, but as a rule of thumb you shouldn&rsquo;t count on insurance to buy your toothbrush.</p>
