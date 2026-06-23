@@ -155,6 +155,43 @@ export const TAG_MAP: Record<TagKey, Tag> = TAGS.reduce(
  */
 export const BLOG_POSTS: BlogPost[] = [
   // -------------------------------------------------------------------------
+  // Does Dental Insurance Cover an Electric Toothbrush? - June 20, 2026
+  // -------------------------------------------------------------------------
+  {
+    id: 'dental-insurance-electric-toothbrush',
+    slug: 'does-dental-insurance-cover-electric-toothbrush',
+    title: 'Does Dental Insurance Cover an Electric Toothbrush?',
+    excerpt:
+      "Most dental insurance plans won’t pay for an electric toothbrush. Here’s why — and how a subscription that includes the brush and refills can be a simpler way to budget for great oral care.",
+    category: 'health',
+    tags: ['insurance', 'products', 'membership'],
+    author: 'SLEEK Dental Team',
+    date: '2026-06-20',
+    dateFormatted: 'June 20, 2026',
+    image: '/images/SLEEK-ToothBrush.jpg',
+    imageAlt: 'SLEEK sonic electric toothbrush',
+    readTime: 5,
+    content: `
+      <p><strong>Does dental insurance cover an electric toothbrush? In most cases, no.</strong> Standard dental insurance is built to help pay for treatment and procedures &mdash; cleanings, fillings, crowns, and the like &mdash; not for everyday products you use at home. Most plans treat an electric toothbrush as an out-of-pocket purchase, and many FSA and HSA accounts exclude general-use toothbrushes too. It always pays to check the specific rules of your plan, but as a rule of thumb you shouldn&rsquo;t count on insurance to buy your toothbrush.</p>
+
+      <h2>Why dental insurance usually won&rsquo;t pay for a toothbrush</h2>
+      <p>Dental insurance is designed around <em>services</em> delivered by a licensed provider &mdash; preventive care like exams and cleanings, basic work like fillings, and major work like crowns. Benefits are organized around those visits and procedures. A toothbrush is a product you own and keep using at home, so it generally falls outside what a dental plan is built to reimburse, even though good brushing is exactly what helps you avoid the procedures insurance does cover.</p>
+
+      <h2>What about FSA or HSA dollars?</h2>
+      <p>People often ask whether they can use a flexible spending account (FSA) or health savings account (HSA) to buy an electric toothbrush. In most cases the answer is no: general-use toothbrushes are typically treated as everyday personal-care items rather than qualified medical expenses, so they&rsquo;re usually not reimbursable. Rules vary by plan administrator and can change, so confirm with yours before assuming a toothbrush is eligible.</p>
+
+      <h2>A simpler approach: a subscription that includes the brush</h2>
+      <p>If insurance won&rsquo;t cover your toothbrush, a subscription that <em>includes</em> it can be an easier way to budget for great oral care. The <a href="/electric-toothbrush-subscription">SLEEK electric toothbrush subscription</a> bundles a sonic electric toothbrush with auto-shipped quarterly brush-head and floss refills for one predictable monthly price &mdash; starting at $16.95/month on the CLUB plan, with free shipping in the contiguous US and the ability to cancel anytime.</p>
+      <p>Because the American Dental Association recommends replacing your brush head about every three months, having refills arrive automatically keeps your toothbrush working its best without a separate trip to the store.</p>
+
+      <h2>Want dental coverage too?</h2>
+      <p>SLEEK also offers memberships that pair the same sonic toothbrush and quarterly refills with real dental benefits &mdash; from discount dental savings on the OCP plan to MetLife dental insurance on the PRO and MAX plans. <a href="/#plans">Compare the SLEEK Dental membership plans</a> to find the right fit, whether you just want the toothbrush subscription or full dental coverage on top of it.</p>
+
+      <p>The bottom line: traditional dental insurance generally won&rsquo;t buy your electric toothbrush, and most FSA/HSA plans won&rsquo;t either &mdash; so a subscription that includes the brush and its refills can be the most straightforward way to keep your smile in top shape.</p>
+    `,
+  },
+
+  // -------------------------------------------------------------------------
   // Dental Emergencies in Children - March 26, 2025
   // -------------------------------------------------------------------------
   {
