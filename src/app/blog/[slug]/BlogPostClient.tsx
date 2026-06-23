@@ -9,12 +9,11 @@ import {
   Calendar, 
   Clock, 
   Share2, 
-  Twitter, 
-  Linkedin, 
   Link2, 
   Check,
   ChevronRight,
 } from 'lucide-react';
+import { XIcon, LinkedInIcon } from '@/components/icons/SocialIcons';
 import Script from 'next/script';
 
 import StickyNav from '@/components/StickyNav';
@@ -293,16 +292,16 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                     <button
                       onClick={shareOnTwitter}
                       className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#1DA1F2] hover:text-white transition-colors"
-                      aria-label="Share on Twitter"
+                      aria-label="Share on X"
                     >
-                      <Twitter className="w-5 h-5" />
+                      <XIcon className="w-5 h-5" />
                     </button>
                     <button
                       onClick={shareOnLinkedIn}
                       className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0A66C2] hover:text-white transition-colors"
                       aria-label="Share on LinkedIn"
                     >
-                      <Linkedin className="w-5 h-5" />
+                      <LinkedInIcon className="w-5 h-5" />
                     </button>
                     <button
                       onClick={handleCopyLink}

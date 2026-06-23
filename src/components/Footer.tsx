@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Mail, Phone, ChevronUp, ChevronDown, Facebook } from 'lucide-react';
+import { ArrowRight, Mail, Phone, ChevronUp, ChevronDown } from 'lucide-react';
+import { FacebookIcon } from '@/components/icons/SocialIcons';
 import { getAllPosts } from '@/lib/blog';
 
 /**
@@ -218,7 +219,7 @@ export default function Footer() {
                     aria-label="Follow us on Facebook"
                     className="w-10 h-10 rounded-xl bg-charcoal-800/50 flex items-center justify-center text-gray-400 hover:text-teal-400 hover:bg-teal-500/10 transition-all duration-300 border border-white/5 hover:border-teal-500/30"
                   >
-                    <Facebook className="w-5 h-5" />
+                    <FacebookIcon className="w-5 h-5" />
                   </a>
                 </div>
               </div>
