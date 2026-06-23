@@ -9,7 +9,7 @@ import { MarketProgramHero, PartnerContactForm } from '@/components/market-progr
  * Optimized for search visibility targeting affiliate marketers and influencers.
  */
 export const metadata: Metadata = {
-  title: 'Dental Affiliate Program | Earn With SLEEK Dental Club',
+  title: { absolute: 'Dental Affiliate Program | Earn With SLEEK Dental Club' },
   description:
     'Join the SLEEK Dental affiliate program — promote dental memberships & sonic toothbrush subscriptions and earn recurring commissions. Free to join.',
   openGraph: {
