@@ -29,10 +29,10 @@ export const legacyRedirects: LegacyRedirect[] = [
   { source: '/unlocking-the-benefits-of-sleek-dentals-pro-membership', destination: '/blog/sleek-dental-pro-membership', permanent: true },
 
   // --- Pages ---
+  // Sources are de-slashed: with `trailingSlash: false`, Next normalizes trailing slashes before redirect matching, so trailing-slash sources never match.
   { source: '/pricing', destination: '/#plans', permanent: true },
   { source: '/contact-us', destination: '/', permanent: true },
   { source: '/privacy-policy', destination: '/privacy', permanent: true },
-  { source: '/blog', destination: '/blog', permanent: true },
   { source: '/checkout-ocp', destination: 'https://enrollment.sleekdentalclub.com/onboarding', permanent: true, basePath: false },
 
   // --- Legacy WordPress asset PDFs ---

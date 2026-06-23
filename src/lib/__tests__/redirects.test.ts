@@ -25,14 +25,14 @@ describe('legacyRedirects', () => {
 
   it('maps the known high-value WordPress blog URLs to new slugs', () => {
     const map = Object.fromEntries(legacyRedirects.map((r) => [r.source, r.destination]));
-    expect(map['/understanding-oral-cancer-early-signs-symptoms-and-prevention/'])
+    expect(map['/understanding-oral-cancer-early-signs-symptoms-and-prevention'])
       .toBe('/blog/understanding-oral-cancer');
-    expect(map['/does-charcoal-toothpaste-really-whiten-teeth-the-truth-behind-the-trend/'])
+    expect(map['/does-charcoal-toothpaste-really-whiten-teeth-the-truth-behind-the-trend'])
       .toBe('/blog/charcoal-toothpaste-whitening');
   });
 
   it('external redirects use absolute URLs with basePath:false', () => {
-    const checkout = legacyRedirects.find((r) => r.source === '/checkout-ocp/');
+    const checkout = legacyRedirects.find((r) => r.source === '/checkout-ocp');
     expect(checkout?.destination).toBe('https://enrollment.sleekdentalclub.com/onboarding');
     expect(checkout?.basePath).toBe(false);
   });
