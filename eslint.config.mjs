@@ -14,16 +14,6 @@ const eslintConfig = [
   ...nextCoreWebVitals,
   // Disable formatting rules that conflict with Prettier
   prettier,
-  {
-    rules: {
-      // eslint-config-next 16 bundles eslint-plugin-react-hooks 7, which enables
-      // these newer (React Compiler-oriented) rules as errors. The existing,
-      // already-shipped components trigger them — keep as warnings so the upgrade
-      // doesn't block lint; address the underlying patterns in a separate pass.
-      'react-hooks/set-state-in-effect': 'warn',
-      'react-hooks/static-components': 'warn',
-    },
-  },
 ];
 
 export default eslintConfig;

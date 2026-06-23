@@ -99,9 +99,9 @@ const ParticleField = ({ prefersReducedMotion, isMobile }: { prefersReducedMotio
   if (isMobile) {
     return null;
   }
-  
+
   const particleCount = 20;
-  
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {Array.from({ length: particleCount }).map((_, i) => (
@@ -115,19 +115,19 @@ const ParticleField = ({ prefersReducedMotion, isMobile }: { prefersReducedMotio
  * FeatureCardComponent renders a single floating glass card with icon and text.
  * Features glassmorphism styling on dark background with subtle animations.
  */
-const FeatureCardComponent = ({ 
-  card, 
-  index, 
-  inView, 
-  prefersReducedMotion 
-}: { 
-  card: FeatureCard; 
-  index: number; 
+const FeatureCardComponent = ({
+  card,
+  index,
+  inView,
+  prefersReducedMotion
+}: {
+  card: FeatureCard;
+  index: number;
   inView: boolean;
   prefersReducedMotion: boolean | null;
 }) => {
   const Icon = card.icon;
-  
+
   // Color configuration for different card types
   const colorConfig = {
     teal: {
@@ -150,8 +150,8 @@ const FeatureCardComponent = ({
   const colors = colorConfig[card.color];
 
   const cardVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: prefersReducedMotion ? 10 : 30,
       scale: 0.95,
     },
@@ -172,8 +172,8 @@ const FeatureCardComponent = ({
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      whileHover={prefersReducedMotion ? {} : { 
-        scale: 1.03, 
+      whileHover={prefersReducedMotion ? {} : {
+        scale: 1.03,
         y: -5,
         transition: { duration: 0.2 }
       }}
@@ -185,7 +185,7 @@ const FeatureCardComponent = ({
         <div className={`shrink-0 w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center`}>
           <Icon className={`w-6 h-6 ${colors.iconColor}`} />
         </div>
-        
+
         {/* Text content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
@@ -205,11 +205,11 @@ const FeatureCardComponent = ({
 
 /**
  * Premium Dark Immersive Hero Section
- * 
+ *
  * A full-viewport dark cinematic hero inspired by Apple and Dyson product pages.
  * Features the SLEEK toothbrush with dramatic lighting effects while communicating
  * the dual value proposition of premium sonic technology AND dental insurance.
- * 
+ *
  * Key features:
  * - Dark gradient background with particle effects
  * - Floating product showcase with ambient glow
@@ -231,7 +231,7 @@ export default function Hero({
   const prefersReducedMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  
+
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -241,14 +241,16 @@ export default function Hero({
 
   // Check for mobile device and hydration
   useEffect(() => {
+    // Intentional: client/responsive flags set once after mount (SSR-safe).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsClient(true);
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
-    
+
     return () => {
       window.removeEventListener('resize', checkIsMobile);
     };
@@ -259,12 +261,12 @@ export default function Hero({
     if (inView) {
       controls.start('visible');
     }
-    
+
     // Fallback: trigger animation after a short delay if intersection observer doesn't fire
     const fallbackTimer = setTimeout(() => {
       controls.start('visible');
     }, 300);
-    
+
     return () => clearTimeout(fallbackTimer);
   }, [controls, inView]);
 
@@ -322,9 +324,9 @@ export default function Hero({
 
   // Word animation for headline with blur reveal
   const wordVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
-      y: prefersReducedMotion ? 10 : 40, 
+    hidden: {
+      opacity: 0,
+      y: prefersReducedMotion ? 10 : 40,
       filter: "blur(8px)",
     },
     visible: (custom: number) => ({
@@ -340,8 +342,8 @@ export default function Hero({
   };
 
   const imageVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       scale: prefersReducedMotion ? 0.98 : 0.9,
     },
     visible: {
@@ -369,16 +371,16 @@ export default function Hero({
 
   // Split headline into words for animation
   const headlineWords = headline.split(' ');
-  
+
   return (
-    <section 
+    <section
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* ===== MOBILE HERO IMAGE - Placed at section level with subtle float animation ===== */}
       {/* md:hidden ensures this only shows on mobile. Desktop has its own image in the grid layout.
           z-30 keeps this below the sticky nav (z-50) so it doesn't overlap the menu on scroll. */}
-      <motion.div 
+      <motion.div
         className="md:hidden absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
         animate={{
           y: [0, -12, 0],
@@ -395,17 +397,17 @@ export default function Hero({
           className="w-[280px] h-[350px] sm:w-[340px] sm:h-[420px] mt-12 object-contain -rotate-[8deg] drop-shadow-[0_0_80px_rgba(20,184,166,0.3)]"
         />
       </motion.div>
-      
+
       {/* ===== MOBILE FEATURE TAGS - Placed at section level to escape container padding ===== */}
       {/* md:hidden ensures this only shows on mobile. Uses absolute positioning relative to section.
           z-40 keeps these above the hero image (z-30) but below the sticky nav (z-50). */}
       <div className="md:hidden absolute inset-0 z-40 pointer-events-none">
         {/* 31,000 Vibrations tag - top right, near brush head */}
-        <motion.div 
+        <motion.div
           className="absolute top-[40%] right-8 pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             y: [0, -8, 0],
           }}
           transition={{
@@ -418,13 +420,13 @@ export default function Hero({
             <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">31,000 Vibrations/min</span>
           </div>
         </motion.div>
-        
+
         {/* Dental Insurance tag - left side, mid-height near handle */}
-        <motion.div 
+        <motion.div
           className="absolute top-[50%] left-3 pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             y: [0, -8, 0],
           }}
           transition={{
@@ -437,13 +439,13 @@ export default function Hero({
             <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">Dental Insurance Included</span>
           </div>
         </motion.div>
-        
+
         {/* Quarterly Refills tag - bottom right, below brush */}
-        <motion.div 
+        <motion.div
           className="absolute top-[58%] right-3 pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             y: [0, -8, 0],
           }}
           transition={{
@@ -457,25 +459,25 @@ export default function Hero({
           </div>
         </motion.div>
       </div>
-      
+
       {/* ===== DARK CINEMATIC BACKGROUND ===== */}
       <div className="absolute inset-0">
         {/* Base gradient */}
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(135deg, #0C1015 0%, #0F1518 30%, #141B1D 60%, #1B2223 100%)',
           }}
         />
-        
+
         {/* Radial glow behind product area */}
-        <div 
+        <div
           className="absolute top-1/2 right-0 md:right-[15%] w-[600px] h-[600px] md:w-[800px] md:h-[800px] -translate-y-1/2"
           style={{
             background: 'radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, rgba(20, 184, 166, 0.05) 40%, transparent 70%)',
           }}
         />
-        
+
         {/* Secondary ambient glow */}
         {/* Secondary ambient glow - disabled animation on mobile */}
         <motion.div
@@ -493,12 +495,12 @@ export default function Hero({
             ease: "easeInOut" as const,
           }}
         />
-        
+
         {/* Particle field for ambient depth */}
         {isClient && <ParticleField prefersReducedMotion={prefersReducedMotion} isMobile={isMobile} />}
-        
+
         {/* Subtle grid overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: 'url("/images/grid-pattern.svg")',
@@ -512,7 +514,7 @@ export default function Hero({
       <div className="container-standard relative z-10 pt-24 pb-16 md:py-0">
         {/* Mobile: flex-col with ordering, Desktop: grid-cols-2 */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-[calc(100vh-10rem)]">
-          
+
           {/* ===== SECTION 1: TEXT HEADER (Badge + Headline + Subheadline + Desktop CTAs) ===== */}
           {/* Mobile: order-1 (top), Desktop: left column with vertical centering */}
           <motion.div
@@ -544,7 +546,7 @@ export default function Hero({
                   {headlineWords.map((word, index) => {
                     // Apply gradient to key words for emphasis
                     const isGradientWord = ['Premium', 'Sonic', 'Tech.', 'Complete', 'Dental', 'Coverage.'].includes(word);
-                    
+
                     return (
                       <motion.span
                         key={index}
@@ -567,15 +569,15 @@ export default function Hero({
                 </span>
               )}
             </h1>
-            
+
             {/* Subheadline */}
-            <motion.p 
+            <motion.p
               variants={textVariants}
               className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl mx-auto lg:mx-0 lg:mb-10"
             >
               {subheadline}
             </motion.p>
-            
+
             {/* Desktop-only CTA Buttons - shown inline with text on desktop */}
             <motion.div variants={ctaVariants} className="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
               {/* Primary CTA with glow effect */}
@@ -586,14 +588,14 @@ export default function Hero({
                   background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
                   boxShadow: '0 0 30px rgba(20, 184, 166, 0.3)',
                 }}
-                whileHover={prefersReducedMotion ? {} : { 
+                whileHover={prefersReducedMotion ? {} : {
                   scale: 1.03,
                   boxShadow: '0 0 50px rgba(20, 184, 166, 0.5)',
                 }}
                 whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
               >
                 {/* Shimmer effect */}
-                <span 
+                <span
                   className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"
                   style={{
                     background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)'
@@ -615,7 +617,7 @@ export default function Hero({
             </motion.div>
 
             {/* Desktop-only Trust indicators */}
-            <motion.div 
+            <motion.div
               variants={textVariants}
               className="hidden lg:flex items-center gap-6 text-sm text-gray-500 justify-center lg:justify-start"
             >
@@ -633,7 +635,7 @@ export default function Hero({
               </div>
             </motion.div>
           </motion.div>
-          
+
           {/* ===== SECTION 2: PRODUCT SHOWCASE ===== */}
           {/* Mobile: order-2 (middle), Desktop: right column.
               Using direct initial/animate instead of variants for more reliable animation triggering. */}
@@ -644,7 +646,7 @@ export default function Hero({
           >
             <div className="relative h-[280px] sm:h-[350px] md:h-[550px] lg:h-[600px] w-full">
               {/* NOTE: Mobile image is now rendered at section level (above) to avoid nesting/stacking issues */}
-              
+
               {/* DESKTOP-ONLY: Pulsing ambient glow behind product */}
               <motion.div
                 className="hidden md:flex absolute inset-0 items-center justify-center"
@@ -658,14 +660,14 @@ export default function Hero({
                   ease: "easeInOut" as const,
                 }}
               >
-                <div 
+                <div
                   className="w-[80%] h-[80%] rounded-full blur-3xl"
                   style={{
                     background: 'radial-gradient(circle, rgba(20, 184, 166, 0.25) 0%, rgba(20, 184, 166, 0.1) 50%, transparent 70%)',
                   }}
                 />
               </motion.div>
-              
+
               {/* DESKTOP-ONLY: Product image with floating animation */}
               <motion.div
                 className="hidden md:flex relative z-10 h-full w-full items-center justify-center"
@@ -691,46 +693,46 @@ export default function Hero({
                   />
                 </div>
               </motion.div>
-              
+
               {/* ===== DESKTOP FEATURE CARDS - Floating around product ===== */}
               {/* z-20 ensures cards float above the product image (z-10) */}
               <div className="absolute inset-0 z-20 pointer-events-none">
                 <div className="hidden lg:block">
                   {/* Top right card */}
                   <div className="absolute top-[10%] right-0 xl:right-[-5%] pointer-events-auto">
-                    <FeatureCardComponent 
-                      card={featureCards[0]} 
-                      index={0} 
+                    <FeatureCardComponent
+                      card={featureCards[0]}
+                      index={0}
                       inView={inView}
                       prefersReducedMotion={prefersReducedMotion}
                     />
                   </div>
-                  
+
                   {/* Middle left card */}
                   <div className="absolute top-[45%] left-0 xl:left-[-10%] pointer-events-auto">
-                    <FeatureCardComponent 
-                      card={featureCards[1]} 
-                      index={1} 
+                    <FeatureCardComponent
+                      card={featureCards[1]}
+                      index={1}
                       inView={inView}
                       prefersReducedMotion={prefersReducedMotion}
                     />
                   </div>
-                  
+
                   {/* Bottom center card */}
                   <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 pointer-events-auto">
-                    <FeatureCardComponent 
-                      card={featureCards[2]} 
-                      index={2} 
+                    <FeatureCardComponent
+                      card={featureCards[2]}
+                      index={2}
                       inView={inView}
                       prefersReducedMotion={prefersReducedMotion}
                     />
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </motion.div>
-          
+
           {/* ===== SECTION 3: MOBILE CTAs AND TRUST INDICATORS ===== */}
           {/* Mobile: order-3 (bottom), Hidden on desktop (shown inline above) */}
           <motion.div
@@ -749,14 +751,14 @@ export default function Hero({
                   background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
                   boxShadow: '0 0 30px rgba(20, 184, 166, 0.3)',
                 }}
-                whileHover={prefersReducedMotion ? {} : { 
+                whileHover={prefersReducedMotion ? {} : {
                   scale: 1.03,
                   boxShadow: '0 0 50px rgba(20, 184, 166, 0.5)',
                 }}
                 whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
               >
                 {/* Shimmer effect */}
-                <span 
+                <span
                   className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"
                   style={{
                     background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)'
@@ -778,7 +780,7 @@ export default function Hero({
             </motion.div>
 
             {/* Mobile Trust indicators */}
-            <motion.div 
+            <motion.div
               variants={textVariants}
               className="flex items-center gap-4 text-sm text-gray-500 justify-center"
             >
@@ -803,7 +805,7 @@ export default function Hero({
           Uses left-0 right-0 + justify-center instead of translate-x-1/2 because
           framer-motion overwrites the transform property with its animations.
           Hidden on mobile (md:flex) for cleaner mobile experience. */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-8 left-0 right-0 hidden md:flex flex-col items-center justify-center text-white/50 text-sm gap-2 z-20"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

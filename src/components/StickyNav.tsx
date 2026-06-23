@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -85,21 +85,23 @@ function MobileMenu({ navItems, activeSection, isHomePage, useScrolledStyling }:
  * - Brand gradient accent line at top
  * - iOS safe area padding for notched devices
  */
-function MobileMenuContent({ 
-  open, 
-  navItems, 
-  activeSection, 
-  isHomePage, 
-  useScrolledStyling 
+function MobileMenuContent({
+  open,
+  navItems,
+  activeSection,
+  isHomePage,
+  useScrolledStyling
 }: MobileMenuProps & { open: boolean }) {
   const prefersReducedMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
-  
+
   // Track if component is mounted (needed for portal SSR safety)
   useEffect(() => {
+    // Intentional: one-time mount flag for SSR-safe portal rendering.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
-  
+
   /**
    * Body scroll lock effect when menu is open.
    * Prevents background content from scrolling while the menu is displayed.
@@ -121,11 +123,11 @@ function MobileMenuContent({
    * Uses translateX for smooth GPU-accelerated animation.
    */
   const menuPanelVariants = {
-    closed: { 
+    closed: {
       x: '100%',
       opacity: 0.8,
     },
-    open: { 
+    open: {
       x: 0,
       opacity: 1,
       transition: {
@@ -151,7 +153,7 @@ function MobileMenuContent({
    */
   const backdropVariants = {
     closed: { opacity: 0 },
-    open: { 
+    open: {
       opacity: 1,
       transition: { duration: 0.2 }
     },
@@ -178,8 +180,8 @@ function MobileMenuContent({
    */
   const menuItemVariants = {
     closed: { opacity: 0, x: 20 },
-    open: { 
-      opacity: 1, 
+    open: {
+      opacity: 1,
       x: 0,
       transition: {
         type: 'spring' as const,
@@ -192,10 +194,10 @@ function MobileMenuContent({
   return (
     <>
       {/* Hamburger/Close button with morphing animation */}
-      <Disclosure.Button 
+      <Disclosure.Button
         className={`relative flex flex-col items-center justify-center w-11 h-11 rounded-xl cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 focus-visible:ring-offset-2 transition-colors duration-300 ${
-          useScrolledStyling 
-            ? 'text-gray-700 hover:text-teal-600 hover:bg-gray-100/50' 
+          useScrolledStyling
+            ? 'text-gray-700 hover:text-teal-600 hover:bg-gray-100/50'
             : 'text-white hover:text-teal-300 hover:bg-white/10'
         }`}
         aria-label={open ? 'Close menu' : 'Open menu'}
@@ -204,19 +206,19 @@ function MobileMenuContent({
         <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
         {/* Animated hamburger lines that morph into an X */}
         <span className="flex flex-col items-center justify-center gap-1.5 pointer-events-none">
-          <span 
+          <span
             className={`block h-0.5 w-6 rounded-full bg-current transform transition-all duration-300 ease-out ${
               open ? 'rotate-45 translate-y-2' : ''
             }`}
             aria-hidden="true"
           />
-          <span 
+          <span
             className={`block h-0.5 w-6 rounded-full bg-current transition-all duration-200 ease-out ${
               open ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
             }`}
             aria-hidden="true"
           />
-          <span 
+          <span
             className={`block h-0.5 w-6 rounded-full bg-current transform transition-all duration-300 ease-out ${
               open ? '-rotate-45 -translate-y-2' : ''
             }`}
@@ -224,7 +226,7 @@ function MobileMenuContent({
           />
         </span>
       </Disclosure.Button>
-      
+
       {/* Mobile menu panel - renders via portal to document.body to escape header stacking context.
           IMPORTANT: AnimatePresence must be INSIDE the portal, not wrapping it, because:
           1. Portal content renders outside React's tree at document.body
@@ -245,9 +247,9 @@ function MobileMenuContent({
                 className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998] cursor-pointer"
                 aria-label="Close menu"
               />
-              
+
               {/* Slide-in menu panel with dark premium theme */}
-              <motion.div 
+              <motion.div
                 key="mobile-menu-panel"
                 variants={prefersReducedMotion ? {} : menuPanelVariants}
                 initial="closed"
@@ -259,14 +261,14 @@ function MobileMenuContent({
                 }}
               >
               {/* Brand gradient accent line at the top */}
-              <div 
+              <div
                 className="absolute top-0 left-0 right-0 h-1"
                 style={{
                   background: 'linear-gradient(90deg, #5eead4 0%, #14b8a6 35%, #0f766e 70%, #115e59 100%)'
                 }}
                 aria-hidden="true"
               />
-              
+
               {/* Close button in top right corner */}
               <Disclosure.Button
                 className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200 z-10"
@@ -274,9 +276,9 @@ function MobileMenuContent({
               >
                 <X className="w-5 h-5" />
               </Disclosure.Button>
-              
+
               {/* Menu content container with safe area padding */}
-              <div 
+              <div
                 className="flex flex-col h-full px-6 pt-6 pb-safe overflow-y-auto"
                 style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
               >
@@ -299,14 +301,14 @@ function MobileMenuContent({
                     A Dental Experience Worth Smiling About
                   </p>
                 </motion.div>
-                
+
                 {/* Main Navigation Section */}
-                <motion.nav 
+                <motion.nav
                   variants={staggerContainer}
                   initial="closed"
                   animate="open"
-                  className="space-y-1 mb-6" 
-                  role="navigation" 
+                  className="space-y-1 mb-6"
+                  role="navigation"
                   aria-label="Mobile navigation"
                 >
                   <p className="text-[10px] font-semibold text-teal-500/80 uppercase tracking-wider mb-3 px-1">
@@ -315,14 +317,14 @@ function MobileMenuContent({
                   {navItems.map((item) => {
                     // Blog links to its own page, not an anchor
                     const isBlogItem = item.id === 'blog';
-                    const href = isBlogItem 
-                      ? '/blog' 
+                    const href = isBlogItem
+                      ? '/blog'
                       : isHomePage ? `#${item.id}` : `/#${item.id}`;
-                    
+
                     // scroll={false} when on homepage (we handle smooth scroll manually)
                     // scroll={true} when navigating cross-page to allow hash scroll
                     const shouldScroll = !isHomePage && !isBlogItem;
-                    
+
                     return (
                       <motion.div
                         key={item.id}
@@ -335,7 +337,7 @@ function MobileMenuContent({
                           onClick={(e: React.MouseEvent) => {
                             // Blog item navigates to /blog page, no special handling needed
                             if (isBlogItem) return;
-                            
+
                             // If on homepage, use smooth scroll for anchor navigation
                             if (isHomePage) {
                               e.preventDefault();
@@ -354,8 +356,8 @@ function MobileMenuContent({
                           {item.label}
                           {/* Arrow indicator */}
                           <ChevronRight className={`ml-auto w-4 h-4 transition-all duration-200 ${
-                            activeSection === item.id 
-                              ? 'text-teal-400 translate-x-0 opacity-100' 
+                            activeSection === item.id
+                              ? 'text-teal-400 translate-x-0 opacity-100'
                               : 'text-gray-600 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-50'
                           }`} />
                         </Disclosure.Button>
@@ -363,10 +365,10 @@ function MobileMenuContent({
                     );
                   })}
                 </motion.nav>
-                
+
                 {/* Divider */}
                 <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
-                
+
                 {/* Partner Programs Section */}
                 <motion.div
                   variants={staggerContainer}
@@ -394,7 +396,7 @@ function MobileMenuContent({
                     ))}
                   </div>
                 </motion.div>
-                
+
                 {/* Contact Section */}
                 <motion.div
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
@@ -406,7 +408,7 @@ function MobileMenuContent({
                     Contact Us
                   </p>
                   <div className="space-y-2">
-                    <a 
+                    <a
                       href={`tel:${contactInfo.phone.replace(/[^0-9]/g, '')}`}
                       className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 hover:border-teal-500/30 transition-all duration-200"
                     >
@@ -415,7 +417,7 @@ function MobileMenuContent({
                       </div>
                       <span className="text-sm font-medium">{contactInfo.phone}</span>
                     </a>
-                    <a 
+                    <a
                       href={`mailto:${contactInfo.email}`}
                       className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 hover:border-teal-500/30 transition-all duration-200"
                     >
@@ -426,12 +428,12 @@ function MobileMenuContent({
                     </a>
                   </div>
                 </motion.div>
-                
+
                 {/* Spacer to push CTA and footer to bottom */}
                 <div className="flex-1 min-h-4" />
-                
+
                 {/* CTA Button section with premium styling */}
-                <motion.div 
+                <motion.div
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35 }}
@@ -447,7 +449,7 @@ function MobileMenuContent({
                     }}
                   >
                     {/* Glow effect behind button */}
-                    <span 
+                    <span
                       className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
                         boxShadow: '0 0 40px rgba(20, 184, 166, 0.4)',
@@ -455,7 +457,7 @@ function MobileMenuContent({
                       aria-hidden="true"
                     />
                     {/* Shimmer effect overlay */}
-                    <span 
+                    <span
                       className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
                       style={{
                         background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)'
@@ -465,13 +467,13 @@ function MobileMenuContent({
                     <span className="relative">GET STARTED</span>
                     <ChevronRight className="relative w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                   </Disclosure.Button>
-                  
+
                   {/* Secondary info text */}
                   <p className="mt-3 text-center text-xs text-gray-500">
                     Join thousands of members with healthier smiles
                   </p>
                 </motion.div>
-                
+
                 {/* Footer Links */}
                 <motion.div
                   initial={prefersReducedMotion ? false : { opacity: 0 }}
@@ -508,7 +510,7 @@ function MobileMenuContent({
  * Allows customization of visual behavior based on hero background.
  */
 interface StickyNavProps {
-  /** 
+  /**
    * When true, the nav starts with light-background styling (dark text/logo)
    * instead of dark-background styling (white text/logo).
    * Use this when placing the nav over a light-colored hero section.
@@ -521,7 +523,7 @@ interface StickyNavProps {
  * StickyNav component provides a fixed navigation header with scroll-based
  * visual effects and active section tracking. The navigation starts transparent
  * over the dark hero and transitions to a white glassmorphism style on scroll.
- * 
+ *
  * Key features:
  * - Transparent on dark hero, white on scroll (or light mode for light heroes)
  * - Logo swaps from white to black based on scroll state
@@ -536,28 +538,31 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
   const headerRef = useRef(null);
   const { scrollY } = useScroll();
   const pathname = usePathname();
-  
+
   // Check if we're on the homepage
   const isHomePage = pathname === '/';
-  
+
   // Navigation items configuration
-  const navItems = [
-    { id: 'plans', label: 'PLANS' },
-    { id: 'technology', label: 'TECHNOLOGY' },
-    { id: 'benefits', label: 'BENEFITS' },
-    { id: 'faq', label: 'FAQ' },
-    { id: 'blog', label: 'BLOG' },
-  ];
+  const navItems = useMemo(
+    () => [
+      { id: 'plans', label: 'PLANS' },
+      { id: 'technology', label: 'TECHNOLOGY' },
+      { id: 'benefits', label: 'BENEFITS' },
+      { id: 'faq', label: 'FAQ' },
+      { id: 'blog', label: 'BLOG' },
+    ],
+    []
+  );
 
   // Logo scale animation based on scroll
   const logoScale = useTransform(scrollY, [0, 100], [1, 0.9]);
-  
+
   // Background effects based on scroll - starts transparent for dark hero
   const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.98]);
   const blurStrength = useTransform(scrollY, [0, 100], [0, 16]);
   const shadowOpacity = useTransform(scrollY, [0, 100], [0, 0.1]);
   const borderOpacity = useTransform(scrollY, [0, 100], [0, 0.1]);
-  
+
   // Create reactive CSS values using useMotionTemplate for dynamic string interpolation
   const backgroundColor = useMotionTemplate`rgba(255, 255, 255, ${bgOpacity})`;
   const backdropFilter = useMotionTemplate`blur(${blurStrength}px)`;
@@ -568,7 +573,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50);
   });
-  
+
   // Determine if we should use "scrolled" styling for text/logo colors
   // When lightHero is true, always use scrolled (dark) styling
   const useScrolledStyling = lightHero || scrolled;
@@ -577,42 +582,42 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
     const handleScroll = () => {
       // Update scrolled state for styling changes
       setScrolled(window.scrollY > 50);
-      
+
       // Find the current active section based on scroll position
       const sections = navItems.map(item => ({
         id: item.id,
         element: document.getElementById(item.id)
       })).filter(section => section.element);
-      
+
       if (sections.length > 0) {
         // Determine which section is currently most visible
         const currentSection = sections.reduce((closest, section) => {
           const rect = section.element?.getBoundingClientRect();
           if (!rect) return closest;
-          
+
           // Section is considered in view if its top is within 200px of viewport top
           const isInView = rect.top <= 200 && rect.bottom >= 200;
-          
+
           if (isInView && (!closest.element || rect.top > closest.element.getBoundingClientRect().top)) {
             return section;
           }
           return closest;
         }, { id: '', element: null });
-        
+
         if (currentSection.id) {
           setActiveSection(currentSection.id);
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [navItems]);
-  
+
   return (
-    <motion.header 
+    <motion.header
       ref={headerRef}
       style={{
         backgroundColor,
@@ -629,15 +634,15 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
         <div className="flex items-center justify-between">
           {/* Logo with scale animation - swaps between white and black based on scroll */}
           <Link href="/" className="flex flex-col relative z-10">
-            <motion.div 
+            <motion.div
               style={{ scale: prefersReducedMotion ? 1 : logoScale }}
               transition={{ type: "spring" as const, stiffness: 300, damping: 30 }}
               className="relative"
             >
               {/* White logo for dark hero (shown when not scrolled and not lightHero) */}
-              <Image 
-                src="/images/hero/SLEEK-logo-white.png" 
-                alt="SLEEK" 
+              <Image
+                src="/images/hero/SLEEK-logo-white.png"
+                alt="SLEEK"
                 width={120}
                 height={32}
                 className={`h-8 w-auto transition-opacity duration-300 ${useScrolledStyling ? 'opacity-0' : 'opacity-100'}`}
@@ -645,9 +650,9 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                 priority
               />
               {/* Black logo for scrolled state or light hero (overlaid) */}
-              <Image 
-                src="/images/blog/logo/sleek-black.svg" 
-                alt="SLEEK" 
+              <Image
+                src="/images/blog/logo/sleek-black.svg"
+                alt="SLEEK"
                 width={120}
                 height={32}
                 className={`h-8 w-auto absolute inset-0 transition-opacity duration-300 ${useScrolledStyling ? 'opacity-100' : 'opacity-0'}`}
@@ -656,7 +661,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
               />
             </motion.div>
             {/* Brand tagline - transitions color with scroll state or uses dark text on light hero */}
-            <span 
+            <span
               className={`text-[10px] font-medium tracking-wide mt-0.5 transition-colors duration-300 ${
                 useScrolledStyling ? 'text-gray-500' : 'text-white/70'
               }`}
@@ -664,16 +669,16 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
               A Dental Experience Worth Smiling About
             </span>
           </Link>
-          
+
           {/* Desktop navigation with 44px minimum touch targets */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map(item => {
               // Blog links to its own page, not an anchor
               const isBlogItem = item.id === 'blog';
-              const href = isBlogItem 
-                ? '/blog' 
+              const href = isBlogItem
+                ? '/blog'
                 : isHomePage ? `#${item.id}` : `/#${item.id}`;
-              
+
               return (
               <Link
                 key={item.id}
@@ -682,7 +687,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                 onClick={(e) => {
                   // Blog item navigates to /blog page, no special handling needed
                   if (isBlogItem) return;
-                  
+
                   // If on homepage, use smooth scroll instead of instant jump
                   if (isHomePage) {
                     e.preventDefault();
@@ -710,11 +715,11 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                   {item.label}
                   {/* Active indicator with animated underline */}
                   {activeSection === item.id && (
-                    <motion.div 
+                    <motion.div
                       className="absolute bottom-1 left-2 right-2 h-0.5 rounded-full"
                       layoutId="activeNavIndicator"
                       style={{
-                        background: useScrolledStyling 
+                        background: useScrolledStyling
                           ? 'linear-gradient(90deg, #14b8a6 0%, #0f766e 100%)'
                           : 'linear-gradient(90deg, #5eead4 0%, #14b8a6 100%)'
                       }}
@@ -726,7 +731,7 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
             );
             })}
           </nav>
-          
+
           {/* CTA Button with proper touch target */}
           <div className="hidden lg:flex items-center">
             <Link
@@ -748,15 +753,15 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
                 style={{
                   background: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
                 }}
-                whileHover={prefersReducedMotion ? {} : { 
+                whileHover={prefersReducedMotion ? {} : {
                   scale: 1.03,
-                  boxShadow: '0 8px 25px rgba(15, 118, 110, 0.35)' 
+                  boxShadow: '0 8px 25px rgba(15, 118, 110, 0.35)'
                 }}
                 whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                 transition={{ type: "spring" as const, stiffness: 400, damping: 20 }}
               >
                 {/* Shimmer effect on hover */}
-                <span 
+                <span
                   className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700"
                   style={{
                     background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)'
@@ -766,9 +771,9 @@ export default function StickyNav({ lightHero = false }: StickyNavProps) {
               </motion.span>
             </Link>
           </div>
-          
+
           {/* Mobile menu with backdrop overlay and improved animations */}
-          <MobileMenu 
+          <MobileMenu
             navItems={navItems}
             activeSection={activeSection}
             isHomePage={isHomePage}

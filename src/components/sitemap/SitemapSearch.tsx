@@ -126,10 +126,12 @@ export default function SitemapSearch({
    */
   useEffect(() => {
     const searchResults = searchItems(query);
+    /* eslint-disable react-hooks/set-state-in-effect -- search results and UI state are derived from and synced to the query as it changes */
     setResults(searchResults);
     setSelectedIndex(-1);
     onSearchResults?.(searchResults, query);
     setIsOpen(query.length > 0);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [query, searchItems, onSearchResults]);
 
   /**
@@ -194,11 +196,11 @@ export default function SitemapSearch({
    */
   const highlightMatch = (text: string, searchQuery: string) => {
     if (!searchQuery.trim()) return text;
-    
+
     const regex = new RegExp(`(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     const parts = text.split(regex);
-    
-    return parts.map((part, i) => 
+
+    return parts.map((part, i) =>
       regex.test(part) ? (
         <mark key={i} className="bg-teal-100 text-teal-800 rounded px-0.5">
           {part}
@@ -280,7 +282,7 @@ export default function SitemapSearch({
               {results.map((result, index) => {
                 const Icon = getTypeIcon(result.type);
                 const isSelected = index === selectedIndex;
-                
+
                 return (
                   <Link
                     key={result.id}
