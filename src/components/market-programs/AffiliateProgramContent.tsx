@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { affiliateSteps, affiliateFaqs } from '@/lib/affiliate-content';
 
 /**
@@ -59,9 +60,9 @@ export default function AffiliateProgramContent() {
 
       <p className="mt-10 text-gray-600">
         Explore the{' '}
-        <a href="/#plans" className="text-teal-600 font-medium hover:text-teal-700">
+        <Link href="/#plans" className="text-teal-600 font-medium hover:text-teal-700">
           SLEEK Dental membership plans
-        </a>{' '}
+        </Link>{' '}
         you&apos;ll be promoting.
       </p>
     </section>
