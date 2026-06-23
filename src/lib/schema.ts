@@ -175,13 +175,16 @@ export function createLocalBusinessSchema() {
 // =============================================================================
 
 /**
- * Creates WebSite JSON-LD schema with SearchAction.
- * Enables sitelinks search box in Google search results.
+ * Creates WebSite JSON-LD schema.
  * Should be included site-wide via layout.tsx.
  *
  * Benefits:
- * - Sitelinks search box potential
  * - Better site representation in search
+ *
+ * Note: potentialAction/SearchAction was removed — there is no real URL-addressable
+ * search endpoint. The on-site search (/sitemap) is a client-side filter that does
+ * not read a query param, so a SearchAction would be unfulfillable. Restore if a
+ * real /search?q= route is added later.
  *
  * @returns WebSite schema object
  */
@@ -195,14 +198,6 @@ export function createWebSiteSchema() {
     description: SITE_CONFIG.description,
     publisher: {
       '@id': `${SITE_CONFIG.url}/#organization`,
-    },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE_CONFIG.url}/blog?search={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
     },
   };
 }
@@ -308,6 +303,26 @@ export function createProductSchema(product: ProductInfo) {
       seller: {
         '@type': 'Organization',
         name: SITE_CONFIG.name,
+      },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '0',
+          currency: product.priceCurrency || 'USD',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'US',
+        },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'US',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
       },
     },
   };
