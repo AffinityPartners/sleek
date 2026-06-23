@@ -8,13 +8,13 @@ import type { FaqItem, BreadcrumbItem } from '@/lib/schema';
 export const subscriptionHeroTitle = 'Electric Toothbrush Subscription';
 
 export const subscriptionHeroSubtitle =
-  'Get a premium sonic electric toothbrush plus auto-shipped quarterly refills in one simple subscription — starting at $16.95/month with the SLEEK CLUB plan. Free shipping in the contiguous US, and cancel anytime.';
+  'Join the SLEEK CLUB membership and get a premium sonic electric toothbrush with fresh brush-head and floss refills delivered to your door every quarter — from $16.95/month, with free shipping in the contiguous US. No long-term commitment: cancel anytime.';
 
 export const subscriptionHeroBenefits: string[] = [
   'Sonic electric toothbrush with 5 cleaning modes included',
-  'Fresh brush heads + 50 floss picks auto-shipped every quarter',
+  'Fresh brush heads + 50 floss picks delivered every quarter',
   'Free shipping in the contiguous US',
-  'Cancel anytime',
+  'Cancel anytime — no long-term commitment',
 ];
 
 /** How-the-subscription-works steps. Facts from the CLUB plan in PricingSection.tsx. */
@@ -61,7 +61,7 @@ export const subscriptionFaqs: FaqItem[] = [
   {
     question: 'Is shipping free, and can I cancel anytime?',
     answer:
-      'Yes. Shipping is free in the contiguous US, and you can cancel anytime.',
+      'Yes. Shipping is free in the contiguous US, and you can cancel anytime — there is no long-term commitment.',
   },
   {
     question: 'Is it just a toothbrush, or does it include dental coverage too?',

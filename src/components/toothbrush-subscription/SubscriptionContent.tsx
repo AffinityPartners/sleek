@@ -11,10 +11,11 @@ export default function SubscriptionContent() {
       <div className="max-w-3xl">
         <h2 className="section-title">How the SLEEK Electric Toothbrush Subscription Works</h2>
         <p className="text-lg text-gray-600 leading-relaxed mb-10">
-          A SLEEK electric toothbrush subscription gives you a premium sonic toothbrush and keeps it
-          performing at its best with brush-head and floss refills shipped automatically every quarter
-          — no remembering to reorder, no overpaying at the store. It starts with the CLUB plan, and you
-          can add dental savings or insurance whenever you want.
+          With the SLEEK CLUB membership, you get a premium sonic toothbrush and never have to think
+          about replacements again — fresh brush heads and floss arrive at your door every quarter, so
+          you skip the reorder runs and the markup at the store. There&apos;s no long-term commitment:
+          keep it as long as it works for you, and cancel anytime. Start with CLUB, then add dental
+          savings or insurance whenever you want.
         </p>
       </div>
 
@@ -35,15 +36,16 @@ export default function SubscriptionContent() {
             <li>Sonic electric toothbrush with 5 cleaning modes (in your welcome kit)</li>
             <li>Quarterly brush head refill — replaced on the dentist-recommended schedule</li>
             <li>50 floss picks every quarter</li>
-            <li>Free shipping in the contiguous US, and cancel anytime</li>
+            <li>Free shipping in the contiguous US — cancel anytime, no long-term commitment</li>
           </ul>
         </div>
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Why a Toothbrush Subscription</h2>
           <p className="text-gray-600 leading-relaxed">
-            Brush heads wear out — the ADA recommends replacing them about every three months. A
-            subscription keeps fresh refills arriving automatically for one predictable price, so your
-            sonic toothbrush always cleans like new. Wondering whether insurance pays for this? See{' '}
+            Brush heads wear out — the ADA recommends replacing them about every three months. A SLEEK
+            membership keeps fresh refills arriving for one predictable price, so your sonic toothbrush
+            always cleans like new — and you can cancel anytime if your needs change. Wondering whether
+            insurance pays for this? See{' '}
             <Link
               href="/blog/does-dental-insurance-cover-electric-toothbrush"
               className="text-teal-600 font-medium hover:text-teal-700"
