@@ -1284,7 +1284,7 @@ const PricingSection: React.FC = () => {
               variants={itemVariants}
               className="section-subtitle"
             >
-              Find the ideal dental care plan for your needs with flexible options and premium benefits
+              Pick the SLEEK dental membership that fits — every plan includes the sonic electric toothbrush subscription with quarterly refills.
             </motion.p>
           </div>
 
@@ -1392,7 +1392,7 @@ const PricingSection: React.FC = () => {
                       />
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 font-heading tracking-tight">
-                      {plan.name}
+                      {plan.id === 'ocp' ? plan.name : `${plan.name} Dental Membership`}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4">{plan.description}</p>
                     {/* "Starting at" label shown for all plans to indicate variable pricing */}
