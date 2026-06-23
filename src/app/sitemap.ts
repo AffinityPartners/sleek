@@ -33,7 +33,6 @@ const BASE_URL = 'https://www.sleekdentalclub.com';
  * - 1.0: Homepage (most important)
  * - 0.9: High-traffic pages (blog listing)
  * - 0.8: Important pages (market programs, sitemap)
- * - 0.7: Secondary pages (aobg)
  * - 0.5: Low-priority pages (terms, privacy)
  *
  * Excluded pages (not in sitemap):

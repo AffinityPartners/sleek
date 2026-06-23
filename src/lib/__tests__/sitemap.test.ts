@@ -10,7 +10,7 @@ describe('sitemap', () => {
     }
   });
 
-  it('excludes the /aobg homepage duplicate', () => {
+  it('excludes the removed /aobg route', () => {
     expect(entries.some((e) => e.url.endsWith('/aobg'))).toBe(false);
   });
 
