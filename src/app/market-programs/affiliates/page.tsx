@@ -9,19 +9,19 @@ import { MarketProgramHero, PartnerContactForm } from '@/components/market-progr
  * Optimized for search visibility targeting affiliate marketers and influencers.
  */
 export const metadata: Metadata = {
-  title: 'Become a SLEEK Affiliate | Affiliate Marketing Program',
+  title: 'Dental Affiliate Program | Earn With SLEEK Dental Club',
   description:
-    'Join the SLEEK Dental Club affiliate program. Earn competitive commissions promoting premium dental care subscriptions with marketing materials and tracking tools.',
+    'Join the SLEEK Dental affiliate program — promote dental memberships & sonic toothbrush subscriptions and earn recurring commissions. Free to join.',
   openGraph: {
-    title: 'Become a SLEEK Affiliate | Affiliate Marketing Program',
+    title: 'Dental Affiliate Program | Earn With SLEEK Dental Club',
     description:
-      'Earn competitive commissions by promoting premium dental care subscriptions with the SLEEK affiliate program.',
+      'Join the SLEEK Dental affiliate program — promote dental memberships & sonic toothbrush subscriptions and earn recurring commissions. Free to join.',
     type: 'website',
     url: 'https://www.sleekdentalclub.com/market-programs/affiliates',
   },
   twitter: {
     card: 'summary',
-    title: 'Become a SLEEK Affiliate | Affiliate Marketing Program',
+    title: 'Dental Affiliate Program | Earn With SLEEK Dental Club',
     description: 'Earn commissions promoting SLEEK Dental Club memberships.',
   },
   alternates: {
