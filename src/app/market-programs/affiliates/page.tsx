@@ -2,7 +2,10 @@ import { Metadata } from 'next';
 
 import StickyNav from '@/components/StickyNav';
 import Footer from '@/components/Footer';
-import { MarketProgramHero, PartnerContactForm } from '@/components/market-programs';
+import Script from 'next/script';
+import { MarketProgramHero, PartnerContactForm, AffiliateProgramContent } from '@/components/market-programs';
+import { affiliateFaqs, affiliateBreadcrumb } from '@/lib/affiliate-content';
+import { createFaqSchema, createBreadcrumbSchema } from '@/lib/schema';
 
 /**
  * SEO metadata for the Affiliate Partner page.
@@ -35,9 +38,9 @@ export const metadata: Metadata = {
  */
 const pageContent = {
   badgeText: 'For Affiliates',
-  title: 'Become a SLEEK Affiliate',
+  title: 'Dental Affiliate Program',
   subtitle:
-    'Earn commissions by promoting premium dental care subscriptions. Our affiliate program provides everything you need to succeed, from marketing materials to real-time tracking.',
+    'Become a SLEEK affiliate and earn recurring commissions promoting premium dental memberships and our sonic electric toothbrush subscription. Everything you need to succeed — marketing materials, real-time tracking, monthly payouts.',
   benefits: [
     'Competitive commission structure',
     'Professional marketing materials provided',
@@ -56,10 +59,17 @@ const pageContent = {
 export default function AffiliatesPage() {
   return (
     <main className="relative min-h-screen bg-gray-50">
-      {/* Sticky navigation header with light mode for light hero background */}
+      <Script
+        id="affiliate-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createFaqSchema(affiliateFaqs)) }}
+      />
+      <Script
+        id="affiliate-breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createBreadcrumbSchema(affiliateBreadcrumb)) }}
+      />
       <StickyNav lightHero />
-
-      {/* Hero section with partner benefits */}
       <MarketProgramHero
         badgeText={pageContent.badgeText}
         title={pageContent.title}
@@ -67,14 +77,11 @@ export default function AffiliatesPage() {
         iconName="share2"
         benefits={pageContent.benefits}
       />
-
-      {/* Contact form section */}
+      <AffiliateProgramContent />
       <PartnerContactForm
         subjectLine={pageContent.formSubjectLine}
         partnerType={pageContent.partnerType}
       />
-
-      {/* Site footer */}
       <Footer />
     </main>
   );
