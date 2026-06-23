@@ -24,4 +24,9 @@ describe('sitemap', () => {
     expect(urls).toContain('https://www.sleekdentalclub.com');
     expect(urls).toContain('https://www.sleekdentalclub.com/blog');
   });
+
+  it('includes the electric toothbrush subscription landing page', () => {
+    const urls = entries.map((e) => e.url);
+    expect(urls).toContain('https://www.sleekdentalclub.com/electric-toothbrush-subscription');
+  });
 });

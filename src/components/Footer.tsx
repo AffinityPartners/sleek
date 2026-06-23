@@ -38,7 +38,8 @@ const footerNavigation = {
     { name: 'Technology', href: '/#technology', anchorId: 'technology' },
     { name: 'Benefits', href: '/#benefits', anchorId: 'benefits' },
     { name: 'FAQ', href: '/#faq', anchorId: 'faq' },
-    { name: 'Blog', href: '/blog' }
+    { name: 'Blog', href: '/blog' },
+    { name: 'Toothbrush Subscription', href: '/electric-toothbrush-subscription' }
   ],
   programs: [
     { name: 'For Dentists', href: '/market-programs/dentists' },
@@ -67,7 +68,7 @@ const FooterLinkGroup = ({ title, links, isHomePage }: { title: string; links: F
     <ul className="space-y-1">
       {links.map((link) => (
         <li key={link.name}>
-          <Link 
+          <Link
             href={isHomePage && link.anchorId ? `#${link.anchorId}` : link.href}
             scroll={!link.anchorId}
             target={link.external ? "_blank" : undefined}
@@ -153,10 +154,10 @@ export default function Footer() {
   const [showFullDisclosure, setShowFullDisclosure] = useState(false);
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
-  
+
   // Check if we're on the homepage for smooth scroll behavior
   const isHomePage = pathname === '/';
-  
+
   // Get the most recent blog post to display in the footer
   const latestPost = getAllPosts()[0];
 
@@ -165,13 +166,13 @@ export default function Footer() {
       <ScrollToTopButton />
       <footer id="contact" className="relative">
         {/* Gradient border at top */}
-        <div 
+        <div
           className="h-1 w-full"
           style={{
             background: 'linear-gradient(90deg, #14b8a6 0%, #0f766e 30%, #f59e0b 70%, #0f766e 100%)'
           }}
         />
-        
+
         {/* Main footer content - charcoal background matching SLEEK product */}
         <div className="bg-charcoal-900 text-gray-100">
           <div className="container-standard py-16 md:py-20 lg:py-24">
@@ -192,7 +193,7 @@ export default function Footer() {
                 <p className="text-gray-400 text-sm mb-6 max-w-sm leading-relaxed">
                   Transform your dental routine with SLEEK Dental Club. Premium electric toothbrush kits, quarterly refills, and dental benefits delivered to your door.
                 </p>
-                
+
                 {/* Contact info - horizontal on mobile, vertical on desktop */}
                 <div className="flex flex-wrap gap-4 sm:gap-6 lg:flex-col lg:gap-3 mb-6">
                   {footerNavigation.contact.map((item) => (
@@ -200,8 +201,8 @@ export default function Footer() {
                       <div className="w-8 h-8 rounded-lg bg-charcoal-800/50 flex items-center justify-center mr-3 group-hover:bg-teal-500/10 transition-colors duration-300">
                         <item.icon className="w-4 h-4 text-teal-500" />
                       </div>
-                      <a 
-                        href={item.href} 
+                      <a
+                        href={item.href}
                         className="text-sm text-gray-400 hover:text-teal-400 transition-colors duration-200"
                       >
                         {item.name}
@@ -209,10 +210,10 @@ export default function Footer() {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Social link - positioned under contact info */}
                 <div>
-                  <a 
+                  <a
                     href="https://www.facebook.com/sleekdentalclub"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -223,29 +224,29 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-              
+
               {/* Navigation columns - 3 columns grid on mobile/tablet, inline on desktop */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:contents gap-6 lg:col-span-6">
                 <div className="lg:col-span-2">
                   <FooterLinkGroup title="Navigation" links={footerNavigation.pages} isHomePage={isHomePage} />
                 </div>
-                
+
                 <div className="lg:col-span-2">
                   <FooterLinkGroup title="Programs" links={footerNavigation.programs} isHomePage={isHomePage} />
                 </div>
-                
+
                 <div className="lg:col-span-2">
                   <FooterLinkGroup title="Support" links={footerNavigation.support} isHomePage={isHomePage} />
                 </div>
               </div>
-              
+
               {/* Latest Blog Post column - full width on mobile */}
               <div className="lg:col-span-2">
                 <h3 className="text-sm font-semibold mb-5 text-white uppercase tracking-wider">
                   Latest from Our Blog
                 </h3>
                 {latestPost && (
-                  <Link 
+                  <Link
                     href={`/blog/${latestPost.slug}`}
                     className="group block"
                   >
@@ -253,17 +254,17 @@ export default function Footer() {
                     <h4 className="text-white font-medium text-sm mb-2 leading-snug group-hover:text-teal-400 transition-colors duration-200 line-clamp-2">
                       {latestPost.title}
                     </h4>
-                    
+
                     {/* Post excerpt */}
                     <p className="text-gray-400 text-sm mb-3 leading-relaxed line-clamp-3">
                       {latestPost.excerpt}
                     </p>
-                    
+
                     {/* Meta info: date */}
                     <p className="text-xs text-gray-500 mb-3">
                       {latestPost.dateFormatted}
                     </p>
-                    
+
                     {/* Read more link */}
                     <span className="inline-flex items-center gap-1.5 text-teal-500 text-sm font-medium group-hover:text-teal-400 transition-colors duration-200">
                       Read article
@@ -274,7 +275,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          
+
           {/* Legal Disclosures Section - Collapsible on mobile for better UX */}
           <div className="border-t border-charcoal-800">
             <div className="container-standard py-6 md:py-8">
@@ -284,24 +285,24 @@ export default function Footer() {
                 <p>
                   <sup>1</sup>Value added benefits included in all membership levels are not provided by or affiliated with Metropolitan Life Insurance Company.
                 </p>
-                
+
                 {/* Savings Disclaimer */}
                 <p>
                   *Per visit, in most instances, on services. Actual costs and savings vary by provider, service, and geographical area.
                 </p>
-                
+
                 {/* MetLife Group Benefit Disclosure */}
                 <p>
                   Like most group benefit programs, benefit programs offered by MetLife and its affiliates contain certain exclusions, exceptions, waiting periods, reductions of benefits, limitations and terms for keeping them in force. Please contact Affinity Partners at{' '}
                   <a href="tel:18447533532" className="text-teal-500 hover:text-teal-400 transition-colors">844-753-3532</a>
                   {' '}for complete details.
                 </p>
-                
+
                 {/* MetLife Address and Copyright */}
                 <p>
                   Metropolitan Life Insurance Company | 200 Park Avenue | New York, NY 10166 L0223029203[exp0225][All States][DC,GU,MP,PR,VI] © 2023 MSS
                 </p>
-                
+
                 {/* Dental, Teledentist and Pharmacy Disclosure */}
                 <p>
                   <strong className="text-gray-400">Dental, Teledentist and Pharmacy Disclosure:</strong> This plan is NOT insurance. This plan is not a qualified health plan under the Affordable Care Act (ACA). Some services may be covered by a qualified health plan under the ACA. This plan does not meet the minimum creditable coverage requirements under M.G.L. c. 111M and 956 CMR 5.00. This is not a Medicare prescription drug plan. Discounts on hospital services are not available in Maryland. The plan provides discounts at certain health care providers of medical services. The plan does not make payments directly to the providers of medical services. The plan member is obligated to pay for all health care services but will receive a discount from those health care providers who have contracted with the discount plan organization. The range of discounts will vary depending on the provider type and services provided. The licensed discount plan organization is Coverdell & Company, Inc., at 2850 W. Golf Road, Rolling Meadows, IL 60008,{' '}
@@ -309,7 +310,7 @@ export default function Footer() {
                   <a href="https://www.findbestbenefits.com" target="_blank" rel="noopener noreferrer" className="text-teal-500 hover:text-teal-400 transition-colors">www.findbestbenefits.com</a>
                   {' '}and enter promo code 575313. You have the right to cancel this plan within 30 days of the effective date for a full refund of fees paid. Such refunds are issued within 30 days of cancellation.
                 </p>
-                
+
                 {/* Chiropractic, Hearing, Vision, etc. Disclosure */}
                 <p>
                   <strong className="text-gray-400">Chiropractic, Hearing, Vision, Nurseline, Vitamin, Online Wellness, Diabetic & Home Medical Supplies Disclosure:</strong> This plan is NOT insurance. This is not a qualified health plan under the Affordable Care Act (ACA). Some services may be covered by a qualified health plan under the ACA. The plan provides discounts at certain health care providers of medical services. The plan does not make payments directly to the providers of medical services. The plan member is obligated to pay for all health care services but will receive a discount from those health care providers who have contracted with the discount plan organization. The range of discounts for services will vary depending on the type of provider and services. The discount plan organization is Gallagher Affinity Insurance Services, Inc., at 2850 W. Golf Road, Rolling Meadows, IL 60008,{' '}
@@ -317,23 +318,23 @@ export default function Footer() {
                   <a href="https://www.findbestbenefits.com" target="_blank" rel="noopener noreferrer" className="text-teal-500 hover:text-teal-400 transition-colors">www.findbestbenefits.com</a>
                   {' '}and enter promo code 725336. The discount health benefits have been provided at no cost to you and will remain active until you cancel.
                 </p>
-                
+
                 {/* Product Imagery Disclosure */}
                 <p>
                   <strong className="text-gray-400">Product Imagery:</strong> Product images and illustrations shown on this website are for representational purposes only and may vary from actual products received. Differences may occur due to photography, display settings, packaging updates, and ongoing product enhancements.
                 </p>
-                
+
                 {/* Product Specifications Disclosure */}
                 <p>
                   <strong className="text-gray-400">Product Specifications:</strong> Battery life based on twice daily use of 2 minutes per session. Actual battery life may vary based on usage patterns and cleaning mode selected. Product specifications sourced from official SLEEK Dental Club packaging. IPX7 rating indicates water resistance for immersion up to 1 meter for 30 minutes.
                 </p>
-                
+
                 {/* Product Certifications */}
                 <p>
                   SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery
                 </p>
               </div>
-              
+
               {/* Mobile: collapsible disclosure */}
               <div className="md:hidden">
                 <button
@@ -363,24 +364,24 @@ export default function Footer() {
                         <p>
                           <sup>1</sup>Value added benefits included in all membership levels are not provided by or affiliated with Metropolitan Life Insurance Company.
                         </p>
-                        
+
                         {/* Savings Disclaimer */}
                         <p>
                           *Per visit, in most instances, on services. Actual costs and savings vary by provider, service, and geographical area.
                         </p>
-                        
+
                         {/* MetLife Group Benefit Disclosure */}
                         <p>
                           Like most group benefit programs, benefit programs offered by MetLife and its affiliates contain certain exclusions, exceptions, waiting periods, reductions of benefits, limitations and terms for keeping them in force. Please contact Affinity Partners at{' '}
                           <a href="tel:18447533532" className="text-teal-500 hover:text-teal-400 transition-colors">844-753-3532</a>
                           {' '}for complete details.
                         </p>
-                        
+
                         {/* MetLife Address and Copyright */}
                         <p>
                           Metropolitan Life Insurance Company | 200 Park Avenue | New York, NY 10166 L0223029203[exp0225][All States][DC,GU,MP,PR,VI] © 2023 MSS
                         </p>
-                        
+
                         {/* Dental, Teledentist and Pharmacy Disclosure */}
                         <p>
                           <strong className="text-gray-400">Dental, Teledentist and Pharmacy Disclosure:</strong> This plan is NOT insurance. This plan is not a qualified health plan under the Affordable Care Act (ACA). Some services may be covered by a qualified health plan under the ACA. This plan does not meet the minimum creditable coverage requirements under M.G.L. c. 111M and 956 CMR 5.00. This is not a Medicare prescription drug plan. Discounts on hospital services are not available in Maryland. The plan provides discounts at certain health care providers of medical services. The plan does not make payments directly to the providers of medical services. The plan member is obligated to pay for all health care services but will receive a discount from those health care providers who have contracted with the discount plan organization. The range of discounts will vary depending on the provider type and services provided. The licensed discount plan organization is Coverdell & Company, Inc., at 2850 W. Golf Road, Rolling Meadows, IL 60008,{' '}
@@ -388,7 +389,7 @@ export default function Footer() {
                           <a href="https://www.findbestbenefits.com" target="_blank" rel="noopener noreferrer" className="text-teal-500 hover:text-teal-400 transition-colors">www.findbestbenefits.com</a>
                           {' '}and enter promo code 575313. You have the right to cancel this plan within 30 days of the effective date for a full refund of fees paid. Such refunds are issued within 30 days of cancellation.
                         </p>
-                        
+
                         {/* Chiropractic, Hearing, Vision, etc. Disclosure */}
                         <p>
                           <strong className="text-gray-400">Chiropractic, Hearing, Vision, Nurseline, Vitamin, Online Wellness, Diabetic & Home Medical Supplies Disclosure:</strong> This plan is NOT insurance. This is not a qualified health plan under the Affordable Care Act (ACA). Some services may be covered by a qualified health plan under the ACA. The plan provides discounts at certain health care providers of medical services. The plan does not make payments directly to the providers of medical services. The plan member is obligated to pay for all health care services but will receive a discount from those health care providers who have contracted with the discount plan organization. The range of discounts for services will vary depending on the type of provider and services. The discount plan organization is Gallagher Affinity Insurance Services, Inc., at 2850 W. Golf Road, Rolling Meadows, IL 60008,{' '}
@@ -396,17 +397,17 @@ export default function Footer() {
                           <a href="https://www.findbestbenefits.com" target="_blank" rel="noopener noreferrer" className="text-teal-500 hover:text-teal-400 transition-colors">www.findbestbenefits.com</a>
                           {' '}and enter promo code 725336. The discount health benefits have been provided at no cost to you and will remain active until you cancel.
                         </p>
-                        
+
                         {/* Product Imagery Disclosure */}
                         <p>
                           <strong className="text-gray-400">Product Imagery:</strong> Product images and illustrations shown on this website are for representational purposes only and may vary from actual products received. Differences may occur due to photography, display settings, packaging updates, and ongoing product enhancements.
                         </p>
-                        
+
                         {/* Product Specifications Disclosure */}
                         <p>
                           <strong className="text-gray-400">Product Specifications:</strong> Battery life based on twice daily use of 2 minutes per session. Actual battery life may vary based on usage patterns and cleaning mode selected. Product specifications sourced from official SLEEK Dental Club packaging. IPX7 rating indicates water resistance for immersion up to 1 meter for 30 minutes.
                         </p>
-                        
+
                         {/* Product Certifications */}
                         <p>
                           SLEEK Dental Club | FDA Registered | CE Certified | Ni-MH Rechargeable Battery

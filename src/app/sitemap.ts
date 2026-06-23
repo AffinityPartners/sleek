@@ -47,6 +47,7 @@ const STATIC_PAGES: Array<{
 }> = [
   { path: '', changeFrequency: 'daily', priority: 1.0 },
   { path: '/blog', changeFrequency: 'daily', priority: 0.9 },
+  { path: '/electric-toothbrush-subscription', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/sitemap', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/market-programs/groups', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/market-programs/dentists', changeFrequency: 'monthly', priority: 0.8 },
