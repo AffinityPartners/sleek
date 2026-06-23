@@ -18,6 +18,18 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...legacyRedirects,
+      // --- Legacy WordPress/Avada pattern redirects (from GSC 404 export 2026-06-23) ---
+      // Old WP taxonomy archives -> blog index (they listed articles).
+      { source: '/category/:path*', destination: '/blog', permanent: true },
+      { source: '/tag/:path*', destination: '/blog', permanent: true },
+      // Malformed legacy privacy sub-paths -> privacy.
+      { source: '/privacy-policy/:path*', destination: '/privacy', permanent: true },
+      // Defunct Avada/Fusion theme-builder + WP system URLs -> home (no equivalent).
+      { source: '/element_category/:path*', destination: '/', permanent: true },
+      { source: '/fusion_tb_category/:path*', destination: '/', permanent: true },
+      { source: '/slide-page/:path*', destination: '/', permanent: true },
+      { source: '/slide/:path*', destination: '/', permanent: true },
+      { source: '/comments/:path*', destination: '/', permanent: true },
       // Catch-all for legacy WordPress assets we didn't map explicitly.
       { source: '/wp-content/:path*', destination: '/', permanent: true, basePath: false },
     ];

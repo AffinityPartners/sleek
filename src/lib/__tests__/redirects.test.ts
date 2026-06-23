@@ -29,6 +29,12 @@ describe('legacyRedirects', () => {
       .toBe('/blog/understanding-oral-cancer');
     expect(map['/does-charcoal-toothpaste-really-whiten-teeth-the-truth-behind-the-trend'])
       .toBe('/blog/charcoal-toothpaste-whitening');
+    expect(map['/how-to-handle-dental-emergencies-in-children-a-parents-guide'])
+      .toBe('/blog/dental-emergencies-children');
+    expect(map['/the-role-of-nutrition-and-oral-health'])
+      .toBe('/blog/nutrition-oral-health');
+    expect(map['/unlocking-your-smiles-potential-with-sleek-ocp'])
+      .toBe('/blog/sleek-ocp-overview');
   });
 
   it('external redirects use absolute URLs with basePath:false', () => {

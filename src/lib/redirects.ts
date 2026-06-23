@@ -27,6 +27,9 @@ export const legacyRedirects: LegacyRedirect[] = [
   { source: '/bleeding-gums-know-the-causes-symptoms-and-treatment', destination: '/blog/bleeding-gums', permanent: true },
   { source: '/introducing-sleek-dental-club', destination: '/blog/introducing-sleek-dental-club', permanent: true },
   { source: '/unlocking-the-benefits-of-sleek-dentals-pro-membership', destination: '/blog/sleek-dental-pro-membership', permanent: true },
+  { source: '/how-to-handle-dental-emergencies-in-children-a-parents-guide', destination: '/blog/dental-emergencies-children', permanent: true },
+  { source: '/the-role-of-nutrition-and-oral-health', destination: '/blog/nutrition-oral-health', permanent: true },
+  { source: '/unlocking-your-smiles-potential-with-sleek-ocp', destination: '/blog/sleek-ocp-overview', permanent: true },
 
   // --- Pages ---
   // Sources are de-slashed: with `trailingSlash: false`, Next normalizes trailing slashes before redirect matching, so trailing-slash sources never match.
@@ -34,14 +37,19 @@ export const legacyRedirects: LegacyRedirect[] = [
   { source: '/contact-us', destination: '/', permanent: true },
   { source: '/privacy-policy', destination: '/privacy', permanent: true },
   { source: '/checkout-ocp', destination: 'https://enrollment.sleekdentalclub.com/onboarding', permanent: true, basePath: false },
+  { source: '/terms-and-conditions', destination: '/terms', permanent: true },
+  { source: '/marketing-programs', destination: '/market-programs/affiliates', permanent: true },
+  { source: '/confirmation', destination: '/', permanent: true },
+  // Removed route (was a homepage duplicate) -> send to home instead of 404.
+  { source: '/aobg', destination: '/', permanent: true },
 
   // --- Legacy WordPress asset PDFs ---
   { source: '/wp-content/uploads/2023/01/Sleek-OCP-TC.pdf', destination: '/images/Sleek-TC-Website.pdf', permanent: true, basePath: false },
 
-  // NOTE: the 5 remaining blog posts (dental-emergencies-children, nutrition-oral-health,
-  // understanding-cavities, understanding-gingivitis, sleek-ocp-overview) and any other
-  // legacy URLs should be appended here once the full GSC "Not found (404)" export is
-  // dropped in notes/GSC/. Infer the old slug from the post title (e.g. "Understanding Cavities"
-  // → /understanding-cavities). Add them as explicit entries following the same pattern; the
-  // tests above will keep guarding invariants.
+  // Reconciled against the full GSC "Not found (404)" export (2026-06-23). The
+  // understanding-cavities / understanding-gingivitis posts have NO 404ing legacy URL
+  // (Google never indexed an old path for them), so they need no redirect. WordPress
+  // taxonomy archives (/category/*, /tag/*) and defunct Avada/Fusion theme-builder URLs
+  // (/element_category/*, /fusion_tb_category/*, /slide*, /comments/*) are handled by
+  // pattern rules in next.config.ts redirects().
 ];
