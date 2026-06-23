@@ -53,7 +53,6 @@ const STATIC_PAGES: Array<{
   { path: '/market-programs/dentists', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/market-programs/affiliates', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/market-programs/agents', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/aobg', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/terms', changeFrequency: 'yearly', priority: 0.5 },
   { path: '/privacy', changeFrequency: 'yearly', priority: 0.5 },
 ];
