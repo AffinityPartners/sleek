@@ -10,6 +10,7 @@ import {
   Share2,
   Briefcase,
   Users,
+  Sparkles,
   type LucideIcon,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -19,7 +20,7 @@ import Link from 'next/link';
  * Maps string identifiers to Lucide icon components to allow
  * Server Components to specify icons without passing functions.
  */
-export type MarketProgramIconName = 'stethoscope' | 'share2' | 'briefcase' | 'users';
+export type MarketProgramIconName = 'stethoscope' | 'share2' | 'briefcase' | 'users' | 'sparkles';
 
 /**
  * Internal mapping of icon names to Lucide icon components.
@@ -30,6 +31,7 @@ const iconMap: Record<MarketProgramIconName, LucideIcon> = {
   share2: Share2,
   briefcase: Briefcase,
   users: Users,
+  sparkles: Sparkles,
 };
 
 /**
@@ -47,6 +49,8 @@ interface MarketProgramHeroProps {
   benefits: string[];
   /** Badge text shown above the title (e.g., "FOR DENTISTS") */
   badgeText: string;
+  /** Middle breadcrumb label and back-context (defaults to "Partner Programs" for partner pages). */
+  breadcrumbLabel?: string;
 }
 
 /**
@@ -61,12 +65,13 @@ export default function MarketProgramHero({
   iconName,
   benefits,
   badgeText,
+  breadcrumbLabel = 'Partner Programs',
 }: MarketProgramHeroProps) {
   // Resolve the icon component from the name string
   const Icon = iconMap[iconName];
   const prefersReducedMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
-  
+
   // Detect mobile viewport for performance optimizations
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -74,7 +79,7 @@ export default function MarketProgramHero({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-  
+
   // Should we animate? Disabled on mobile or if user prefers reduced motion
   const shouldAnimate = !prefersReducedMotion && !isMobile;
 
@@ -164,7 +169,7 @@ export default function MarketProgramHero({
             Home
           </Link>
           <ChevronRight className="w-4 h-4" />
-          <span className="text-gray-900 font-medium">Partner Programs</span>
+          <span className="text-gray-900 font-medium">{breadcrumbLabel}</span>
         </motion.nav>
 
         {/* Back link */}
