@@ -183,26 +183,32 @@
    BASE RESETS
    ========================================================================== */
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+/* Wrapped in @layer base so Tailwind v4 utilities (in later layers) win. When
+   unlayered, these resets — especially `* { margin:0; padding:0 }` — override every
+   spacing utility on @apply-based classes (e.g. .container-standard), which zeroed
+   all margins/padding and slammed content to the left. */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 
-body {
-  color: var(--text-primary);
-  background: rgb(var(--background-rgb));
-}
+  body {
+    color: var(--text-primary);
+    background: rgb(var(--background-rgb));
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 /* ==========================================================================
