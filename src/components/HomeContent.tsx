@@ -79,7 +79,7 @@ export default function HomeContent() {
         <section id="hero">
           <Hero
             headline="Premium Sonic Tech. Complete Dental Coverage."
-            subheadline="Experience the perfect fusion of cutting-edge sonic technology and comprehensive dental insurance. One membership, total oral care."
+
             ctaText="Find My Perfect Plan"
             secondaryCtaText="See How It Works"
             mediaSrc="/images/Sleekbrush-splash.png"

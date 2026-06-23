@@ -1392,7 +1392,7 @@ const PricingSection: React.FC = () => {
                       />
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 font-heading tracking-tight">
-                      {plan.id === 'ocp' ? plan.name : `${plan.name} Dental Membership`}
+                      {plan.id === 'ocp' || plan.id === 'club' ? plan.name : `${plan.name} Dental Membership`}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4">{plan.description}</p>
                     {/* "Starting at" label shown for all plans to indicate variable pricing */}
